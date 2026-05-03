@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;700&family=Google+Sans+Text:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ─────────────────────────────── */
+:root {
+  --forest-950: #191d1f;
+  --forest-900: #252a2d;
+  --forest-800: #2d3235;
+  --forest-700: #383e41;
+  --vanilla-300: #e9c87d;
+  --gold-400:    #9ce800;
+  --cream:       #faf6ee;
+  --parchment:   #f5edd8;
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
+}
+
+/* ── Base ──────────────────────────────────────── */
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply font-sans text-gray-900 bg-white antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 { @apply font-heading; }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-forest-600 rounded-sm;
+  }
+
+  ::selection {
+    background: #9ce800;
+    color: #191d1f;
+  }
+}
+
+/* ── Components ────────────────────────────────── */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-sans font-medium
+           transition-all duration-200 active:scale-[0.97] select-none;
+  }
+  .btn-dark {
+    @apply btn px-6 py-3.5 bg-forest-950 text-white rounded-xl
+           hover:bg-forest-800 focus-visible:ring-2 focus-visible:ring-gold-400
+           focus-visible:ring-offset-2 text-sm tracking-wide;
+  }
+  .btn-gold {
+    @apply btn px-6 py-3.5 bg-gold-400 text-forest-950 rounded-xl
+           hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400
+           focus-visible:ring-offset-2 text-sm font-semibold tracking-wide;
+  }
+  .btn-outline-white {
+    @apply btn px-6 py-3.5 border border-white/30 text-white rounded-xl
+           hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50
+           text-sm tracking-wide backdrop-blur-sm;
+  }
+  .btn-outline-dark {
+    @apply btn px-6 py-3.5 border border-forest-900 text-forest-900 rounded-xl
+           hover:bg-forest-50 focus-visible:ring-2 focus-visible:ring-gold-400
+           text-sm tracking-wide;
+  }
+  .btn-outline-cream {
+    @apply btn px-6 py-3.5 border border-vanilla-300/50 text-parchment rounded-xl
+           hover:border-vanilla-300 hover:text-white focus-visible:ring-2
+           focus-visible:ring-vanilla-300 text-sm tracking-wide;
+  }
+
+  /* Cards */
+  .glass-card {
+    background-color: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.12);
+    @apply rounded-2xl;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.08);
+  }
+  .surface-card {
+    @apply bg-white border border-gray-100 rounded-2xl
+           shadow-sm hover:shadow-card-hover hover:border-gold-400/30 transition-all duration-300;
+  }
+
+  /* Typography */
+  .label-tag {
+    @apply text-xs font-medium tracking-[0.18em] uppercase;
+  }
+  .section-eyebrow {
+    @apply label-tag text-gold-500 mb-3 block;
+  }
+  .section-eyebrow-light {
+    @apply label-tag text-vanilla-300 mb-3 block;
+  }
+
+  /* Layout */
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+  .section-y {
+    @apply py-20 md:py-28 xl:py-36;
+  }
+
+  /* Divider */
+  .h-rule {
+    @apply w-12 h-px bg-gold-400;
+  }
+
+  /* Badge */
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs
+           font-medium tracking-wide;
+  }
+}
+
+/* ── Utilities ─────────────────────────────────── */
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #c4f266 0%, #7dba00 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-gradient-green {
+    background: linear-gradient(135deg, #9ce800 0%, #252a2d 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Noise overlay on dark panels */
+  .noise-overlay::after {
+    content: "";
+    @apply absolute inset-0 pointer-events-none opacity-[0.03];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s var(--ease-spring), transform 0.75s var(--ease-spring);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.75s var(--ease-spring), transform 0.75s var(--ease-spring);
+  }
+  .reveal-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Stagger children */
+  .stagger > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger > *:nth-child(2) { transition-delay: 80ms; }
+  .stagger > *:nth-child(3) { transition-delay: 160ms; }
+  .stagger > *:nth-child(4) { transition-delay: 240ms; }
+  .stagger > *:nth-child(5) { transition-delay: 320ms; }
+
+  /* Image hover zoom container */
+  .img-zoom { @apply overflow-hidden; }
+  .img-zoom img,
+  .img-zoom > div { @apply transition-transform duration-700 ease-out; }
+  .img-zoom:hover img,
+  .img-zoom:hover > div { transform: scale(1.06); }
+
+  /* Underline link */
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-px
+           after:w-0 after:bg-current after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+
+  /* Marquee stop on hover */
+  .marquee-track:hover .animate-marquee { animation-play-state: paused; }
+
+  .text-balance { text-wrap: balance; }
+
+  /* Bg forest dark variants */
+  .bg-forest-dark  { background-color: var(--forest-950); }
+  .bg-forest-panel { background-color: #1f2325; }
+}
+
+/* ── Marquee ──────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  gap: 0;
+}

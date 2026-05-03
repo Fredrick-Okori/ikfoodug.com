@@ -1,0 +1,276 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
+
+export const metadata: Metadata = {
+  title: "Our Products",
+  description:
+    "Explore IK Food Uganda's five premium organic products: Ugandan vanilla, Robusta coffee, organic cocoa, Hass avocado, and garden eggs — export-grade and fully certified.",
+};
+
+const products = [
+  {
+    id: "vanilla",
+    name: "Ugandan Vanilla",
+    tagline: "The World's Finest Vanilla Beans",
+    origin: "Central Uganda",
+    spec: "1.5–2.5% Vanillin Content",
+    description:
+      "Uganda produces some of the world's finest vanilla — renowned for its exceptionally high vanillin content, rich creamy flavour, and floral complexity. Our beans are hand-harvested at peak maturity, then sun-cured using traditional methods refined over generations, producing a depth of flavour that surpasses industry benchmarks.",
+    features: [
+      "Vanillin content 1.5–2.5% — world-leading",
+      "Hand-harvested at peak maturity",
+      "Traditional sun-curing methods",
+      "Available: whole beans, split, powder, extract",
+      "EU Organic Certified",
+      "Direct farmer cooperative sourcing",
+    ],
+    uses: ["Premium ice cream & dairy", "Artisan chocolate & confectionery", "Perfumery & cosmetics", "Baking & pastry"],
+    image: "/IMG_4873_converted.avif",
+    imageSide: "right" as const,
+    accent: "gold",
+    dark: true,
+  },
+  {
+    id: "coffee",
+    name: "Fine Robusta Coffee",
+    tagline: "Bold, Balanced, Beautifully Ugandan",
+    origin: "Highland Regions",
+    spec: "High-Altitude Shade-Grown",
+    description:
+      "Uganda's highland Robusta is celebrated for its bold, full-bodied flavour, naturally low acidity, and rich crema — ideal for espresso blends. Grown at altitude in volcanic soil, our beans develop exceptional depth. We work directly with shade-grown organic farmers, ensuring every batch is traceable from tree to bag.",
+    features: [
+      "High-altitude shade-grown cultivation",
+      "Rich crema — ideal for espresso blends",
+      "Low acidity, bold full-body",
+      "Natural and washed process options",
+      "Full farm-to-cup traceability",
+      "Fair-trade farmer partnerships",
+    ],
+    uses: ["Espresso & specialty coffee", "Commercial roaster blending", "Cold brew & extract", "Instant coffee production"],
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1000&q=85",
+    imageSide: "left" as const,
+    accent: "green",
+    dark: false,
+  },
+  {
+    id: "cocoa",
+    name: "Organic Cocoa",
+    tagline: "Fine-Flavoured Cocoa from Uganda's Heart",
+    origin: "Central & Western Uganda",
+    spec: "Naturally Fermented",
+    description:
+      "Uganda's organic cocoa is gaining recognition among premium chocolate makers worldwide for its complex flavour notes and consistent fermentation quality. Grown in humid central and western regions, pods are carefully harvested, fermented using natural methods, and sun-dried to achieve the optimal moisture and flavour profile.",
+    features: [
+      "Naturally fermented and sun-dried",
+      "Fine-flavour certification eligible",
+      "Low pesticide residue guarantee",
+      "Available: beans, nibs, paste, butter",
+      "Certified organic production",
+      "Consistent, tested flavour profile",
+    ],
+    uses: ["Artisan & craft chocolate", "Cocoa butter production", "Confectionery & baking", "Nutraceuticals & health products"],
+    image: "https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?w=1000&q=85",
+    imageSide: "right" as const,
+    accent: "green",
+    dark: false,
+  },
+  {
+    id: "avocado",
+    name: "Hass Avocado",
+    tagline: "Creamy, Nutrient-Rich, Export Grade",
+    origin: "Highland Farms",
+    spec: "Class I Export Grade",
+    description:
+      "Uganda's equatorial climate and highland growing regions create ideal conditions for premium Hass avocados with exceptional oil content and creamy texture. Grown by GAP-certified farmers, carefully graded, and packed to EU and Asian export standards — IK Food Uganda is a reliable partner for fresh produce importers worldwide.",
+    features: [
+      "Class I export grade certified",
+      "Consistent sizing (16–28 count)",
+      "High oil content (18–25%)",
+      "Cold-chain logistics capable",
+      "GAP (Good Agricultural Practice) certified",
+      "Year-round availability",
+    ],
+    uses: ["Fresh retail & wholesale", "Food service & restaurants", "Guacamole & dips production", "Avocado oil extraction"],
+    image: "https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?w=1000&q=85",
+    imageSide: "left" as const,
+    accent: "green",
+    dark: false,
+  },
+  {
+    id: "garden-eggs",
+    name: "Garden Eggs",
+    tagline: "Fresh African Aubergines, Globally Delivered",
+    origin: "Central Uganda",
+    spec: "Phytosanitary Certified",
+    description:
+      "Garden eggs — African eggplants — are a nutritious and versatile vegetable increasingly sought after in international markets. IK Food Uganda grows them sustainably, ensuring vibrant colour, firm texture, and extended shelf life for export. Rich in antioxidants and fibre, they are valued both as a food ingredient and for their health benefits.",
+    features: [
+      "Vibrant colour and firm texture",
+      "Extended shelf life for export",
+      "Rich in antioxidants and fibre",
+      "Sustainably farmed",
+      "White and green varieties available",
+      "Phytosanitary certified for export",
+    ],
+    uses: ["Retail & fresh markets", "West African cuisine export", "Food processing & preserves", "Health food industry"],
+    image: "https://images.unsplash.com/photo-1582515073490-39981397c445?w=1000&q=85",
+    imageSide: "right" as const,
+    accent: "green",
+    dark: false,
+  },
+];
+
+export default function ProductsPage() {
+  return (
+    <>
+      {/* ── Hero ── */}
+      <section className="relative min-h-[70vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Products hero">
+        <Image
+          src="/IMG_4873_converted.avif"
+          alt="Ugandan vanilla beans — IK Food Uganda's premium product"
+          fill className="object-cover" priority sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-forest-950/30" aria-hidden="true" />
+
+        <div className="relative z-10 max-w-7xl mx-auto container-px w-full">
+          <div className="max-w-2xl">
+            <span className="section-eyebrow-light mb-4">Premium Organic</span>
+            <h1 className="text-display-2xl font-bold text-white mb-6 text-balance">
+              Our Products
+            </h1>
+            <p className="text-white/60 text-lg leading-relaxed mb-8">
+              Five premium organic products — each cultivated sustainably in
+              Uganda&apos;s fertile highlands and processed to the highest
+              international export standards.
+            </p>
+            {/* Jump links */}
+            <nav aria-label="Jump to product">
+              <ul className="flex flex-wrap gap-2" role="list">
+                {products.map((p) => (
+                  <li key={p.id}>
+                    <a
+                      href={`#${p.id}`}
+                      className="chip bg-white/10 border border-white/20 text-white/70 hover:bg-white/20 hover:text-white transition-all backdrop-blur-sm"
+                    >
+                      {p.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Product listings ── */}
+      <div>
+        {products.map((product, index) => {
+          const isLeft = product.imageSide === "left";
+
+          return (
+            <section
+              key={product.id}
+              id={product.id}
+              className={`scroll-mt-20 section-y ${index % 2 === 0 ? "bg-cream" : "bg-white"}`}
+              aria-label={`${product.name} product detail`}
+            >
+              <div className="max-w-7xl mx-auto container-px">
+                <div className={`grid lg:grid-cols-2 gap-14 lg:gap-20 items-center ${isLeft ? "lg:grid-flow-col-dense" : ""}`}>
+
+                  {/* Image */}
+                  <ScrollReveal
+                    delay={60}
+                    className={`relative rounded-4xl overflow-hidden h-[420px] md:h-[560px] img-zoom shadow-xl ${isLeft ? "lg:col-start-2" : ""}`}
+                  >
+                    <Image
+                      src={product.image}
+                      alt={`${product.name} — premium organic export product from Uganda`}
+                      fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    {/* Floating spec tag */}
+                    <div className="absolute top-5 left-5 glass-card px-4 py-2.5" aria-hidden="true">
+                      <p className="text-[10px] text-white/50 uppercase tracking-widest">{product.origin}</p>
+                      <p className="text-sm font-semibold text-white">{product.spec}</p>
+                    </div>
+                  </ScrollReveal>
+
+                  {/* Content */}
+                  <ScrollReveal className={isLeft ? "lg:col-start-1 lg:row-start-1" : ""}>
+                    <span className="section-eyebrow">{product.tagline}</span>
+                    <h2 className="text-display-lg font-bold text-forest-950 mb-2 text-balance">
+                      {product.name}
+                    </h2>
+                    <div className="h-rule mb-6" aria-hidden="true" />
+                    <p className="text-gray-600 leading-relaxed mb-8">{product.description}</p>
+
+                    <div className="grid sm:grid-cols-2 gap-8 mb-8">
+                      <div>
+                        <h3 className="label-tag text-forest-700 mb-4">Key Features</h3>
+                        <ul className="space-y-2.5" role="list">
+                          {product.features.map((f) => (
+                            <li key={f} className="flex items-start gap-2.5">
+                              <CheckCircle2 className="w-4 h-4 text-forest-600 mt-0.5 shrink-0" aria-hidden="true" />
+                              <span className="text-sm text-gray-700">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="label-tag text-forest-700 mb-4">Common Uses</h3>
+                        <ul className="space-y-2.5" role="list">
+                          {product.uses.map((u) => (
+                            <li key={u} className="flex items-start gap-2.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-gold-400 mt-2 shrink-0" aria-hidden="true" />
+                              <span className="text-sm text-gray-700">{u}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <Link href="/contact" className="btn-dark group">
+                      Request a Quote
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                    </Link>
+                  </ScrollReveal>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {/* ── Sourcing CTA ── */}
+      <section className="py-24 bg-forest-950 noise-overlay relative overflow-hidden" aria-label="Sourcing enquiry CTA">
+        <div className="absolute inset-0 opacity-10" aria-hidden="true">
+          <Image src="/IMG_7806_converted.avif" alt="" fill className="object-cover" sizes="100vw" />
+        </div>
+        <div className="relative max-w-3xl mx-auto container-px text-center">
+          <ScrollReveal>
+            <span className="section-eyebrow-light">Ready to Source?</span>
+            <h2 className="text-display-lg font-bold text-white mb-5 text-balance">
+              Looking for Organic Products?
+            </h2>
+            <p className="text-white/55 text-lg mb-10">
+              Contact our team to discuss pricing, minimum order quantities,
+              and logistics. We supply distributors, wholesalers, and direct
+              buyers across Europe and Asia.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link href="/contact" className="btn-gold">
+                Request a Quote
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link href="/about" className="btn-outline-cream">
+                About Us
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+    </>
+  );
+}
