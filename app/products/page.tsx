@@ -24,18 +24,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
     description: "Export-grade organic vanilla, coffee, cocoa, avocado and garden eggs from one of Uganda's top vanilla companies.",
-    url: "https://ik-fooduganda.com/products",
+    url: "https://ikfoodug.com/products",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
-  alternates: { canonical: "https://ik-fooduganda.com/products" },
+  alternates: { canonical: "https://ikfoodug.com/products" },
 };
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://ik-fooduganda.com" },
-    { "@type": "ListItem", position: 2, name: "Products", item: "https://ik-fooduganda.com/products" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ikfoodug.com" },
+    { "@type": "ListItem", position: 2, name: "Products", item: "https://ikfoodug.com/products" },
   ],
 };
 

@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact IK Food Uganda | Order Vanilla & Organic Products",
     description: "Place an order or enquire about premium organic vanilla and agricultural products from Uganda.",
-    url: "https://ik-fooduganda.com/contact",
+    url: "https://ikfoodug.com/contact",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
-  alternates: { canonical: "https://ik-fooduganda.com/contact" },
+  alternates: { canonical: "https://ikfoodug.com/contact" },
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

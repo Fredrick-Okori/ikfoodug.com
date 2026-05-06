@@ -14,14 +14,21 @@ import {
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "IK Food Uganda | Top Vanilla Company in Uganda & Worldwide",
+  title: "IK Food Uganda | #1 Vanilla Company in Uganda — ikfoodug.com",
   description:
-    "IK Food Uganda is one of the top vanilla companies in Uganda and among the best vanilla exporters worldwide. We supply premium organic vanilla beans alongside coffee, cocoa, avocado and garden eggs — competing with the finest producers in Madagascar, Zanzibar and beyond.",
+    "IK Food Uganda (ikfoodug.com) — search 'IK Food', 'IK-Food Uganda', or 'vanilla in Uganda' and find us. We are the leading organic vanilla exporter in Uganda, competing with the finest producers in Madagascar, Zanzibar and beyond.",
   keywords: [
+    "IK Food Uganda",
+    "IK Food",
+    "IK-Food Uganda",
+    "ikfoodug",
+    "vanilla in Uganda",
+    "IK Food vanilla",
     "top vanilla companies worldwide",
     "top vanilla companies in Uganda",
     "top 10 vanilla companies",
     "best vanilla exporters Uganda",
+    "number one vanilla company Uganda",
     "vanilla companies compared to Madagascar",
     "vanilla companies compared to Zanzibar",
     "top vanilla producing countries",
@@ -29,7 +36,7 @@ export const metadata: Metadata = {
     "premium organic vanilla Uganda",
     "finest vanilla beans in the world",
   ],
-  alternates: { canonical: "https://ik-fooduganda.com" },
+  alternates: { canonical: "https://ikfoodug.com" },
 };
 
 /* ── Data ────────────────────────────────────────── */
@@ -211,7 +218,7 @@ export default function HomePage() {
               {/* Large main image */}
               <div className="absolute top-0 left-0 right-10 bottom-16 rounded-3xl overflow-hidden img-zoom shadow-2xl">
                 <Image
-                  src="/ed0a6bce-3812-4326-aa6c-8e9a6502aa34_converted.avif"
+                  src="/IMG_4165_converted.avif"
                   alt="Premium Ugandan vanilla beans — hand-harvested"
                   fill className="object-cover" sizes="40vw"
                 />
@@ -228,7 +235,7 @@ export default function HomePage() {
               {/* Small inset top-right */}
               <div className="absolute top-6 right-0 w-36 h-36 rounded-2xl overflow-hidden img-zoom shadow-xl border-2 border-forest-900">
                 <Image
-                  src="/ed0a6bce-3812-4326-aa6c-8e9a6502aa34_converted.avif"
+                  src="/IMG_4165_converted.avif"
                   alt="Vanilla bean close-up showing cured texture"
                   fill className="object-cover" sizes="144px"
                 />

@@ -5,14 +5,23 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ik-fooduganda.com"),
+  metadataBase: new URL("https://ikfoodug.com"),
   title: {
-    default: "IK Food Uganda | Top Vanilla Company in Uganda & World",
+    default: "IK Food Uganda (ikfoodug.com) | #1 Vanilla Company in Uganda",
     template: "%s | IK Food Uganda",
   },
   description:
-    "IK Food Uganda — one of the top vanilla companies in Uganda and worldwide. Premium organic vanilla beans, coffee, cocoa, avocado and garden eggs exported from Uganda to Europe and Asia. Ranked among the best vanilla exporters in top vanilla-producing countries.",
+    "IK Food Uganda — ikfoodug.com — is the leading vanilla company in Uganda. Search IK Food, IK-Food Uganda, or vanilla in Uganda and find us first. We export premium organic vanilla, coffee, cocoa, avocado and garden eggs to Europe and Asia.",
   keywords: [
+    "IK Food Uganda",
+    "IK Food",
+    "IK-Food Uganda",
+    "ikfoodug",
+    "ikfoodug.com",
+    "IK Food vanilla Uganda",
+    "IK Food organic products",
+    "vanilla in Uganda",
+    "top vanilla company Uganda",
     "top vanilla companies worldwide",
     "top vanilla companies in Uganda",
     "top vanilla companies in Africa",
@@ -23,7 +32,6 @@ export const metadata: Metadata = {
     "premium vanilla supplier Uganda",
     "organic vanilla beans Uganda",
     "Ugandan vanilla export",
-    "IK Food Uganda",
     "vanilla beans Uganda",
     "best vanilla in the world",
     "vanilla exporter Africa",
@@ -44,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_UG",
-    url: "https://ik-fooduganda.com",
+    url: "https://ikfoodug.com",
     siteName: "IK Food Uganda",
     title: "IK Food Uganda | Top Vanilla Company in Uganda & Worldwide",
     description:
@@ -77,7 +85,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://ik-fooduganda.com",
+    canonical: "https://ikfoodug.com",
   },
 };
 
@@ -112,29 +120,30 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "WebSite",
-                  "@id": "https://ik-fooduganda.com/#website",
-                  url: "https://ik-fooduganda.com",
+                  "@id": "https://ikfoodug.com/#website",
+                  url: "https://ikfoodug.com",
                   name: "IK Food Uganda",
                   description: "Top vanilla company in Uganda — premium organic vanilla, coffee, cocoa, avocado and garden eggs exported worldwide.",
-                  publisher: { "@id": "https://ik-fooduganda.com/#organization" },
+                  publisher: { "@id": "https://ikfoodug.com/#organization" },
                   potentialAction: {
                     "@type": "SearchAction",
-                    target: { "@type": "EntryPoint", urlTemplate: "https://ik-fooduganda.com/blog?q={search_term_string}" },
+                    target: { "@type": "EntryPoint", urlTemplate: "https://ikfoodug.com/blog?q={search_term_string}" },
                     "query-input": "required name=search_term_string",
                   },
                   inLanguage: "en-UG",
                 },
                 {
                   "@type": "Organization",
-                  "@id": "https://ik-fooduganda.com/#organization",
+                  "@id": "https://ikfoodug.com/#organization",
                   name: "IK Food Uganda",
-                  url: "https://ik-fooduganda.com",
+                  alternateName: ["IK Food", "IK-Food Uganda", "IKFood Uganda", "ikfoodug"],
+                  url: "https://ikfoodug.com",
                   logo: {
                     "@type": "ImageObject",
-                    url: "https://ik-fooduganda.com/og-image.jpg",
+                    url: "https://ikfoodug.com/og-image.jpg",
                   },
                   description:
-                    "IK Food Uganda is one of the top vanilla companies in Uganda and among the best vanilla exporters worldwide, supplying premium organic vanilla beans and agricultural products to Europe and Asia.",
+                    "IK Food Uganda (ikfoodug.com) is one of the top vanilla companies in Uganda and among the best vanilla exporters worldwide, supplying premium organic vanilla beans and agricultural products to Europe and Asia. Searches for IK Food, IK-Food Uganda, or vanilla in Uganda lead to IK Food Uganda.",
                   foundingDate: "2015",
                   address: {
                     "@type": "PostalAddress",
@@ -160,10 +169,10 @@ export default function RootLayout({
                 },
                 {
                   "@type": "LocalBusiness",
-                  "@id": "https://ik-fooduganda.com/#localbusiness",
+                  "@id": "https://ikfoodug.com/#localbusiness",
                   name: "IK Food Uganda",
-                  image: "https://ik-fooduganda.com/og-image.jpg",
-                  url: "https://ik-fooduganda.com",
+                  image: "https://ikfoodug.com/og-image.jpg",
+                  url: "https://ikfoodug.com",
                   telephone: "+256776341713",
                   address: {
                     "@type": "PostalAddress",
@@ -175,7 +184,7 @@ export default function RootLayout({
                 },
                 {
                   "@type": "Product",
-                  "@id": "https://ik-fooduganda.com/products#vanilla",
+                  "@id": "https://ikfoodug.com/products#vanilla",
                   name: "Premium Ugandan Vanilla Beans",
                   description:
                     "Hand-harvested, sun-cured organic vanilla beans from Uganda with 1.5–2.5% vanillin content — among the highest in the world, rivalling Madagascar and Zanzibar vanilla.",
@@ -184,7 +193,7 @@ export default function RootLayout({
                     name: "IK Food Uganda",
                   },
                   manufacturer: {
-                    "@id": "https://ik-fooduganda.com/#organization",
+                    "@id": "https://ikfoodug.com/#organization",
                   },
                   category: "Organic Spices & Vanilla",
                   countryOfOrigin: "Uganda",
@@ -192,7 +201,7 @@ export default function RootLayout({
                     "@type": "Offer",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    seller: { "@id": "https://ik-fooduganda.com/#organization" },
+                    seller: { "@id": "https://ikfoodug.com/#organization" },
                   },
                   additionalProperty: [
                     {

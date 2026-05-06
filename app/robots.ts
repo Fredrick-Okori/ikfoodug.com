@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://ik-fooduganda.com/sitemap.xml",
+    sitemap: "https://ikfoodug.com/sitemap.xml",
   };
 }

@@ -17,10 +17,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vanilla Export Case Studies | IK Food Uganda",
     description: "Real-world export success stories from one of Uganda's top vanilla companies.",
-    url: "https://ik-fooduganda.com/case-studies",
+    url: "https://ikfoodug.com/case-studies",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
-  alternates: { canonical: "https://ik-fooduganda.com/case-studies" },
+  alternates: { canonical: "https://ikfoodug.com/case-studies" },
 };
 
 const studies = [

@@ -22,19 +22,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vanilla Insights & Export Resources | IK Food Uganda Blog",
     description: "Expert insights on why Ugandan vanilla rivals Madagascar and Zanzibar, plus export guides and farming articles.",
-    url: "https://ik-fooduganda.com/blog",
+    url: "https://ikfoodug.com/blog",
     type: "website",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
-  alternates: { canonical: "https://ik-fooduganda.com/blog" },
+  alternates: { canonical: "https://ikfoodug.com/blog" },
 };
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://ik-fooduganda.com" },
-    { "@type": "ListItem", position: 2, name: "Blog", item: "https://ik-fooduganda.com/blog" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ikfoodug.com" },
+    { "@type": "ListItem", position: 2, name: "Blog", item: "https://ikfoodug.com/blog" },
   ],
 };
 
@@ -43,18 +43,18 @@ const blogArticlesJsonLd = {
   "@type": "Blog",
   name: "IK Food Uganda Blog",
   description: "Insights on Ugandan vanilla, top vanilla-producing countries, export regulations and organic farming.",
-  url: "https://ik-fooduganda.com/blog",
+  url: "https://ikfoodug.com/blog",
   publisher: {
     "@type": "Organization",
     name: "IK Food Uganda",
-    url: "https://ik-fooduganda.com",
+    url: "https://ikfoodug.com",
   },
   blogPost: [
     {
       "@type": "BlogPosting",
       headline: "Why Ugandan Vanilla is the Best in the World",
       description: "Uganda's vanillin concentration, traditional sun-curing methods, and unique highland climate combine to produce vanilla that consistently surpasses all others.",
-      url: "https://ik-fooduganda.com/blog/why-ugandan-vanilla-is-the-best",
+      url: "https://ikfoodug.com/blog/why-ugandan-vanilla-is-the-best",
       datePublished: "2023-04-01",
       author: { "@type": "Organization", name: "IK Food Uganda" },
       keywords: "top vanilla companies worldwide, best vanilla Uganda, Uganda vs Madagascar vanilla",
@@ -63,7 +63,7 @@ const blogArticlesJsonLd = {
       "@type": "BlogPosting",
       headline: "The Importance of Vanilla in the Global Food Industry",
       description: "From premium ice cream to fine perfumery, natural vanilla commands a premium that synthetic alternatives can never replicate.",
-      url: "https://ik-fooduganda.com/blog/importance-of-vanilla",
+      url: "https://ikfoodug.com/blog/importance-of-vanilla",
       datePublished: "2022-11-01",
       author: { "@type": "Organization", name: "IK Food Uganda" },
     },
@@ -71,7 +71,7 @@ const blogArticlesJsonLd = {
       "@type": "BlogPosting",
       headline: "Navigating International Requirements to Export Vanilla",
       description: "A practical guide to the certifications, compliance steps, and logistics required to successfully export vanilla from Uganda.",
-      url: "https://ik-fooduganda.com/blog/navigating-export-requirements",
+      url: "https://ikfoodug.com/blog/navigating-export-requirements",
       datePublished: "2021-11-01",
       author: { "@type": "Organization", name: "IK Food Uganda" },
     },

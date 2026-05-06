@@ -20,18 +20,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
     description: "The story of one of Uganda's top vanilla companies — founded 2015, 3,000+ farmer partners, exporting globally.",
-    url: "https://ik-fooduganda.com/about",
+    url: "https://ikfoodug.com/about",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
-  alternates: { canonical: "https://ik-fooduganda.com/about" },
+  alternates: { canonical: "https://ikfoodug.com/about" },
 };
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://ik-fooduganda.com" },
-    { "@type": "ListItem", position: 2, name: "About", item: "https://ik-fooduganda.com/about" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ikfoodug.com" },
+    { "@type": "ListItem", position: 2, name: "About", item: "https://ikfoodug.com/about" },
   ],
 };
 
