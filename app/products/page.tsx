@@ -5,9 +5,38 @@ import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Our Products",
+  title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
   description:
-    "Explore IK Food Uganda's five premium organic products: Ugandan vanilla, Robusta coffee, organic cocoa, Hass avocado, and garden eggs — export-grade and fully certified.",
+    "Buy premium organic vanilla beans from one of the top vanilla companies in Uganda. IK Food Uganda also exports Fine Robusta coffee, organic cocoa, Hass avocado and garden eggs — all export-grade, fully certified, and trusted by buyers worldwide.",
+  keywords: [
+    "buy vanilla beans Uganda",
+    "premium organic vanilla supplier",
+    "top vanilla company Uganda products",
+    "Uganda vanilla beans wholesale",
+    "best vanilla beans in the world",
+    "Ugandan vanilla vs Madagascar vanilla",
+    "Ugandan vanilla vs Zanzibar vanilla",
+    "organic vanilla export Uganda",
+    "Fine Robusta coffee Uganda",
+    "organic cocoa Uganda export",
+    "Hass avocado Uganda export",
+  ],
+  openGraph: {
+    title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
+    description: "Export-grade organic vanilla, coffee, cocoa, avocado and garden eggs from one of Uganda's top vanilla companies.",
+    url: "https://ik-fooduganda.com/products",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  alternates: { canonical: "https://ik-fooduganda.com/products" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ik-fooduganda.com" },
+    { "@type": "ListItem", position: 2, name: "Products", item: "https://ik-fooduganda.com/products" },
+  ],
 };
 
 const products = [
@@ -126,6 +155,7 @@ const products = [
 export default function ProductsPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* ── Hero ── */}
       <section className="relative min-h-[70vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Products hero">
         <Image
@@ -174,7 +204,7 @@ export default function ProductsPage() {
             <section
               key={product.id}
               id={product.id}
-              className={`scroll-mt-20 section-y ${index % 2 === 0 ? "bg-cream" : "bg-white"}`}
+              className={`scroll-mt-20 section-y map-bg ${index % 2 === 0 ? "bg-cream" : "bg-white"}`}
               aria-label={`${product.name} product detail`}
             >
               <div className="max-w-7xl mx-auto container-px">

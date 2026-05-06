@@ -5,9 +5,22 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Case Studies",
+  title: "Vanilla Export Case Studies | IK Food Uganda",
   description:
-    "In-depth case studies on exporting Ugandan fresh produce and the growth of Uganda's vanilla industry — from IK Food Uganda.",
+    "Real-world case studies from IK Food Uganda — one of the top vanilla companies in Uganda — on exporting premium organic vanilla and fresh produce to Europe and Asia.",
+  keywords: [
+    "Uganda vanilla export case study",
+    "top vanilla exporter Uganda success",
+    "organic vanilla export Africa",
+    "Uganda agricultural export",
+  ],
+  openGraph: {
+    title: "Vanilla Export Case Studies | IK Food Uganda",
+    description: "Real-world export success stories from one of Uganda's top vanilla companies.",
+    url: "https://ik-fooduganda.com/case-studies",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  alternates: { canonical: "https://ik-fooduganda.com/case-studies" },
 };
 
 const studies = [
@@ -117,7 +130,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* ── Study cards overview ── */}
-      <section className="py-14 bg-cream border-b border-forest-100" aria-label="Case study overview">
+      <section className="py-14 bg-cream map-bg border-b border-forest-100" aria-label="Case study overview">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid md:grid-cols-2 gap-6">
             {studies.map((s) => (
@@ -149,7 +162,7 @@ export default function CaseStudiesPage() {
 
       {/* ── Full case studies ── */}
       {studies.map((s, si) => (
-        <article key={s.id} id={s.id} className={`scroll-mt-20 section-y ${si % 2 === 0 ? "bg-white" : "bg-parchment"}`} aria-label={s.title}>
+        <article key={s.id} id={s.id} className={`scroll-mt-20 section-y map-bg ${si % 2 === 0 ? "bg-white" : "bg-parchment"}`} aria-label={s.title}>
           <div className="max-w-7xl mx-auto container-px">
 
             {/* Header */}

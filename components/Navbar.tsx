@@ -7,6 +7,7 @@ import {
   Menu, X, ChevronDown, Leaf,
   BookOpen, ImageIcon, ArrowUpRight, Phone, Mail,
 } from "lucide-react";
+import OrderModal from "./OrderModal";
 
 const links = [
   { href: "/",             label: "Home" },
@@ -24,10 +25,11 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [open,    setOpen]    = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [resOpen,  setResOpen]  = useState(false);
+  const [open,       setOpen]       = useState(false);
+  const [scrolled,   setScrolled]   = useState(false);
+  const [progress,   setProgress]   = useState(0);
+  const [resOpen,    setResOpen]    = useState(false);
+  const [orderOpen,  setOrderOpen]  = useState(false);
   const resRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
 
@@ -213,12 +215,12 @@ export default function Navbar() {
 
             {/* ── CTA + mobile toggle ── */}
             <div className="flex items-center gap-3">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setOrderOpen(true)}
                 className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide border border-gold-400 text-forest-950 bg-gold-400 hover:bg-gold-300 hover:border-gold-300 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-forest-900 shadow-[0_0_20px_rgba(156,232,0,0.15)] hover:shadow-glow-gold"
               >
                 Place Order
-              </Link>
+              </button>
 
               {/* Mobile hamburger */}
               <button
@@ -318,12 +320,12 @@ export default function Navbar() {
           className={`px-6 py-8 border-t border-gold-400/10 space-y-5 transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           style={{ transitionDelay: open ? "380ms" : "0ms" }}
         >
-          <Link
-            href="/contact"
+          <button
+            onClick={() => { setOpen(false); setOrderOpen(true); }}
             className="btn-gold w-full justify-center text-base py-4"
           >
             Place Order
-          </Link>
+          </button>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
             <a
               href="tel:+256776341713"
@@ -342,6 +344,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      <OrderModal open={orderOpen} onClose={() => setOrderOpen(false)} />
     </>
   );
 }

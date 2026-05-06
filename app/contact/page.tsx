@@ -77,7 +77,7 @@ export default function ContactPage() {
       </div>
 
       {/* ── Main contact section ── */}
-      <section className="section-y bg-cream" aria-label="Contact form and info">
+      <section className="section-y bg-cream map-bg" aria-label="Contact form and info">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
 

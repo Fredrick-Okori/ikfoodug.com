@@ -14,9 +14,22 @@ import {
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "IK Food Uganda | Pure Ugandan Vanilla, Perfected for the World",
+  title: "IK Food Uganda | Top Vanilla Company in Uganda & Worldwide",
   description:
-    "IK Food Uganda — premium organic vanilla, coffee, cocoa, avocado and garden eggs. Sustainably grown and exported from Uganda to Europe and Asia.",
+    "IK Food Uganda is one of the top vanilla companies in Uganda and among the best vanilla exporters worldwide. We supply premium organic vanilla beans alongside coffee, cocoa, avocado and garden eggs — competing with the finest producers in Madagascar, Zanzibar and beyond.",
+  keywords: [
+    "top vanilla companies worldwide",
+    "top vanilla companies in Uganda",
+    "top 10 vanilla companies",
+    "best vanilla exporters Uganda",
+    "vanilla companies compared to Madagascar",
+    "vanilla companies compared to Zanzibar",
+    "top vanilla producing countries",
+    "Uganda vanilla supplier",
+    "premium organic vanilla Uganda",
+    "finest vanilla beans in the world",
+  ],
+  alternates: { canonical: "https://ik-fooduganda.com" },
 };
 
 /* ── Data ────────────────────────────────────────── */
@@ -263,7 +276,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════
           ABOUT EDITORIAL
       ══════════════════════════════════════════════════ */}
-      <section className="section-y bg-cream" aria-label="About IK Food Uganda">
+      <section className="section-y bg-cream map-bg" aria-label="About IK Food Uganda">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
@@ -424,7 +437,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════
           PROCESS STEPS (new)
       ══════════════════════════════════════════════════ */}
-      <section className="section-y bg-cream" aria-label="Farm to export process">
+      <section className="section-y bg-cream map-bg" aria-label="Farm to export process">
         <div className="max-w-7xl mx-auto container-px">
           <ScrollReveal className="text-center max-w-xl mx-auto mb-16">
             <span className="section-eyebrow">Our Journey</span>
@@ -463,7 +476,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════
           WHY US
       ══════════════════════════════════════════════════ */}
-      <section className="section-y bg-white" aria-label="Why choose IK Food Uganda">
+      <section className="section-y bg-white map-bg" aria-label="Why choose IK Food Uganda">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
@@ -548,7 +561,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════
           BLOG — editorial layout
       ══════════════════════════════════════════════════ */}
-      <section className="section-y bg-parchment" aria-label="Latest from the blog">
+      <section className="section-y bg-parchment map-bg" aria-label="Latest from the blog">
         <div className="max-w-7xl mx-auto container-px">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <ScrollReveal>

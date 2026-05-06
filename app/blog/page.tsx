@@ -6,9 +6,76 @@ import ScrollReveal from "@/components/ScrollReveal";
 import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
-  title: "Blog & Resources",
+  title: "Vanilla Insights & Export Resources | IK Food Uganda Blog",
   description:
-    "Insights on Ugandan vanilla, organic farming, export regulations, and sustainable agriculture from IK Food Uganda.",
+    "Expert insights on Ugandan vanilla, why Uganda ranks among the top vanilla-producing countries, how it compares to Madagascar and Zanzibar, and practical export guides from IK Food Uganda — one of Uganda's top vanilla companies.",
+  keywords: [
+    "Uganda vanilla vs Madagascar vanilla",
+    "Uganda vanilla vs Zanzibar vanilla",
+    "top vanilla producing countries",
+    "best vanilla in the world Uganda",
+    "vanilla export guide Uganda",
+    "why Ugandan vanilla is the best",
+    "vanilla farming Uganda",
+    "organic vanilla insights",
+  ],
+  openGraph: {
+    title: "Vanilla Insights & Export Resources | IK Food Uganda Blog",
+    description: "Expert insights on why Ugandan vanilla rivals Madagascar and Zanzibar, plus export guides and farming articles.",
+    url: "https://ik-fooduganda.com/blog",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  alternates: { canonical: "https://ik-fooduganda.com/blog" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ik-fooduganda.com" },
+    { "@type": "ListItem", position: 2, name: "Blog", item: "https://ik-fooduganda.com/blog" },
+  ],
+};
+
+const blogArticlesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "IK Food Uganda Blog",
+  description: "Insights on Ugandan vanilla, top vanilla-producing countries, export regulations and organic farming.",
+  url: "https://ik-fooduganda.com/blog",
+  publisher: {
+    "@type": "Organization",
+    name: "IK Food Uganda",
+    url: "https://ik-fooduganda.com",
+  },
+  blogPost: [
+    {
+      "@type": "BlogPosting",
+      headline: "Why Ugandan Vanilla is the Best in the World",
+      description: "Uganda's vanillin concentration, traditional sun-curing methods, and unique highland climate combine to produce vanilla that consistently surpasses all others.",
+      url: "https://ik-fooduganda.com/blog/why-ugandan-vanilla-is-the-best",
+      datePublished: "2023-04-01",
+      author: { "@type": "Organization", name: "IK Food Uganda" },
+      keywords: "top vanilla companies worldwide, best vanilla Uganda, Uganda vs Madagascar vanilla",
+    },
+    {
+      "@type": "BlogPosting",
+      headline: "The Importance of Vanilla in the Global Food Industry",
+      description: "From premium ice cream to fine perfumery, natural vanilla commands a premium that synthetic alternatives can never replicate.",
+      url: "https://ik-fooduganda.com/blog/importance-of-vanilla",
+      datePublished: "2022-11-01",
+      author: { "@type": "Organization", name: "IK Food Uganda" },
+    },
+    {
+      "@type": "BlogPosting",
+      headline: "Navigating International Requirements to Export Vanilla",
+      description: "A practical guide to the certifications, compliance steps, and logistics required to successfully export vanilla from Uganda.",
+      url: "https://ik-fooduganda.com/blog/navigating-export-requirements",
+      datePublished: "2021-11-01",
+      author: { "@type": "Organization", name: "IK Food Uganda" },
+    },
+  ],
 };
 
 const posts = [
@@ -92,6 +159,8 @@ const regular  = posts.filter((p) => !p.featured);
 export default function BlogPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogArticlesJsonLd) }} />
       {/* ── Hero ── */}
       <section className="relative min-h-[55vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Blog hero">
         <Image
@@ -113,7 +182,7 @@ export default function BlogPage() {
       </section>
 
       {/* ── Featured post ── */}
-      <section className="section-y bg-cream" aria-label="Featured article">
+      <section className="section-y bg-cream map-bg" aria-label="Featured article">
         <div className="max-w-7xl mx-auto container-px">
           <ScrollReveal>
             <span className="section-eyebrow mb-8 block">Featured Article</span>
@@ -151,7 +220,7 @@ export default function BlogPage() {
       </section>
 
       {/* ── All articles grid ── */}
-      <section className="section-y bg-white" aria-label="All blog posts">
+      <section className="section-y bg-white map-bg" aria-label="All blog posts">
         <div className="max-w-7xl mx-auto container-px">
           <ScrollReveal className="mb-12">
             <h2 className="text-display-lg font-bold text-forest-950">All Articles</h2>
@@ -190,7 +259,7 @@ export default function BlogPage() {
       </section>
 
       {/* ── Media ── */}
-      <section id="media" className="section-y bg-parchment scroll-mt-20" aria-label="Media and press">
+      <section id="media" className="section-y bg-parchment map-bg scroll-mt-20" aria-label="Media and press">
         <div className="max-w-7xl mx-auto container-px">
           <ScrollReveal className="max-w-xl mb-12">
             <span className="section-eyebrow">Media</span>

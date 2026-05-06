@@ -5,9 +5,34 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
   description:
-    "The story of IK Food Uganda — founded 2015, committed to premium organic exports and Ugandan farmer empowerment.",
+    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla companies in Uganda. We empower 3,000+ smallholder farmers to produce export-grade organic vanilla — rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
+  keywords: [
+    "about IK Food Uganda",
+    "top vanilla company Uganda",
+    "Uganda vanilla exporter history",
+    "best vanilla producers Africa",
+    "vanilla company founded 2015",
+    "top vanilla producing countries Africa",
+    "HORTIFRESH member Uganda",
+  ],
+  openGraph: {
+    title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
+    description: "The story of one of Uganda's top vanilla companies — founded 2015, 3,000+ farmer partners, exporting globally.",
+    url: "https://ik-fooduganda.com/about",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  alternates: { canonical: "https://ik-fooduganda.com/about" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ik-fooduganda.com" },
+    { "@type": "ListItem", position: 2, name: "About", item: "https://ik-fooduganda.com/about" },
+  ],
 };
 
 const values = [
@@ -43,6 +68,7 @@ const team = [
 export default function AboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* ── Hero ── */}
       <section className="relative min-h-[65vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="About hero">
         <Image
@@ -62,7 +88,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Story ── */}
-      <section className="section-y bg-cream" aria-label="Company story">
+      <section className="section-y bg-cream map-bg" aria-label="Company story">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
             <ScrollReveal>
@@ -151,7 +177,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Values ── */}
-      <section className="section-y bg-parchment" aria-label="Core values">
+      <section className="section-y bg-parchment map-bg" aria-label="Core values">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
             <ScrollReveal>
@@ -185,7 +211,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Timeline ── */}
-      <section className="section-y bg-white" aria-label="Company milestones">
+      <section className="section-y bg-white map-bg" aria-label="Company milestones">
         <div className="max-w-5xl mx-auto container-px">
           <ScrollReveal className="text-center mb-14">
             <span className="section-eyebrow">Our Journey</span>
@@ -206,7 +232,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Team ── */}
-      <section className="section-y bg-cream" aria-label="Our team">
+      <section className="section-y bg-cream map-bg" aria-label="Our team">
         <div className="max-w-7xl mx-auto container-px">
           <ScrollReveal className="text-center mb-14">
             <span className="section-eyebrow">The People Behind IK Food</span>

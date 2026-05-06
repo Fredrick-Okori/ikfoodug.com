@@ -190,6 +190,27 @@
   /* Bg forest dark variants */
   .bg-forest-dark  { background-color: var(--forest-950); }
   .bg-forest-panel { background-color: #1f2325; }
+
+  /* Dotted map background overlay */
+  .map-bg {
+    position: relative;
+  }
+  .map-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/dotted-map-2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.30;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .map-bg > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 /* ── Marquee ──────────────────────────────────── */
