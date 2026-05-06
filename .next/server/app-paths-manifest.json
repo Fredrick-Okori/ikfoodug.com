@@ -1,8 +1,7 @@
 {
-  "/products/page": "app/products/page.js",
-  "/case-studies/page": "app/case-studies/page.js",
-  "/about/page": "app/about/page.js",
   "/blog/page": "app/blog/page.js",
   "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js"
+  "/about/page": "app/about/page.js",
+  "/products/page": "app/products/page.js",
+  "/impact/page": "app/impact/page.js"
 }

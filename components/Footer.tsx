@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Leaf, Phone, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const nav = {
   company:  [
@@ -31,16 +32,16 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link
               href="/"
-              className="flex items-center gap-2.5 mb-5 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg"
+              className="inline-block mb-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg"
               aria-label="IK Food Uganda — Home"
             >
-              <div className="w-8 h-8 bg-gold-400 rounded-lg flex items-center justify-center">
-                <Leaf className="w-4 h-4 text-forest-950" aria-hidden="true" />
-              </div>
-              <div className="leading-none">
-                <span className="font-heading text-lg font-bold text-white block leading-none">IK Food</span>
-                <span className="text-[10px] font-medium tracking-[0.12em] uppercase text-white/40">Uganda</span>
-              </div>
+              <Image
+                src="/logo_clean.webp"
+                alt="IK Food Uganda"
+                width={120}
+                height={48}
+                className="object-contain h-10 w-auto opacity-90 hover:opacity-100 transition-opacity"
+              />
             </Link>
             <p className="text-white/45 text-sm leading-relaxed mb-6 max-w-[220px]">
               Pure Ugandan Vanilla, Perfected for the World. Sustainably grown,

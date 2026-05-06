@@ -628,28 +628,43 @@ export default function HomePage() {
       <section className="py-14 bg-forest-950 border-y border-white/5" aria-label="Certifications and trust signals">
         <div className="max-w-7xl mx-auto container-px">
           <p className="label-tag text-white/30 text-center mb-8">Trusted &amp; Certified</p>
-          <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 md:divide-x md:divide-white/10">
+            {/* Logo */}
+            <div className="flex items-center justify-center px-8">
+              <Image
+                src="/logo_clean.webp"
+                alt="IK Food Uganda logo"
+                width={120}
+                height={60}
+                className="object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+            {/* Certs */}
             {certs.map(({ label, sub }) => (
               <div key={label} className="flex flex-col items-center text-center px-6 py-2">
-                <dt className="font-semibold text-white text-base mb-1">{label}</dt>
-                <dd className="text-white/35 text-xs">{sub}</dd>
+                <p className="font-semibold text-white text-base mb-1">{label}</p>
+                <p className="text-white/35 text-xs">{sub}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════
           FINAL CTA
       ══════════════════════════════════════════════════ */}
-      <section className="section-y bg-forest-950 noise-overlay relative overflow-hidden" aria-label="Contact call to action">
-        {/* Right-side vanilla image */}
-        <div className="absolute right-0 inset-y-0 w-[48%] opacity-25 hidden lg:block" aria-hidden="true">
-          <Image src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=900&q=80" alt="" fill className="object-cover object-left" sizes="48vw" />
-          <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/50 to-transparent" />
-        </div>
-        {/* Decorative glow */}
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-forest-700/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+      <section className="section-y relative overflow-hidden" aria-label="Contact call to action">
+        {/* Full background image */}
+        <Image
+          src="/ed0a6bce-3812-4326-aa6c-8e9a6502aa34_converted.avif"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        {/* Dark overlay so text stays legible */}
+        <div className="absolute inset-0 bg-forest-950/80" aria-hidden="true" />
 
         <div className="relative max-w-7xl mx-auto container-px">
           <div className="max-w-2xl">

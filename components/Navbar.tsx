@@ -4,14 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Menu, X, ChevronDown, Leaf,
+  Menu, X, ChevronDown,
   BookOpen, ImageIcon, ArrowUpRight, Phone, Mail,
 } from "lucide-react";
+import Image from "next/image";
 import OrderModal from "./OrderModal";
 
 const links = [
   { href: "/",             label: "Home" },
   { href: "/about",        label: "About" },
+  { href: "/impact",       label: "Impact" },
   { href: "/products",     label: "Products" },
   { href: "/case-studies", label: "Case Studies" },
   {
@@ -100,21 +102,17 @@ export default function Navbar() {
             {/* ── Logo ── */}
             <Link
               href="/"
-              className="flex items-center gap-2.5 shrink-0 group/logo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg p-0.5"
+              className="shrink-0 group/logo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg p-0.5"
               aria-label="IK Food Uganda — Home"
             >
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gold-400 transition-all duration-300 overflow-hidden group-hover/logo:scale-105 group-hover/logo:shadow-glow-gold">
-                <Leaf className="w-4 h-4 text-forest-950 relative z-10" aria-hidden="true" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/25 to-transparent opacity-0 group-hover/logo:opacity-100 transition-opacity" aria-hidden="true" />
-              </div>
-              <div className="leading-none">
-                <span className="font-heading text-[1.05rem] font-bold block leading-none tracking-tight text-gold-400">
-                  IK Food
-                </span>
-                <span className="text-[9px] font-semibold tracking-[0.18em] uppercase text-gold-400/50">
-                  Uganda
-                </span>
-              </div>
+              <Image
+                src="/logo_clean.webp"
+                alt="IK Food Uganda"
+                width={110}
+                height={44}
+                className={`object-contain transition-all duration-300 group-hover/logo:opacity-90 ${scrolled ? "h-11" : "h-14"} w-auto`}
+                priority
+              />
             </Link>
 
             {/* ── Desktop nav links ── */}
