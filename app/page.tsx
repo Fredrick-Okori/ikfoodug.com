@@ -209,7 +209,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════
           VANILLA SPOTLIGHT (new)
       ══════════════════════════════════════════════════ */}
-      <section id="vanilla-spotlight" className="section-y bg-forest-950 noise-overlay relative scroll-mt-0" aria-label="Vanilla spotlight">
+      <section id="vanilla-spotlight" className="section-y bg-cream map-bg relative scroll-mt-0" aria-label="Vanilla spotlight">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
@@ -222,34 +222,18 @@ export default function HomePage() {
                   alt="Premium Ugandan vanilla beans — hand-harvested"
                   fill className="object-cover" sizes="40vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 to-transparent" />
-              </div>
-              {/* Small inset bottom-right */}
-              <div className="absolute bottom-0 right-0 w-44 h-44 rounded-2xl overflow-hidden img-zoom shadow-xl border-2 border-forest-900">
-                <Image
-                  src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=400&q=85"
-                  alt="Vanilla extract and cured vanilla pods"
-                  fill className="object-cover" sizes="176px"
-                />
-              </div>
-              {/* Small inset top-right */}
-              <div className="absolute top-6 right-0 w-36 h-36 rounded-2xl overflow-hidden img-zoom shadow-xl border-2 border-forest-900">
-                <Image
-                  src="/IMG_4165_converted.avif"
-                  alt="Vanilla bean close-up showing cured texture"
-                  fill className="object-cover" sizes="144px"
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/20 to-transparent" />
               </div>
             </ScrollReveal>
 
             {/* Content */}
             <ScrollReveal delay={80}>
-              <span className="section-eyebrow-light">Our Flagship Product</span>
-              <h2 className="text-display-lg font-bold text-white mb-4 text-balance leading-tight">
+              <span className="section-eyebrow">Our Flagship Product</span>
+              <h2 className="text-display-lg font-bold text-forest-950 mb-4 text-balance leading-tight">
                 The IK Vanilla Standard
               </h2>
               <div className="w-10 h-px bg-gold-400 mb-6" aria-hidden="true" />
-              <p className="text-white/55 leading-relaxed mb-10">
+              <p className="text-forest-950/70 leading-relaxed mb-10">
                 Uganda grows some of the world&apos;s finest vanilla — prized for
                 its exceptional vanillin concentration, floral complexity, and
                 rich creamy depth. Our beans are hand-harvested at peak
@@ -261,12 +245,12 @@ export default function HomePage() {
               {/* Spec grid */}
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {vanillaSpecs.map(({ value, label, sub }) => (
-                  <div key={label} className="border border-white/10 rounded-2xl p-5 hover:border-gold-400/40 transition-colors group">
-                    <p className="text-2xl font-bold font-heading text-gold-400 leading-none mb-1 group-hover:text-gold-300 transition-colors">
+                  <div key={label} className="border border-forest-950/15 rounded-2xl p-5 hover:border-gold-400/60 transition-colors group">
+                    <p className="text-2xl font-bold font-heading text-gold-500 leading-none mb-1 group-hover:text-gold-400 transition-colors">
                       {value}
                     </p>
-                    <p className="text-white/70 text-sm font-medium">{label}</p>
-                    <p className="text-white/30 text-xs mt-0.5">{sub}</p>
+                    <p className="text-forest-950/80 text-sm font-medium">{label}</p>
+                    <p className="text-forest-950/50 text-xs mt-0.5">{sub}</p>
                   </div>
                 ))}
               </div>
@@ -534,11 +518,7 @@ export default function HomePage() {
           VANILLA QUOTE
       ══════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden py-28 md:py-40" aria-label="Vanilla feature">
-        <Image
-          src="https://images.unsplash.com/photo-1612197528428-c4ac5f83e4b7?w=1800&q=85"
-          alt="Vanilla beans background"
-          fill className="object-cover" sizes="100vw"
-        />
+       
         <div className="absolute inset-0 bg-forest-950/82" aria-hidden="true" />
         {/* Diagonal gold accent line */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -546,8 +526,8 @@ export default function HomePage() {
         </div>
         <div className="relative z-10 max-w-4xl mx-auto container-px text-center">
           <ScrollReveal>
-            <span className="label-tag text-vanilla-300 mb-6 block">Our Flagship · Ugandan Vanilla</span>
-            <blockquote className="text-[clamp(1.6rem,3.5vw,2.75rem)] font-heading font-bold text-white leading-snug mb-10 text-balance">
+            <span className="label-tag text-forest-900 mb-6 block">Our Flagship · Ugandan Vanilla</span>
+            <blockquote className="text-[clamp(1.6rem,3.5vw,2.75rem)] font-heading font-bold text-forest-900 leading-snug mb-10 text-balance">
               &ldquo;Ugandan vanilla carries a richness and complexity unmatched
               anywhere in the world — born from the soil, the climate, and
               the hands that tend it.&rdquo;
