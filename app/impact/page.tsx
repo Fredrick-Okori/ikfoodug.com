@@ -186,22 +186,182 @@ export default function ImpactPage() {
         </div>
       </section>
 
+      {/* ── Communities ── */}
+      <section className="section-y bg-forest-950 noise-overlay relative" aria-label="Vanilla farming communities">
+        <div className="max-w-7xl mx-auto container-px">
+          <ScrollReveal className="text-center max-w-xl mx-auto mb-16">
+            <span className="section-eyebrow-light">Where It Begins</span>
+            <h2 className="text-display-lg font-bold text-white text-balance">
+              The Communities Behind Our Vanilla
+            </h2>
+            <p className="text-white/50 mt-4 leading-relaxed">
+              Our vanilla is grown in Uganda&apos;s lush highlands — places like Ibanda — by smallholder farmers who have cultivated these crops for generations.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Large left — Ibanda community */}
+            <ScrollReveal className="relative rounded-4xl overflow-hidden h-[480px] lg:h-auto img-zoom">
+              <Image
+                src="/ibanda.avif"
+                alt="Ibanda community — vanilla farming region, Uganda"
+                fill className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-forest-950/20 to-transparent" aria-hidden="true" />
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <span className="chip bg-gold-400 text-forest-950 font-semibold mb-3 inline-flex">Ibanda Region</span>
+                <h3 className="text-2xl font-bold font-heading text-white mb-2">Ibanda, Western Uganda</h3>
+                <p className="text-white/55 text-sm leading-relaxed max-w-sm">
+                  One of our primary vanilla-sourcing regions — rich volcanic soils and equatorial climate produce beans with exceptional vanillin concentration.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Right — three images + text */}
+            <div className="flex flex-col gap-6">
+              <ScrollReveal delay={80} className="relative rounded-4xl overflow-hidden h-48 img-zoom">
+                <Image
+                  src="/Screenshot 2026-05-06 at 15.31.13_converted.avif"
+                  alt="IK Food Uganda farmer inspecting vanilla vines"
+                  fill className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/70 via-transparent to-transparent" aria-hidden="true" />
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <span className="chip bg-gold-400/20 text-gold-400 border border-gold-400/30 mb-1.5 inline-flex">Farm Inspection</span>
+                  <p className="text-white font-semibold text-sm">Farmer checking vine health</p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={140} className="relative rounded-4xl overflow-hidden h-48 img-zoom">
+                <Image
+                  src="/vanilla_bean_green.avif"
+                  alt="Fresh green vanilla beans on the vine — Uganda"
+                  fill className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/70 via-transparent to-transparent" aria-hidden="true" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="chip bg-gold-400/20 text-gold-400 border border-gold-400/30 mb-2 inline-flex">Hand-Harvested</span>
+                  <p className="text-white font-semibold">Fresh vanilla beans on the vine</p>
+                  <p className="text-white/45 text-xs mt-1">Picked at peak maturity for maximum vanillin</p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={200}>
+                <div className="border border-white/10 rounded-4xl p-8 h-full">
+                  <p className="label-tag text-gold-400 mb-4">Our Community Commitment</p>
+                  <div className="space-y-4">
+                    {[
+                      { stat: "3,000+", desc: "Farmer families directly supported across Uganda" },
+                      { stat: "Fair Price", desc: "Guaranteed minimum farm-gate pricing every season" },
+                      { stat: "Training", desc: "Hands-on agronomic and post-harvest handling support" },
+                    ].map(({ stat, desc }) => (
+                      <div key={stat} className="flex items-start gap-4 pb-4 border-b border-white/8 last:border-0 last:pb-0">
+                        <p className="text-gold-400 font-bold font-heading text-lg leading-none shrink-0 w-24">{stat}</p>
+                        <p className="text-white/55 text-sm leading-relaxed">{desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── From Field to Export ── */}
+      <section className="section-y bg-cream map-bg" aria-label="Harvest and processing journey">
+        <div className="max-w-7xl mx-auto container-px">
+          <ScrollReveal className="text-center max-w-xl mx-auto mb-16">
+            <span className="section-eyebrow">The Journey</span>
+            <h2 className="text-display-lg font-bold text-forest-950 text-balance">
+              From Field to Export
+            </h2>
+            <p className="text-forest-950/55 mt-4 leading-relaxed">
+              Every bean passes through careful hands — harvested, sorted, processed, and packed to world-class standards before leaving Uganda.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-3 gap-5">
+            <ScrollReveal delay={0} className="group relative rounded-3xl overflow-hidden aspect-[4/3] img-zoom">
+              <Image
+                src="/Screenshot 2026-05-06 at 14.42.53_converted.avif"
+                alt="Women sorting and grading fresh vanilla beans — IK Food Uganda"
+                fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-forest-950/10 to-transparent" aria-hidden="true" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <span className="chip bg-gold-400 text-forest-950 font-semibold mb-2 inline-flex">Step 1</span>
+                <p className="text-white font-semibold leading-tight">Sorting &amp; Grading</p>
+                <p className="text-white/50 text-xs mt-1">Careful hand-sorting for export grade</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={90} className="group relative rounded-3xl overflow-hidden aspect-[4/3] img-zoom">
+              <Image
+                src="/Screenshot 2026-05-06 at 14.46.21_converted.avif"
+                alt="Community group processing harvested vanilla outdoors — Uganda"
+                fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-forest-950/10 to-transparent" aria-hidden="true" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <span className="chip bg-gold-400 text-forest-950 font-semibold mb-2 inline-flex">Step 2</span>
+                <p className="text-white font-semibold leading-tight">Community Processing</p>
+                <p className="text-white/50 text-xs mt-1">Farmers work together at collection points</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={180} className="group relative rounded-3xl overflow-hidden aspect-[4/3] img-zoom">
+              <Image
+                src="/372838c3-c504-48e1-b9b1-3b34442d01d2_converted.avif"
+                alt="IK Food Uganda team with packaged vanilla ready for export"
+                fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-forest-950/10 to-transparent" aria-hidden="true" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <span className="chip bg-gold-400 text-forest-950 font-semibold mb-2 inline-flex">Step 3</span>
+                <p className="text-white font-semibold leading-tight">Export Ready</p>
+                <p className="text-white/50 text-xs mt-1">Packaged to international standards</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* ── Sustainability image split ── */}
       <section className="section-y bg-forest-950 noise-overlay relative" aria-label="Sustainability commitment">
         <div className="max-w-7xl mx-auto container-px">
           <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-            <ScrollReveal className="relative h-[480px] rounded-4xl overflow-hidden img-zoom shadow-2xl">
-              <Image
-                src="/IMG_7889_converted.avif"
-                alt="Organic farming practices at IK Food Uganda"
-                fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/40 to-transparent" aria-hidden="true" />
-              {/* Floating badge */}
-              <div className="absolute bottom-6 left-6 glass-card px-5 py-4">
-                <p className="text-[10px] text-white/45 uppercase tracking-widest mb-1">Certification</p>
-                <p className="text-lg font-bold font-heading text-white leading-none">HORTIFRESH</p>
-                <p className="text-xs text-gold-400 mt-1">Member since 2022</p>
+            <ScrollReveal className="flex flex-col gap-5">
+              <div className="relative h-80 rounded-4xl overflow-hidden img-zoom shadow-2xl">
+                <Image
+                  src="/IMG_7889_converted.avif"
+                  alt="Organic farming practices at IK Food Uganda"
+                  fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/40 to-transparent" aria-hidden="true" />
+                {/* Floating badge */}
+                <div className="absolute bottom-6 left-6 glass-card px-5 py-4">
+                  <p className="text-[10px] text-white/45 uppercase tracking-widest mb-1">Certification</p>
+                  <p className="text-lg font-bold font-heading text-white leading-none">HORTIFRESH</p>
+                  <p className="text-xs text-gold-400 mt-1">Member since 2022</p>
+                </div>
+              </div>
+              <div className="relative h-52 rounded-4xl overflow-hidden img-zoom shadow-xl">
+                <Image
+                  src="/79a461de-c579-4d35-bc23-b1e5ba5f51f3_converted.avif"
+                  alt="Close-up of vanilla vines with green beans — Uganda highlands"
+                  fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 via-transparent to-transparent" aria-hidden="true" />
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <span className="chip bg-gold-400/20 text-gold-400 border border-gold-400/30 inline-flex">100% Organic Vanilla Vines</span>
+                </div>
               </div>
             </ScrollReveal>
 

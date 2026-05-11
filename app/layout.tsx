@@ -105,9 +105,9 @@ export default function RootLayout({
         <meta name="ICBM" content="0.3136, 32.5811" />
         {/* DNS prefetch for faster crawl & load */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="google-site-verification" content="H84fQYdc4Ja0oRH7pCj-SbApyKZs1SKkkLgonwbDqsQ" />
         <link
           href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;700&family=Google+Sans+Text:wght@400;500;700&display=swap"
           rel="stylesheet"
@@ -178,6 +178,7 @@ export default function RootLayout({
                     "@type": "PostalAddress",
                     addressLocality: "Kampala",
                     addressCountry: "UG",
+                    
                   },
                   priceRange: "$$",
                   servesCuisine: "Organic Agricultural Products",

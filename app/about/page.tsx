@@ -55,13 +55,13 @@ const team = [
     name: "Israel Kaweesa",
     role: "General Manager",
     bio: "Israel leads IK Food Uganda with a passion for quality and international market growth. His decade of agribusiness experience has built the company into a trusted global exporter.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+    image: "/elijah.webp",
   },
   {
     name: "Evelyn Najjemba",
     role: "Agroecologist",
     bio: "Evelyn oversees sustainable farming practices and farmer training, ensuring IK Food Uganda's agricultural output meets the highest organic and environmental standards.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+    image: "/andrea_webp.webp",
   },
 ];
 
@@ -124,13 +124,13 @@ export default function AboutPage() {
 
             <ScrollReveal delay={80} className="relative grid grid-cols-2 gap-4 h-[480px]">
               <div className="row-span-2 img-zoom rounded-3xl overflow-hidden relative">
-                <Image src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=85" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="25vw" />
+                <Image src="/vanilla_bean_harvest.avif" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="25vw" />
               </div>
               <div className="img-zoom rounded-3xl overflow-hidden relative">
-                <Image src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=500&q=80" alt="Agricultural processing in Uganda" fill className="object-cover" sizes="25vw" />
+                <Image src="/Screenshot 2026-05-06 at 14.42.53_converted.avif" alt="Agricultural processing in Uganda" fill className="object-cover" sizes="25vw" />
               </div>
               <div className="img-zoom rounded-3xl overflow-hidden relative">
-                <Image src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80" alt="Green farmland in Uganda" fill className="object-cover" sizes="25vw" />
+                <Image src="/ibanda.avif" alt="Green farmland in Uganda" fill className="object-cover" sizes="25vw" />
               </div>
               {/* floating year badge */}
               <div className="absolute -bottom-5 -right-5 bg-forest-950 text-white rounded-2xl px-6 py-5 shadow-xl" aria-hidden="true">
@@ -200,7 +200,7 @@ export default function AboutPage() {
             <ScrollReveal delay={80}>
               <div className="relative rounded-4xl overflow-hidden h-[500px] img-zoom shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=85"
+                  src="/IMG_3172_converted.avif"
                   alt="Lush organic farmland in Uganda"
                   fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                 />

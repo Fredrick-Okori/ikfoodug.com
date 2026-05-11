@@ -46,8 +46,8 @@ export default function ContactPage() {
       {/* ── Hero ── */}
       <section className="relative min-h-[55vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Contact hero">
         <Image
-          src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=1600&q=85"
-          alt="Vanilla beans background"
+          src="/vanilla_bean_harvest.avif"
+          alt="IK Food Uganda premium vanilla beans"
           fill className="object-cover" priority sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/65 to-forest-950/25" aria-hidden="true" />
@@ -116,7 +116,7 @@ export default function ContactPage() {
               {/* Map image */}
               <div className="relative rounded-2xl overflow-hidden h-44 shadow-sm border border-forest-100" aria-label="Kampala, Uganda location">
                 <Image
-                  src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=80"
+                  src="/ibanda.avif"
                   alt="Kampala, Uganda — IK Food Uganda location"
                   fill className="object-cover" sizes="33vw"
                 />

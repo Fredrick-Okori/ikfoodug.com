@@ -136,7 +136,7 @@ const posts = [
     readTime: "8 min",
     excerpt:
       "Best harvesting windows, post-harvest handling, cold-chain requirements, and EU phytosanitary compliance steps for avocado exporters.",
-    image: "https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?w=800&q=80",
+    image: "/IMG_7889_converted.avif",
     featured: false,
   },
   {
@@ -148,7 +148,7 @@ const posts = [
     readTime: "6 min",
     excerpt:
       "Uganda's high-altitude, shade-grown Robusta is changing the specialty coffee narrative. We explore its unique profile and growing premium demand.",
-    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80",
+    image: "/coffee-plantation.jpg",
     featured: false,
   },
 ];

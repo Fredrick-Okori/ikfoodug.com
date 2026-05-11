@@ -16,6 +16,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/about/page.js"
     ],
+    "/impact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/impact/page.js"
+    ],
     "/products/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,25 +31,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/case-studies/page.js"
     ],
-    "/contact/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/contact/page.js"
-    ],
     "/contact/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/contact/layout.js"
     ],
-    "/blog/page": [
+    "/contact/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/blog/page.js"
-    ],
-    "/impact/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/impact/page.js"
+      "static/chunks/app/contact/page.js"
     ]
   }
 }

@@ -60,11 +60,11 @@ const vanillaSpecs = [
 ];
 
 const products = [
-  { id: "vanilla",     name: "Ugandan Vanilla",    origin: "Central Uganda",         note: "Rich · Creamy · Complex",    image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=700&q=85" },
+  { id: "vanilla",     name: "Ugandan Vanilla",    origin: "Central Uganda",         note: "Rich · Creamy · Complex",    image: "/IMG_4873_converted.avif" },
   { id: "coffee",      name: "Fine Robusta Coffee", origin: "Highland Regions",       note: "Bold · Low Acid · Rich Crema", image: "/coffee-plantation.jpg" },
-  { id: "cocoa",       name: "Organic Cocoa",       origin: "Central & West Uganda",  note: "Fine Flavour · Fermented",   image: "https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?w=700&q=85" },
-  { id: "avocado",     name: "Hass Avocado",        origin: "Highland Farms",         note: "Export Grade · Class I",     image: "https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?w=700&q=85" },
-  { id: "garden-eggs", name: "Garden Eggs",          origin: "Central Uganda",         note: "Firm · Vibrant · Nutritious", image: "https://images.unsplash.com/photo-1582515073490-39981397c445?w=700&q=85" },
+  { id: "cocoa",       name: "Organic Cocoa",       origin: "Central & West Uganda",  note: "Fine Flavour · Fermented",   image: "/IMG_4160_converted.avif" },
+  { id: "avocado",     name: "Hass Avocado",        origin: "Highland Farms",         note: "Export Grade · Class I",     image: "/IMG_7889_converted.avif" },
+  { id: "garden-eggs", name: "Garden Eggs",          origin: "Central Uganda",         note: "Firm · Vibrant · Nutritious", image: "/IMG_3062_converted.avif" },
 ];
 
 const process = [
@@ -80,21 +80,21 @@ const posts = [
     title: "Why Ugandan Vanilla is the Best in the World",
     date: "Apr 2023", category: "Organic",
     excerpt: "Uganda's vanillin concentration, traditional sun-curing methods, and unique highland climate combine to produce vanilla that consistently surpasses all others.",
-    image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80",
+    image: "/vanilla_bean_harvest.avif",
   },
   {
     slug: "importance-of-vanilla",
     title: "The Importance of Vanilla in the Global Food Industry",
     date: "Nov 2022", category: "Natural",
     excerpt: "From premium ice cream to fine perfumery, natural vanilla commands a premium that synthetic alternatives can never replicate.",
-    image: "https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=600&q=80",
+    image: "/IMG_4165_converted.avif",
   },
   {
     slug: "navigating-export-requirements",
     title: "Navigating International Requirements to Export Vanilla",
     date: "Nov 2021", category: "Export",
     excerpt: "A practical guide to the certifications, compliance steps, and logistics required to successfully export vanilla from Uganda.",
-    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&q=80",
+    image: "/IMG_3172_converted.avif",
   },
 ];
 
@@ -317,19 +317,19 @@ export default function HomePage() {
             <div className="lg:col-span-7 xl:col-span-8 relative h-[500px] lg:h-[580px]">
               {/* Main large image */}
               <ScrollReveal delay={50} className="absolute top-0 left-0 w-[58%] h-[75%] rounded-3xl overflow-hidden img-zoom shadow-xl">
-                <Image src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=700&q=85" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="30vw" />
+                <Image src="/vanilla_bean_harvest.avif" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="30vw" />
               </ScrollReveal>
               {/* Top-right image */}
               <ScrollReveal delay={110} className="absolute top-0 right-0 w-[38%] h-[45%] rounded-3xl overflow-hidden img-zoom shadow-lg">
-                <Image src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=500&q=80" alt="Farmers harvesting in Uganda" fill className="object-cover" sizes="20vw" />
+                <Image src="/IMG_7924_converted.avif" alt="IK Food Uganda farmers in the field" fill className="object-cover" sizes="20vw" />
               </ScrollReveal>
               {/* Bottom-right image */}
               <ScrollReveal delay={170} className="absolute bottom-0 right-0 w-[45%] h-[48%] rounded-3xl overflow-hidden img-zoom shadow-lg">
-                <Image src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80" alt="Lush green farmland in Uganda" fill className="object-cover" sizes="20vw" />
+                <Image src="/IMG_3045_converted.avif" alt="Fresh organic produce from Uganda highlands" fill className="object-cover" sizes="20vw" />
               </ScrollReveal>
               {/* Bottom-left small overlap */}
               <ScrollReveal delay={230} className="absolute bottom-0 left-[15%] w-[35%] h-[30%] rounded-2xl overflow-hidden img-zoom shadow-lg border-4 border-cream">
-                <Image src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&q=80" alt="Processing organic produce" fill className="object-cover" sizes="15vw" />
+                <Image src="/IMG_7806_converted.avif" alt="Organic vanilla processing at IK Food Uganda" fill className="object-cover" sizes="15vw" />
               </ScrollReveal>
               {/* Floating badge */}
               <div className="absolute bottom-[28%] right-[43%] bg-forest-950 text-white rounded-xl px-4 py-3 shadow-xl z-10" aria-hidden="true">
@@ -498,8 +498,8 @@ export default function HomePage() {
             <ScrollReveal delay={100} className="relative">
               <div className="relative rounded-4xl overflow-hidden h-[540px] img-zoom shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=900&q=85"
-                  alt="Vanilla extract and premium cured vanilla beans"
+                  src="/IMG_7929_converted.avif"
+                  alt="IK Food Uganda quality assurance — farm to export"
                   fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* image overlay */}

@@ -148,7 +148,7 @@ export default function Navbar() {
                         <div className="relative h-20 overflow-hidden">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=520&q=80"
+                            src="/vanilla_bean_harvest.avif"
                             alt=""
                             className="w-full h-full object-cover opacity-30"
                             aria-hidden="true"
