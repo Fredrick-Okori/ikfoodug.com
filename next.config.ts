@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "ik-fooduganda.com",
+        hostname: "ikfoodug.com",
       },
     ],
   },
