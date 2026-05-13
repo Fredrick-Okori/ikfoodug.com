@@ -190,8 +190,8 @@ export default function ProductsPage() {
       {/* ── Hero ── */}
       <section className="relative min-h-[70vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Products hero">
         <Image
-          src="/IMG_4873_converted.avif"
-          alt="Ugandan vanilla beans — IK Food Uganda's premium product"
+          src="/product_hero.avif"
+          alt="IK Food Uganda premium vanilla products"
           fill className="object-cover" priority sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-forest-950/30" aria-hidden="true" />
