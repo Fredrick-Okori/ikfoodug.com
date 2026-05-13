@@ -100,7 +100,7 @@ export default function Footer() {
               <li>
                 <address className="flex items-start gap-3 text-white/55 text-sm not-italic">
                   <MapPin className="w-4 h-4 mt-0.5 text-gold-400 shrink-0" aria-hidden="true" />
-                  P.O.Box 110281, Atenyi Rd,<br />Kampala, Uganda
+                  P.O.Box 110281, Atenyi Rd Seguku,<br />Kampala, Uganda
                 </address>
               </li>
             </ul>
