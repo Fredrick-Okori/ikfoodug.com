@@ -42,114 +42,84 @@ const breadcrumbJsonLd = {
 
 const products = [
   {
-    id: "vanilla",
-    name: "Ugandan Vanilla",
-    tagline: "The World's Finest Vanilla Beans",
+    id: "grade-a",
+    name: "Grade A Vanilla Beans",
+    tagline: "The Gold Standard of Ugandan Vanilla",
     origin: "Central Uganda",
-    spec: "1.5–2.5% Vanillin Content",
+    spec: "≥1.5% Vanillin · 15–20 cm pods",
     description:
-      "Uganda produces some of the world's finest vanilla — renowned for its exceptionally high vanillin content, rich creamy flavour, and floral complexity. Our beans are hand-harvested at peak maturity, then sun-cured using traditional methods refined over generations, producing a depth of flavour that surpasses industry benchmarks.",
+      "Our Grade A beans are the pinnacle of Ugandan vanilla — long, plump, and visually stunning with a high moisture content and vanillin concentration of 1.5–2.5%. Hand-selected at harvest and sun-cured using traditional methods, these beans are the preferred choice for premium food brands, gourmet chefs, and high-end confectioners who demand perfection.",
     features: [
-      "Vanillin content 1.5–2.5% — world-leading",
-      "Hand-harvested at peak maturity",
-      "Traditional sun-curing & aging methods",
+      "Pod length 15–20 cm, premium export grade",
+      "Vanillin content ≥1.5% — world-leading",
+      "High moisture content ≥30% — rich & supple",
+      "Hand-selected, individually inspected",
       "EU Organic Certified",
-      "Direct farmer cooperative sourcing",
-      "Available in four grades and forms",
+      "Available whole, split, or bundled",
     ],
-    uses: ["Premium ice cream & dairy", "Artisan chocolate & confectionery", "Perfumery & cosmetics", "Baking & pastry"],
+    uses: ["Gourmet ice cream & dairy", "High-end pastry & desserts", "Vanilla infusions & syrups", "Perfumery & cosmetics"],
     image: "/IMG_4873_converted.avif",
     imageSide: "right" as const,
-    accent: "gold",
-    dark: true,
   },
   {
-    id: "coffee",
-    name: "Fine Robusta Coffee",
-    tagline: "Bold, Balanced, Beautifully Ugandan",
-    origin: "Highland Regions",
-    spec: "High-Altitude Shade-Grown",
-    description:
-      "Uganda's highland Robusta is celebrated for its bold, full-bodied flavour, naturally low acidity, and rich crema — ideal for espresso blends. Grown at altitude in volcanic soil, our beans develop exceptional depth. We work directly with shade-grown organic farmers, ensuring every batch is traceable from tree to bag.",
-    features: [
-      "High-altitude shade-grown cultivation",
-      "Rich crema — ideal for espresso blends",
-      "Low acidity, bold full-body",
-      "Natural and washed process options",
-      "Full farm-to-cup traceability",
-      "Fair-trade farmer partnerships",
-    ],
-    uses: ["Espresso & specialty coffee", "Commercial roaster blending", "Cold brew & extract", "Instant coffee production"],
-    image: "/coffee-plantation.jpg",
-    imageSide: "left" as const,
-    accent: "green",
-    dark: false,
-  },
-  {
-    id: "cocoa",
-    name: "Organic Cocoa",
-    tagline: "Fine-Flavoured Cocoa from Uganda's Heart",
-    origin: "Central & Western Uganda",
-    spec: "Naturally Fermented",
-    description:
-      "Uganda's organic cocoa is gaining recognition among premium chocolate makers worldwide for its complex flavour notes and consistent fermentation quality. Grown in humid central and western regions, pods are carefully harvested, fermented using natural methods, and sun-dried to achieve the optimal moisture and flavour profile.",
-    features: [
-      "Naturally fermented and sun-dried",
-      "Fine-flavour certification eligible",
-      "Low pesticide residue guarantee",
-      "Available: beans, nibs, paste, butter",
-      "Certified organic production",
-      "Consistent, tested flavour profile",
-    ],
-    uses: ["Artisan & craft chocolate", "Cocoa butter production", "Confectionery & baking", "Nutraceuticals & health products"],
-    image: "/IMG_4160_converted.avif",
-    imageSide: "right" as const,
-    accent: "green",
-    dark: false,
-  },
-  {
-    id: "avocado",
-    name: "Hass Avocado",
-    tagline: "Creamy, Nutrient-Rich, Export Grade",
-    origin: "Highland Farms",
-    spec: "Class I Export Grade",
-    description:
-      "Uganda's equatorial climate and highland growing regions create ideal conditions for premium Hass avocados with exceptional oil content and creamy texture. Grown by GAP-certified farmers, carefully graded, and packed to EU and Asian export standards — IK Food Uganda is a reliable partner for fresh produce importers worldwide.",
-    features: [
-      "Class I export grade certified",
-      "Consistent sizing (16–28 count)",
-      "High oil content (18–25%)",
-      "Cold-chain logistics capable",
-      "GAP (Good Agricultural Practice) certified",
-      "Year-round availability",
-    ],
-    uses: ["Fresh retail & wholesale", "Food service & restaurants", "Guacamole & dips production", "Avocado oil extraction"],
-    image: "/IMG_7889_converted.avif",
-    imageSide: "left" as const,
-    accent: "green",
-    dark: false,
-  },
-  {
-    id: "garden-eggs",
-    name: "Garden Eggs",
-    tagline: "Fresh African Aubergines, Globally Delivered",
+    id: "grade-b",
+    name: "Grade B Vanilla Beans",
+    tagline: "Extraction-Grade Beans, Uncompromised Purity",
     origin: "Central Uganda",
-    spec: "Phytosanitary Certified",
+    spec: "Extraction Grade · <15 cm pods",
     description:
-      "Garden eggs — African eggplants — are a nutritious and versatile vegetable increasingly sought after in international markets. IK Food Uganda grows them sustainably, ensuring vibrant colour, firm texture, and extended shelf life for export. Rich in antioxidants and fibre, they are valued both as a food ingredient and for their health benefits.",
+      "Grade B beans are shorter and drier with a more concentrated vanillin profile — purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.",
     features: [
-      "Vibrant colour and firm texture",
-      "Extended shelf life for export",
-      "Rich in antioxidants and fibre",
-      "Sustainably farmed",
-      "White and green varieties available",
-      "Phytosanitary certified for export",
+      "Optimised for vanilla extract production",
+      "Lower moisture content (<30%) for extraction",
+      "Concentrated, consistent vanillin profile",
+      "Organic & pesticide-free",
+      "Available in bulk quantities",
+      "Uniform batch quality — tested every lot",
     ],
-    uses: ["Retail & fresh markets", "West African cuisine export", "Food processing & preserves", "Health food industry"],
-    image: "/IMG_3062_converted.avif",
+    uses: ["Vanilla extract manufacturing", "Commercial food & beverage", "Flavouring compounds", "Bakery & confectionery industry"],
+    image: "/vanilla_bean_harvest.avif",
+    imageSide: "left" as const,
+  },
+  {
+    id: "vanilla-powder",
+    name: "Vanilla Powder",
+    tagline: "Pure Ground Vanilla — Zero Fillers",
+    origin: "Central Uganda",
+    spec: "100% Pure Ground Vanilla Beans",
+    description:
+      "Whole Ugandan vanilla pods ground to a fine, aromatic powder — no sugar, no starch, no carriers. Our vanilla powder dissolves evenly in both wet and dry applications, making it the ideal choice for industrial bakers, dairy producers, and health-product formulators who need authentic vanilla flavour in a shelf-stable, easy-to-measure format.",
+    features: [
+      "100% pure ground vanilla — no additives",
+      "Fine mesh grind for even dispersion",
+      "Shelf-stable with long shelf life",
+      "Consistent colour, aroma & potency",
+      "EU Organic Certified",
+      "Packaging: 50 g up to 25 kg bags",
+    ],
+    uses: ["Industrial baking & dairy", "Dry spice & flavour blending", "Health & supplement products", "Cosmetics & personal care"],
+    image: "/IMG_4165_converted.avif",
     imageSide: "right" as const,
-    accent: "green",
-    dark: false,
+  },
+  {
+    id: "vanilla-extract-sugar",
+    name: "Vanilla Extract Sugar",
+    tagline: "Real Ugandan Vanilla, Infused into Every Granule",
+    origin: "Central Uganda Beans",
+    spec: "Vanilla-Infused Premium Cane Sugar",
+    description:
+      "Premium cane sugar infused with real Ugandan vanilla beans — delivering the warmth, depth, and complexity of pure vanilla in a ready-to-use granular format. Crafted for artisan bakeries, specialty coffee roasters, and premium retail brands seeking a differentiated ingredient with provenance, flavour, and clean-label appeal.",
+    features: [
+      "Infused with real Ugandan vanilla beans",
+      "No artificial flavours or colours",
+      "Consistent vanilla intensity batch-to-batch",
+      "Multiple grind sizes available",
+      "Retail & bulk packaging options",
+      "Clean label — just cane sugar & vanilla",
+    ],
+    uses: ["Artisan bakeries & pastry shops", "Specialty coffee & beverages", "Premium retail consumer products", "Confectionery & candy production"],
+    image: "/vanilla_bean_green.avif",
+    imageSide: "left" as const,
   },
 ];
 
@@ -168,14 +138,14 @@ export default function ProductsPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto container-px w-full">
           <div className="max-w-2xl">
-            <span className="section-eyebrow-light mb-4">Premium Organic</span>
+            <span className="section-eyebrow-light mb-4">Ugandan Vanilla</span>
             <h1 className="text-display-2xl font-bold text-white mb-6 text-balance">
-              Our Products
+              Our Vanilla Products
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
-              Five premium organic products — each cultivated sustainably in
-              Uganda&apos;s fertile highlands and processed to the highest
-              international export standards.
+              Four distinct vanilla grades and forms — all hand-harvested in
+              Uganda&apos;s highlands, organically grown, and processed to
+              world-class export standards.
             </p>
             {/* Jump links */}
             <nav aria-label="Jump to product">
@@ -262,26 +232,6 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    {/* Vanilla grades & forms */}
-                    {product.id === "vanilla" && (
-                      <div className="mb-8">
-                        <h3 className="label-tag text-forest-700 mb-4">Available Grades &amp; Forms</h3>
-                        <div className="grid grid-cols-2 gap-3">
-                          {[
-                            { grade: "Grade A", desc: "Premium whole pods, 15–20 cm, high moisture, ≥1.5% vanillin. Ideal for infusion & gourmet use." },
-                            { grade: "Grade B", desc: "Baking-grade pods, lower moisture, perfect for extraction, flavouring & food manufacturing." },
-                            { grade: "Vanilla Powder", desc: "Pure ground vanilla beans — no fillers or additives. Convenient for industrial baking & dairy." },
-                            { grade: "Vanilla Extract Sugar", desc: "Vanilla-infused cane sugar. Ready-to-use for confectionery, pastry & flavoured products." },
-                          ].map(({ grade, desc }) => (
-                            <div key={grade} className="bg-forest-950/5 border border-forest-950/10 rounded-2xl p-4 hover:border-gold-400/40 hover:bg-gold-400/5 transition-colors">
-                              <p className="text-xs font-bold text-gold-600 uppercase tracking-widest mb-1">{grade}</p>
-                              <p className="text-xs text-gray-600 leading-relaxed">{desc}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
                     <PlaceOrderButton variant="dark" icon="arrow-up-right" />
                   </ScrollReveal>
                 </div>
@@ -300,12 +250,12 @@ export default function ProductsPage() {
           <ScrollReveal>
             <span className="section-eyebrow-light">Ready to Source?</span>
             <h2 className="text-display-lg font-bold text-white mb-5 text-balance">
-              Looking for Organic Products?
+              Source Premium Ugandan Vanilla
             </h2>
             <p className="text-white/55 text-lg mb-10">
-              Contact our team to discuss pricing, minimum order quantities,
-              and logistics. We supply distributors, wholesalers, and direct
-              buyers across Europe and Asia.
+              Contact our team to discuss grade selection, pricing, minimum
+              order quantities, and logistics. We supply Grade A &amp; B beans,
+              powder, and extract sugar to buyers across Europe and Asia.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <PlaceOrderButton variant="gold" icon="arrow-right" />

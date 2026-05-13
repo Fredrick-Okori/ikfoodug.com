@@ -56,6 +56,12 @@ export default function Navbar() {
   useEffect(() => { setOpen(false); setResOpen(false); }, [pathname]);
 
   useEffect(() => {
+    const handler = () => setOrderOpen(true);
+    window.addEventListener("open-order-modal", handler);
+    return () => window.removeEventListener("open-order-modal", handler);
+  }, []);
+
+  useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (resRef.current && !resRef.current.contains(e.target as Node)) {
         setResOpen(false);
