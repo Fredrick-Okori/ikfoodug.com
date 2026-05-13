@@ -47,6 +47,10 @@ export const metadata: Metadata = {
     "Hass avocado Uganda",
     "HORTIFRESH Uganda",
   ],
+  icons: {
+    icon: [{ url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/favicon-32x32.png" }],
+  },
   authors: [{ name: "IK Food Uganda" }],
   creator: "IK Food Uganda",
   openGraph: {
@@ -97,7 +101,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" href="/favicon-32x32.png" />
         {/* Geo signals for local SEO */}
         <meta name="geo.region" content="UG" />
         <meta name="geo.placename" content="Kampala, Uganda" />
