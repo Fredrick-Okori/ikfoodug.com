@@ -52,7 +52,7 @@ const products = [
     features: [
       "Pod length 15–20 cm, premium export grade",
       "Vanillin content ≥1.5% — world-leading",
-      "High moisture content ≥30% — rich & supple",
+      "Moisture content 30%–35% — rich & supple",
       "Hand-selected, individually inspected",
       "EU Organic Certified",
       "Available whole, split, or bundled",
@@ -71,7 +71,7 @@ const products = [
       "Grade B beans are shorter and drier with a more concentrated vanillin profile — purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.",
     features: [
       "Optimised for vanilla extract production",
-      "Lower moisture content (<30%) for extraction",
+      "Moisture content 25%–27% — optimised for extraction",
       "Concentrated, consistent vanillin profile",
       "Organic & pesticide-free",
       "Available in bulk quantities",
@@ -91,6 +91,7 @@ const products = [
       "Whole Ugandan vanilla pods ground to a fine, aromatic powder — no sugar, no starch, no carriers. Our vanilla powder dissolves evenly in both wet and dry applications, making it the ideal choice for industrial bakers, dairy producers, and health-product formulators who need authentic vanilla flavour in a shelf-stable, easy-to-measure format.",
     features: [
       "100% pure ground vanilla — no additives",
+      "Moisture content ≤3% — maximum shelf stability",
       "Fine mesh grind for even dispersion",
       "Shelf-stable with long shelf life",
       "Consistent colour, aroma & potency",
@@ -111,6 +112,7 @@ const products = [
       "Split vanilla beans are whole pods sliced lengthwise to fully expose the rich inner caviar and seeds. This form accelerates flavour extraction and infusion, making them the preferred choice for extract manufacturers, pastry chefs, and beverage producers who demand fast, full-bodied vanilla release without any compromise on purity.",
     features: [
       "Hand-split lengthwise for full caviar exposure",
+      "Moisture content 18%–25% — ideal for fast infusion",
       "Faster extraction & infusion than whole beans",
       "Same premium Ugandan vanilla as Grade A",
       "High vanillin content — rich seed cavity",
