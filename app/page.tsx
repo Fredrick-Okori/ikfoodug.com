@@ -307,7 +307,7 @@ export default function HomePage() {
             <ScrollReveal delay={80}>
               <span className="section-eyebrow">Our Flagship Product</span>
               <h2 className="text-display-lg font-bold text-forest-950 mb-4 text-balance leading-tight">
-                The IK Vanilla Standard
+                Our Vanilla Standards
               </h2>
               <div className="w-10 h-px bg-gold-400 mb-6" aria-hidden="true" />
               <p className="text-forest-950/70 leading-relaxed mb-10">
