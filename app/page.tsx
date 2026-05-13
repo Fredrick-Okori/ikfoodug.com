@@ -218,7 +218,7 @@ export default function HomePage() {
               {/* Large main image */}
               <div className="absolute top-0 left-0 right-10 bottom-16 rounded-3xl overflow-hidden img-zoom shadow-2xl">
                 <Image
-                  src="/IMG_4165_converted.avif"
+                  src="/exhibition.avif"
                   alt="Premium Ugandan vanilla beans — hand-harvested"
                   fill className="object-cover" sizes="40vw"
                 />
