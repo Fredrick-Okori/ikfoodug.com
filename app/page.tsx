@@ -207,64 +207,6 @@ export default function HomePage() {
       </div>
 
       {/* ══════════════════════════════════════════════════
-          VANILLA SPOTLIGHT (new)
-      ══════════════════════════════════════════════════ */}
-      <section id="vanilla-spotlight" className="section-y bg-cream map-bg relative scroll-mt-0" aria-label="Vanilla spotlight">
-        <div className="max-w-7xl mx-auto container-px">
-          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-
-            {/* Asymmetric image stack */}
-            <ScrollReveal className="relative h-[520px] shrink-0">
-              {/* Large main image */}
-              <div className="absolute top-0 left-0 right-10 bottom-16 rounded-3xl overflow-hidden img-zoom shadow-2xl">
-                <Image
-                  src="/exhibition.avif"
-                  alt="Premium Ugandan vanilla beans — hand-harvested"
-                  fill className="object-cover" sizes="40vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/20 to-transparent" />
-              </div>
-            </ScrollReveal>
-
-            {/* Content */}
-            <ScrollReveal delay={80}>
-              <span className="section-eyebrow">Our Flagship Product</span>
-              <h2 className="text-display-lg font-bold text-forest-950 mb-4 text-balance leading-tight">
-                The IK Vanilla Standard
-              </h2>
-              <div className="w-10 h-px bg-gold-400 mb-6" aria-hidden="true" />
-              <p className="text-forest-950/70 leading-relaxed mb-10">
-                Uganda grows some of the world&apos;s finest vanilla — prized for
-                its exceptional vanillin concentration, floral complexity, and
-                rich creamy depth. Our beans are hand-harvested at peak
-                maturity and sun-cured using methods refined over generations,
-                creating a flavour profile that chocolate makers and premium
-                food producers globally seek out by name.
-              </p>
-
-              {/* Spec grid */}
-              <div className="grid grid-cols-2 gap-3 mb-10">
-                {vanillaSpecs.map(({ value, label, sub }) => (
-                  <div key={label} className="border border-forest-950/15 rounded-2xl p-5 hover:border-gold-400/60 transition-colors group">
-                    <p className="text-2xl font-bold font-heading text-gold-500 leading-none mb-1 group-hover:text-gold-400 transition-colors">
-                      {value}
-                    </p>
-                    <p className="text-forest-950/80 text-sm font-medium">{label}</p>
-                    <p className="text-forest-950/50 text-xs mt-0.5">{sub}</p>
-                  </div>
-                ))}
-              </div>
-
-              <Link href="/products#vanilla" className="btn-gold group">
-                Discover Our Vanilla
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-              </Link>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
           ABOUT EDITORIAL
       ══════════════════════════════════════════════════ */}
       <section className="section-y bg-cream map-bg" aria-label="About IK Food Uganda">
@@ -337,6 +279,64 @@ export default function HomePage() {
                 <p className="text-white/40 text-[10px] mt-0.5 tracking-wide uppercase">Yrs organic</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          VANILLA SPOTLIGHT
+      ══════════════════════════════════════════════════ */}
+      <section id="vanilla-spotlight" className="section-y bg-cream map-bg relative scroll-mt-0" aria-label="Vanilla spotlight">
+        <div className="max-w-7xl mx-auto container-px">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+            {/* Asymmetric image stack */}
+            <ScrollReveal className="relative h-[520px] shrink-0">
+              {/* Large main image */}
+              <div className="absolute top-0 left-0 right-10 bottom-16 rounded-3xl overflow-hidden img-zoom shadow-2xl">
+                <Image
+                  src="/exhibition.avif"
+                  alt="Premium Ugandan vanilla beans — hand-harvested"
+                  fill className="object-cover" sizes="40vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/20 to-transparent" />
+              </div>
+            </ScrollReveal>
+
+            {/* Content */}
+            <ScrollReveal delay={80}>
+              <span className="section-eyebrow">Our Flagship Product</span>
+              <h2 className="text-display-lg font-bold text-forest-950 mb-4 text-balance leading-tight">
+                The IK Vanilla Standard
+              </h2>
+              <div className="w-10 h-px bg-gold-400 mb-6" aria-hidden="true" />
+              <p className="text-forest-950/70 leading-relaxed mb-10">
+                Uganda grows some of the world&apos;s finest vanilla — prized for
+                its exceptional vanillin concentration, floral complexity, and
+                rich creamy depth. Our beans are hand-harvested at peak
+                maturity and sun-cured using methods refined over generations,
+                creating a flavour profile that chocolate makers and premium
+                food producers globally seek out by name.
+              </p>
+
+              {/* Spec grid */}
+              <div className="grid grid-cols-2 gap-3 mb-10">
+                {vanillaSpecs.map(({ value, label, sub }) => (
+                  <div key={label} className="border border-forest-950/15 rounded-2xl p-5 hover:border-gold-400/60 transition-colors group">
+                    <p className="text-2xl font-bold font-heading text-gold-500 leading-none mb-1 group-hover:text-gold-400 transition-colors">
+                      {value}
+                    </p>
+                    <p className="text-forest-950/80 text-sm font-medium">{label}</p>
+                    <p className="text-forest-950/50 text-xs mt-0.5">{sub}</p>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="/products#vanilla" className="btn-gold group">
+                Discover Our Vanilla
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+              </Link>
+            </ScrollReveal>
           </div>
         </div>
       </section>
