@@ -42,9 +42,9 @@ export const metadata: Metadata = {
 /* ── Data ────────────────────────────────────────── */
 
 const ticker = [
-  "Ugandan Vanilla", "100% Organic", "Est. 2015", "HORTIFRESH Certified",
-  "Fine Robusta Coffee", "Hass Avocado", "Organic Cocoa", "Export Grade",
-  "3,000+ Customers", "Garden Eggs",
+  "Ugandan Vanilla", "Grade A Vanilla Beans", "100% Organic", "Grade B Vanilla Beans",
+  "Est. 2015", "Vanilla Powder", "HORTIFRESH Certified", "Split Beans",
+  "Leading Exporter", "Vanilla Green Beans", "Vanilla Paste", "Vanilla Caviar",
 ];
 
 const stats = [
