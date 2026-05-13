@@ -58,7 +58,7 @@ const products = [
       "Available whole, split, or bundled",
     ],
     uses: ["Gourmet ice cream & dairy", "High-end pastry & desserts", "Vanilla infusions & syrups", "Perfumery & cosmetics"],
-    image: "/products/grade-A-quality.avif",
+    image: "/products/grade-A_converted.avif",
     imageSide: "right" as const,
   },
   {
