@@ -124,26 +124,6 @@ const products = [
     imageSide: "left" as const,
   },
   {
-    id: "vanilla-green-beans",
-    name: "Vanilla Green Beans",
-    tagline: "Fresh Off the Vine — Unprocessed & Pure",
-    origin: "Central Uganda",
-    spec: "Fresh Harvest · Pre-Cure",
-    description:
-      "Vanilla green beans are freshly harvested pods straight from the vine — before curing or drying. Bright, aromatic, and full of raw vanillin potential, they are sought after by extract producers, speciality processors, and research facilities that prefer to control their own curing process from the very first step.",
-    features: [
-      "Harvested at peak maturity — pre-cure",
-      "High raw vanillin and moisture content",
-      "Fresh, grassy aroma with floral notes",
-      "Ideal for proprietary curing processes",
-      "Traceable to individual farm cooperative",
-      "Available seasonally — limited quantities",
-    ],
-    uses: ["Specialty vanilla extract production", "Proprietary curing & processing", "Research & flavour development", "Craft vanilla producers"],
-    image: "/products/green_bean.avif",
-    imageSide: "right" as const,
-  },
-  {
     id: "vanilla-paste",
     name: "Vanilla Paste",
     tagline: "The Chef's Secret — Beans & Extract in One",
@@ -161,7 +141,7 @@ const products = [
     ],
     uses: ["Patisserie & fine desserts", "Ice cream & gelato production", "Premium beverage flavouring", "Retail consumer baking"],
     image: "/products/vanilla_paste.avif",
-    imageSide: "left" as const,
+    imageSide: "right" as const,
   },
   {
     id: "vanilla-caviar",
@@ -181,6 +161,26 @@ const products = [
     ],
     uses: ["Fine dining & Michelin-star kitchens", "Premium ice cream & gelato", "Artisan chocolate & confectionery", "Luxury retail products"],
     image: "/products/vanilla_caviar.jpg",
+    imageSide: "left" as const,
+  },
+  {
+    id: "vanilla-green-beans",
+    name: "Vanilla Green Beans",
+    tagline: "Fresh Off the Vine — Unprocessed & Pure",
+    origin: "Central Uganda",
+    spec: "Fresh Harvest · Pre-Cure",
+    description:
+      "Vanilla green beans are freshly harvested pods straight from the vine — before curing or drying. Bright, aromatic, and full of raw vanillin potential, they are sought after by extract producers, speciality processors, and research facilities that prefer to control their own curing process from the very first step.",
+    features: [
+      "Harvested at peak maturity — pre-cure",
+      "High raw vanillin and moisture content",
+      "Fresh, grassy aroma with floral notes",
+      "Ideal for proprietary curing processes",
+      "Traceable to individual farm cooperative",
+      "Available seasonally — limited quantities",
+    ],
+    uses: ["Specialty vanilla extract production", "Proprietary curing & processing", "Research & flavour development", "Craft vanilla producers"],
+    image: "/products/green_bean.avif",
     imageSide: "right" as const,
   },
 ];
