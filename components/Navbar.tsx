@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Menu, X, ChevronDown,
-  BookOpen, ImageIcon, ArrowUpRight, Phone, Mail,
+  Menu, X, Phone, Mail,
 } from "lucide-react";
 import Image from "next/image";
 import OrderModal from "./OrderModal";
@@ -16,23 +15,15 @@ const links = [
   { href: "/impact",       label: "Impact" },
   { href: "/products",     label: "Products" },
   { href: "/case-studies", label: "Case Studies" },
-  {
-    label: "Resources",
-    children: [
-      { href: "/blog",       label: "Blog",  Icon: BookOpen,  desc: "Insights on vanilla, farming & export" },
-      { href: "/blog#media", label: "Media", Icon: ImageIcon, desc: "Press kits, photos & media assets" },
-    ],
-  },
-  { href: "/contact", label: "Contact" },
+  { href: "/gallery",      label: "Gallery" },
+  { href: "/contact",      label: "Contact" },
 ];
 
 export default function Navbar() {
   const [open,       setOpen]       = useState(false);
   const [scrolled,   setScrolled]   = useState(false);
   const [progress,   setProgress]   = useState(0);
-  const [resOpen,    setResOpen]    = useState(false);
   const [orderOpen,  setOrderOpen]  = useState(false);
-  const resRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -53,22 +44,12 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  useEffect(() => { setOpen(false); setResOpen(false); }, [pathname]);
+  useEffect(() => { setOpen(false); }, [pathname]);
 
   useEffect(() => {
     const handler = () => setOrderOpen(true);
     window.addEventListener("open-order-modal", handler);
     return () => window.removeEventListener("open-order-modal", handler);
-  }, []);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (resRef.current && !resRef.current.contains(e.target as Node)) {
-        setResOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
   }, []);
 
   const isActive = (href: string) => pathname === href;
@@ -123,98 +104,30 @@ export default function Navbar() {
 
             {/* ── Desktop nav links ── */}
             <ul className="hidden md:flex items-center gap-5 lg:gap-6" role="list">
-              {links.map((link) =>
-                link.children ? (
-                  <li key={link.label} className="relative" ref={resRef}>
-                    <button
-                      onClick={() => setResOpen((o) => !o)}
-                      aria-expanded={resOpen}
-                      aria-haspopup="true"
-                      className={`${desktopLink(false)} pr-0`}
-                    >
-                      <span className="relative">
-                        {link.label}
-                        <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold-400 transition-all duration-300 group-hover/link:w-full" aria-hidden="true" />
-                      </span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 mt-px text-gold-400/45 ${resOpen ? "rotate-180 !text-gold-400" : ""}`}
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href!}
+                    aria-current={isActive(link.href!) ? "page" : undefined}
+                    className={desktopLink(isActive(link.href!))}
+                  >
+                    <span className="relative">
+                      {link.label}
+                      <span
+                        className={`absolute -bottom-0.5 left-0 h-px bg-gold-400 transition-all duration-300
+                          ${isActive(link.href!) ? "w-full" : "w-0 group-hover/link:w-full"}`}
                         aria-hidden="true"
                       />
-                    </button>
-
-                    {/* ── Resources panel ── */}
-                    {resOpen && (
-                      <div
-                        className="absolute top-[calc(100%+14px)] left-1/2 -translate-x-1/2 w-[272px] bg-forest-900 border border-gold-400/20 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden z-50"
-                        role="menu"
-                      >
-                        {/* lime top bar */}
-                        <div className="h-[2px] bg-gold-400" aria-hidden="true" />
-                        {/* image strip */}
-                        <div className="relative h-20 overflow-hidden">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src="/vanilla_bean_harvest.avif"
-                            alt=""
-                            className="w-full h-full object-cover opacity-30"
-                            aria-hidden="true"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-forest-900 to-transparent" aria-hidden="true" />
-                          <p className="absolute bottom-2.5 left-4 text-[10px] text-gold-400/60 uppercase tracking-widest font-semibold">
-                            Resources
-                          </p>
-                        </div>
-                        {/* links */}
-                        <div className="p-2" role="none">
-                          {link.children.map(({ href, label, Icon, desc }) => (
-                            <Link
-                              key={href}
-                              href={href}
-                              role="menuitem"
-                              className="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-gold-400/8 group/item transition-colors"
-                            >
-                              <div className="w-8 h-8 rounded-lg bg-gold-400/10 flex items-center justify-center shrink-0 group-hover/item:bg-gold-400 transition-colors mt-0.5">
-                                <Icon className="w-3.5 h-3.5 text-gold-400 group-hover/item:text-forest-950 transition-colors" aria-hidden="true" />
-                              </div>
-                              <div>
-                                <p className="text-sm font-medium text-gold-400/80 group-hover/item:text-gold-400 transition-colors leading-none mb-0.5">
-                                  {label}
-                                </p>
-                                <p className="text-xs text-gold-400/35 leading-snug">{desc}</p>
-                              </div>
-                              <ArrowUpRight className="w-3 h-3 text-gold-400/20 group-hover/item:text-gold-400 transition-all ml-auto mt-0.5 shrink-0 opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5" aria-hidden="true" />
-                            </Link>
-                          ))}
-                        </div>
-                        <div className="pb-1" />
-                      </div>
+                    </span>
+                    {isActive(link.href!) && (
+                      <span
+                        className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold-400"
+                        aria-hidden="true"
+                      />
                     )}
-                  </li>
-                ) : (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href!}
-                      aria-current={isActive(link.href!) ? "page" : undefined}
-                      className={desktopLink(isActive(link.href!))}
-                    >
-                      <span className="relative">
-                        {link.label}
-                        <span
-                          className={`absolute -bottom-0.5 left-0 h-px bg-gold-400 transition-all duration-300
-                            ${isActive(link.href!) ? "w-full" : "w-0 group-hover/link:w-full"}`}
-                          aria-hidden="true"
-                        />
-                      </span>
-                      {isActive(link.href!) && (
-                        <span
-                          className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold-400"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </Link>
-                  </li>
-                )
-              )}
+                  </Link>
+                </li>
+              ))}
             </ul>
 
             {/* ── CTA + mobile toggle ── */}
