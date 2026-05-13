@@ -498,8 +498,8 @@ export default function HomePage() {
             <ScrollReveal delay={100} className="relative">
               <div className="relative rounded-4xl overflow-hidden h-[540px] img-zoom shadow-xl">
                 <Image
-                  src="/IMG_7929_converted.avif"
-                  alt="IK Food Uganda quality assurance — farm to export"
+                  src="/exhibition.avif"
+                  alt="IK Food Uganda at international vanilla exhibition"
                   fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* image overlay */}
