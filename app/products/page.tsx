@@ -138,7 +138,7 @@ const products = [
       "Available seasonally — limited quantities",
     ],
     uses: ["Specialty vanilla extract production", "Proprietary curing & processing", "Research & flavour development", "Craft vanilla producers"],
-    image: "/vanilla_bean_green.avif",
+    image: "/products/green_bean.avif",
     imageSide: "right" as const,
   },
   {
