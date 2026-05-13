@@ -141,6 +141,26 @@ const products = [
     image: "/vanilla_bean_green.avif",
     imageSide: "right" as const,
   },
+  {
+    id: "vanilla-paste",
+    name: "Vanilla Paste",
+    tagline: "The Chef's Secret — Beans & Extract in One",
+    origin: "Central Uganda",
+    spec: "Bean-Specked · Ready to Use",
+    description:
+      "Vanilla paste combines the concentrated flavour of pure vanilla extract with the visual appeal of real vanilla bean seeds — all in one thick, spoonable form. Made from Ugandan vanilla beans, it delivers intense aroma and the signature black specks prized in premium desserts, with none of the prep work of whole pods.",
+    features: [
+      "Real vanilla bean seeds visible in every spoonful",
+      "Intense, concentrated vanilla flavour",
+      "No artificial flavours, colours, or preservatives",
+      "1 tsp paste = 1 whole vanilla pod",
+      "Consistent viscosity & potency batch-to-batch",
+      "Available in retail jars & bulk catering packs",
+    ],
+    uses: ["Patisserie & fine desserts", "Ice cream & gelato production", "Premium beverage flavouring", "Retail consumer baking"],
+    image: "/products/vanilla_paste.avif",
+    imageSide: "left" as const,
+  },
 ];
 
 export default function ProductsPage() {
@@ -163,7 +183,7 @@ export default function ProductsPage() {
               Our Vanilla Products
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
-              Five distinct vanilla grades and forms — all hand-harvested in
+              Six distinct vanilla grades and forms — all hand-harvested in
               Uganda&apos;s highlands, organically grown, and processed to
               world-class export standards.
             </p>
