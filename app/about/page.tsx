@@ -81,7 +81,7 @@ export default function AboutPage() {
           <div className="max-w-xl">
             <span className="section-eyebrow-light mb-4">Our Story</span>
             <h1 className="text-display-2xl font-bold text-white text-balance">
-              About IK Food Uganda
+              About IK Food (U) Ltd
             </h1>
           </div>
         </div>
