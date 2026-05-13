@@ -180,55 +180,33 @@ export default function Navbar() {
         {/* Main nav links */}
         <nav className="flex-1 overflow-y-auto px-6 pt-8 pb-4" aria-label="Mobile navigation">
           <ul className="space-y-0" role="list">
-            {links.map((link, i) =>
-              link.children ? (
-                <li key={link.label}>
-                  <p
-                    className={`label-tag text-gold-400/40 pt-6 pb-3 transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-                    style={{ transitionDelay: open ? `${(i + 1) * 60}ms` : "0ms" }}
-                  >
-                    {link.label}
-                  </p>
-                  {link.children.map((c, ci) => (
-                    <Link
-                      key={c.href}
-                      href={c.href}
-                      className={`flex items-center gap-3 py-2.5 text-base text-gold-400/45 hover:text-gold-400 transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-                      style={{ transitionDelay: open ? `${(i + ci + 2) * 60}ms` : "0ms" }}
-                    >
-                      <c.Icon className="w-4 h-4 text-gold-400/50 shrink-0" aria-hidden="true" />
-                      {c.label}
-                    </Link>
-                  ))}
-                </li>
-              ) : (
-                <li
-                  key={link.href}
-                  className={`transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                  style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
+            {links.map((link, i) => (
+              <li
+                key={link.href}
+                className={`transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
+                style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
+              >
+                <Link
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`flex items-center justify-between py-4 border-b text-2xl font-bold font-heading transition-all
+                    ${isActive(link.href)
+                      ? "text-gold-400 border-gold-400/20 pl-3"
+                      : "text-gold-400/40 hover:text-gold-400 border-gold-400/8 pl-0 hover:pl-1"
+                    }`}
                 >
-                  <Link
-                    href={link.href!}
-                    aria-current={isActive(link.href!) ? "page" : undefined}
-                    className={`flex items-center justify-between py-4 border-b text-2xl font-bold font-heading transition-all
-                      ${isActive(link.href!)
-                        ? "text-gold-400 border-gold-400/20 pl-3"
-                        : "text-gold-400/40 hover:text-gold-400 border-gold-400/8 pl-0 hover:pl-1"
-                      }`}
-                  >
-                    <span className="flex items-center gap-3">
-                      {isActive(link.href!) && (
-                        <span className="w-1 h-6 rounded-full bg-gold-400 shrink-0" aria-hidden="true" />
-                      )}
-                      {link.label}
-                    </span>
-                    {isActive(link.href!) && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-gold-400 shrink-0" aria-hidden="true" />
+                  <span className="flex items-center gap-3">
+                    {isActive(link.href) && (
+                      <span className="w-1 h-6 rounded-full bg-gold-400 shrink-0" aria-hidden="true" />
                     )}
-                  </Link>
-                </li>
-              )
-            )}
+                    {link.label}
+                  </span>
+                  {isActive(link.href) && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400 shrink-0" aria-hidden="true" />
+                  )}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
