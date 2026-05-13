@@ -58,7 +58,7 @@ const products = [
       "Available whole, split, or bundled",
     ],
     uses: ["Gourmet ice cream & dairy", "High-end pastry & desserts", "Vanilla infusions & syrups", "Perfumery & cosmetics"],
-    image: "/IMG_4873_converted.avif",
+    image: "/products/splits-quality_converted.avif",
     imageSide: "right" as const,
   },
   {
@@ -78,7 +78,7 @@ const products = [
       "Uniform batch quality — tested every lot",
     ],
     uses: ["Vanilla extract manufacturing", "Commercial food & beverage", "Flavouring compounds", "Bakery & confectionery industry"],
-    image: "/vanilla_bean_harvest.avif",
+    image: "/products/grade-B_quality_converted.avif",
     imageSide: "left" as const,
   },
   {
