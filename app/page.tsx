@@ -317,19 +317,19 @@ export default function HomePage() {
             <div className="lg:col-span-7 xl:col-span-8 relative h-[500px] lg:h-[580px]">
               {/* Main large image */}
               <ScrollReveal delay={50} className="absolute top-0 left-0 w-[58%] h-[75%] rounded-3xl overflow-hidden img-zoom shadow-xl">
-                <Image src="/vanilla_bean_harvest.avif" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="30vw" />
+                <Image src="/products/grade-A_converted.avif" alt="Grade A Ugandan vanilla beans" fill className="object-cover" sizes="30vw" />
               </ScrollReveal>
               {/* Top-right image */}
               <ScrollReveal delay={110} className="absolute top-0 right-0 w-[38%] h-[45%] rounded-3xl overflow-hidden img-zoom shadow-lg">
-                <Image src="/IMG_7924_converted.avif" alt="IK Food Uganda farmers in the field" fill className="object-cover" sizes="20vw" />
+                <Image src="/products/green_bean.avif" alt="Fresh green vanilla beans on the vine" fill className="object-cover" sizes="20vw" />
               </ScrollReveal>
               {/* Bottom-right image */}
               <ScrollReveal delay={170} className="absolute bottom-0 right-0 w-[45%] h-[48%] rounded-3xl overflow-hidden img-zoom shadow-lg">
-                <Image src="/IMG_3045_converted.avif" alt="Fresh organic produce from Uganda highlands" fill className="object-cover" sizes="20vw" />
+                <Image src="/products/vanilla_paste.avif" alt="Premium Ugandan vanilla paste" fill className="object-cover" sizes="20vw" />
               </ScrollReveal>
               {/* Bottom-left small overlap */}
               <ScrollReveal delay={230} className="absolute bottom-0 left-[15%] w-[35%] h-[30%] rounded-2xl overflow-hidden img-zoom shadow-lg border-4 border-cream">
-                <Image src="/IMG_7806_converted.avif" alt="Organic vanilla processing at IK Food Uganda" fill className="object-cover" sizes="15vw" />
+                <Image src="/products/splits-quality_converted.avif" alt="Hand-split vanilla beans" fill className="object-cover" sizes="15vw" />
               </ScrollReveal>
               {/* Floating badge */}
               <div className="absolute bottom-[28%] right-[43%] bg-forest-950 text-white rounded-xl px-4 py-3 shadow-xl z-10" aria-hidden="true">
