@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import PlaceOrderButton from "@/components/PlaceOrderButton";
 
 export const metadata: Metadata = {
   title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
@@ -51,10 +52,10 @@ const products = [
     features: [
       "Vanillin content 1.5–2.5% — world-leading",
       "Hand-harvested at peak maturity",
-      "Traditional sun-curing methods",
-      "Available: whole beans, split, powder, extract",
+      "Traditional sun-curing & aging methods",
       "EU Organic Certified",
       "Direct farmer cooperative sourcing",
+      "Available in four grades and forms",
     ],
     uses: ["Premium ice cream & dairy", "Artisan chocolate & confectionery", "Perfumery & cosmetics", "Baking & pastry"],
     image: "/IMG_4873_converted.avif",
@@ -261,10 +262,27 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    <Link href="/contact" className="btn-dark group">
-                      Request a Quote
-                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                    </Link>
+                    {/* Vanilla grades & forms */}
+                    {product.id === "vanilla" && (
+                      <div className="mb-8">
+                        <h3 className="label-tag text-forest-700 mb-4">Available Grades &amp; Forms</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {[
+                            { grade: "Grade A", desc: "Premium whole pods, 15–20 cm, high moisture, ≥1.5% vanillin. Ideal for infusion & gourmet use." },
+                            { grade: "Grade B", desc: "Baking-grade pods, lower moisture, perfect for extraction, flavouring & food manufacturing." },
+                            { grade: "Vanilla Powder", desc: "Pure ground vanilla beans — no fillers or additives. Convenient for industrial baking & dairy." },
+                            { grade: "Vanilla Extract Sugar", desc: "Vanilla-infused cane sugar. Ready-to-use for confectionery, pastry & flavoured products." },
+                          ].map(({ grade, desc }) => (
+                            <div key={grade} className="bg-forest-950/5 border border-forest-950/10 rounded-2xl p-4 hover:border-gold-400/40 hover:bg-gold-400/5 transition-colors">
+                              <p className="text-xs font-bold text-gold-600 uppercase tracking-widest mb-1">{grade}</p>
+                              <p className="text-xs text-gray-600 leading-relaxed">{desc}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <PlaceOrderButton variant="dark" icon="arrow-up-right" />
                   </ScrollReveal>
                 </div>
               </div>
@@ -290,10 +308,7 @@ export default function ProductsPage() {
               buyers across Europe and Asia.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/contact" className="btn-gold">
-                Request a Quote
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
+              <PlaceOrderButton variant="gold" icon="arrow-right" />
               <Link href="/about" className="btn-outline-cream">
                 About Us
               </Link>
