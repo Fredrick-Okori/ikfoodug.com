@@ -221,7 +221,7 @@ export default function HomePage() {
                   01
                 </span>
                 <h2 className="text-display-lg font-bold text-forest-950 leading-tight mb-5 text-balance">
-                  Uganda&apos;s Premier Organic Exporter
+                  Uganda&apos;s Leading Premium Vanilla Exporter
                 </h2>
                 <div className="h-rule mb-6" aria-hidden="true" />
                 <p className="text-gray-600 leading-relaxed mb-4 text-[0.95rem]">
