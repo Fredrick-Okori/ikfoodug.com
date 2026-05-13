@@ -161,6 +161,26 @@ const products = [
     image: "/products/vanilla_paste.avif",
     imageSide: "left" as const,
   },
+  {
+    id: "vanilla-caviar",
+    name: "Vanilla Caviar",
+    tagline: "Pure Vanilla Seeds — Nature's Black Gold",
+    origin: "Central Uganda",
+    spec: "100% Pure Vanilla Bean Seeds",
+    description:
+      "Vanilla caviar is the pure, concentrated seeds scraped from inside premium Ugandan vanilla pods — the most intensely flavoured part of the bean. Jet-black, moist, and bursting with complex aromatic compounds, it delivers immediate, powerful vanilla flavour with striking visual appeal in any application it touches.",
+    features: [
+      "100% pure vanilla bean seeds — no pod fibre",
+      "Intensely concentrated flavour & aroma",
+      "Striking black specks for visual appeal",
+      "Sourced from Grade A Ugandan vanilla pods",
+      "No additives, carriers, or preservatives",
+      "Available in small jars & bulk trade packs",
+    ],
+    uses: ["Fine dining & Michelin-star kitchens", "Premium ice cream & gelato", "Artisan chocolate & confectionery", "Luxury retail products"],
+    image: "/products/IMG_4074_converted.avif",
+    imageSide: "right" as const,
+  },
 ];
 
 export default function ProductsPage() {
@@ -183,7 +203,7 @@ export default function ProductsPage() {
               Our Vanilla Products
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
-              Six distinct vanilla grades and forms — all hand-harvested in
+              Seven distinct vanilla grades and forms — all hand-harvested in
               Uganda&apos;s highlands, organically grown, and processed to
               world-class export standards.
             </p>
