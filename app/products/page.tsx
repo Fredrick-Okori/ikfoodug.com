@@ -121,6 +121,26 @@ const products = [
     image: "/vanilla_bean_green.avif",
     imageSide: "left" as const,
   },
+  {
+    id: "vanilla-green-beans",
+    name: "Vanilla Green Beans",
+    tagline: "Fresh Off the Vine — Unprocessed & Pure",
+    origin: "Central Uganda",
+    spec: "Fresh Harvest · Pre-Cure",
+    description:
+      "Vanilla green beans are freshly harvested pods straight from the vine — before curing or drying. Bright, aromatic, and full of raw vanillin potential, they are sought after by extract producers, speciality processors, and research facilities that prefer to control their own curing process from the very first step.",
+    features: [
+      "Harvested at peak maturity — pre-cure",
+      "High raw vanillin and moisture content",
+      "Fresh, grassy aroma with floral notes",
+      "Ideal for proprietary curing processes",
+      "Traceable to individual farm cooperative",
+      "Available seasonally — limited quantities",
+    ],
+    uses: ["Specialty vanilla extract production", "Proprietary curing & processing", "Research & flavour development", "Craft vanilla producers"],
+    image: "/vanilla_bean_green.avif",
+    imageSide: "right" as const,
+  },
 ];
 
 export default function ProductsPage() {
@@ -143,7 +163,7 @@ export default function ProductsPage() {
               Our Vanilla Products
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
-              Four distinct vanilla grades and forms — all hand-harvested in
+              Five distinct vanilla grades and forms — all hand-harvested in
               Uganda&apos;s highlands, organically grown, and processed to
               world-class export standards.
             </p>
