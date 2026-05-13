@@ -178,7 +178,7 @@ const products = [
       "Available in small jars & bulk trade packs",
     ],
     uses: ["Fine dining & Michelin-star kitchens", "Premium ice cream & gelato", "Artisan chocolate & confectionery", "Luxury retail products"],
-    image: "/products/IMG_4074_converted.avif",
+    image: "/products/vanilla_caviar.jpg",
     imageSide: "right" as const,
   },
 ];
