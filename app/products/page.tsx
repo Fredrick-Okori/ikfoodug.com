@@ -98,7 +98,7 @@ const products = [
       "Packaging: 50 g up to 25 kg bags",
     ],
     uses: ["Industrial baking & dairy", "Dry spice & flavour blending", "Health & supplement products", "Cosmetics & personal care"],
-    image: "/IMG_4165_converted.avif",
+    image: "/products/vanilla_powder.avif",
     imageSide: "right" as const,
   },
   {
