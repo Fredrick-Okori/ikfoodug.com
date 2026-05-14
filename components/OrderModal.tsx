@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 interface Props {
   open: boolean;
@@ -74,9 +75,21 @@ export default function OrderDrawer({ open, onClose }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
+    const { error } = await supabase.from("orders").insert({
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      country: form.country,
+      quantity: form.quantity,
+      unit: form.unit,
+      date_needed: form.dateNeeded || null,
+    });
     setSubmitting(false);
-    setSubmitted(true);
+    if (!error) {
+      setSubmitted(true);
+    } else {
+      console.error("Order submission error:", error.message);
+    }
   };
 
   const inputCls =
