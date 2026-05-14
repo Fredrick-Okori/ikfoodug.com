@@ -1,17 +1,16 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import Image from "next/image";
-import { LogOut, RefreshCw, Package, Clock, CheckCircle2, XCircle, Users } from "lucide-react";
+import { Package, Clock, CheckCircle2, Users, RefreshCw } from "lucide-react";
 import { type Order, type OrderStatus } from "@/lib/supabase";
-import { logout, updateOrderStatus } from "@/app/admin/actions";
+import { updateOrderStatus } from "@/app/admin/actions";
 
 const STATUS_OPTIONS: { value: OrderStatus; label: string; color: string; bg: string }[] = [
-  { value: "new",       label: "New",       color: "text-gold-400",   bg: "bg-gold-400/10 border-gold-400/30" },
-  { value: "contacted", label: "Contacted", color: "text-blue-400",   bg: "bg-blue-400/10 border-blue-400/30" },
-  { value: "confirmed", label: "Confirmed", color: "text-green-400",  bg: "bg-green-400/10 border-green-400/30" },
-  { value: "completed", label: "Completed", color: "text-white/40",   bg: "bg-white/5 border-white/10" },
-  { value: "cancelled", label: "Cancelled", color: "text-red-400",    bg: "bg-red-400/10 border-red-400/30" },
+  { value: "new",       label: "New",       color: "text-gold-400",  bg: "bg-gold-400/10 border-gold-400/30" },
+  { value: "contacted", label: "Contacted", color: "text-blue-400",  bg: "bg-blue-400/10 border-blue-400/30" },
+  { value: "confirmed", label: "Confirmed", color: "text-green-400", bg: "bg-green-400/10 border-green-400/30" },
+  { value: "completed", label: "Completed", color: "text-white/40",  bg: "bg-white/5 border-white/10" },
+  { value: "cancelled", label: "Cancelled", color: "text-red-400",   bg: "bg-red-400/10 border-red-400/30" },
 ];
 
 function StatusBadge({ status }: { status: OrderStatus }) {
@@ -37,7 +36,7 @@ function StatusSelect({ orderId, current }: { orderId: string; current: OrderSta
     <select
       value={value}
       onChange={handleChange}
-      className="text-xs bg-forest-900 border border-white/10 text-white rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-gold-400 cursor-pointer"
+      className="text-xs bg-[#0d1117] border border-white/10 text-white rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-gold-400 cursor-pointer"
     >
       {STATUS_OPTIONS.map((o) => (
         <option key={o.value} value={o.value}>{o.label}</option>
@@ -68,131 +67,105 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
     { label: "Total Orders",    value: counts.all,       icon: Package,      color: "text-white" },
     { label: "New",             value: counts.new,       icon: Clock,        color: "text-gold-400" },
     { label: "Confirmed",       value: counts.confirmed, icon: CheckCircle2, color: "text-green-400" },
-    { label: "Total Customers", value: new Set(orders.map((o) => o.email)).size, icon: Users, color: "text-blue-400" },
+    { label: "Unique Customers", value: new Set(orders.map((o) => o.email)).size, icon: Users, color: "text-blue-400" },
   ];
 
   return (
-    <div className="min-h-screen bg-forest-950 text-white">
-      {/* Header */}
-      <header className="border-b border-white/8 px-6 py-4 flex items-center justify-between sticky top-0 bg-forest-950 z-10">
-        <div className="flex items-center gap-4">
-          <Image src="/logo_clean.webp" alt="IK Food Uganda" width={80} height={32} className="h-8 w-auto object-contain opacity-90" />
-          <div className="h-5 w-px bg-white/10" />
-          <div>
-            <p className="text-xs text-white/40 uppercase tracking-widest">Admin</p>
-            <p className="text-sm font-semibold text-white leading-none mt-0.5">Order Management</p>
-          </div>
+    <div className="flex flex-col flex-1 p-6 md:p-8 space-y-7 text-white">
+      {/* Page header */}
+      <div className="flex items-center justify-between pt-2 md:pt-0">
+        <div className="md:pl-0 pl-12">
+          <h1 className="text-xl font-bold font-heading text-white">Orders</h1>
+          <p className="text-white/35 text-sm mt-0.5">Manage and track all placed orders</p>
         </div>
-        <div className="flex items-center gap-3">
+        <button
+          onClick={() => window.location.reload()}
+          className="flex items-center gap-2 text-xs text-white/40 hover:text-white border border-white/10 hover:border-white/20 px-3 py-2 rounded-xl transition-all"
+        >
+          <RefreshCw className="w-3.5 h-3.5" />
+          Refresh
+        </button>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map(({ label, value, icon: Icon, color }) => (
+          <div key={label} className="bg-[#0a0f14] border border-white/8 rounded-2xl p-5">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs text-white/35 uppercase tracking-widest">{label}</p>
+              <Icon className={`w-4 h-4 ${color}`} />
+            </div>
+            <p className={`text-3xl font-bold font-heading ${color}`}>{value}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Filter tabs */}
+      <div className="flex flex-wrap gap-2">
+        {(["all", "new", "contacted", "confirmed", "completed", "cancelled"] as const).map((s) => (
           <button
-            onClick={() => window.location.reload()}
-            className="flex items-center gap-1.5 text-xs text-white/40 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/5"
+            key={s}
+            onClick={() => setFilter(s)}
+            className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider border transition-all ${
+              filter === s
+                ? "bg-gold-400 text-forest-950 border-gold-400"
+                : "bg-white/5 text-white/40 border-white/8 hover:text-white hover:border-white/20"
+            }`}
           >
-            <RefreshCw className="w-3.5 h-3.5" />
-            Refresh
+            {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}{" "}
+            <span className="opacity-60">({counts[s]})</span>
           </button>
-          <form action={logout}>
-            <button
-              type="submit"
-              className="flex items-center gap-1.5 text-xs text-white/40 hover:text-red-400 transition-colors px-3 py-2 rounded-lg hover:bg-white/5"
-            >
-              <LogOut className="w-3.5 h-3.5" />
-              Sign Out
-            </button>
-          </form>
-        </div>
-      </header>
+        ))}
+      </div>
 
-      <main className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map(({ label, value, icon: Icon, color }) => (
-            <div key={label} className="bg-forest-900 border border-white/8 rounded-2xl p-5">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-xs text-white/40 uppercase tracking-widest">{label}</p>
-                <Icon className={`w-4 h-4 ${color}`} />
-              </div>
-              <p className={`text-3xl font-bold font-heading ${color}`}>{value}</p>
-            </div>
-          ))}
+      {/* Table */}
+      {visible.length === 0 ? (
+        <div className="flex-1 flex flex-col items-center justify-center py-24 text-white/20">
+          <Package className="w-10 h-10 mb-3 opacity-30" />
+          <p className="text-sm">No orders{filter !== "all" ? ` with status "${filter}"` : " yet"}.</p>
         </div>
-
-        {/* Filter tabs */}
-        <div className="flex flex-wrap gap-2">
-          {(["all", "new", "contacted", "confirmed", "completed", "cancelled"] as const).map((s) => (
-            <button
-              key={s}
-              onClick={() => setFilter(s)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider border transition-all ${
-                filter === s
-                  ? "bg-gold-400 text-forest-950 border-gold-400"
-                  : "bg-white/5 text-white/40 border-white/10 hover:text-white hover:border-white/20"
-              }`}
-            >
-              {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)} ({counts[s]})
-            </button>
-          ))}
-        </div>
-
-        {/* Orders table */}
-        {visible.length === 0 ? (
-          <div className="text-center py-20 text-white/30">
-            <Package className="w-10 h-10 mx-auto mb-3 opacity-30" />
-            <p className="text-sm">No orders {filter !== "all" ? `with status "${filter}"` : "yet"}.</p>
-          </div>
-        ) : (
-          <div className="bg-forest-900 border border-white/8 rounded-2xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-white/8">
-                    {["Date", "Customer", "Contact", "Country", "Quantity", "Date Needed", "Status", "Update"].map((h) => (
-                      <th key={h} className="text-left px-5 py-4 text-xs font-semibold text-white/35 uppercase tracking-widest whitespace-nowrap">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5">
-                  {visible.map((order) => (
-                    <tr key={order.id} className="hover:bg-white/3 transition-colors">
-                      <td className="px-5 py-4 text-white/50 whitespace-nowrap text-xs">
-                        {fmt(order.created_at)}
-                      </td>
-                      <td className="px-5 py-4 whitespace-nowrap">
-                        <p className="font-medium text-white">{order.name}</p>
-                        <p className="text-xs text-white/40 mt-0.5">{order.email}</p>
-                      </td>
-                      <td className="px-5 py-4 text-white/50 text-xs whitespace-nowrap">
-                        {order.phone}
-                      </td>
-                      <td className="px-5 py-4 text-white/70 whitespace-nowrap">
-                        {order.country}
-                      </td>
-                      <td className="px-5 py-4 whitespace-nowrap">
-                        <span className="font-semibold text-gold-400">{order.quantity}</span>
-                        <span className="text-white/40 text-xs ml-1">{order.unit}</span>
-                      </td>
-                      <td className="px-5 py-4 text-white/50 text-xs whitespace-nowrap">
-                        {order.date_needed ? fmt(order.date_needed) : <span className="text-white/20">—</span>}
-                      </td>
-                      <td className="px-5 py-4">
-                        <StatusBadge status={order.status} />
-                      </td>
-                      <td className="px-5 py-4">
-                        <StatusSelect orderId={order.id} current={order.status} />
-                      </td>
-                    </tr>
+      ) : (
+        <div className="bg-[#0a0f14] border border-white/8 rounded-2xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-white/8">
+                  {["Date", "Customer", "Phone", "Country", "Quantity", "Date Needed", "Status", "Update"].map((h) => (
+                    <th key={h} className="text-left px-5 py-4 text-[11px] font-semibold text-white/30 uppercase tracking-widest whitespace-nowrap">
+                      {h}
+                    </th>
                   ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="px-5 py-3 border-t border-white/8 text-xs text-white/25">
-              Showing {visible.length} of {orders.length} orders
-            </div>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {visible.map((order) => (
+                  <tr key={order.id} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="px-5 py-4 text-white/40 whitespace-nowrap text-xs">{fmt(order.created_at)}</td>
+                    <td className="px-5 py-4 whitespace-nowrap">
+                      <p className="font-medium text-white">{order.name}</p>
+                      <p className="text-xs text-white/35 mt-0.5">{order.email}</p>
+                    </td>
+                    <td className="px-5 py-4 text-white/45 text-xs whitespace-nowrap">{order.phone}</td>
+                    <td className="px-5 py-4 text-white/60 whitespace-nowrap">{order.country}</td>
+                    <td className="px-5 py-4 whitespace-nowrap">
+                      <span className="font-semibold text-gold-400">{order.quantity}</span>
+                      <span className="text-white/35 text-xs ml-1">{order.unit}</span>
+                    </td>
+                    <td className="px-5 py-4 text-white/40 text-xs whitespace-nowrap">
+                      {order.date_needed ? fmt(order.date_needed) : <span className="text-white/15">—</span>}
+                    </td>
+                    <td className="px-5 py-4"><StatusBadge status={order.status} /></td>
+                    <td className="px-5 py-4"><StatusSelect orderId={order.id} current={order.status} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        )}
-      </main>
+          <div className="px-5 py-3 border-t border-white/6 text-xs text-white/20">
+            Showing {visible.length} of {orders.length} orders
+          </div>
+        </div>
+      )}
     </div>
   );
 }

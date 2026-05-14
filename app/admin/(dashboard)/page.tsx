@@ -11,7 +11,7 @@ export default async function AdminPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-forest-950 flex items-center justify-center">
+      <div className="flex items-center justify-center h-full py-20">
         <p className="text-red-400 text-sm">Failed to load orders: {error.message}</p>
       </div>
     );
