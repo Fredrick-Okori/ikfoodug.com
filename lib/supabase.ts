@@ -15,6 +15,20 @@ export interface Order {
   status: OrderStatus;
 }
 
+export type EnquiryStatus = "unread" | "read" | "replied" | "archived";
+
+export interface Enquiry {
+  id: string;
+  created_at: string;
+  name: string;
+  email: string;
+  company: string | null;
+  phone: string | null;
+  enquiry_type: string;
+  message: string;
+  status: EnquiryStatus;
+}
+
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!

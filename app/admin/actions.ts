@@ -26,6 +26,16 @@ export async function logout() {
   redirect("/admin/login");
 }
 
+export async function updateEnquiryStatus(id: string, status: string) {
+  const cookieStore = await cookies();
+  const session = cookieStore.get("ik_admin");
+  if (session?.value !== process.env.ADMIN_PASSWORD) throw new Error("Unauthorized");
+
+  const { error } = await supabase.from("enquiries").update({ status }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/enquiries");
+}
+
 export async function updateOrderStatus(id: string, status: string) {
   const cookieStore = await cookies();
   const session = cookieStore.get("ik_admin");

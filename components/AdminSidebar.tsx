@@ -16,7 +16,7 @@ const nav = [
     section: "Manage",
     items: [
       { href: "/admin",           label: "Orders",    icon: Package,    exact: true,  soon: false },
-      { href: "/admin/enquiries", label: "Enquiries", icon: Mail,       exact: false, soon: true  },
+      { href: "/admin/enquiries", label: "Enquiries", icon: Mail,       exact: false, soon: false },
     ],
   },
   {

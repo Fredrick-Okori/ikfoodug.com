@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const contactDetails = [
   { icon: Phone,   label: "Phone",          value: "+256 776 341 713",       href: "tel:+256776341713",           sub: "Mon–Fri, 8am–5pm EAT" },
@@ -35,8 +36,20 @@ export default function ContactPage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("sending");
-    await new Promise((r) => setTimeout(r, 1400));
-    setState("success");
+    const { error } = await supabase.from("enquiries").insert({
+      name: form.name,
+      email: form.email,
+      company: form.company || null,
+      phone: form.phone || null,
+      enquiry_type: form.enquiryType,
+      message: form.message,
+    });
+    if (!error) {
+      setState("success");
+    } else {
+      console.error("Enquiry submission error:", error.message);
+      setState("idle");
+    }
   };
 
   const inputCls = "w-full px-4 py-3.5 rounded-xl border border-gray-200 text-gray-900 placeholder:text-gray-400 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-forest-500 focus:border-transparent transition-shadow";
