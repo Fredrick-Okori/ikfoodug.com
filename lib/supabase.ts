@@ -29,6 +29,16 @@ export interface Enquiry {
   status: EnquiryStatus;
 }
 
+export interface GalleryItem {
+  id: string;
+  created_at: string;
+  storage_path: string;
+  url: string;
+  caption: string;
+  category: string;
+  sort_order: number;
+}
+
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!

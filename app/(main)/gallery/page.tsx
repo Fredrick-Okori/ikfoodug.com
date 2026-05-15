@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import GalleryClient, { type GalleryImage } from "@/components/GalleryClient";
+import { supabase } from "@/lib/supabase";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Gallery | IK Food Uganda",
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://ikfoodug.com/gallery" },
 };
 
-const images: GalleryImage[] = [
+const staticImages: GalleryImage[] = [
   { src: "/IMG_4873_converted.avif",                                    caption: "Grade A Vanilla Beans",                     category: "Vanilla" },
   { src: "/vanilla_bean_harvest.avif",                                  caption: "Vanilla Bean Harvest",                      category: "Vanilla" },
   { src: "/vanilla_bean_green.avif",                                    caption: "Fresh Green Vanilla Beans on the Vine",      category: "Vanilla" },
@@ -35,7 +38,20 @@ const images: GalleryImage[] = [
   { src: "/quality_split.avif",                                         caption: "Farm-to-Export Quality Standard",           category: "Farm" },
 ];
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const { data } = await supabase
+    .from("gallery")
+    .select("url, caption, category")
+    .order("created_at", { ascending: false });
+
+  const dbImages: GalleryImage[] = (data ?? []).map((item) => ({
+    src: item.url,
+    caption: item.caption || "",
+    category: item.category || "General",
+  }));
+
+  const allImages = [...dbImages, ...staticImages];
+
   return (
     <>
       {/* ── Hero ── */}
@@ -59,7 +75,7 @@ export default function GalleryPage() {
       {/* ── Gallery grid ── */}
       <section className="section-y bg-cream map-bg" aria-label="Photo gallery">
         <div className="max-w-7xl mx-auto container-px">
-          <GalleryClient images={images} />
+          <GalleryClient images={allImages} />
         </div>
       </section>
     </>
