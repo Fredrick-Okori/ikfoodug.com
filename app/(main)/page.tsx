@@ -60,11 +60,11 @@ const vanillaSpecs = [
 ];
 
 const products = [
-  { id: "vanilla",     name: "Ugandan Vanilla",    origin: "Central Uganda",         note: "Rich · Creamy · Complex",    image: "/IMG_4873_converted.avif" },
-  { id: "coffee",      name: "Fine Robusta Coffee", origin: "Highland Regions",       note: "Bold · Low Acid · Rich Crema", image: "/coffee-plantation.jpg" },
-  { id: "cocoa",       name: "Organic Cocoa",       origin: "Central & West Uganda",  note: "Fine Flavour · Fermented",   image: "/IMG_4160_converted.avif" },
-  { id: "avocado",     name: "Hass Avocado",        origin: "Highland Farms",         note: "Export Grade · Class I",     image: "/IMG_7889_converted.avif" },
-  { id: "garden-eggs", name: "Garden Eggs",          origin: "Central Uganda",         note: "Firm · Vibrant · Nutritious", image: "/IMG_3062_converted.avif" },
+  { id: "grade-a",          name: "Grade A Vanilla Beans",  origin: "Central Uganda",  note: "Rich · Creamy · Complex",       image: "/products/grade-A_converted.avif" },
+  { id: "grade-b",          name: "Grade B Vanilla Beans",  origin: "Central Uganda",  note: "Full Flavour · Export Quality", image: "/products/grade-B_quality_converted.avif" },
+  { id: "split-beans",      name: "Split Vanilla Beans",    origin: "Central Uganda",  note: "High Vanillin · Versatile",     image: "/products/splits-quality_converted.avif" },
+  { id: "vanilla-paste",    name: "Vanilla Paste",          origin: "Central Uganda",  note: "Seeds-in-Sauce · Gourmet",      image: "/products/vanilla_paste.avif" },
+  { id: "vanilla-powder",   name: "Vanilla Powder",         origin: "Central Uganda",  note: "Pure · ≤3% Moisture",           image: "/products/vanilla_powder.avif" },
 ];
 
 const process = [
@@ -360,7 +360,7 @@ export default function HomePage() {
             </ScrollReveal>
             <ScrollReveal delay={80}>
               <Link href="/products" className="btn-outline-cream shrink-0">
-                All 5 Products
+                View All Products
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </ScrollReveal>
@@ -369,13 +369,13 @@ export default function HomePage() {
           {/* Vanilla — hero card */}
           <ScrollReveal className="mb-5">
             <Link
-              href="/products#vanilla"
+              href="/products#grade-a"
               className="group relative rounded-4xl overflow-hidden flex items-end h-[460px] md:h-[560px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
-              aria-label="View Ugandan Vanilla"
+              aria-label="View Grade A Vanilla Beans"
             >
               <Image
-                src="/Allspicery_Vanilla_Vines.webp"
-                alt="Premium Ugandan vanilla beans"
+                src="/products/grade-A-quality.avif"
+                alt="Grade A Ugandan vanilla beans"
                 fill className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
                 sizes="(max-width: 1280px) 100vw, 1280px"
               />
@@ -388,9 +388,9 @@ export default function HomePage() {
                 <div>
                   <span className="chip bg-gold-400 text-forest-950 mb-3 font-semibold">★ Best Seller</span>
                   <h3 className="text-4xl md:text-5xl font-bold font-heading text-white mb-1 tracking-tight">
-                    Ugandan Vanilla
+                    Grade A Vanilla Beans
                   </h3>
-                  <p className="text-white/50 text-sm tracking-wide">Central Uganda · Rich · Creamy · Complex</p>
+                  <p className="text-white/50 text-sm tracking-wide">Central Uganda · Rich · Creamy · Vanillin 1.5–2.5%</p>
                 </div>
                 <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white text-sm font-medium shrink-0 group-hover:bg-white/20 transition-colors">
                   View Product
