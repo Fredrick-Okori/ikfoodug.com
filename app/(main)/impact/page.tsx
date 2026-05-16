@@ -395,6 +395,82 @@ export default function ImpactPage() {
         </div>
       </section>
 
+      {/* ── Why Buy From Us ── */}
+      <section className="section-y bg-parchment map-bg" aria-label="Why buy from IK Food Uganda">
+        <div className="max-w-7xl mx-auto container-px">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+            {/* Text col */}
+            <ScrollReveal>
+              <span className="section-eyebrow">Make a Difference</span>
+              <h2 className="text-display-lg font-bold text-forest-950 mb-6 text-balance leading-tight">
+                Why You Should Buy From Us
+              </h2>
+              <div className="h-rule mb-6" aria-hidden="true" />
+              <p className="text-gray-600 leading-relaxed mb-5">
+                When you buy from IK Food Uganda, you are not only purchasing
+                premium Ugandan vanilla and agricultural products — you are
+                supporting communities and changing lives.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-5">
+                Your support helps create jobs for youths, provides income for
+                elderly farmers and single mothers, and gives rural communities
+                a reliable market for their products. We also train and empower
+                local farmers and young people with skills in farming, curing,
+                processing, and business development.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-10">
+                Every purchase contributes to sustainable agriculture, quality
+                production, and a stronger future for hundreds of families in
+                Uganda.
+              </p>
+              <Link href="/contact" className="btn-dark group">
+                Start an Order
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
+            </ScrollReveal>
+
+            {/* Impact cards col */}
+            <div className="grid grid-cols-1 gap-4">
+              {[
+                {
+                  icon: Users,
+                  title: "Youth Employment",
+                  body: "Every order directly creates jobs for young Ugandans — giving them income, purpose, and a stake in their country's agricultural future.",
+                },
+                {
+                  icon: Sprout,
+                  title: "Income for Farmers",
+                  body: "Elderly farmers and single mothers receive fair, reliable income through our guaranteed farm-gate pricing and direct market partnerships.",
+                },
+                {
+                  icon: Award,
+                  title: "Skills & Training",
+                  body: "We invest in people — teaching modern farming, curing, processing, and business development skills that last a lifetime.",
+                },
+                {
+                  icon: Globe2,
+                  title: "Sustainable Agriculture",
+                  body: "Your purchase helps protect Uganda's land, strengthen rural livelihoods, and build lasting social and economic change for communities.",
+                },
+              ].map(({ icon: Icon, title, body }, i) => (
+                <ScrollReveal key={title} delay={i * 70}>
+                  <div className="flex items-start gap-5 bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
+                    <div className="w-11 h-11 rounded-xl bg-gold-400/15 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-gold-600" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-forest-950 mb-1">{title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="py-24 bg-cream map-bg relative" aria-label="Partner CTA">
         <div className="max-w-3xl mx-auto container-px text-center">
