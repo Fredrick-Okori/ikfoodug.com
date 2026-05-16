@@ -39,7 +39,7 @@ const values = [
   { n: "01", title: "Quality Excellence",    body: "The highest standards across every stage of production, processing, and export — from seed to shipment." },
   { n: "02", title: "Innovation",            body: "Continuously refining processes and products to meet evolving international market requirements." },
   { n: "03", title: "Sustainability",        body: "Biodynamic and organic methods that protect Uganda's rich, biodiverse soils for future generations." },
-  { n: "04", title: "Farmer Empowerment",    body: "Fair trade pricing, agronomic training, and direct market access for 3,000+ smallholder partners." },
+  { n: "04", title: "Community Impact",       body: "Every purchase creates jobs, supports youth employment, strengthens rural livelihoods, and builds better futures for families across Uganda." },
 ];
 
 const milestones = [
@@ -98,23 +98,28 @@ export default function AboutPage() {
               </h2>
               <div className="h-rule mb-6" aria-hidden="true" />
               <p className="text-gray-600 leading-relaxed mb-4">
-                IK Food Uganda was born from a vision to transform Uganda&apos;s
-                extraordinary agricultural richness into world-class organic
-                products. We started with vanilla — a crop Uganda grows
-                exceptionally well — and expanded to encompass coffee, cocoa,
-                Hass avocado, and garden eggs.
+                IK Food Uganda was founded with a mission to transform lives
+                through agriculture by creating opportunities for young people,
+                elderly farmers, and rural communities across Uganda. We
+                specialise in premium Ugandan vanilla and other organic
+                agricultural products, while building a sustainable and
+                reliable supply chain for farmers.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Today, we work directly with over 3,000 smallholder farmers
-                across Uganda, providing technical training, fair pricing, and
-                the infrastructure needed to produce export-grade organic
-                products that compete at the highest global levels.
+                Our goal is not only to deliver high-quality products to
+                international markets, but also to empower communities through
+                employment, skills development, and fair trade partnerships.
+                We train and support farmers in modern farming, curing, and
+                processing techniques to improve product quality and household
+                incomes.
               </p>
               <p className="text-gray-600 leading-relaxed mb-10">
-                As a proud HORTIFRESH member, we hold full export licences and
-                quality certifications recognised across Europe and Asia — and
-                our supply chain provides complete traceability from farm gate
-                to final destination.
+                At IK Food Uganda, every product purchased creates impact. It
+                helps farmers access reliable markets, supports youth
+                employment, strengthens rural livelihoods, and contributes to
+                building a better future for families and communities. We
+                believe agriculture can be a tool for economic growth,
+                sustainability, and lasting social change.
               </p>
               <Link href="/products" className="btn-dark group">
                 Our Products
@@ -156,9 +161,11 @@ export default function AboutPage() {
               <div className="border border-white/10 rounded-3xl p-8 md:p-10 h-full">
                 <p className="label-tag text-gold-400 mb-4">Our Mission</p>
                 <p className="text-white/70 text-lg leading-relaxed italic border-l-2 border-gold-400/40 pl-5">
-                  &ldquo;To provide the global market with high-quality, organically
-                  grown agricultural products while empowering local farmers and
-                  fostering sustainable agribusiness practices.&rdquo;
+                  &ldquo;To transform lives through agriculture by creating
+                  opportunities for young people, elderly farmers, and rural
+                  communities — delivering premium organic products to
+                  international markets while building a sustainable and
+                  reliable supply chain for farmers.&rdquo;
                 </p>
               </div>
             </ScrollReveal>
