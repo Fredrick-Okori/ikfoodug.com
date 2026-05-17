@@ -35,6 +35,41 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const teamJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ikfoodug.com/about#israel-kaweesa",
+      name: "Israel Kaweesa",
+      jobTitle: "General Manager",
+      description: "Israel Kaweesa is the General Manager and founder of IK Food Uganda. With over a decade of agribusiness experience, he built IK Food Uganda from a Kampala-based startup in 2015 into one of Uganda's top organic vanilla exporters, supplying premium beans to Europe and Asia.",
+      worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
+      knowsAbout: ["Organic vanilla export Uganda", "Agricultural trade East Africa", "Vanilla bean cultivation", "HORTIFRESH certification"],
+      nationality: { "@type": "Country", name: "Uganda" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://ikfoodug.com/about#evelyn-najjemba",
+      name: "Evelyn Najjemba",
+      jobTitle: "Agroecologist",
+      description: "Evelyn Najjemba is the Agroecologist at IK Food Uganda. She oversees sustainable farming practices and farmer training across IK Food Uganda's 3,000+ smallholder farmer network, ensuring all agricultural output meets EU Organic and HORTIFRESH standards.",
+      worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
+      knowsAbout: ["Organic agriculture Uganda", "Biodynamic farming", "Vanilla cultivation", "Smallholder farmer training"],
+      nationality: { "@type": "Country", name: "Uganda" },
+    },
+  ],
+};
+
+const milestoneJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://ikfoodug.com/#organization",
+  name: "IK Food Uganda",
+  foundingDate: "2015",
+  description: "IK Food Uganda — Uganda's #1 vanilla company — was founded in Kampala in 2015. Key milestones: 2018 expanded to coffee, cocoa, avocado and garden eggs; 2021 achieved full export licences; 2022 joined HORTIFRESH; 2024 reached 3,000+ farmer partners and 25 MT annual harvest.",
+};
+
 const values = [
   { n: "01", title: "Quality Excellence",    body: "The highest standards across every stage of production, processing, and export — from seed to shipment." },
   { n: "02", title: "Innovation",            body: "Continuously refining processes and products to meet evolving international market requirements." },
@@ -69,6 +104,8 @@ export default function AboutPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(teamJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(milestoneJsonLd) }} />
       {/* ── Hero ── */}
       <section className="relative min-h-[65vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="About hero">
         <Image

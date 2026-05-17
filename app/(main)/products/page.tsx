@@ -40,6 +40,108 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const productCatalogueJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "IK Food Uganda — Premium Organic Vanilla Products",
+  description: "Complete catalogue of organic vanilla products from IK Food Uganda — Uganda's #1 vanilla company. All products are hand-harvested in Central Uganda and EU Organic Certified.",
+  url: "https://ikfoodug.com/products",
+  numberOfItems: 7,
+  itemListElement: [
+    {
+      "@type": "ListItem", position: 1,
+      item: {
+        "@type": "Product",
+        name: "Grade A Vanilla Beans",
+        url: "https://ikfoodug.com/products#grade-a",
+        description: "Premium export-grade Ugandan vanilla beans, 15–20 cm, 1.5–2.5% vanillin content, 30–35% moisture. Hand-selected, EU Organic Certified.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
+        additionalProperty: [
+          { "@type": "PropertyValue", name: "Vanillin Content", value: "1.5–2.5%" },
+          { "@type": "PropertyValue", name: "Pod Length", value: "15–20 cm" },
+          { "@type": "PropertyValue", name: "Moisture Content", value: "30–35%" },
+          { "@type": "PropertyValue", name: "Origin", value: "Central Uganda" },
+          { "@type": "PropertyValue", name: "Certification", value: "EU Organic" },
+        ],
+      },
+    },
+    {
+      "@type": "ListItem", position: 2,
+      item: {
+        "@type": "Product",
+        name: "Grade B Vanilla Beans",
+        url: "https://ikfoodug.com/products#grade-b",
+        description: "Extraction-grade organic Ugandan vanilla beans (<15 cm), 25–27% moisture. Concentrated vanillin profile, ideal for vanilla extract manufacturing.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
+      },
+    },
+    {
+      "@type": "ListItem", position: 3,
+      item: {
+        "@type": "Product",
+        name: "Vanilla Powder",
+        url: "https://ikfoodug.com/products#vanilla-powder",
+        description: "100% pure ground Ugandan vanilla beans. No additives, no fillers. Moisture ≤3%, EU Organic Certified. Available 50 g to 25 kg.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
+      },
+    },
+    {
+      "@type": "ListItem", position: 4,
+      item: {
+        "@type": "Product",
+        name: "Split Vanilla Beans",
+        url: "https://ikfoodug.com/products#split-beans",
+        description: "Hand-split lengthwise Ugandan vanilla beans for fast flavour extraction. 18–25% moisture, EU Organic Certified.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
+      },
+    },
+    {
+      "@type": "ListItem", position: 5,
+      item: {
+        "@type": "Product",
+        name: "Vanilla Paste",
+        url: "https://ikfoodug.com/products#vanilla-paste",
+        description: "Bean-specked vanilla paste from Ugandan vanilla. Real seeds, intense flavour. 1 tsp = 1 whole vanilla pod. No artificial additives.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
+      },
+    },
+    {
+      "@type": "ListItem", position: 6,
+      item: {
+        "@type": "Product",
+        name: "Vanilla Caviar",
+        url: "https://ikfoodug.com/products#vanilla-caviar",
+        description: "100% pure vanilla bean seeds from Grade A Ugandan pods. Intensely concentrated flavour and aroma, no additives or carriers.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
+      },
+    },
+    {
+      "@type": "ListItem", position: 7,
+      item: {
+        "@type": "Product",
+        name: "Vanilla Green Beans",
+        url: "https://ikfoodug.com/products#vanilla-green-beans",
+        description: "Fresh pre-cure vanilla pods from Uganda's highland farms — high raw vanillin content. Available seasonally, traceable to individual farm cooperative.",
+        brand: { "@type": "Brand", name: "IK Food Uganda" },
+        countryOfOrigin: "Uganda",
+        offers: { "@type": "Offer", availability: "https://schema.org/LimitedAvailability", priceCurrency: "USD" },
+      },
+    },
+  ],
+};
+
 const products = [
   {
     id: "grade-a",
@@ -189,6 +291,7 @@ export default function ProductsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productCatalogueJsonLd) }} />
       {/* ── Hero ── */}
       <section className="relative min-h-[70vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Products hero">
         <Image
