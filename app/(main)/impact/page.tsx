@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,7 +58,7 @@ const pillars = [
 ];
 
 const products = [
-  { name: "Vanilla",       note: "1.5–2.5% vanillin, world-leading grade",    image: "/IMG_4873_converted.avif" },
+  { name: "Vanilla",       note: <><strong>1.5–2.5% vanillin</strong>, world-leading grade</>,  image: "/IMG_4873_converted.avif" },
   { name: "Cocoa",         note: "Naturally fermented fine-flavour beans",     image: "/IMG_4160_converted.avif" },
   { name: "Coffee",        note: "High-altitude Fine Robusta",                 image: "/coffee-plantation.jpg" },
   { name: "Hass Avocado",  note: "Class I export grade, year-round",           image: "/IMG_7889_converted.avif" },
@@ -84,7 +85,7 @@ export default function ImpactPage() {
               Growing Uganda.<br />Feeding the World.
             </h1>
             <p className="text-white/60 text-lg leading-relaxed">
-              A decade of sustainable agriculture, farmer empowerment, and premium organic exports, from Uganda&apos;s highlands to global markets.
+              A decade of sustainable agriculture, farmer empowerment, and premium organic exports, from <strong>Uganda&apos;s highlands</strong> to <strong>global markets</strong>.
             </p>
           </div>
         </div>
@@ -195,7 +196,7 @@ export default function ImpactPage() {
               The Communities Behind Our Vanilla
             </h2>
             <p className="text-white/50 mt-4 leading-relaxed">
-              Our vanilla is grown in Uganda&apos;s lush highlands, places like Ibanda, by smallholder farmers who have cultivated these crops for generations.
+              Our vanilla is grown in <strong>Uganda&apos;s lush highlands</strong>, places like <strong>Ibanda</strong>, by smallholder farmers who have cultivated these crops for generations.
             </p>
           </ScrollReveal>
 
@@ -213,7 +214,7 @@ export default function ImpactPage() {
                 <span className="chip bg-gold-400 text-forest-950 font-semibold mb-3 inline-flex">Ibanda Region</span>
                 <h3 className="text-2xl font-bold font-heading text-white mb-2">Ibanda, Western Uganda</h3>
                 <p className="text-white/55 text-sm leading-relaxed max-w-sm">
-                  One of our primary vanilla-sourcing regions, with rich volcanic soils and an equatorial climate that produce beans with exceptional vanillin concentration.
+                  One of our primary vanilla-sourcing regions, with rich volcanic soils and an equatorial climate that produce beans with exceptional <strong>vanillin concentration</strong>.
                 </p>
               </div>
             </ScrollReveal>
@@ -409,7 +410,7 @@ export default function ImpactPage() {
               <div className="h-rule mb-6" aria-hidden="true" />
               <p className="text-gray-600 leading-relaxed mb-5">
                 When you buy from IK Food Uganda, you are not only purchasing
-                premium Ugandan vanilla and agricultural products. You are
+                <strong> premium Ugandan vanilla</strong> and agricultural products. You are
                 supporting communities and changing lives.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">

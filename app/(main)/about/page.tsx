@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -71,7 +72,7 @@ const milestoneJsonLd = {
 };
 
 const values = [
-  { n: "01", title: "Quality Excellence",    body: "The highest standards across every stage of production, processing, and export, from seed to shipment." },
+  { n: "01", title: "Quality Excellence",    body: <>The highest standards across every stage of production, processing, and export, <strong>from seed to shipment</strong>.</> },
   { n: "02", title: "Innovation",            body: "Continuously refining processes and products to meet evolving international market requirements." },
   { n: "03", title: "Sustainability",        body: "Biodynamic and organic methods that protect Uganda's rich, biodiverse soils for future generations." },
   { n: "04", title: "Community Impact",       body: "Every purchase creates jobs, supports youth employment, strengthens rural livelihoods, and builds better futures for families across Uganda." },

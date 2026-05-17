@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -150,11 +151,11 @@ const products = [
     origin: "Central Uganda",
     spec: "≥1.5% Vanillin · 15–20 cm pods",
     description:
-      "Our Grade A beans are the pinnacle of Ugandan vanilla, long, plump, and visually stunning with a high moisture content and vanillin concentration of 1.5–2.5%. Hand-selected at harvest and sun-cured using traditional methods, these beans are the preferred choice for premium food brands, gourmet chefs, and high-end confectioners who demand perfection.",
+      <>Our Grade A beans are the pinnacle of <strong>Ugandan vanilla</strong>, long, plump, and visually stunning with a high moisture content and vanillin concentration of <strong>1.5–2.5%</strong>. Hand-selected at harvest and sun-cured using traditional methods, these beans are the preferred choice for premium food brands, gourmet chefs, and high-end confectioners who demand perfection.</>,
     features: [
-      "Pod length 15–20 cm, premium export grade",
-      "Vanillin content ≥1.5%, world-leading",
-      "Moisture content 30%–35%, rich and supple",
+      <><strong>Pod length 15–20 cm</strong>, premium export grade</>,
+      <><strong>Vanillin content ≥1.5%</strong>, world-leading</>,
+      <>Moisture content <strong>30%–35%</strong>, rich and supple</>,
       "Hand-selected, individually inspected",
       "EU Organic Certified",
       "Available whole, split, or bundled",
@@ -170,10 +171,10 @@ const products = [
     origin: "Central Uganda",
     spec: "Extraction Grade · <15 cm pods",
     description:
-      "Grade B beans are shorter and drier with a more concentrated vanillin profile, purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.",
+      <>Grade B beans are shorter and drier with a more concentrated <strong>vanillin profile</strong>, purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.</>,
     features: [
       "Optimised for vanilla extract production",
-      "Moisture content 25%–27%, optimised for extraction",
+      <>Moisture content <strong>25%–27%</strong>, optimised for extraction</>,
       "Concentrated, consistent vanillin profile",
       "Organic & pesticide-free",
       "Available in bulk quantities",
@@ -192,8 +193,8 @@ const products = [
     description:
       "Whole Ugandan vanilla pods ground to a fine, aromatic powder with no sugar, no starch, no carriers. Our vanilla powder dissolves evenly in both wet and dry applications, making it the ideal choice for industrial bakers, dairy producers, and health-product formulators who need authentic vanilla flavour in a shelf-stable, easy-to-measure format.",
     features: [
-      "100% pure ground vanilla, no additives",
-      "Moisture content ≤3%, maximum shelf stability",
+      <><strong>100% pure</strong> ground vanilla, no additives</>,
+      <>Moisture content <strong>≤3%</strong>, maximum shelf stability</>,
       "Fine mesh grind for even dispersion",
       "Shelf-stable with long shelf life",
       "Consistent colour, aroma & potency",
@@ -214,9 +215,9 @@ const products = [
       "Split vanilla beans are whole pods sliced lengthwise to fully expose the rich inner caviar and seeds. This form accelerates flavour extraction and infusion, making them the preferred choice for extract manufacturers, pastry chefs, and beverage producers who demand fast, full-bodied vanilla release without any compromise on purity.",
     features: [
       "Hand-split lengthwise for full caviar exposure",
-      "Moisture content 18%–25%, ideal for fast infusion",
+      <>Moisture content <strong>18%–25%</strong>, ideal for fast infusion</>,
       "Faster extraction & infusion than whole beans",
-      "Same premium Ugandan vanilla as Grade A",
+      <>Same premium <strong>Ugandan vanilla</strong> as Grade A</>,
       "High vanillin content from a rich seed cavity",
       "EU Organic Certified",
       "Available in retail & bulk quantities",
@@ -254,10 +255,10 @@ const products = [
     description:
       "Vanilla caviar is the pure, concentrated seeds scraped from inside premium Ugandan vanilla pods, the most intensely flavoured part of the bean. Jet-black, moist, and bursting with complex aromatic compounds, it delivers immediate, powerful vanilla flavour with striking visual appeal in any application it touches.",
     features: [
-      "100% pure vanilla bean seeds with no pod fibre",
+      <><strong>100% pure</strong> vanilla bean seeds with no pod fibre</>,
       "Intensely concentrated flavour & aroma",
       "Striking black specks for visual appeal",
-      "Sourced from Grade A Ugandan vanilla pods",
+      <>Sourced from <strong>Grade A Ugandan vanilla</strong> pods</>,
       "No additives, carriers, or preservatives",
       "Available in small jars & bulk trade packs",
     ],
@@ -309,7 +310,7 @@ export default function ProductsPage() {
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
               Seven distinct vanilla grades and forms, all hand-harvested in
-              Uganda&apos;s highlands, organically grown, and processed to
+              <strong> Uganda&apos;s highlands</strong>, organically grown, and processed to
               world-class export standards.
             </p>
             {/* Jump links */}
@@ -376,8 +377,8 @@ export default function ProductsPage() {
                       <div>
                         <h3 className="label-tag text-forest-700 mb-4">Key Features</h3>
                         <ul className="space-y-2.5" role="list">
-                          {product.features.map((f) => (
-                            <li key={f} className="flex items-start gap-2.5">
+                          {product.features.map((f, i) => (
+                            <li key={i} className="flex items-start gap-2.5">
                               <CheckCircle2 className="w-4 h-4 text-forest-600 mt-0.5 shrink-0" aria-hidden="true" />
                               <span className="text-sm text-gray-700">{f}</span>
                             </li>
