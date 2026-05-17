@@ -70,8 +70,8 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-white/55 mt-4 text-lg max-w-md">
-            Sourcing enquiries, partnerships, or simply learning more —
-            our team is ready.
+            Sourcing enquiries, partnerships, or simply learning more.
+            Our team is ready.
           </p>
         </div>
       </section>
@@ -130,7 +130,7 @@ export default function ContactPage() {
               <div className="relative rounded-2xl overflow-hidden h-44 shadow-sm border border-forest-100" aria-label="Kampala, Uganda location">
                 <Image
                   src="/ibanda.avif"
-                  alt="Kampala, Uganda — IK Food Uganda location"
+                  alt="Kampala, Uganda, IK Food Uganda location"
                   fill className="object-cover" sizes="33vw"
                 />
                 <div className="absolute inset-0 bg-forest-950/35 flex items-center justify-center">
@@ -241,11 +241,11 @@ export default function ContactPage() {
           </div>
           <div className="space-y-3">
             {[
-              { q: "What is the minimum order quantity?",                     a: "We work with buyers of all sizes. MOQs vary by product and destination — contact us to discuss your specific requirements and receive a tailored quotation." },
+              { q: "What is the minimum order quantity?",                     a: "We work with buyers of all sizes. MOQs vary by product and destination. Contact us to discuss your specific requirements and receive a tailored quotation." },
               { q: "Do your products carry organic certification?",            a: "Yes. All IK Food Uganda products are organically certified and meet EU international organic standards. Full certification documentation is available on request." },
               { q: "Which markets do you export to?",                          a: "We currently export to Europe (UK, Germany, Netherlands, France) and Asia (Japan, South Korea), and are expanding into the Middle East." },
               { q: "Can you provide samples before a bulk order?",             a: "Yes. We can arrange product samples for qualified buyers. Contact our sales team with your details and product interest." },
-              { q: "How do you ensure quality from farm to shipment?",         a: "Rigorous quality control at every stage — from farmer training and on-farm audits, to in-house laboratory testing, grading, packing, and cold-chain logistics." },
+              { q: "How do you ensure quality from farm to shipment?",         a: "Rigorous quality control at every stage, from farmer training and on-farm audits, to in-house laboratory testing, grading, packing, and cold-chain logistics." },
             ].map(({ q, a }) => (
               <details key={q} className="group border border-white/10 rounded-2xl">
                 <summary className="flex items-center justify-between p-6 cursor-pointer list-none text-white font-medium text-sm hover:text-vanilla-300 transition-colors">

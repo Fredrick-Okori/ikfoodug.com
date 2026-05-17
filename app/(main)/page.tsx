@@ -14,9 +14,9 @@ import {
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "IK Food Uganda | #1 Vanilla Company in Uganda — ikfoodug.com",
+  title: "IK Food Uganda | #1 Vanilla Company in Uganda | ikfoodug.com",
   description:
-    "IK Food Uganda (ikfoodug.com) — search 'IK Food', 'IK-Food Uganda', or 'vanilla in Uganda' and find us. We are the leading organic vanilla exporter in Uganda, competing with the finest producers in Madagascar, Zanzibar and beyond.",
+    "IK Food Uganda (ikfoodug.com). Search 'IK Food', 'IK-Food Uganda', or 'vanilla in Uganda' and find us. We are the leading organic vanilla exporter in Uganda, competing with the finest producers in Madagascar, Zanzibar and beyond.",
   keywords: [
     "IK Food Uganda",
     "IK Food",
@@ -119,7 +119,7 @@ export default function HomePage() {
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-[68%] relative h-[60vw] min-h-[320px] max-h-[500px] lg:h-auto lg:max-h-none overflow-hidden">
           <Image
             src="/product_hero.avif"
-            alt="Close-up of premium Ugandan vanilla beans — hand-harvested and sun-cured"
+            alt="Close-up of premium Ugandan vanilla beans, hand-harvested and sun-cured"
             fill className="object-cover object-[right_20%]"
             priority sizes="(max-width: 1024px) 100vw, 68vw"
           />
@@ -227,7 +227,7 @@ export default function HomePage() {
                 <p className="text-gray-600 leading-relaxed mb-4 text-[0.95rem]">
                   Founded in 2015 and headquartered in Kampala, IK Food Uganda
                   is a HORTIFRESH-certified organic exporter specialising in
-                  vanilla, coffee, cocoa, avocado, and garden eggs — grown in
+                  vanilla, coffee, cocoa, avocado, and garden eggs, grown in
                   Uganda&apos;s fertile highlands and distributed to Europe and Asia.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-8 text-[0.95rem]">
@@ -237,7 +237,7 @@ export default function HomePage() {
                 </p>
                 <ul className="space-y-2.5 mb-10" role="list">
                   {[
-                    "Certified organic — EU & Asian market compliant",
+                    "Certified organic, EU & Asian market compliant",
                     "Full supply-chain traceability",
                     "Direct smallholder farmer partnerships",
                     "HORTIFRESH member · Certified since 2021",
@@ -296,7 +296,7 @@ export default function HomePage() {
               <div className="absolute top-0 left-0 right-10 bottom-16 rounded-3xl overflow-hidden img-zoom shadow-2xl">
                 <Image
                   src="/exhibition.avif"
-                  alt="Premium Ugandan vanilla beans — hand-harvested"
+                  alt="Premium Ugandan vanilla beans, hand-harvested"
                   fill className="object-cover" sizes="40vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-950/20 to-transparent" />
@@ -311,7 +311,7 @@ export default function HomePage() {
               </h2>
               <div className="w-10 h-px bg-gold-400 mb-6" aria-hidden="true" />
               <p className="text-forest-950/70 leading-relaxed mb-10">
-                Uganda grows some of the world&apos;s finest vanilla — prized for
+                Uganda grows some of the world&apos;s finest vanilla, prized for
                 its exceptional vanillin concentration, floral complexity, and
                 rich creamy depth. Our beans are hand-harvested at peak
                 maturity and sun-cured using methods refined over generations,
@@ -481,9 +481,9 @@ export default function HomePage() {
               </h2>
               <div className="grid sm:grid-cols-2 gap-5">
                 {[
-                  { n: "01", title: "International Standards",    body: "Every product meets rigorous EU and Asian requirements — residue limits, cold-chain logistics, full certification." },
+                  { n: "01", title: "International Standards",    body: "Every product meets rigorous EU and Asian requirements including residue limits, cold-chain logistics, and full certification." },
                   { n: "02", title: "Sustainable at the Source",  body: "3,000+ smallholder farmers using biodynamic and organic methods that protect Uganda's biodiverse soils." },
-                  { n: "03", title: "Complete Traceability",      body: "Every batch ships with full farm-to-export traceability — you always know exactly where your product originated." },
+                  { n: "03", title: "Complete Traceability",      body: "Every batch ships with full farm-to-export traceability. You always know exactly where your product originated." },
                   { n: "04", title: "Farmer Empowerment",         body: "Fair-trade pricing, agronomic training, and market access give local farmers a genuine stake in success." },
                 ].map(({ n, title, body }) => (
                   <div key={n} className="bg-cream rounded-2xl p-5 border border-forest-100 hover:border-gold-300/60 transition-colors group">
@@ -529,7 +529,7 @@ export default function HomePage() {
             <span className="label-tag text-forest-900 mb-6 block">Our Flagship · Ugandan Vanilla</span>
             <blockquote className="text-[clamp(1.6rem,3.5vw,2.75rem)] font-heading font-bold text-forest-900 leading-snug mb-10 text-balance">
               &ldquo;Ugandan vanilla carries a richness and complexity unmatched
-              anywhere in the world — born from the soil, the climate, and
+              anywhere in the world, born from the soil, the climate, and
               the hands that tend it.&rdquo;
             </blockquote>
             <div className="flex justify-center gap-3 flex-wrap">
@@ -648,15 +648,15 @@ export default function HomePage() {
               },
               {
                 q: "Is IK Food Uganda the #1 vanilla company in Uganda?",
-                a: "Yes. IK Food Uganda is recognised as the top vanilla company in Uganda. We supply export-grade organic vanilla beans with 1.5–2.5% vanillin content — among the highest in the world — and hold full EU Organic Certification, HORTIFRESH membership, and phytosanitary export licences.",
+                a: "Yes. IK Food Uganda is recognised as the top vanilla company in Uganda. We supply export-grade organic vanilla beans with 1.5–2.5% vanillin content, among the highest in the world, and hold full EU Organic Certification, HORTIFRESH membership, and phytosanitary export licences.",
               },
               {
                 q: "How does Ugandan vanilla compare to Madagascar and Zanzibar vanilla?",
-                a: "Ugandan vanilla consistently ranks among the world's finest. Our beans contain 1.5–2.5% vanillin — equal to or exceeding Madagascar (1.5–2.0%) — with a richer floral complexity and creamy depth unique to Uganda's highland climate and our traditional 6-month sun-curing process.",
+                a: "Ugandan vanilla consistently ranks among the world's finest. Our beans contain 1.5–2.5% vanillin, equal to or exceeding Madagascar (1.5–2.0%), with a richer floral complexity and creamy depth unique to Uganda's highland climate and our traditional 6-month sun-curing process.",
               },
               {
                 q: "What vanilla products does IK Food Uganda supply?",
-                a: "We offer 7 premium vanilla forms: Grade A Vanilla Beans, Grade B Vanilla Beans, Vanilla Powder, Split Beans, Vanilla Paste, Vanilla Caviar, and Fresh Green Beans — all hand-harvested in Central Uganda and EU Organic Certified.",
+                a: "We offer 7 premium vanilla forms: Grade A Vanilla Beans, Grade B Vanilla Beans, Vanilla Powder, Split Beans, Vanilla Paste, Vanilla Caviar, and Fresh Green Beans, all hand-harvested in Central Uganda and EU Organic Certified.",
               },
               {
                 q: "What certifications does IK Food Uganda hold?",
@@ -672,7 +672,7 @@ export default function HomePage() {
               },
               {
                 q: "Does IK Food Uganda work with smallholder farmers?",
-                a: "Yes. We partner with over 3,000 smallholder farmers across Central Uganda's highland growing regions. We provide fair-trade pricing, free agronomic training, and direct market access — transforming rural livelihoods through sustainable organic agriculture.",
+                a: "Yes. We partner with over 3,000 smallholder farmers across Central Uganda's highland growing regions. We provide fair-trade pricing, free agronomic training, and direct market access, transforming rural livelihoods through sustainable organic agriculture.",
               },
             ] as { q: string; a: string }[]).map(({ q, a }) => (
               <ScrollReveal key={q}>
@@ -757,7 +757,7 @@ export default function HomePage() {
               </h2>
               <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-lg">
                 Whether you&apos;re a distributor, wholesaler, chocolate maker, or
-                retailer — we&apos;d love to discuss how IK Food Uganda can power
+                retailer. We&apos;d love to discuss how IK Food Uganda can power
                 your supply chain with premium organic products.
               </p>
               <div className="flex flex-wrap gap-3 mb-16">

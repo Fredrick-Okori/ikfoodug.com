@@ -8,7 +8,7 @@ import PlaceOrderButton from "@/components/PlaceOrderButton";
 export const metadata: Metadata = {
   title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
   description:
-    "Buy premium organic vanilla beans from one of the top vanilla companies in Uganda. IK Food Uganda also exports Fine Robusta coffee, organic cocoa, Hass avocado and garden eggs — all export-grade, fully certified, and trusted by buyers worldwide.",
+    "Buy premium organic vanilla beans from one of the top vanilla companies in Uganda. IK Food Uganda also exports Fine Robusta coffee, organic cocoa, Hass avocado and garden eggs, all export-grade, fully certified, and trusted by buyers worldwide.",
   keywords: [
     "buy vanilla beans Uganda",
     "premium organic vanilla supplier",
@@ -43,8 +43,8 @@ const breadcrumbJsonLd = {
 const productCatalogueJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "IK Food Uganda — Premium Organic Vanilla Products",
-  description: "Complete catalogue of organic vanilla products from IK Food Uganda — Uganda's #1 vanilla company. All products are hand-harvested in Central Uganda and EU Organic Certified.",
+  name: "IK Food Uganda Premium Organic Vanilla Products",
+  description: "Complete catalogue of organic vanilla products from IK Food Uganda, Uganda's leading vanilla company. All products are hand-harvested in Central Uganda and EU Organic Certified.",
   url: "https://ikfoodug.com/products",
   numberOfItems: 7,
   itemListElement: [
@@ -133,7 +133,7 @@ const productCatalogueJsonLd = {
         "@type": "Product",
         name: "Vanilla Green Beans",
         url: "https://ikfoodug.com/products#vanilla-green-beans",
-        description: "Fresh pre-cure vanilla pods from Uganda's highland farms — high raw vanillin content. Available seasonally, traceable to individual farm cooperative.",
+        description: "Fresh pre-cure vanilla pods from Uganda's highland farms with high raw vanillin content. Available seasonally, traceable to individual farm cooperative.",
         brand: { "@type": "Brand", name: "IK Food Uganda" },
         countryOfOrigin: "Uganda",
         offers: { "@type": "Offer", availability: "https://schema.org/LimitedAvailability", priceCurrency: "USD" },
@@ -150,11 +150,11 @@ const products = [
     origin: "Central Uganda",
     spec: "≥1.5% Vanillin · 15–20 cm pods",
     description:
-      "Our Grade A beans are the pinnacle of Ugandan vanilla — long, plump, and visually stunning with a high moisture content and vanillin concentration of 1.5–2.5%. Hand-selected at harvest and sun-cured using traditional methods, these beans are the preferred choice for premium food brands, gourmet chefs, and high-end confectioners who demand perfection.",
+      "Our Grade A beans are the pinnacle of Ugandan vanilla, long, plump, and visually stunning with a high moisture content and vanillin concentration of 1.5–2.5%. Hand-selected at harvest and sun-cured using traditional methods, these beans are the preferred choice for premium food brands, gourmet chefs, and high-end confectioners who demand perfection.",
     features: [
       "Pod length 15–20 cm, premium export grade",
-      "Vanillin content ≥1.5% — world-leading",
-      "Moisture content 30%–35% — rich & supple",
+      "Vanillin content ≥1.5%, world-leading",
+      "Moisture content 30%–35%, rich and supple",
       "Hand-selected, individually inspected",
       "EU Organic Certified",
       "Available whole, split, or bundled",
@@ -170,14 +170,14 @@ const products = [
     origin: "Central Uganda",
     spec: "Extraction Grade · <15 cm pods",
     description:
-      "Grade B beans are shorter and drier with a more concentrated vanillin profile — purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.",
+      "Grade B beans are shorter and drier with a more concentrated vanillin profile, purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.",
     features: [
       "Optimised for vanilla extract production",
-      "Moisture content 25%–27% — optimised for extraction",
+      "Moisture content 25%–27%, optimised for extraction",
       "Concentrated, consistent vanillin profile",
       "Organic & pesticide-free",
       "Available in bulk quantities",
-      "Uniform batch quality — tested every lot",
+      "Uniform batch quality, tested every lot",
     ],
     uses: ["Vanilla extract manufacturing", "Commercial food & beverage", "Flavouring compounds", "Bakery & confectionery industry"],
     image: "/products/grade-B_quality_converted.avif",
@@ -186,14 +186,14 @@ const products = [
   {
     id: "vanilla-powder",
     name: "Vanilla Powder",
-    tagline: "Pure Ground Vanilla — Zero Fillers",
+    tagline: "Pure Ground Vanilla, Zero Fillers",
     origin: "Central Uganda",
     spec: "100% Pure Ground Vanilla Beans",
     description:
-      "Whole Ugandan vanilla pods ground to a fine, aromatic powder — no sugar, no starch, no carriers. Our vanilla powder dissolves evenly in both wet and dry applications, making it the ideal choice for industrial bakers, dairy producers, and health-product formulators who need authentic vanilla flavour in a shelf-stable, easy-to-measure format.",
+      "Whole Ugandan vanilla pods ground to a fine, aromatic powder with no sugar, no starch, no carriers. Our vanilla powder dissolves evenly in both wet and dry applications, making it the ideal choice for industrial bakers, dairy producers, and health-product formulators who need authentic vanilla flavour in a shelf-stable, easy-to-measure format.",
     features: [
-      "100% pure ground vanilla — no additives",
-      "Moisture content ≤3% — maximum shelf stability",
+      "100% pure ground vanilla, no additives",
+      "Moisture content ≤3%, maximum shelf stability",
       "Fine mesh grind for even dispersion",
       "Shelf-stable with long shelf life",
       "Consistent colour, aroma & potency",
@@ -214,10 +214,10 @@ const products = [
       "Split vanilla beans are whole pods sliced lengthwise to fully expose the rich inner caviar and seeds. This form accelerates flavour extraction and infusion, making them the preferred choice for extract manufacturers, pastry chefs, and beverage producers who demand fast, full-bodied vanilla release without any compromise on purity.",
     features: [
       "Hand-split lengthwise for full caviar exposure",
-      "Moisture content 18%–25% — ideal for fast infusion",
+      "Moisture content 18%–25%, ideal for fast infusion",
       "Faster extraction & infusion than whole beans",
       "Same premium Ugandan vanilla as Grade A",
-      "High vanillin content — rich seed cavity",
+      "High vanillin content from a rich seed cavity",
       "EU Organic Certified",
       "Available in retail & bulk quantities",
     ],
@@ -228,11 +228,11 @@ const products = [
   {
     id: "vanilla-paste",
     name: "Vanilla Paste",
-    tagline: "The Chef's Secret — Beans & Extract in One",
+    tagline: "The Chef's Secret: Beans and Extract in One",
     origin: "Central Uganda",
     spec: "Bean-Specked · Ready to Use",
     description:
-      "Vanilla paste combines the concentrated flavour of pure vanilla extract with the visual appeal of real vanilla bean seeds — all in one thick, spoonable form. Made from Ugandan vanilla beans, it delivers intense aroma and the signature black specks prized in premium desserts, with none of the prep work of whole pods.",
+      "Vanilla paste combines the concentrated flavour of pure vanilla extract with the visual appeal of real vanilla bean seeds, all in one thick, spoonable form. Made from Ugandan vanilla beans, it delivers intense aroma and the signature black specks prized in premium desserts, with none of the prep work of whole pods.",
     features: [
       "Real vanilla bean seeds visible in every spoonful",
       "Intense, concentrated vanilla flavour",
@@ -248,13 +248,13 @@ const products = [
   {
     id: "vanilla-caviar",
     name: "Vanilla Caviar",
-    tagline: "Pure Vanilla Seeds — Nature's Black Gold",
+    tagline: "Pure Vanilla Seeds, Nature's Black Gold",
     origin: "Central Uganda",
     spec: "100% Pure Vanilla Bean Seeds",
     description:
-      "Vanilla caviar is the pure, concentrated seeds scraped from inside premium Ugandan vanilla pods — the most intensely flavoured part of the bean. Jet-black, moist, and bursting with complex aromatic compounds, it delivers immediate, powerful vanilla flavour with striking visual appeal in any application it touches.",
+      "Vanilla caviar is the pure, concentrated seeds scraped from inside premium Ugandan vanilla pods, the most intensely flavoured part of the bean. Jet-black, moist, and bursting with complex aromatic compounds, it delivers immediate, powerful vanilla flavour with striking visual appeal in any application it touches.",
     features: [
-      "100% pure vanilla bean seeds — no pod fibre",
+      "100% pure vanilla bean seeds with no pod fibre",
       "Intensely concentrated flavour & aroma",
       "Striking black specks for visual appeal",
       "Sourced from Grade A Ugandan vanilla pods",
@@ -268,18 +268,18 @@ const products = [
   {
     id: "vanilla-green-beans",
     name: "Vanilla Green Beans",
-    tagline: "Fresh Off the Vine — Unprocessed & Pure",
+    tagline: "Fresh Off the Vine, Unprocessed and Pure",
     origin: "Central Uganda",
     spec: "Fresh Harvest · Pre-Cure",
     description:
-      "Vanilla green beans are freshly harvested pods straight from the vine — before curing or drying. Bright, aromatic, and full of raw vanillin potential, they are sought after by extract producers, speciality processors, and research facilities that prefer to control their own curing process from the very first step.",
+      "Vanilla green beans are freshly harvested pods straight from the vine, before curing or drying. Bright, aromatic, and full of raw vanillin potential, they are sought after by extract producers, speciality processors, and research facilities that prefer to control their own curing process from the very first step.",
     features: [
-      "Harvested at peak maturity — pre-cure",
+      "Harvested at peak maturity, pre-cure",
       "High raw vanillin and moisture content",
       "Fresh, grassy aroma with floral notes",
       "Ideal for proprietary curing processes",
       "Traceable to individual farm cooperative",
-      "Available seasonally — limited quantities",
+      "Available seasonally, limited quantities",
     ],
     uses: ["Specialty vanilla extract production", "Proprietary curing & processing", "Research & flavour development", "Craft vanilla producers"],
     image: "/products/green_bean.avif",
@@ -308,7 +308,7 @@ export default function ProductsPage() {
               Our Vanilla Products
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
-              Seven distinct vanilla grades and forms — all hand-harvested in
+              Seven distinct vanilla grades and forms, all hand-harvested in
               Uganda&apos;s highlands, organically grown, and processed to
               world-class export standards.
             </p>
@@ -353,7 +353,7 @@ export default function ProductsPage() {
                   >
                     <Image
                       src={product.image}
-                      alt={`${product.name} — premium organic export product from Uganda`}
+                      alt={`${product.name}, premium organic export product from Uganda`}
                       fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     {/* Floating spec tag */}

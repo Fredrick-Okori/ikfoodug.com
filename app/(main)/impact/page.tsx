@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Our Impact | IK Food Uganda",
   description:
-    "IK Food Uganda — established 2015 — is a premier exporter of premium organic agricultural products committed to sustainable farming, farmer empowerment, and world-class quality standards.",
+    "IK Food Uganda, established in 2015, is a premier exporter of premium organic agricultural products committed to sustainable farming, farmer empowerment, and world-class quality standards.",
   openGraph: {
     title: "Our Impact | IK Food Uganda",
     description: "How IK Food Uganda is transforming Uganda's agricultural sector through sustainable practices, farmer empowerment, and premium organic exports.",
@@ -42,7 +42,7 @@ const pillars = [
   {
     Icon: Users,
     title: "Farmer Empowerment",
-    body: "Fair trade pricing, hands-on agronomic training, and direct market access give our 3,000+ smallholder partners the tools to build lasting livelihoods — not just seasonal income.",
+    body: "Fair trade pricing, hands-on agronomic training, and direct market access give our 3,000+ smallholder partners the tools to build lasting livelihoods, not just seasonal income.",
   },
   {
     Icon: ShieldCheck,
@@ -52,12 +52,12 @@ const pillars = [
   {
     Icon: Globe2,
     title: "Global Market Access",
-    body: "By securing full export licences and international certifications, we open doors that individual farmers cannot — connecting Uganda's highlands directly to premium buyers worldwide.",
+    body: "By securing full export licences and international certifications, we open doors that individual farmers cannot, connecting Uganda's highlands directly to premium buyers worldwide.",
   },
 ];
 
 const products = [
-  { name: "Vanilla",       note: "1.5–2.5% vanillin — world-leading grade",   image: "/IMG_4873_converted.avif" },
+  { name: "Vanilla",       note: "1.5–2.5% vanillin, world-leading grade",    image: "/IMG_4873_converted.avif" },
   { name: "Cocoa",         note: "Naturally fermented fine-flavour beans",     image: "/IMG_4160_converted.avif" },
   { name: "Coffee",        note: "High-altitude Fine Robusta",                 image: "/coffee-plantation.jpg" },
   { name: "Hass Avocado",  note: "Class I export grade, year-round",           image: "/IMG_7889_converted.avif" },
@@ -84,7 +84,7 @@ export default function ImpactPage() {
               Growing Uganda.<br />Feeding the World.
             </h1>
             <p className="text-white/60 text-lg leading-relaxed">
-              A decade of sustainable agriculture, farmer empowerment, and premium organic exports — from Uganda&apos;s highlands to global markets.
+              A decade of sustainable agriculture, farmer empowerment, and premium organic exports, from Uganda&apos;s highlands to global markets.
             </p>
           </div>
         </div>
@@ -195,7 +195,7 @@ export default function ImpactPage() {
               The Communities Behind Our Vanilla
             </h2>
             <p className="text-white/50 mt-4 leading-relaxed">
-              Our vanilla is grown in Uganda&apos;s lush highlands — places like Ibanda — by smallholder farmers who have cultivated these crops for generations.
+              Our vanilla is grown in Uganda&apos;s lush highlands, places like Ibanda, by smallholder farmers who have cultivated these crops for generations.
             </p>
           </ScrollReveal>
 
@@ -204,7 +204,7 @@ export default function ImpactPage() {
             <ScrollReveal className="relative rounded-4xl overflow-hidden h-[480px] lg:h-auto img-zoom">
               <Image
                 src="/ibanda.avif"
-                alt="Ibanda community — vanilla farming region, Uganda"
+                alt="Ibanda community, vanilla farming region, Uganda"
                 fill className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
@@ -213,7 +213,7 @@ export default function ImpactPage() {
                 <span className="chip bg-gold-400 text-forest-950 font-semibold mb-3 inline-flex">Ibanda Region</span>
                 <h3 className="text-2xl font-bold font-heading text-white mb-2">Ibanda, Western Uganda</h3>
                 <p className="text-white/55 text-sm leading-relaxed max-w-sm">
-                  One of our primary vanilla-sourcing regions — rich volcanic soils and equatorial climate produce beans with exceptional vanillin concentration.
+                  One of our primary vanilla-sourcing regions, with rich volcanic soils and an equatorial climate that produce beans with exceptional vanillin concentration.
                 </p>
               </div>
             </ScrollReveal>
@@ -237,7 +237,7 @@ export default function ImpactPage() {
               <ScrollReveal delay={140} className="relative rounded-4xl overflow-hidden h-48 img-zoom">
                 <Image
                   src="/vanilla_bean_green.avif"
-                  alt="Fresh green vanilla beans on the vine — Uganda"
+                  alt="Fresh green vanilla beans on the vine in Uganda"
                   fill className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -280,7 +280,7 @@ export default function ImpactPage() {
               From Field to Export
             </h2>
             <p className="text-forest-950/55 mt-4 leading-relaxed">
-              Every bean passes through careful hands — harvested, sorted, processed, and packed to world-class standards before leaving Uganda.
+              Every bean passes through careful hands, harvested, sorted, processed, and packed to world-class standards before leaving Uganda.
             </p>
           </ScrollReveal>
 
@@ -288,7 +288,7 @@ export default function ImpactPage() {
             <ScrollReveal delay={0} className="group relative rounded-3xl overflow-hidden aspect-[4/3] img-zoom">
               <Image
                 src="/Screenshot 2026-05-06 at 14.42.53_converted.avif"
-                alt="Women sorting and grading fresh vanilla beans — IK Food Uganda"
+                alt="Women sorting and grading fresh vanilla beans at IK Food Uganda"
                 fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
@@ -303,7 +303,7 @@ export default function ImpactPage() {
             <ScrollReveal delay={90} className="group relative rounded-3xl overflow-hidden aspect-[4/3] img-zoom">
               <Image
                 src="/Screenshot 2026-05-06 at 14.46.21_converted.avif"
-                alt="Community group processing harvested vanilla outdoors — Uganda"
+                alt="Community group processing harvested vanilla outdoors in Uganda"
                 fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
@@ -355,7 +355,7 @@ export default function ImpactPage() {
               <div className="relative h-52 rounded-4xl overflow-hidden img-zoom shadow-xl">
                 <Image
                   src="/79a461de-c579-4d35-bc23-b1e5ba5f51f3_converted.avif"
-                  alt="Close-up of vanilla vines with green beans — Uganda highlands"
+                  alt="Close-up of vanilla vines with green beans in Uganda's highlands"
                   fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 via-transparent to-transparent" aria-hidden="true" />
@@ -376,7 +376,7 @@ export default function ImpactPage() {
                   { icon: Leaf,       text: "Biodynamic and organic methods that protect Uganda's biodiverse soils." },
                   { icon: Users,      text: "Fair trade pricing and agronomic training for 3,000+ farmer partners." },
                   { icon: Award,      text: "Full export licences, EU organic certification, and HORTIFRESH membership." },
-                  { icon: ShieldCheck, text: "Zero shipment rejection rate — every batch meets international standards." },
+                  { icon: ShieldCheck, text: "Zero shipment rejection rate. Every batch meets international standards." },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-start gap-4">
                     <div className="w-8 h-8 rounded-lg bg-gold-400/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -409,7 +409,7 @@ export default function ImpactPage() {
               <div className="h-rule mb-6" aria-hidden="true" />
               <p className="text-gray-600 leading-relaxed mb-5">
                 When you buy from IK Food Uganda, you are not only purchasing
-                premium Ugandan vanilla and agricultural products — you are
+                premium Ugandan vanilla and agricultural products. You are
                 supporting communities and changing lives.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
@@ -436,7 +436,7 @@ export default function ImpactPage() {
                 {
                   icon: Users,
                   title: "Youth Employment",
-                  body: "Every order directly creates jobs for young Ugandans — giving them income, purpose, and a stake in their country's agricultural future.",
+                  body: "Every order directly creates jobs for young Ugandans, giving them income, purpose, and a stake in their country's agricultural future.",
                 },
                 {
                   icon: Sprout,
@@ -446,7 +446,7 @@ export default function ImpactPage() {
                 {
                   icon: Award,
                   title: "Skills & Training",
-                  body: "We invest in people — teaching modern farming, curing, processing, and business development skills that last a lifetime.",
+                  body: "We invest in people, teaching modern farming, curing, processing, and business development skills that last a lifetime.",
                 },
                 {
                   icon: Globe2,

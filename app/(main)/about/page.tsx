@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
   description:
-    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla companies in Uganda. We empower 3,000+ smallholder farmers to produce export-grade organic vanilla — rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
+    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla companies in Uganda. We empower 3,000+ smallholder farmers to produce export-grade organic vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
   keywords: [
     "about IK Food Uganda",
     "top vanilla company Uganda",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
-    description: "The story of one of Uganda's top vanilla companies — founded 2015, 3,000+ farmer partners, exporting globally.",
+    description: "The story of one of Uganda's top vanilla companies, founded in 2015, with 3,000+ farmer partners, exporting globally.",
     url: "https://ikfoodug.com/about",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
@@ -67,11 +67,11 @@ const milestoneJsonLd = {
   "@id": "https://ikfoodug.com/#organization",
   name: "IK Food Uganda",
   foundingDate: "2015",
-  description: "IK Food Uganda — Uganda's #1 vanilla company — was founded in Kampala in 2015. Key milestones: 2018 expanded to coffee, cocoa, avocado and garden eggs; 2021 achieved full export licences; 2022 joined HORTIFRESH; 2024 reached 3,000+ farmer partners and 25 MT annual harvest.",
+  description: "IK Food Uganda, Uganda's leading vanilla company, was founded in Kampala in 2015. Key milestones: 2018 expanded to coffee, cocoa, avocado and garden eggs; 2021 achieved full export licences; 2022 joined HORTIFRESH; 2024 reached 3,000+ farmer partners and 25 MT annual harvest.",
 };
 
 const values = [
-  { n: "01", title: "Quality Excellence",    body: "The highest standards across every stage of production, processing, and export — from seed to shipment." },
+  { n: "01", title: "Quality Excellence",    body: "The highest standards across every stage of production, processing, and export, from seed to shipment." },
   { n: "02", title: "Innovation",            body: "Continuously refining processes and products to meet evolving international market requirements." },
   { n: "03", title: "Sustainability",        body: "Biodynamic and organic methods that protect Uganda's rich, biodiverse soils for future generations." },
   { n: "04", title: "Community Impact",       body: "Every purchase creates jobs, supports youth employment, strengthens rural livelihoods, and builds better futures for families across Uganda." },
@@ -81,7 +81,7 @@ const milestones = [
   { year: "2015", event: "IK Food Uganda founded in Kampala with a focus on vanilla cultivation and export." },
   { year: "2018", event: "Expanded to coffee, cocoa, Hass avocado, and garden eggs." },
   { year: "2021", event: "Achieved full export licences and quality certifications." },
-  { year: "2022", event: "Joined HORTIFRESH — Uganda's fresh produce exporters association." },
+  { year: "2022", event: "Joined HORTIFRESH, Uganda's fresh produce exporters association." },
   { year: "2024", event: "Reached 3,000+ customers and 25 MT annual harvest milestone." },
 ];
 
@@ -110,7 +110,7 @@ export default function AboutPage() {
       <section className="relative min-h-[65vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="About hero">
         <Image
           src="/quality_split.avif"
-          alt="Ugandan farmers in the field — IK Food Uganda's farming partnerships"
+          alt="Ugandan farmers in the field, IK Food Uganda's farming partnerships"
           fill className="object-cover object-center" priority sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/55 to-forest-950/20" aria-hidden="true" />
@@ -200,7 +200,7 @@ export default function AboutPage() {
                 <p className="text-white/70 text-lg leading-relaxed italic border-l-2 border-gold-400/40 pl-5">
                   &ldquo;To transform lives through agriculture by creating
                   opportunities for young people, elderly farmers, and rural
-                  communities — delivering premium organic products to
+                  communities, delivering premium organic products to
                   international markets while building a sustainable and
                   reliable supply chain for farmers.&rdquo;
                 </p>
@@ -307,7 +307,7 @@ export default function AboutPage() {
               Ready to Work Together?
             </h2>
             <p className="text-white/50 text-lg mb-10">
-              Whether you&apos;re a distributor, wholesaler, or retailer —
+              Whether you&apos;re a distributor, wholesaler, or retailer,
               let&apos;s discuss how we can supply your organic product needs.
             </p>
             <Link href="/contact" className="btn-gold">
