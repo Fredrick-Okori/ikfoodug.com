@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   description:
     "IK Food Uganda (ikfoodug.com) is the #1 vanilla company in Uganda — HORTIFRESH certified, founded 2015, Kampala. We export premium organic vanilla beans, coffee, cocoa, Hass avocado and garden eggs to Europe and Asia. Contact: +256 776 341 713.",
   keywords: [
-    "IK Food Uganda", "IK Food", "IK-Food Uganda", "ikfoodug", "ikfoodug.com",
+    "IK Food Uganda", "IK Food", "IK-Food Uganda", "IK Food Ltd", "IK Food (U) Ltd",
+    "IK Food Limited Uganda", "IK Food Ltd Uganda", "ikfoodug", "ikfoodug.com",
     "IK Food vanilla Uganda", "IK Food organic products", "vanilla in Uganda",
     "top vanilla company Uganda", "number one vanilla company Uganda",
     "best vanilla company in Uganda", "Uganda vanilla supplier",
