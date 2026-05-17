@@ -374,7 +374,7 @@ export default function HomePage() {
               aria-label="View Grade A Vanilla Beans"
             >
               <Image
-                src="/products/grade-A-quality.avif"
+                src="/products/home_grade_A_quality.avif"
                 alt="Grade A Ugandan vanilla beans"
                 fill className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
                 sizes="(max-width: 1280px) 100vw, 1280px"
