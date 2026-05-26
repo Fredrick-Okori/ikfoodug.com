@@ -9,6 +9,8 @@ export interface Order {
   email: string;
   phone: string;
   country: string;
+  product: string | null;
+  is_sample: boolean;
   quantity: string;
   unit: string;
   date_needed: string | null;

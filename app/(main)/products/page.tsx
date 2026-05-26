@@ -7,25 +7,22 @@ import ScrollReveal from "@/components/ScrollReveal";
 import PlaceOrderButton from "@/components/PlaceOrderButton";
 
 export const metadata: Metadata = {
-  title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
+  title: "Premium Ugandan Vanilla & Natural Products | IK Food Uganda",
   description:
-    "Buy premium organic vanilla beans from one of the top vanilla companies in Uganda. IK Food Uganda also exports Fine Robusta coffee, organic cocoa, Hass avocado and garden eggs, all export-grade, fully certified, and trusted by buyers worldwide.",
+    "Buy premium natural vanilla beans from one of the top vanilla companies in Uganda. IK Food Uganda exports export-grade, fully certified natural vanilla trusted by buyers worldwide.",
   keywords: [
     "buy vanilla beans Uganda",
-    "premium organic vanilla supplier",
+    "premium natural vanilla supplier",
     "top vanilla company Uganda products",
     "Uganda vanilla beans wholesale",
     "best vanilla beans in the world",
     "Ugandan vanilla vs Madagascar vanilla",
     "Ugandan vanilla vs Zanzibar vanilla",
-    "organic vanilla export Uganda",
-    "Fine Robusta coffee Uganda",
-    "organic cocoa Uganda export",
-    "Hass avocado Uganda export",
+    "natural vanilla export Uganda",
   ],
   openGraph: {
-    title: "Premium Ugandan Vanilla & Organic Products | IK Food Uganda",
-    description: "Export-grade organic vanilla, coffee, cocoa, avocado and garden eggs from one of Uganda's top vanilla companies.",
+    title: "Premium Ugandan Vanilla & Natural Products | IK Food Uganda",
+    description: "Export-grade natural vanilla from one of Uganda's top vanilla companies.",
     url: "https://ikfoodug.com/products",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
@@ -44,8 +41,8 @@ const breadcrumbJsonLd = {
 const productCatalogueJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "IK Food Uganda Premium Organic Vanilla Products",
-  description: "Complete catalogue of organic vanilla products from IK Food Uganda, Uganda's leading vanilla company. All products are hand-harvested in Central Uganda and EU Organic Certified.",
+  name: "IK Food Uganda Premium Natural Vanilla Products",
+  description: "Complete catalogue of natural vanilla products from IK Food Uganda, Uganda's leading vanilla company. All products are hand-harvested in Central Uganda.",
   url: "https://ikfoodug.com/products",
   numberOfItems: 7,
   itemListElement: [
@@ -55,7 +52,7 @@ const productCatalogueJsonLd = {
         "@type": "Product",
         name: "Grade A Vanilla Beans",
         url: "https://ikfoodug.com/products#grade-a",
-        description: "Premium export-grade Ugandan vanilla beans, 15–20 cm, 1.5–2.5% vanillin content, 30–35% moisture. Hand-selected, EU Organic Certified.",
+        description: "Premium export-grade Ugandan vanilla beans, 15–20 cm, 1.5–2.5% vanillin content, 30–35% moisture. Hand-selected.",
         brand: { "@type": "Brand", name: "IK Food Uganda" },
         countryOfOrigin: "Uganda",
         offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
@@ -64,7 +61,7 @@ const productCatalogueJsonLd = {
           { "@type": "PropertyValue", name: "Pod Length", value: "15–20 cm" },
           { "@type": "PropertyValue", name: "Moisture Content", value: "30–35%" },
           { "@type": "PropertyValue", name: "Origin", value: "Central Uganda" },
-          { "@type": "PropertyValue", name: "Certification", value: "EU Organic" },
+          { "@type": "PropertyValue", name: "Certification", value: "Export Grade" },
         ],
       },
     },
@@ -74,7 +71,7 @@ const productCatalogueJsonLd = {
         "@type": "Product",
         name: "Grade B Vanilla Beans",
         url: "https://ikfoodug.com/products#grade-b",
-        description: "Extraction-grade organic Ugandan vanilla beans (<15 cm), 25–27% moisture. Concentrated vanillin profile, ideal for vanilla extract manufacturing.",
+        description: "Extraction-grade natural Ugandan vanilla beans (<15 cm), 25–27% moisture. Concentrated vanillin profile, ideal for vanilla extract manufacturing.",
         brand: { "@type": "Brand", name: "IK Food Uganda" },
         countryOfOrigin: "Uganda",
         offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
@@ -86,7 +83,7 @@ const productCatalogueJsonLd = {
         "@type": "Product",
         name: "Vanilla Powder",
         url: "https://ikfoodug.com/products#vanilla-powder",
-        description: "100% pure ground Ugandan vanilla beans. No additives, no fillers. Moisture ≤3%, EU Organic Certified. Available 50 g to 25 kg.",
+        description: "100% pure ground Ugandan vanilla beans. No additives, no fillers. Moisture ≤3%. Available 50 g to 25 kg.",
         brand: { "@type": "Brand", name: "IK Food Uganda" },
         countryOfOrigin: "Uganda",
         offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
@@ -98,7 +95,7 @@ const productCatalogueJsonLd = {
         "@type": "Product",
         name: "Split Vanilla Beans",
         url: "https://ikfoodug.com/products#split-beans",
-        description: "Hand-split lengthwise Ugandan vanilla beans for fast flavour extraction. 18–25% moisture, EU Organic Certified.",
+        description: "Hand-split lengthwise Ugandan vanilla beans for fast flavour extraction. 18–25% moisture.",
         brand: { "@type": "Brand", name: "IK Food Uganda" },
         countryOfOrigin: "Uganda",
         offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "USD" },
@@ -157,7 +154,6 @@ const products = [
       <><strong>Vanillin content ≥1.5%</strong>, world-leading</>,
       <>Moisture content <strong>30%–35%</strong>, rich and supple</>,
       "Hand-selected, individually inspected",
-      "EU Organic Certified",
       "Available whole, split, or bundled",
     ],
     uses: ["Gourmet ice cream & dairy", "High-end pastry & desserts", "Vanilla infusions & syrups", "Perfumery & cosmetics"],
@@ -171,12 +167,12 @@ const products = [
     origin: "Central Uganda",
     spec: "Extraction Grade · <15 cm pods",
     description:
-      <>Grade B beans are shorter and drier with a more concentrated <strong>vanillin profile</strong>, purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and organically grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.</>,
+      <>Grade B beans are shorter and drier with a more concentrated <strong>vanillin profile</strong>, purpose-engineered for vanilla extraction and industrial flavouring. Equally pure and naturally grown as Grade A, they offer exceptional value for food manufacturers, extract producers, and commercial bakeries requiring consistent, high-volume supply.</>,
     features: [
       "Optimised for vanilla extract production",
       <>Moisture content <strong>25%–27%</strong>, optimised for extraction</>,
       "Concentrated, consistent vanillin profile",
-      "Organic & pesticide-free",
+      "Natural & pesticide-free",
       "Available in bulk quantities",
       "Uniform batch quality, tested every lot",
     ],
@@ -198,7 +194,6 @@ const products = [
       "Fine mesh grind for even dispersion",
       "Shelf-stable with long shelf life",
       "Consistent colour, aroma & potency",
-      "EU Organic Certified",
       "Packaging: 50 g up to 25 kg bags",
     ],
     uses: ["Industrial baking & dairy", "Dry spice & flavour blending", "Health & supplement products", "Cosmetics & personal care"],
@@ -219,7 +214,6 @@ const products = [
       "Faster extraction & infusion than whole beans",
       <>Same premium <strong>Ugandan vanilla</strong> as Grade A</>,
       "High vanillin content from a rich seed cavity",
-      "EU Organic Certified",
       "Available in retail & bulk quantities",
     ],
     uses: ["Vanilla extract & tincture production", "Pastry creams & custards", "Cold brew & beverage infusions", "Premium flavour manufacturing"],
@@ -310,7 +304,7 @@ export default function ProductsPage() {
             </h1>
             <p className="text-white/60 text-lg leading-relaxed mb-8">
               Seven distinct vanilla grades and forms, all hand-harvested in
-              <strong> Uganda&apos;s highlands</strong>, organically grown, and processed to
+              <strong> Uganda&apos;s highlands</strong>, naturally grown, and processed to
               world-class export standards.
             </p>
             {/* Jump links */}
@@ -354,7 +348,7 @@ export default function ProductsPage() {
                   >
                     <Image
                       src={product.image}
-                      alt={`${product.name}, premium organic export product from Uganda`}
+                      alt={`${product.name}, premium natural export product from Uganda`}
                       fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     {/* Floating spec tag */}

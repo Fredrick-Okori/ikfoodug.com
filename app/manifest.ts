@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "IK Food Uganda — #1 Vanilla Company in Uganda",
     short_name: "IK Food Uganda",
     description:
-      "Uganda's leading organic vanilla exporter. Premium vanilla beans, coffee, cocoa & more — HORTIFRESH certified, exporting to Europe & Asia.",
+      "Uganda's leading natural vanilla exporter. Premium vanilla beans, exporting to Europe & Asia.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a1a0f",

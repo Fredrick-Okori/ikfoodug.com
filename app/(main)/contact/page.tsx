@@ -18,7 +18,7 @@ const enquiryTypes = [
   "Product Sourcing Enquiry",
   "Export & Logistics",
   "Partnership Opportunities",
-  "Organic Certification Questions",
+  "Quality & Standards Questions",
   "Media & Press",
   "General Enquiry",
 ];
@@ -243,7 +243,7 @@ export default function ContactPage() {
           <div className="space-y-3">
             {[
               { q: "What is the minimum order quantity?",                     a: "We work with buyers of all sizes. MOQs vary by product and destination. Contact us to discuss your specific requirements and receive a tailored quotation." },
-              { q: "Do your products carry organic certification?",            a: "Yes. All IK Food Uganda products are organically certified and meet EU international organic standards. Full certification documentation is available on request." },
+              { q: "Do your products meet international quality standards?",   a: "Yes. All IK Food Uganda products meet international export standards and hold full phytosanitary export licences. Full documentation is available on request." },
               { q: "Which markets do you export to?",                          a: <>We currently export to <strong>Europe (UK, Germany, Netherlands, France)</strong> and <strong>Asia (Japan, South Korea)</strong>, and are expanding into the Middle East.</> },
               { q: "Can you provide samples before a bulk order?",             a: "Yes. We can arrange product samples for qualified buyers. Contact our sales team with your details and product interest." },
               { q: "How do you ensure quality from farm to shipment?",         a: "Rigorous quality control at every stage, from farmer training and on-farm audits, to in-house laboratory testing, grading, packing, and cold-chain logistics." },

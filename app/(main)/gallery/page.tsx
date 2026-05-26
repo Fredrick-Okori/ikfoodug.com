@@ -36,7 +36,7 @@ const staticImages: GalleryImage[] = [
   { src: "/products/IMG_4074_converted.avif",                                caption: "Premium Vanilla Pods",                     category: "Vanilla" },
   { src: "/products/IMG_4394_converted.avif",                                caption: "Vanilla Grading & Sorting",                category: "Processing" },
   { src: "/products/IMG_7159_converted.avif",                                caption: "IK Food Uganda Vanilla",                   category: "Vanilla" },
-  { src: "/products/IMG_7160_converted.avif",                                caption: "Organic Vanilla Beans",                    category: "Vanilla" },
+  { src: "/products/IMG_7160_converted.avif",                                caption: "Natural Vanilla Beans",                    category: "Vanilla" },
   { src: "/products/IMG_7161_converted.avif",                                caption: "Vanilla Farm Uganda",                      category: "Farm" },
   { src: "/products/IMG_7165_converted.avif",                                caption: "Vanilla Bean Curing",                      category: "Processing" },
   { src: "/products/IMG_7166_converted.avif",                                caption: "Vanilla Pods Ready for Export",            category: "Export" },
@@ -82,7 +82,7 @@ export default async function GalleryPage() {
           <p className="text-white/50 text-lg mt-4 max-w-2xl leading-relaxed">
             A visual journey through Uganda&apos;s vanilla farms, the communities
             behind our harvest, and the quality process that delivers the world&apos;s
-            finest organic vanilla.
+            finest natural vanilla.
           </p>
           <p className="text-white/30 text-sm mt-6">
             Click any image to view full screen &mdash; use arrow keys or thumbnails to navigate.

@@ -7,11 +7,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Vanilla Export Case Studies | IK Food Uganda",
   description:
-    "Real-world case studies from IK Food Uganda — one of the top vanilla companies in Uganda — on exporting premium organic vanilla and fresh produce to Europe and Asia.",
+    "Real-world case studies from IK Food Uganda — one of the top vanilla companies in Uganda — on exporting premium natural vanilla and fresh produce to Europe and Asia.",
   keywords: [
     "Uganda vanilla export case study",
     "top vanilla exporter Uganda success",
-    "organic vanilla export Africa",
+    "natural vanilla export Africa",
     "Uganda agricultural export",
   ],
   openGraph: {
@@ -31,14 +31,14 @@ const studies = [
     readTime: "8 min",
     title: "Exporting Fresh Produce from Uganda — The IK Food Advantage",
     overview:
-      "How IK Food Uganda built a scalable export system for organic produce, overcoming regulatory, logistical, and quality challenges to serve European and Asian markets reliably.",
+      "How IK Food Uganda built a scalable export system for natural produce, overcoming regulatory, logistical, and quality challenges to serve European and Asian markets reliably.",
     challenge: {
       heading: "The Challenge",
       body: "Ugandan exporters face stringent EU phytosanitary requirements, cold-chain gaps, and complex certification demands. Many small agribusinesses suffer rejected shipments and financial losses navigating these barriers.",
       points: [
         "Meeting EU maximum residue limits (MRLs) for pesticides",
         "Maintaining cold-chain from farm gate to airfreight",
-        "Securing HACCP, organic, and export certifications",
+        "Securing HACCP, natural, and export certifications",
         "Building reliable international distributor relationships",
         "Managing seasonal supply consistency",
       ],
@@ -50,7 +50,7 @@ const studies = [
         "Direct farmer partnerships with agronomic training",
         "On-site quality control labs for residue testing",
         "Refrigerated transport and cold-chain investment",
-        "HORTIFRESH membership for regulatory guidance",
+        "Full phytosanitary clearance for regulatory compliance",
         "Dedicated export documentation and compliance team",
       ],
     },
@@ -98,7 +98,7 @@ const studies = [
       { metric: "1.5–2.5%", label: "Average vanillin content" },
       { metric: "Premium",   label: "Price tier achieved" },
       { metric: "EU + Asia", label: "Markets accessed" },
-      { metric: "100%",      label: "Organically certified" },
+      { metric: "100%",      label: "Naturally certified" },
     ],
     conclusion:
       "Uganda's vanilla has the quality to command world attention. What it needs is the right production systems, market access, and farmer empowerment — exactly what IK Food Uganda provides.",
@@ -122,7 +122,7 @@ export default function CaseStudiesPage() {
             <span className="section-eyebrow-light mb-4">Real-World Insights</span>
             <h1 className="text-display-2xl font-bold text-white text-balance">Case Studies</h1>
             <p className="text-white/55 mt-4 text-lg">
-              How IK Food Uganda navigates the complexities of organic export
+              How IK Food Uganda navigates the complexities of natural export
               agriculture — the challenges, strategies, and outcomes.
             </p>
           </div>

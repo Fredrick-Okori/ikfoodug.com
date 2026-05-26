@@ -131,7 +131,7 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 dark:border-white/8">
-                  {["Date", "Customer", "Phone", "Country", "Quantity", "Date Needed", "Status", "Update"].map((h) => (
+                  {["Date", "Customer", "Phone", "Country", "Product", "Type", "Quantity", "Date Needed", "Status", "Update"].map((h) => (
                     <th key={h} className="text-left px-5 py-4 text-[11px] font-semibold text-gray-400 dark:text-white/30 uppercase tracking-widest whitespace-nowrap">
                       {h}
                     </th>
@@ -148,6 +148,15 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
                     </td>
                     <td className="px-5 py-4 text-gray-500 dark:text-white/45 text-xs whitespace-nowrap">{order.phone}</td>
                     <td className="px-5 py-4 text-gray-600 dark:text-white/60 whitespace-nowrap">{order.country}</td>
+                    <td className="px-5 py-4 text-gray-600 dark:text-white/60 whitespace-nowrap text-xs">
+                      {order.product ?? <span className="text-gray-200 dark:text-white/15">—</span>}
+                    </td>
+                    <td className="px-5 py-4 whitespace-nowrap">
+                      {order.is_sample
+                        ? <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-semibold uppercase tracking-wider border bg-purple-50 border-purple-200 text-purple-600 dark:bg-purple-400/10 dark:border-purple-400/30 dark:text-purple-400">Sample</span>
+                        : <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-semibold uppercase tracking-wider border bg-forest-50 border-forest-200 text-forest-700 dark:bg-forest-400/10 dark:border-forest-400/30 dark:text-forest-400">Full</span>
+                      }
+                    </td>
                     <td className="px-5 py-4 whitespace-nowrap">
                       <span className="font-semibold text-gold-600 dark:text-gold-400">{order.quantity}</span>
                       <span className="text-gray-400 dark:text-white/35 text-xs ml-1">{order.unit}</span>

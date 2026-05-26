@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "vanilla export guide Uganda",
     "why Ugandan vanilla is the best",
     "vanilla farming Uganda",
-    "organic vanilla insights",
+    "natural vanilla insights",
   ],
   openGraph: {
     title: "Vanilla Insights & Export Resources | IK Food Uganda Blog",
@@ -42,7 +42,7 @@ const blogArticlesJsonLd = {
   "@context": "https://schema.org",
   "@type": "Blog",
   name: "IK Food Uganda Blog",
-  description: "Insights on Ugandan vanilla, top vanilla-producing countries, export regulations and organic farming.",
+  description: "Insights on Ugandan vanilla, top vanilla-producing countries, export regulations and natural farming.",
   url: "https://ikfoodug.com/blog",
   publisher: {
     "@type": "Organization",
@@ -84,7 +84,7 @@ const posts = [
     title: "Why Ugandan Vanilla is the Best in the World",
     date: "Apr 14, 2023",
     dateISO: "2023-04-14",
-    category: "Organic",
+    category: "Natural",
     readTime: "6 min",
     excerpt:
       "Discover what makes Uganda's vanilla superior — from its vanillin concentration to the traditional sun-curing methods that preserve its rich, complex flavour profile.",
@@ -127,30 +127,6 @@ const posts = [
     image: "/IMG_3172_converted.avif",
     featured: false,
   },
-  {
-    slug: "hass-avocado-export",
-    title: "Exporting Hass Avocado from Uganda: A Complete Guide",
-    date: "Mar 5, 2023",
-    dateISO: "2023-03-05",
-    category: "Harvest",
-    readTime: "8 min",
-    excerpt:
-      "Best harvesting windows, post-harvest handling, cold-chain requirements, and EU phytosanitary compliance steps for avocado exporters.",
-    image: "/IMG_7889_converted.avif",
-    featured: false,
-  },
-  {
-    slug: "robusta-specialty",
-    title: "Can Ugandan Robusta Compete in the Specialty Coffee Market?",
-    date: "Aug 10, 2022",
-    dateISO: "2022-08-10",
-    category: "Farming",
-    readTime: "6 min",
-    excerpt:
-      "Uganda's high-altitude, shade-grown Robusta is changing the specialty coffee narrative. We explore its unique profile and growing premium demand.",
-    image: "/coffee-plantation.jpg",
-    featured: false,
-  },
 ];
 
 const featured = posts.find((p) => p.featured)!;
@@ -165,7 +141,7 @@ export default function BlogPage() {
       <section className="relative min-h-[55vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Blog hero">
         <Image
           src="/IMG_4873_converted.avif"
-          alt="Vanilla beans — IK Food Uganda's blog focuses on organic agriculture"
+          alt="Vanilla beans — IK Food Uganda's blog focuses on natural agriculture"
           fill className="object-cover" priority sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-forest-950/20" aria-hidden="true" />
@@ -175,7 +151,7 @@ export default function BlogPage() {
             Blog &amp; Resources
           </h1>
           <p className="text-white/50 mt-4 text-lg max-w-md">
-            Expert insights on organic farming, Ugandan vanilla, and
+            Expert insights on natural farming, Ugandan vanilla, and
             sustainable agribusiness.
           </p>
         </div>
@@ -299,7 +275,7 @@ export default function BlogPage() {
               Subscribe to Our Newsletter
             </h2>
             <p className="text-white/50 text-lg mb-10">
-              Organic farming insights, export market updates, and Ugandan
+              Natural farming insights, export market updates, and Ugandan
               agriculture news — delivered to your inbox.
             </p>
             <NewsletterForm />

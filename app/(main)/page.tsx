@@ -17,7 +17,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "IK Food Uganda | #1 Vanilla Company in Uganda | ikfoodug.com",
   description:
-    "IK Food Uganda (ikfoodug.com). Search 'IK Food', 'IK-Food Uganda', or 'vanilla in Uganda' and find us. We are the leading organic vanilla exporter in Uganda, competing with the finest producers in Madagascar, Zanzibar and beyond.",
+    "IK Food Uganda (ikfoodug.com). Search 'IK Food', 'IK-Food Uganda', or 'vanilla in Uganda' and find us. We are the leading natural vanilla exporter in Uganda, competing with the finest producers in Madagascar, Zanzibar and beyond.",
   keywords: [
     "IK Food Uganda",
     "IK Food",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "vanilla companies compared to Zanzibar",
     "top vanilla producing countries",
     "Uganda vanilla supplier",
-    "premium organic vanilla Uganda",
+    "premium natural vanilla Uganda",
     "finest vanilla beans in the world",
   ],
   alternates: { canonical: "https://ikfoodug.com" },
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
 /* ── Data ────────────────────────────────────────── */
 
 const ticker = [
-  "Ugandan Vanilla", "Grade A Vanilla Beans", "100% Organic", "Grade B Vanilla Beans",
-  "Est. 2015", "Vanilla Powder", "HORTIFRESH Certified", "Split Beans",
+  "Ugandan Vanilla", "Grade A Vanilla Beans", "100% Natural", "Grade B Vanilla Beans",
+  "Est. 2015", "Vanilla Powder", "Export Certified", "Split Beans",
   "Leading Exporter", "Vanilla Green Beans", "Vanilla Paste", "Vanilla Caviar",
 ];
 
 const stats = [
-  { value: "100%", label: "Organically grown" },
+  { value: "100%", label: "Naturally grown" },
   { value: "2+",   label: "Export markets" },
 ];
 
@@ -57,7 +57,7 @@ const vanillaSpecs = [
   { value: "1.5–2.5%", label: "Vanillin content",    sub: "World-leading grade" },
   { value: "6 mo.",    label: "Sun-curing period",   sub: "Traditional methods" },
   { value: "100%",     label: "Hand-harvested",      sub: "At peak maturity" },
-  { value: "Organic",  label: "Fully certified",     sub: "EU & Asian markets" },
+  { value: "Natural",  label: "Fully certified",     sub: "EU & Asian markets" },
 ];
 
 const products = [
@@ -69,7 +69,7 @@ const products = [
 ];
 
 const process = [
-  { n: "01", Icon: Sprout,  title: "Cultivation",  body: "Organic seeds, biodynamic soil preparation, and shade-grown techniques on Uganda's highland farms." },
+  { n: "01", Icon: Sprout,  title: "Cultivation",  body: "Natural seeds, biodynamic soil preparation, and shade-grown techniques on Uganda's highland farms." },
   { n: "02", Icon: Scissors, title: "Harvest",     body: "Hand-picked at peak maturity by trained smallholder farmers, with careful handling at every step." },
   { n: "03", Icon: Package, title: "Processing",   body: "On-site quality testing, traditional curing, grading, and cold-chain packing to export specifications." },
   { n: "04", Icon: Globe2,  title: "Export",       body: "Full certification documentation, phytosanitary clearance, and direct dispatch to Europe and Asia." },
@@ -79,7 +79,7 @@ const posts = [
   {
     slug: "why-ugandan-vanilla-is-the-best",
     title: "Why Ugandan Vanilla is the Best in the World",
-    date: "Apr 2023", category: "Organic",
+    date: "Apr 2023", category: "Natural",
     excerpt: "Uganda's vanillin concentration, traditional sun-curing methods, and unique highland climate combine to produce vanilla that consistently surpasses all others.",
     image: "/vanilla_bean_harvest.avif",
   },
@@ -100,10 +100,10 @@ const posts = [
 ];
 
 const certs = [
-  { label: "HORTIFRESH Member",   sub: "Fresh Produce Exporters Association" },
-  { label: "Organic Certified",   sub: "EU & International Standards" },
-  { label: "Export Grade",        sub: "Full Phytosanitary Clearance" },
-  { label: "Est. 2015",           sub: "Decade of organic excellence" },
+  { label: "Export Certified",    sub: "Full Phytosanitary Clearance" },
+  { label: "Naturally Grown",   sub: "International Standards" },
+  { label: "Export Grade",        sub: "Premium Quality Assurance" },
+  { label: "Est. 2015",           sub: "Decade of natural excellence" },
 ];
 
 /* ── Page ────────────────────────────────────────── */
@@ -154,7 +154,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-white/50 text-base lg:text-lg leading-relaxed mb-10 max-w-sm">
-              Premium organic agricultural products cultivated in Uganda&apos;s
+              Premium natural agricultural products cultivated in Uganda&apos;s
               fertile highlands and exported to discerning buyers worldwide.
             </p>
 
@@ -227,8 +227,8 @@ export default function HomePage() {
                 <div className="h-rule mb-6" aria-hidden="true" />
                 <p className="text-gray-600 leading-relaxed mb-4 text-[0.95rem]">
                   Founded in 2015 and headquartered in Kampala, IK Food Uganda
-                  is a HORTIFRESH-certified organic exporter specialising in
-                  vanilla, coffee, cocoa, avocado, and garden eggs, grown in
+                  is a certified natural exporter specialising in
+                  premium natural vanilla, grown in
                   <strong> Uganda&apos;s fertile highlands</strong> and distributed to <strong>Europe and Asia</strong>.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-8 text-[0.95rem]">
@@ -238,10 +238,9 @@ export default function HomePage() {
                 </p>
                 <ul className="space-y-2.5 mb-10" role="list">
                   {[
-                    "Certified organic, EU & Asian market compliant",
                     "Full supply-chain traceability",
                     "Direct smallholder farmer partnerships",
-                    "HORTIFRESH member · Certified since 2021",
+                    "Export certified · Full phytosanitary clearance",
                   ].map((pt) => (
                     <li key={pt} className="flex items-start gap-3">
                       <CheckCircle2 className="w-4 h-4 text-forest-600 mt-0.5 shrink-0" aria-hidden="true" />
@@ -277,7 +276,7 @@ export default function HomePage() {
               {/* Floating badge */}
               <div className="absolute bottom-[28%] right-[43%] bg-forest-950 text-white rounded-xl px-4 py-3 shadow-xl z-10" aria-hidden="true">
                 <p className="text-xl font-bold font-heading leading-none">10+</p>
-                <p className="text-white/40 text-[10px] mt-0.5 tracking-wide uppercase">Yrs organic</p>
+                <p className="text-white/40 text-[10px] mt-0.5 tracking-wide uppercase">Yrs natural</p>
               </div>
             </div>
           </div>
@@ -356,7 +355,7 @@ export default function HomePage() {
                 02
               </span>
               <h2 className="text-display-lg font-bold text-white leading-tight text-balance">
-                Premium Organic Products
+                Premium Natural Products
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={80}>
@@ -483,7 +482,7 @@ export default function HomePage() {
               <div className="grid sm:grid-cols-2 gap-5">
                 {[
                   { n: "01", title: "International Standards",    body: "Every product meets rigorous EU and Asian requirements including residue limits, cold-chain logistics, and full certification." },
-                  { n: "02", title: "Sustainable at the Source",  body: "3,000+ smallholder farmers using biodynamic and organic methods that protect Uganda's biodiverse soils." },
+                  { n: "02", title: "Sustainable at the Source",  body: "3,000+ smallholder farmers using biodynamic and natural methods that protect Uganda's biodiverse soils." },
                   { n: "03", title: "Complete Traceability",      body: "Every batch ships with full farm-to-export traceability. You always know exactly where your product originated." },
                   { n: "04", title: "Farmer Empowerment",         body: "Fair-trade pricing, agronomic training, and market access give local farmers a genuine stake in success." },
                 ].map(({ n, title, body }) => (
@@ -508,7 +507,7 @@ export default function HomePage() {
               </div>
               <div className="absolute -bottom-5 -left-5 bg-forest-950 text-white rounded-2xl px-6 py-5 shadow-2xl" aria-hidden="true">
                 <p className="text-3xl font-bold font-heading leading-none">10+</p>
-                <p className="text-white/40 text-xs mt-1 tracking-widest uppercase">Years organic</p>
+                <p className="text-white/40 text-xs mt-1 tracking-widest uppercase">Years natural</p>
               </div>
             </ScrollReveal>
           </div>
@@ -645,11 +644,11 @@ export default function HomePage() {
             {([
               {
                 q: "What is IK Food Uganda?",
-                a: "IK Food Uganda (ikfoodug.com) is Uganda's leading organic vanilla exporter, founded in 2015 and headquartered in Kampala. We are a HORTIFRESH-certified company supplying premium vanilla beans, coffee, cocoa, Hass avocado, and garden eggs to buyers in Europe and Asia.",
+                a: "IK Food Uganda (ikfoodug.com) is Uganda's leading natural vanilla exporter, founded in 2015 and headquartered in Kampala. We supply premium vanilla beans to buyers in Europe and Asia.",
               },
               {
                 q: "Is IK Food Uganda the #1 vanilla company in Uganda?",
-                a: <>Yes. IK Food Uganda is recognised as the top vanilla company in Uganda. We supply export-grade organic vanilla beans with <strong>1.5–2.5% vanillin content</strong>, among the highest in the world, and hold full EU Organic Certification, HORTIFRESH membership, and phytosanitary export licences.</>,
+                a: <>Yes. IK Food Uganda is recognised as the top vanilla company in Uganda. We supply export-grade natural vanilla beans with <strong>1.5–2.5% vanillin content</strong>, among the highest in the world, and hold full phytosanitary export licences.</>,
               },
               {
                 q: "How does Ugandan vanilla compare to Madagascar and Zanzibar vanilla?",
@@ -657,11 +656,11 @@ export default function HomePage() {
               },
               {
                 q: "What vanilla products does IK Food Uganda supply?",
-                a: "We offer 7 premium vanilla forms: Grade A Vanilla Beans, Grade B Vanilla Beans, Vanilla Powder, Split Beans, Vanilla Paste, Vanilla Caviar, and Fresh Green Beans, all hand-harvested in Central Uganda and EU Organic Certified.",
+                a: "We offer 7 premium vanilla forms: Grade A Vanilla Beans, Grade B Vanilla Beans, Vanilla Powder, Split Beans, Vanilla Paste, Vanilla Caviar, and Fresh Green Beans, all hand-harvested in Central Uganda.",
               },
               {
                 q: "What certifications does IK Food Uganda hold?",
-                a: "IK Food Uganda holds EU Organic Certification, HORTIFRESH membership (joined 2022), and full phytosanitary export licences. All products meet EU and international organic standards with complete farm-to-shipment traceability.",
+                a: "IK Food Uganda holds full phytosanitary export licences. All products meet EU and international natural standards with complete farm-to-shipment traceability.",
               },
               {
                 q: "Which countries does IK Food Uganda export to?",
@@ -673,7 +672,7 @@ export default function HomePage() {
               },
               {
                 q: "Does IK Food Uganda work with smallholder farmers?",
-                a: <>Yes. We partner with over <strong>3,000 smallholder farmers</strong> across <strong>Central Uganda&apos;s</strong> highland growing regions. We provide fair-trade pricing, free agronomic training, and direct market access, transforming rural livelihoods through sustainable organic agriculture.</>,
+                a: <>Yes. We partner with over <strong>3,000 smallholder farmers</strong> across <strong>Central Uganda&apos;s</strong> highland growing regions. We provide fair-trade pricing, free agronomic training, and direct market access, transforming rural livelihoods through sustainable natural agriculture.</>,
               },
             ] as { q: string; a: React.ReactNode }[]).map(({ q, a }) => (
               <ScrollReveal key={q}>
@@ -759,7 +758,7 @@ export default function HomePage() {
               <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-lg">
                 Whether you&apos;re a distributor, wholesaler, chocolate maker, or
                 retailer. We&apos;d love to discuss how IK Food Uganda can power
-                your supply chain with premium organic products.
+                your supply chain with premium natural products.
               </p>
               <div className="flex flex-wrap gap-3 mb-16">
                 <Link href="/contact" className="btn-gold">
@@ -777,7 +776,7 @@ export default function HomePage() {
                   { value: "3,000+", label: "Farmers" },
                   { value: "25 MT",  label: "Annual harvest" },
                   { value: "2+",     label: "Export markets" },
-                  { value: "100%",   label: "Organic" },
+                  { value: "100%",   label: "Natural" },
                 ].map(({ value, label }) => (
                   <div key={label}>
                     <dt className="text-2xl font-bold font-heading text-white leading-none">{value}</dt>

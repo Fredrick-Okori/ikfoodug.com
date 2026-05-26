@@ -8,10 +8,10 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Our Impact | IK Food Uganda",
   description:
-    "IK Food Uganda, established in 2015, is a premier exporter of premium organic agricultural products committed to sustainable farming, farmer empowerment, and world-class quality standards.",
+    "IK Food Uganda, established in 2015, is a premier exporter of premium natural agricultural products committed to sustainable farming, farmer empowerment, and world-class quality standards.",
   openGraph: {
     title: "Our Impact | IK Food Uganda",
-    description: "How IK Food Uganda is transforming Uganda's agricultural sector through sustainable practices, farmer empowerment, and premium organic exports.",
+    description: "How IK Food Uganda is transforming Uganda's agricultural sector through sustainable practices, farmer empowerment, and premium natural exports.",
     url: "https://ikfoodug.com/impact",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
@@ -29,8 +29,8 @@ const breadcrumbJsonLd = {
 
 const stats = [
   { value: "3,000+", label: "Smallholder farmers", sub: "Directly partnered across Uganda" },
-  { value: "25 MT",  label: "Annual harvest",      sub: "Of export-grade organic produce" },
-  { value: "100%",   label: "Organically grown",   sub: "Certified EU & Asian standards" },
+  { value: "25 MT",  label: "Annual harvest",      sub: "Of export-grade natural produce" },
+  { value: "100%",   label: "Naturally grown",   sub: "Certified EU & Asian standards" },
   { value: "2015",   label: "Year founded",         sub: "A decade of excellence" },
 ];
 
@@ -38,7 +38,7 @@ const pillars = [
   {
     Icon: Sprout,
     title: "Sustainable Farming",
-    body: "We champion biodynamic and organic cultivation methods that protect Uganda's biodiverse soils, reduce chemical inputs, and ensure every farm remains productive for future generations.",
+    body: "We champion biodynamic and natural cultivation methods that protect Uganda's biodiverse soils, reduce chemical inputs, and ensure every farm remains productive for future generations.",
   },
   {
     Icon: Users,
@@ -48,7 +48,7 @@ const pillars = [
   {
     Icon: ShieldCheck,
     title: "World-Class Quality",
-    body: "Every shipment meets rigorous EU and Asian phytosanitary requirements. Our on-site quality labs, cold-chain logistics, and HORTIFRESH membership ensure zero compromises.",
+    body: "Every shipment meets rigorous EU and Asian phytosanitary requirements. Our on-site quality labs and cold-chain logistics ensure zero compromises.",
   },
   {
     Icon: Globe2,
@@ -59,10 +59,6 @@ const pillars = [
 
 const products = [
   { name: "Vanilla",       note: <><strong>1.5–2.5% vanillin</strong>, world-leading grade</>,  image: "/IMG_4873_converted.avif" },
-  { name: "Cocoa",         note: "Naturally fermented fine-flavour beans",     image: "/IMG_4160_converted.avif" },
-  { name: "Coffee",        note: "High-altitude Fine Robusta",                 image: "/coffee-plantation.jpg" },
-  { name: "Hass Avocado",  note: "Class I export grade, year-round",           image: "/IMG_7889_converted.avif" },
-  { name: "Garden Eggs",   note: "Phytosanitary certified, vibrant & firm",    image: "/IMG_3062_converted.avif" },
 ];
 
 export default function ImpactPage() {
@@ -85,7 +81,7 @@ export default function ImpactPage() {
               Growing Uganda.<br />Feeding the World.
             </h1>
             <p className="text-white/60 text-lg leading-relaxed">
-              A decade of sustainable agriculture, farmer empowerment, and premium organic exports, from <strong>Uganda&apos;s highlands</strong> to <strong>global markets</strong>.
+              A decade of sustainable agriculture, farmer empowerment, and premium natural exports, from <strong>Uganda&apos;s highlands</strong> to <strong>global markets</strong>.
             </p>
           </div>
         </div>
@@ -97,7 +93,7 @@ export default function ImpactPage() {
           <ScrollReveal>
             <span className="section-eyebrow-light mb-6">Who We Are</span>
             <blockquote className="text-[clamp(1.15rem,2.5vw,1.5rem)] text-white/80 leading-relaxed font-sans italic border-l-4 border-gold-400 pl-8 text-left max-w-4xl mx-auto">
-              &ldquo;IK Food Uganda Ltd, established in 2015, is a premier exporter of high-quality agricultural products, including vanilla, cocoa, coffee, Hass avocados, and garden eggs. The company is committed to sustainable farming practices, offering organic products that appeal to health-conscious consumers. Their mission to uphold world-class quality standards positions them as a trusted partner in the international market.&rdquo;
+              &ldquo;IK Food Uganda Ltd, established in 2015, is a premier exporter of high-quality natural vanilla, committed to sustainable farming practices and world-class quality standards. Their mission to deliver premium Ugandan vanilla positions them as a trusted partner in the international market.&rdquo;
             </blockquote>
             <div className="mt-8 flex items-center gap-3 pl-8">
               <div className="w-10 h-px bg-gold-400" aria-hidden="true" />
@@ -163,7 +159,7 @@ export default function ImpactPage() {
           <ScrollReveal className="text-center max-w-xl mx-auto mb-16">
             <span className="section-eyebrow">What We Export</span>
             <h2 className="text-display-lg font-bold text-forest-950 text-balance">
-              Five Products, One Standard of Excellence
+              Premium Vanilla, One Standard of Excellence
             </h2>
           </ScrollReveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -342,15 +338,15 @@ export default function ImpactPage() {
               <div className="relative h-80 rounded-4xl overflow-hidden img-zoom shadow-2xl">
                 <Image
                   src="/IMG_7889_converted.avif"
-                  alt="Organic farming practices at IK Food Uganda"
+                  alt="Natural farming practices at IK Food Uganda"
                   fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-950/40 to-transparent" aria-hidden="true" />
                 {/* Floating badge */}
                 <div className="absolute bottom-6 left-6 glass-card px-5 py-4">
-                  <p className="text-[10px] text-white/45 uppercase tracking-widest mb-1">Certification</p>
-                  <p className="text-lg font-bold font-heading text-white leading-none">HORTIFRESH</p>
-                  <p className="text-xs text-gold-400 mt-1">Member since 2022</p>
+                  <p className="text-[10px] text-white/45 uppercase tracking-widest mb-1">Export</p>
+                  <p className="text-lg font-bold font-heading text-white leading-none">Certified</p>
+                  <p className="text-xs text-gold-400 mt-1">Full phytosanitary clearance</p>
                 </div>
               </div>
               <div className="relative h-52 rounded-4xl overflow-hidden img-zoom shadow-xl">
@@ -361,7 +357,7 @@ export default function ImpactPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 via-transparent to-transparent" aria-hidden="true" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="chip bg-gold-400/20 text-gold-400 border border-gold-400/30 inline-flex">100% Organic Vanilla Vines</span>
+                  <span className="chip bg-gold-400/20 text-gold-400 border border-gold-400/30 inline-flex">100% Natural Vanilla Vines</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -374,9 +370,9 @@ export default function ImpactPage() {
               <div className="w-10 h-px bg-gold-400 mb-8" aria-hidden="true" />
               <div className="space-y-5 mb-10">
                 {[
-                  { icon: Leaf,       text: "Biodynamic and organic methods that protect Uganda's biodiverse soils." },
+                  { icon: Leaf,       text: "Biodynamic and natural methods that protect Uganda's biodiverse soils." },
                   { icon: Users,      text: "Fair trade pricing and agronomic training for 3,000+ farmer partners." },
-                  { icon: Award,      text: "Full export licences, EU organic certification, and HORTIFRESH membership." },
+                  { icon: Award,      text: "Full export licences and phytosanitary clearance for international shipment." },
                   { icon: ShieldCheck, text: "Zero shipment rejection rate. Every batch meets international standards." },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-start gap-4">
@@ -481,7 +477,7 @@ export default function ImpactPage() {
               Be Part of the Impact
             </h2>
             <p className="text-forest-950/55 text-lg mb-10 leading-relaxed">
-              Every order placed with IK Food Uganda directly supports Ugandan farmers, sustainable land practices, and the growth of Uganda&apos;s organic agricultural sector.
+              Every order placed with IK Food Uganda directly supports Ugandan farmers, sustainable land practices, and the growth of Uganda&apos;s natural agricultural sector.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/products" className="btn-dark group">

@@ -32,11 +32,23 @@ const countries = [
   "Venezuela","Vietnam","Yemen","Zambia","Zimbabwe",
 ];
 
+const products = [
+  "Grade A Vanilla Beans",
+  "Grade B Vanilla Beans",
+  "Vanilla Powder",
+  "Split Beans",
+  "Vanilla Paste",
+  "Vanilla Caviar",
+  "Fresh Green Beans",
+];
+
 const initialForm = {
   name: "",
   email: "",
   phone: "",
   country: "",
+  product: "",
+  isSample: false,
   quantity: "",
   unit: "kg",
   dateNeeded: "",
@@ -68,7 +80,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
     if (e.key === "Escape") onClose();
   };
 
-  const set = (field: keyof typeof initialForm) =>
+  const set = (field: keyof Omit<typeof initialForm, "isSample">) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [field]: e.target.value }));
 
@@ -80,6 +92,8 @@ export default function OrderDrawer({ open, onClose }: Props) {
       email: form.email,
       phone: form.phone,
       country: form.country,
+      product: form.product,
+      is_sample: form.isSample,
       quantity: form.quantity,
       unit: form.unit,
       date_needed: form.dateNeeded || null,
@@ -203,6 +217,50 @@ export default function OrderDrawer({ open, onClose }: Props) {
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
+              </div>
+
+              <div>
+                <label htmlFor="order-product" className={labelCls}>Product</label>
+                <select
+                  id="order-product"
+                  value={form.product}
+                  onChange={set("product")}
+                  required
+                  className={`${inputCls} cursor-pointer bg-forest-900`}
+                >
+                  <option value="" disabled>Select a product…</option>
+                  {products.map((p) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <p className={labelCls}>Order Type</p>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, isSample: false }))}
+                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 ${
+                      !form.isSample
+                        ? "bg-gold-400 text-forest-950 border-gold-400"
+                        : "bg-transparent text-white/50 border-white/15 hover:border-white/30 hover:text-white/80"
+                    }`}
+                  >
+                    Full Order
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, isSample: true }))}
+                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 ${
+                      form.isSample
+                        ? "bg-gold-400 text-forest-950 border-gold-400"
+                        : "bg-transparent text-white/50 border-white/15 hover:border-white/30 hover:text-white/80"
+                    }`}
+                  >
+                    Sample Request
+                  </button>
+                </div>
               </div>
 
               <div>

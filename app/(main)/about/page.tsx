@@ -8,7 +8,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
   description:
-    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla companies in Uganda. We empower 3,000+ smallholder farmers to produce export-grade organic vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
+    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla companies in Uganda. We empower 3,000+ smallholder farmers to produce export-grade natural vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
   keywords: [
     "about IK Food Uganda",
     "top vanilla company Uganda",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "best vanilla producers Africa",
     "vanilla company founded 2015",
     "top vanilla producing countries Africa",
-    "HORTIFRESH member Uganda",
+    "export certified Uganda",
   ],
   openGraph: {
     title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
@@ -44,9 +44,9 @@ const teamJsonLd = {
       "@id": "https://ikfoodug.com/about#israel-kaweesa",
       name: "Israel Kaweesa",
       jobTitle: "General Manager",
-      description: "Israel Kaweesa is the General Manager and founder of IK Food Uganda. With over a decade of agribusiness experience, he built IK Food Uganda from a Kampala-based startup in 2015 into one of Uganda's top organic vanilla exporters, supplying premium beans to Europe and Asia.",
+      description: "Israel Kaweesa is the General Manager and founder of IK Food Uganda. With over a decade of agribusiness experience, he built IK Food Uganda from a Kampala-based startup in 2015 into one of Uganda's top natural vanilla exporters, supplying premium beans to Europe and Asia.",
       worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
-      knowsAbout: ["Organic vanilla export Uganda", "Agricultural trade East Africa", "Vanilla bean cultivation", "HORTIFRESH certification"],
+      knowsAbout: ["Natural vanilla export Uganda", "Agricultural trade East Africa", "Vanilla bean cultivation", "Export certification"],
       nationality: { "@type": "Country", name: "Uganda" },
     },
     {
@@ -54,9 +54,9 @@ const teamJsonLd = {
       "@id": "https://ikfoodug.com/about#evelyn-najjemba",
       name: "Evelyn Najjemba",
       jobTitle: "Agroecologist",
-      description: "Evelyn Najjemba is the Agroecologist at IK Food Uganda. She oversees sustainable farming practices and farmer training across IK Food Uganda's 3,000+ smallholder farmer network, ensuring all agricultural output meets EU Organic and HORTIFRESH standards.",
+      description: "Evelyn Najjemba is the Agroecologist at IK Food Uganda. She oversees sustainable farming practices and farmer training across IK Food Uganda's 3,000+ smallholder farmer network, ensuring all agricultural output meets international export standards.",
       worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
-      knowsAbout: ["Organic agriculture Uganda", "Biodynamic farming", "Vanilla cultivation", "Smallholder farmer training"],
+      knowsAbout: ["Natural agriculture Uganda", "Biodynamic farming", "Vanilla cultivation", "Smallholder farmer training"],
       nationality: { "@type": "Country", name: "Uganda" },
     },
   ],
@@ -68,21 +68,21 @@ const milestoneJsonLd = {
   "@id": "https://ikfoodug.com/#organization",
   name: "IK Food Uganda",
   foundingDate: "2015",
-  description: "IK Food Uganda, Uganda's leading vanilla company, was founded in Kampala in 2015. Key milestones: 2018 expanded to coffee, cocoa, avocado and garden eggs; 2021 achieved full export licences; 2022 joined HORTIFRESH; 2024 reached 3,000+ farmer partners and 25 MT annual harvest.",
+  description: "IK Food Uganda, Uganda's leading vanilla company, was founded in Kampala in 2015. Key milestones: 2021 achieved full export licences; 2022 expanded into European and Asian markets; 2024 reached 3,000+ farmer partners and 25 MT annual harvest.",
 };
 
 const values = [
   { n: "01", title: "Quality Excellence",    body: <>The highest standards across every stage of production, processing, and export, <strong>from seed to shipment</strong>.</> },
   { n: "02", title: "Innovation",            body: "Continuously refining processes and products to meet evolving international market requirements." },
-  { n: "03", title: "Sustainability",        body: "Biodynamic and organic methods that protect Uganda's rich, biodiverse soils for future generations." },
+  { n: "03", title: "Sustainability",        body: "Biodynamic and natural methods that protect Uganda's rich, biodiverse soils for future generations." },
   { n: "04", title: "Community Impact",       body: "Every purchase creates jobs, supports youth employment, strengthens rural livelihoods, and builds better futures for families across Uganda." },
 ];
 
 const milestones = [
   { year: "2015", event: "IK Food Uganda founded in Kampala with a focus on vanilla cultivation and export." },
-  { year: "2018", event: "Expanded to coffee, cocoa, Hass avocado, and garden eggs." },
+  { year: "2018", event: "Scaled vanilla cultivation partnerships across Uganda's highland regions." },
   { year: "2021", event: "Achieved full export licences and quality certifications." },
-  { year: "2022", event: "Joined HORTIFRESH, Uganda's fresh produce exporters association." },
+  { year: "2022", event: "Expanded export markets into Europe and Asia." },
   { year: "2024", event: "Reached 3,000+ customers and 25 MT annual harvest milestone." },
 ];
 
@@ -96,7 +96,7 @@ const team = [
   {
     name: "Evelyn Najjemba",
     role: "Agroecologist",
-    bio: "Evelyn oversees sustainable farming practices and farmer training, ensuring IK Food Uganda's agricultural output meets the highest organic and environmental standards.",
+    bio: "Evelyn oversees sustainable farming practices and farmer training, ensuring IK Food Uganda's agricultural output meets the highest natural and environmental standards.",
     image: "/andrea_webp.webp",
   },
 ];
@@ -139,7 +139,7 @@ export default function AboutPage() {
                 IK Food Uganda was founded with a mission to transform lives
                 through agriculture by creating opportunities for young people,
                 elderly farmers, and rural communities across Uganda. We
-                specialise in premium Ugandan vanilla and other organic
+                specialise in premium Ugandan vanilla and other natural
                 agricultural products, while building a sustainable and
                 reliable supply chain for farmers.
               </p>
@@ -201,7 +201,7 @@ export default function AboutPage() {
                 <p className="text-white/70 text-lg leading-relaxed italic border-l-2 border-gold-400/40 pl-5">
                   &ldquo;To transform lives through agriculture by creating
                   opportunities for young people, elderly farmers, and rural
-                  communities, delivering premium organic products to
+                  communities, delivering premium natural products to
                   international markets while building a sustainable and
                   reliable supply chain for farmers.&rdquo;
                 </p>
@@ -212,7 +212,7 @@ export default function AboutPage() {
                 <p className="label-tag text-forest-300 mb-4">Our Vision</p>
                 <p className="text-white/70 text-lg leading-relaxed italic border-l-2 border-forest-400/40 pl-5">
                   &ldquo;To be the preferred supplier of premium Ugandan vanilla and
-                  other organic agricultural products, recognised for quality,
+                  other natural agricultural products, recognised for quality,
                   sustainability, and integrity.&rdquo;
                 </p>
               </div>
@@ -246,7 +246,7 @@ export default function AboutPage() {
               <div className="relative rounded-4xl overflow-hidden h-[500px] img-zoom shadow-xl">
                 <Image
                   src="/IMG_3172_converted.avif"
-                  alt="Lush organic farmland in Uganda"
+                  alt="Lush natural farmland in Uganda"
                   fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -309,7 +309,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-white/50 text-lg mb-10">
               Whether you&apos;re a distributor, wholesaler, or retailer,
-              let&apos;s discuss how we can supply your organic product needs.
+              let&apos;s discuss how we can supply your natural product needs.
             </p>
             <Link href="/contact" className="btn-gold">
               Contact Our Team
