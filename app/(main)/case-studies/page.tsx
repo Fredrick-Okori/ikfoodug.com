@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   keywords: [
     "Uganda vanilla export case study",
     "top vanilla exporter Uganda success",
+    "top vanilla exporters in Uganda",
+    "vanilla exporters in Uganda",
+    "Uganda vanilla exporters",
     "natural vanilla export Africa",
     "Uganda agricultural export",
   ],

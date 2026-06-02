@@ -9,11 +9,14 @@ import PlaceOrderButton from "@/components/PlaceOrderButton";
 export const metadata: Metadata = {
   title: "Premium Ugandan Vanilla & Natural Products | IK Food Uganda",
   description:
-    "Buy premium natural vanilla beans from one of the top vanilla companies in Uganda. IK Food Uganda exports export-grade, fully certified natural vanilla trusted by buyers worldwide.",
+    "Buy premium natural vanilla beans from one of the top vanilla exporters in Uganda. IK Food Uganda exports export-grade, fully certified natural vanilla trusted by buyers worldwide.",
   keywords: [
     "buy vanilla beans Uganda",
     "premium natural vanilla supplier",
     "top vanilla company Uganda products",
+    "top vanilla exporters in Uganda",
+    "vanilla exporters in Uganda",
+    "Uganda vanilla exporters",
     "Uganda vanilla beans wholesale",
     "best vanilla beans in the world",
     "Ugandan vanilla vs Madagascar vanilla",

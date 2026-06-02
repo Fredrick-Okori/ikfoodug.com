@@ -41,6 +41,21 @@ export interface GalleryItem {
   sort_order: number;
 }
 
+export interface BlogPost {
+  id: string;
+  created_at: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string | null;
+  image_url: string | null;
+  category: string;
+  read_time: string;
+  featured: boolean;
+  published: boolean;
+  published_at: string | null;
+}
+
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!

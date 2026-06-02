@@ -5,8 +5,16 @@ import { supabase } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Gallery | IK Food Uganda",
-  description: "Photos from IK Food Uganda's vanilla farms, farming communities, processing operations, and export-grade products across Uganda's highlands.",
+  title: "Gallery | IK Food Uganda — Top Vanilla Exporters in Uganda",
+  description: "Photos from IK Food Uganda's vanilla farms, farming communities, processing operations, and export-grade products. One of the top vanilla exporters in Uganda.",
+  keywords: [
+    "top vanilla exporters in Uganda",
+    "vanilla exporters in Uganda",
+    "Uganda vanilla exporters",
+    "IK Food Uganda gallery",
+    "vanilla farm Uganda photos",
+    "Uganda vanilla farming",
+  ],
   openGraph: {
     title: "Gallery | IK Food Uganda",
     url: "https://ikfoodug.com/gallery",

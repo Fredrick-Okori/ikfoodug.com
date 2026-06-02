@@ -8,10 +8,13 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
   description:
-    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla companies in Uganda. We empower 3,000+ smallholder farmers to produce export-grade natural vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
+    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla exporters in Uganda. We empower 3,000+ smallholder farmers to produce export-grade natural vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
   keywords: [
     "about IK Food Uganda",
     "top vanilla company Uganda",
+    "top vanilla exporters in Uganda",
+    "vanilla exporters in Uganda",
+    "Uganda vanilla exporters",
     "Uganda vanilla exporter history",
     "best vanilla producers Africa",
     "vanilla company founded 2015",

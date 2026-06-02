@@ -22,7 +22,7 @@ const nav = [
   {
     section: "Content",
     items: [
-      { href: "/admin/blog",    label: "Blog Posts", icon: Newspaper, exact: false, soon: true },
+      { href: "/admin/blog",    label: "Blog Posts", icon: Newspaper, exact: false, soon: false },
       { href: "/admin/gallery", label: "Gallery",    icon: Images,    exact: false, soon: false },
     ],
   },

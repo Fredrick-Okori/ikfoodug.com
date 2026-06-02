@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "top vanilla company Uganda", "number one vanilla company Uganda",
     "best vanilla company in Uganda", "Uganda vanilla supplier",
     "top vanilla companies worldwide", "top vanilla companies in Uganda",
+    "top vanilla exporters in Uganda", "vanilla exporters in Uganda",
+    "Uganda vanilla exporters", "leading vanilla exporter Uganda",
     "top vanilla companies in Africa", "best vanilla exporters Uganda",
     "vanilla companies in Madagascar", "vanilla companies in Zanzibar",
     "top vanilla producing countries", "premium vanilla supplier Uganda",
@@ -270,7 +272,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   "@id": "https://ikfoodug.com/#faqpage",
                   mainEntity: [
                     { "@type": "Question", name: "What is IK Food Uganda?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda (website: ikfoodug.com) is the #1 vanilla company in Uganda, founded in 2015 and headquartered in Kampala. We are a certified natural vanilla exporter supplying premium vanilla beans to buyers in Europe and Asia." } },
-                    { "@type": "Question", name: "Is IK Food Uganda one of the top vanilla companies in Uganda?", acceptedAnswer: { "@type": "Answer", text: "Yes. IK Food Uganda is recognised as the leading vanilla company in Uganda. Founded in 2015, it supplies export-grade natural vanilla beans with 1.5–2.5% vanillin content to buyers in Europe and Asia, with full phytosanitary export licences." } },
+                    { "@type": "Question", name: "Is IK Food Uganda one of the top vanilla exporters in Uganda?", acceptedAnswer: { "@type": "Answer", text: "Yes. IK Food Uganda is recognised as one of the top vanilla exporters in Uganda. Founded in 2015 in Kampala, it supplies export-grade natural vanilla beans with 1.5–2.5% vanillin content to buyers in Europe and Asia, with full phytosanitary export licences." } },
                     { "@type": "Question", name: "How does Ugandan vanilla compare to Madagascar and Zanzibar vanilla?", acceptedAnswer: { "@type": "Answer", text: "Ugandan vanilla from IK Food Uganda is prized for its exceptionally high vanillin concentration (1.5–2.5%), floral complexity, and rich creamy depth — qualities that rival and often surpass vanilla from Madagascar (1.5–2.0% vanillin) and Zanzibar. Uganda's highland climate and traditional 6-month sun-curing produce a uniquely complex flavour profile." } },
                     { "@type": "Question", name: "Which are the top vanilla producing countries in the world?", acceptedAnswer: { "@type": "Answer", text: "The top vanilla producing countries include Madagascar (largest producer), Indonesia, Uganda, Mexico, Tahiti, Comoros, and Zanzibar (Tanzania). Uganda is one of the fastest-growing producers, known for high-vanillin natural beans with exceptional quality." } },
                     { "@type": "Question", name: "What products does IK Food Uganda export?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda exports 7 premium vanilla products: Grade A Vanilla Beans, Grade B Vanilla Beans, Vanilla Powder, Split Vanilla Beans, Vanilla Paste, Vanilla Caviar, and Vanilla Green Beans." } },

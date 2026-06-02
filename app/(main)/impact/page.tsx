@@ -8,10 +8,19 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Our Impact | IK Food Uganda",
   description:
-    "IK Food Uganda, established in 2015, is a premier exporter of premium natural agricultural products committed to sustainable farming, farmer empowerment, and world-class quality standards.",
+    "IK Food Uganda, one of the top vanilla exporters in Uganda, established in 2015, is a premier exporter of premium natural vanilla committed to sustainable farming, farmer empowerment, and world-class quality standards.",
+  keywords: [
+    "top vanilla exporters in Uganda",
+    "vanilla exporters in Uganda",
+    "Uganda vanilla exporters",
+    "IK Food Uganda impact",
+    "vanilla farming Uganda",
+    "sustainable vanilla Uganda",
+    "Uganda vanilla export",
+  ],
   openGraph: {
     title: "Our Impact | IK Food Uganda",
-    description: "How IK Food Uganda is transforming Uganda's agricultural sector through sustainable practices, farmer empowerment, and premium natural exports.",
+    description: "How IK Food Uganda, one of the top vanilla exporters in Uganda, is transforming the sector through sustainable farming and premium natural exports.",
     url: "https://ikfoodug.com/impact",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
