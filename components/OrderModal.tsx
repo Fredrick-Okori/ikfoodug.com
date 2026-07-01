@@ -58,6 +58,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
   const [form, setForm] = useState(initialForm);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof initialForm, string>>>({});
   const firstInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -84,8 +85,23 @@ export default function OrderDrawer({ open, onClose }: Props) {
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [field]: e.target.value }));
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const validate = () => {
+    const e: Partial<Record<keyof typeof initialForm, string>> = {};
+    if (!form.name.trim())     e.name      = "Full name is required.";
+    if (!form.email.trim())    e.email     = "Email address is required.";
+    if (!form.phone.trim())    e.phone     = "Contact number is required.";
+    if (!form.country)         e.country   = "Please select your country.";
+    if (!form.product)         e.product   = "Please select a product.";
+    if (!form.quantity.trim()) e.quantity  = "Quantity is required.";
+    if (!form.dateNeeded)      e.dateNeeded = "Please select a date needed.";
+    return e;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    setErrors({});
     setSubmitting(true);
     const { error } = await supabase.from("orders").insert({
       name: form.name,
@@ -172,9 +188,9 @@ export default function OrderDrawer({ open, onClose }: Props) {
                   placeholder="Israel Kaweesa"
                   value={form.name}
                   onChange={set("name")}
-                  required
-                  className={inputCls}
+                  className={`${inputCls} ${errors.name ? "border-red-500" : ""}`}
                 />
+                {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
               </div>
 
               <div>
@@ -185,9 +201,9 @@ export default function OrderDrawer({ open, onClose }: Props) {
                   placeholder="you@company.com"
                   value={form.email}
                   onChange={set("email")}
-                  required
-                  className={inputCls}
+                  className={`${inputCls} ${errors.email ? "border-red-500" : ""}`}
                 />
+                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
               </div>
 
               <div>
@@ -198,9 +214,9 @@ export default function OrderDrawer({ open, onClose }: Props) {
                   placeholder="+1 555 000 0000"
                   value={form.phone}
                   onChange={set("phone")}
-                  required
-                  className={inputCls}
+                  className={`${inputCls} ${errors.phone ? "border-red-500" : ""}`}
                 />
+                {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
               </div>
 
               <div>
@@ -209,14 +225,14 @@ export default function OrderDrawer({ open, onClose }: Props) {
                   id="order-country"
                   value={form.country}
                   onChange={set("country")}
-                  required
-                  className={`${inputCls} cursor-pointer bg-forest-900`}
+                  className={`${inputCls} cursor-pointer bg-forest-900 ${errors.country ? "border-red-500" : ""}`}
                 >
                   <option value="" disabled>Select your country…</option>
                   {countries.map((c) => (
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
+                {errors.country && <p className="text-red-400 text-xs mt-1">{errors.country}</p>}
               </div>
 
               <div>
@@ -225,14 +241,14 @@ export default function OrderDrawer({ open, onClose }: Props) {
                   id="order-product"
                   value={form.product}
                   onChange={set("product")}
-                  required
-                  className={`${inputCls} cursor-pointer bg-forest-900`}
+                  className={`${inputCls} cursor-pointer bg-forest-900 ${errors.product ? "border-red-500" : ""}`}
                 >
                   <option value="" disabled>Select a product…</option>
                   {products.map((p) => (
                     <option key={p} value={p}>{p}</option>
                   ))}
                 </select>
+                {errors.product && <p className="text-red-400 text-xs mt-1">{errors.product}</p>}
               </div>
 
               <div>
@@ -273,8 +289,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
                     placeholder="500"
                     value={form.quantity}
                     onChange={set("quantity")}
-                    required
-                    className={`${inputCls} flex-[3]`}
+                    className={`${inputCls} flex-[3] ${errors.quantity ? "border-red-500" : ""}`}
                   />
                   <select
                     value={form.unit}
@@ -285,6 +300,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
                     <option value="tonnes">tonnes</option>
                   </select>
                 </div>
+                {errors.quantity && <p className="text-red-400 text-xs mt-1">{errors.quantity}</p>}
               </div>
 
               <div>
@@ -294,10 +310,10 @@ export default function OrderDrawer({ open, onClose }: Props) {
                   type="date"
                   value={form.dateNeeded}
                   onChange={set("dateNeeded")}
-                  required
                   min={new Date().toISOString().split("T")[0]}
-                  className={`${inputCls} [color-scheme:dark]`}
+                  className={`${inputCls} [color-scheme:dark] ${errors.dateNeeded ? "border-red-500" : ""}`}
                 />
+                {errors.dateNeeded && <p className="text-red-400 text-xs mt-1">{errors.dateNeeded}</p>}
               </div>
 
               <button
