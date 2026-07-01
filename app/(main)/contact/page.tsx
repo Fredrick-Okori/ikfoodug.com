@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 
 const contactDetails = [
   { icon: Phone,   label: "Phone",          value: "+256 776 341 713",       href: "tel:+256776341713",           sub: "Mon–Fri, 8am–5pm EAT" },
-  { icon: Mail,    label: "Email",           value: "sales@ikfooduganda.com", href: "mailto:sales@ikfooduganda.com", sub: "Reply within 24 hours" },
+  { icon: Mail,    label: "Email",           value: "ikfoodugandalimited@gmail.com", href: "mailto:ikfoodugandalimited@gmail.com", sub: "Reply within 24 hours" },
   { icon: MapPin,  label: "Location",        value: "Kampala, Uganda",        href: null,                          sub: "East African headquarters" },
   { icon: Clock,   label: "Business Hours",  value: "Mon–Fri · 8am – 5pm",   href: null,                          sub: "EAT (UTC+3)" },
 ];
@@ -261,7 +261,7 @@ export default function ContactPage() {
           </div>
           <div className="text-center mt-10">
             <p className="text-white/40 text-sm mb-5">Still have questions?</p>
-            <Link href="mailto:sales@ikfooduganda.com" className="btn-gold">
+            <Link href="mailto:ikfoodugandalimited@gmail.com" className="btn-gold">
               Email Our Team
               <Mail className="w-4 h-4" aria-hidden="true" />
             </Link>
