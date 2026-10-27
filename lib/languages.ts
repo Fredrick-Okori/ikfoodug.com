@@ -16,6 +16,9 @@ export const languages = [
 ];
 export const languageCodes = languages.map(({ code }) => code);
 
+// localStorage key holding the visitor's explicit language choice.
+export const LANGUAGE_STORAGE_KEY = "ik_lang";
+
 // Visitor country (ISO 3166-1 alpha-2) → default site language. Unlisted countries stay English.
 export const countryLanguages: Record<string, string> = {
   KE: "sw", TZ: "sw", NL: "nl", IL: "he", IT: "it", DK: "da",
@@ -32,8 +35,10 @@ export const countryLanguages: Record<string, string> = {
 };
 
 /**
- * Inline <head> script. Runs before first paint: when a non-English `googtrans`
- * cookie is present it hides the page, loads Google Translate immediately, and
+ * Inline <head> script. Runs before first paint. A language saved in
+ * localStorage (the visitor's explicit choice) wins over the geo-detected
+ * cookie and is copied into `googtrans`. When the result is non-English it
+ * hides the page, loads Google Translate immediately, and
  * reveals the page only once the translation has been applied (6s safety cap).
  * Translation starts after React hydrates (GoogleTranslateSwitcher calls
  * `__ikTranslateHydrated`) so Google's DOM edits don't break hydration.
@@ -42,8 +47,18 @@ export const translateBootScript = `(function(){
   var d=document,h=d.documentElement;
   if(location.pathname.indexOf("/admin")===0)return;
   var m=d.cookie.match(/(?:^|;\\s*)googtrans=([^;]*)/);
-  var lang=m?decodeURIComponent(m[1]).split("/").pop():"";
-  if(!lang||lang==="en")return;
+  var lang=(m?decodeURIComponent(m[1]).split("/").pop():"")||"en";
+  var stored=null;
+  try{stored=localStorage.getItem(${JSON.stringify(LANGUAGE_STORAGE_KEY)});}catch(e){}
+  if(stored&&stored!==lang&&${JSON.stringify(languageCodes)}.indexOf(stored)>-1){
+    lang=stored;
+    var host=location.hostname,local=host==="localhost"||host==="127.0.0.1";
+    var exp="googtrans=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    d.cookie=exp;
+    if(!local){d.cookie=exp+"; domain="+host;d.cookie=exp+"; domain=."+host;}
+    if(lang!=="en")d.cookie="googtrans=/en/"+lang+"; path=/; max-age=31536000; samesite=lax"+(local?"":"; domain=."+host);
+  }
+  if(lang==="en")return;
 
   h.classList.add("gt-pending");
   var done=false;

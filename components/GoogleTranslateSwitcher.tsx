@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Globe2 } from "lucide-react";
-import { languageCodes, languages } from "@/lib/languages";
+import { LANGUAGE_STORAGE_KEY, languageCodes, languages } from "@/lib/languages";
 
 declare global {
   interface Window {
@@ -77,6 +77,11 @@ export default function GoogleTranslateSwitcher() {
     if (code === language) return;
 
     saveTranslationCookie(code);
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
+    } catch {
+      // Storage blocked (e.g. private mode): the cookie still carries the choice.
+    }
     setLanguage(code);
     window.location.reload();
   };
