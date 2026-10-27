@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { translateBootScript } from "@/lib/languages";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ikfoodug.com"),
@@ -75,8 +76,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: translateBootScript }} />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="apple-touch-icon" href="/favicon-32x32.png" />
         <meta name="geo.region" content="UG" />
