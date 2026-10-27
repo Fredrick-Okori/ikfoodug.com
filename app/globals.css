@@ -23,6 +23,21 @@
 @layer base {
   html { scroll-behavior: smooth; }
 
+  iframe.goog-te-banner-frame,
+  .goog-te-banner-frame,
+  .goog-te-banner,
+  .goog-te-balloon-frame,
+  #goog-gt-tt {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  html,
+  body {
+    top: 0 !important;
+    margin-top: 0 !important;
+  }
+
   body {
     @apply font-sans text-gray-900 bg-white antialiased;
     -webkit-font-smoothing: antialiased;

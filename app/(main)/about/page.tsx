@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import TeamCard from "@/components/TeamCard";
 
 export const metadata: Metadata = {
   title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
@@ -286,17 +287,10 @@ export default function AboutPage() {
             <span className="section-eyebrow">The People Behind IK Food</span>
             <h2 className="text-display-lg font-bold text-forest-950">Meet Our Team</h2>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="max-w-5xl mx-auto space-y-8">
             {team.map((m, i) => (
               <ScrollReveal key={m.name} delay={i * 80}>
-                <div className="surface-card p-7 group text-center">
-                  <div className="relative w-24 h-24 rounded-2xl overflow-hidden mx-auto mb-5 img-zoom">
-                    <Image src={m.image} alt={`Portrait of ${m.name}, ${m.role}`} fill className="object-cover" sizes="96px" />
-                  </div>
-                  <h3 className="font-bold text-forest-950 text-lg font-heading">{m.name}</h3>
-                  <p className="text-gold-600 font-medium text-xs tracking-widest uppercase mt-1 mb-3">{m.role}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{m.bio}</p>
-                </div>
+                <TeamCard member={m} index={i} />
               </ScrollReveal>
             ))}
           </div>

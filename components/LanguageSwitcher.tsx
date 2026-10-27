@@ -1,0 +1,304 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, Globe2 } from "lucide-react";
+
+const languages = [
+  { code: "en", name: "English" },
+  { code: "lg", name: "Luganda" },
+  { code: "sw", name: "Kiswahili" },
+  { code: "fr", name: "Français" },
+  { code: "de", name: "Deutsch" },
+  { code: "es", name: "Español" },
+  { code: "ar", name: "العربية" },
+  { code: "zh-CN", name: "中文" },
+  { code: "ja", name: "日本語" },
+  { code: "pt", name: "Português" },
+];
+
+const countryLanguages: Record<string, string> = {
+  UG: "lg",
+  KE: "sw",
+  TZ: "sw",
+  CD: "fr",
+  CG: "fr",
+  GA: "fr",
+  MG: "fr",
+  ML: "fr",
+  NE: "fr",
+  BF: "fr",
+  TG: "fr",
+  BJ: "fr",
+  DJ: "fr",
+  CF: "fr",
+  GQ: "fr",
+  RW: "fr",
+  BI: "fr",
+  FR: "fr",
+  BE: "fr",
+  LU: "fr",
+  SN: "fr",
+  CI: "fr",
+  CM: "fr",
+  CH: "de",
+  DE: "de",
+  AT: "de",
+  GT: "es",
+  HN: "es",
+  SV: "es",
+  NI: "es",
+  CR: "es",
+  PA: "es",
+  CU: "es",
+  DO: "es",
+  VE: "es",
+  PE: "es",
+  BO: "es",
+  EC: "es",
+  PY: "es",
+  UY: "es",
+  ES: "es",
+  MX: "es",
+  AR: "es",
+  CO: "es",
+  CL: "es",
+  IQ: "ar",
+  JO: "ar",
+  LB: "ar",
+  SY: "ar",
+  YE: "ar",
+  OM: "ar",
+  QA: "ar",
+  KW: "ar",
+  BH: "ar",
+  TN: "ar",
+  DZ: "ar",
+  LY: "ar",
+  SD: "ar",
+  PS: "ar",
+  SA: "ar",
+  AE: "ar",
+  EG: "ar",
+  MA: "ar",
+  CN: "zh-CN",
+  TW: "zh-CN",
+  HK: "zh-CN",
+  JP: "ja",
+  PT: "pt",
+  AO: "pt",
+  MZ: "pt",
+  BR: "pt",
+};
+
+const languageCodes = languages.map(({ code }) => code).join(",");
+const languagePreferenceKey = "ikfood-language-preference";
+
+declare global {
+  interface Window {
+    google?: {
+      translate?: {
+        TranslateElement: new (
+          options: {
+            pageLanguage: string;
+            includedLanguages: string;
+            autoDisplay: boolean;
+          },
+          elementId: string
+        ) => void;
+      };
+    };
+    googleTranslateElementInit?: () => void;
+  }
+}
+
+interface LanguageSwitcherProps {
+  className?: string;
+}
+
+export default function LanguageSwitcher({ className = "" }: LanguageSwitcherProps) {
+  const [language, setLanguage] = useState("en");
+  const [status, setStatus] = useState("");
+  const [open, setOpen] = useState(false);
+  const selectedByUser = useRef(false);
+  const activeLanguage = useRef("en");
+  const switcherRef = useRef<HTMLDivElement>(null);
+
+  const triggerGoogleTranslate = (code: string) => {
+    const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+    if (!select) return false;
+
+    select.value = code;
+    // Dispatch both change and input events to trigger Google Translate listeners
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+    select.dispatchEvent(new Event("input", { bubbles: true }));
+    return true;
+  };
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (event.target instanceof Node && !switcherRef.current?.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    // Continuously force top offset back to 0 without deleting or breaking the iframe
+    const resetBodyStyles = () => {
+      if (document.body.style.top !== "0px" && document.body.style.top !== "") {
+        document.body.style.setProperty("top", "0px", "important");
+      }
+      if (document.documentElement.style.top !== "0px" && document.documentElement.style.top !== "") {
+        document.documentElement.style.setProperty("top", "0px", "important");
+      }
+    };
+
+    resetBodyStyles();
+    const observer = new MutationObserver(resetBodyStyles);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["style"] });
+
+    const storedPreference = window.localStorage.getItem(languagePreferenceKey);
+    if (storedPreference && languages.some(({ code }) => code === storedPreference)) {
+      selectedByUser.current = true;
+      activeLanguage.current = storedPreference;
+      setLanguage(storedPreference);
+    } else {
+      const detectCountryLanguage = async () => {
+        try {
+          const response = await fetch("https://ipapi.co/json/", {
+            signal: AbortSignal.timeout(4000),
+          });
+          if (!response.ok) {
+            throw new Error(`Country lookup failed (${response.status})`);
+          }
+          const result: { country_code?: string } = await response.json();
+          const detectedLanguage = countryLanguages[result.country_code ?? ""] ?? "en";
+          if (selectedByUser.current) return;
+          activeLanguage.current = detectedLanguage;
+          setLanguage(detectedLanguage);
+          triggerGoogleTranslate(detectedLanguage);
+        } catch {
+          setStatus("Automatic language detection unavailable; English is selected.");
+        }
+      };
+
+      void detectCountryLanguage();
+    }
+
+    const applySavedLanguage = (attempt = 0) => {
+      if (activeLanguage.current === "en") return;
+      const success = triggerGoogleTranslate(activeLanguage.current);
+      if (!success && attempt < 25) {
+        window.setTimeout(() => applySavedLanguage(attempt + 1), 200);
+      }
+    };
+
+    window.googleTranslateElementInit = () => {
+      if (!window.google?.translate?.TranslateElement) {
+        setStatus("The translation service is currently unavailable.");
+        return;
+      }
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: languageCodes,
+          autoDisplay: false,
+        },
+        "google_translate_element"
+      );
+      window.setTimeout(applySavedLanguage, 200);
+    };
+
+    if (!document.querySelector("script[data-ik-google-translate]")) {
+      const script = document.createElement("script");
+      script.src =
+        "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      script.dataset.ikGoogleTranslate = "true";
+      script.onerror = () => setStatus("The translation service is currently unavailable.");
+      document.head.appendChild(script);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const changeLanguage = (code: string) => {
+    selectedByUser.current = true;
+    activeLanguage.current = code;
+    setLanguage(code);
+    setStatus("");
+    window.localStorage.setItem(languagePreferenceKey, code);
+    setOpen(false);
+
+    triggerGoogleTranslate(code);
+  };
+
+  const selectedLanguage = languages.find(({ code }) => code === language) ?? languages[0];
+
+  return (
+    <>
+      <div
+        ref={switcherRef}
+        className={`fixed right-4 bottom-5 z-[55] sm:right-6 sm:bottom-7 ${className}`}
+      >
+        {open && (
+          <div
+            id="language-switcher-options"
+            className="absolute right-0 bottom-full mb-3 max-h-[min(70vh,28rem)] w-56 overflow-y-auto rounded-2xl border border-white/10 bg-forest-900 p-2 shadow-2xl"
+            role="menu"
+            aria-label="Choose language"
+          >
+            {languages.map(({ code, name }) => (
+              <button
+                key={code}
+                type="button"
+                role="menuitemradio"
+                aria-checked={language === code}
+                onClick={() => changeLanguage(code)}
+                className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              >
+                {name}
+                {language === code && (
+                  <Check className="h-4 w-4 text-gold-400" aria-hidden="true" />
+                )}
+              </button>
+            ))}
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={() => setOpen((isOpen) => !isOpen)}
+          aria-expanded={open}
+          aria-controls="language-switcher-options"
+          aria-label={`Language: ${selectedLanguage.name}. ${open ? "Close" : "Choose"} language`}
+          title={status || "Choose site language"}
+          className="inline-flex min-h-12 items-center gap-2 rounded-full border border-gold-400/40 bg-forest-900 px-4 text-sm font-semibold text-gold-400 shadow-[0_8px_28px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:border-gold-400 hover:bg-forest-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+        >
+          <Globe2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span>{selectedLanguage.code.toUpperCase()}</span>
+          <ChevronDown
+            className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div id="google_translate_element" style={{ display: "none" }} aria-hidden="true" />
+      <span className="sr-only" aria-live="polite">
+        {status}
+      </span>
+    </>
+  );
+}
