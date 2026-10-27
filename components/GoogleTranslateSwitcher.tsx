@@ -101,8 +101,6 @@ const countryLanguages: Record<string, string> = {
   BR: "pt",
 };
 
-const languagePreferenceKey = "ikfood-language-preference";
-
 interface TranslatorSetup {
   domain: string;
 }
@@ -133,20 +131,11 @@ export default function GoogleTranslateSwitcher() {
     let cancelled = false;
     const domain = window.location.hostname;
     const cookieLanguage = getTranslationCookieLanguage();
-    const savedPreference = window.localStorage
-      .getItem(languagePreferenceKey)
-      ?.toLowerCase();
-    const preferredLanguage =
-      cookieLanguage ??
-      (savedPreference && languageCodes.includes(savedPreference)
-        ? savedPreference
-        : undefined);
 
     const initialize = async () => {
-      if (preferredLanguage) {
-        if (!cookieLanguage) saveTranslationCookie(preferredLanguage);
+      if (cookieLanguage) {
         if (!cancelled) {
-          setLanguage(preferredLanguage);
+          setLanguage(cookieLanguage);
           setSetup({ domain });
         }
         return;
@@ -214,7 +203,6 @@ export default function GoogleTranslateSwitcher() {
     }
 
     saveTranslationCookie(code);
-    window.localStorage.setItem(languagePreferenceKey, code);
     window.location.reload();
   };
 
@@ -236,7 +224,6 @@ export default function GoogleTranslateSwitcher() {
           placeholder="Choose language"
           onLanguageChange={(nextLanguage) => {
             setLanguage(nextLanguage.toLowerCase());
-            window.localStorage.setItem(languagePreferenceKey, nextLanguage);
           }}
         />
       )}
