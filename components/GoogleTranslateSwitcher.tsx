@@ -7,7 +7,6 @@ import { Check, ChevronDown, Globe2 } from "lucide-react";
 const languages = [
   { code: "en", name: "English", abbreviation: "Eng" },
   { code: "nl", name: "Nederlands", abbreviation: "NL" },
-
   { code: "sw", name: "Kiswahili", abbreviation: "SW" },
   { code: "ru", name: "Русский", abbreviation: "RUS" },
   { code: "fr", name: "Français", abbreviation: "FR" },
@@ -24,144 +23,101 @@ const languages = [
 const languageCodes = languages.map(({ code }) => code);
 
 const countryLanguages: Record<string, string> = {
-  UG: "lg",
-  KE: "sw",
-  TZ: "sw",
-  NL: "nl",
-  IL: "he",
-  IT: "it",
-  DK: "da",
-  CD: "fr",
-  CG: "fr",
-  GA: "fr",
-  MG: "fr",
-  ML: "fr",
-  NE: "fr",
-  BF: "fr",
-  TG: "fr",
-  BJ: "fr",
-  DJ: "fr",
-  CF: "fr",
-  GQ: "fr",
-  RW: "fr",
-  BI: "fr",
-  FR: "fr",
-  BE: "fr",
-  LU: "fr",
-  SN: "fr",
-  CI: "fr",
-  CM: "fr",
-  CH: "de",
-  DE: "de",
-  AT: "de",
-  GT: "es",
-  HN: "es",
-  SV: "es",
-  NI: "es",
-  CR: "es",
-  PA: "es",
-  CU: "es",
-  DO: "es",
-  VE: "es",
-  PE: "es",
-  BO: "es",
-  EC: "es",
-  PY: "es",
-  UY: "es",
-  ES: "es",
-  MX: "es",
-  AR: "es",
-  CO: "es",
-  CL: "es",
-  IQ: "ar",
-  JO: "ar",
-  LB: "ar",
-  SY: "ar",
-  YE: "ar",
-  OM: "ar",
-  QA: "ar",
-  KW: "ar",
-  BH: "ar",
-  TN: "ar",
-  DZ: "ar",
-  LY: "ar",
-  SD: "ar",
-  PS: "ar",
-  SA: "ar",
-  AE: "ar",
-  EG: "ar",
-  MA: "ar",
-  CN: "zh-cn",
-  TW: "zh-cn",
-  HK: "zh-cn",
-  JP: "ja",
-  PT: "pt",
-  AO: "pt",
-  MZ: "pt",
-  BR: "pt",
+  UG: "lg", KE: "sw", TZ: "sw", NL: "nl", IL: "he", IT: "it", DK: "da",
+  CD: "fr", CG: "fr", GA: "fr", MG: "fr", ML: "fr", NE: "fr", BF: "fr",
+  TG: "fr", BJ: "fr", DJ: "fr", CF: "fr", GQ: "fr", RW: "fr", BI: "fr",
+  FR: "fr", BE: "fr", LU: "fr", SN: "fr", CI: "fr", CM: "fr", CH: "de",
+  DE: "de", AT: "de", GT: "es", HN: "es", SV: "es", NI: "es", CR: "es",
+  PA: "es", CU: "es", DO: "es", VE: "es", PE: "es", BO: "es", EC: "es",
+  PY: "es", UY: "es", ES: "es", MX: "es", AR: "es", CO: "es", CL: "es",
+  IQ: "ar", JO: "ar", LB: "ar", SY: "ar", YE: "ar", OM: "ar", QA: "ar",
+  KW: "ar", BH: "ar", TN: "ar", DZ: "ar", LY: "ar", SD: "ar", PS: "ar",
+  SA: "ar", AE: "ar", EG: "ar", MA: "ar", CN: "zh-cn", TW: "zh-cn",
+  HK: "zh-cn", JP: "ja", PT: "pt", AO: "pt", MZ: "pt", BR: "pt",
 };
 
 interface TranslatorSetup {
   domain: string;
 }
 
-function getTranslationCookieLanguage() {
+// Synchronous cookie getter (safe for lazy state init)
+function getTranslationCookieLanguage(): string {
+  if (typeof document === "undefined") return "en";
   const cookie = document.cookie
     .split("; ")
     .find((entry) => entry.startsWith("googtrans="))
     ?.slice("googtrans=".length);
 
-  if (!cookie) return undefined;
+  if (!cookie) return "en";
   const code = decodeURIComponent(cookie).split("/").pop()?.toLowerCase();
-  return code && languageCodes.includes(code) ? code : undefined;
+  return code && languageCodes.includes(code) ? code : "en";
 }
 
-function saveTranslationCookie(language: string, domain: string) {
-  const cookie = `googtrans=/en/${language}; path=/; max-age=31536000; samesite=lax`;
-  document.cookie = cookie;
+function saveTranslationCookie(targetLanguage: string, currentLanguage: string, domain: string) {
+  if (targetLanguage === "en") {
+    const pastDate = "Expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = `googtrans=; ${pastDate}; path=/;`;
+    if (domain && domain !== "localhost" && domain !== "127.0.0.1") {
+      document.cookie = `googtrans=; ${pastDate}; path=/; domain=${domain}`;
+      document.cookie = `googtrans=; ${pastDate}; path=/; domain=.${domain}`;
+    }
+    return;
+  }
 
-  if (domain !== "localhost" && domain !== "127.0.0.1") {
-    document.cookie = `${cookie}; domain=${domain}`;
+  const sourceLang = currentLanguage && currentLanguage !== targetLanguage ? currentLanguage : "en";
+  const cookieVal = `googtrans=/${sourceLang}/${targetLanguage}; path=/; max-age=31536000; samesite=lax`;
+
+  // Clear stale cookies
+  document.cookie = `googtrans=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  if (domain && domain !== "localhost" && domain !== "127.0.0.1") {
+    document.cookie = `googtrans=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${domain}`;
+  }
+
+  // Set fresh cookie
+  if (domain && domain !== "localhost" && domain !== "127.0.0.1") {
+    document.cookie = `${cookieVal}; domain=.${domain}`;
+  } else {
+    document.cookie = cookieVal;
   }
 }
 
 export default function GoogleTranslateSwitcher() {
   const [setup, setSetup] = useState<TranslatorSetup | null>(null);
   const [status, setStatus] = useState("");
-  const [language, setLanguage] = useState("en");
+  // Lazy state initialization ensures the initial state is ALREADY the saved cookie language on 1st render
+  const [language, setLanguage] = useState<string>(() => getTranslationCookieLanguage());
   const [open, setOpen] = useState(false);
   const switcherRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
     const domain = window.location.hostname;
-    const cookieLanguage = getTranslationCookieLanguage();
+    const activeCookieLang = getTranslationCookieLanguage();
 
     const initialize = async () => {
-      if (cookieLanguage) {
+      // If user already has a saved cookie, do NOT run location detection
+      if (activeCookieLang !== "en") {
         if (!cancelled) {
-          setLanguage(cookieLanguage);
           setSetup({ domain });
         }
         return;
       }
 
+      // Geo-IP detection ONLY runs if no language preference was saved yet
       try {
         const response = await fetch("https://ipapi.co/json/", {
           signal: AbortSignal.timeout(4000),
         });
-        if (!response.ok) {
-          throw new Error(`Country lookup failed (${response.status})`);
-        }
+        if (!response.ok) throw new Error(`Country lookup failed (${response.status})`);
 
         const result: { country_code?: string } = await response.json();
-        const detectedLanguage =
-          countryLanguages[result.country_code ?? ""] ?? "en";
-        if (!cancelled) {
-          if (detectedLanguage !== "en") {
-            saveTranslationCookie(detectedLanguage, domain);
-          }
+        const detectedLanguage = countryLanguages[result.country_code ?? ""] ?? "en";
+
+        if (!cancelled && detectedLanguage !== "en") {
+          saveTranslationCookie(detectedLanguage, "en", domain);
           setLanguage(detectedLanguage);
+          window.location.reload();
+          return;
         }
       } catch {
         setStatus("Automatic location detection is unavailable. English is selected.");
@@ -197,9 +153,15 @@ export default function GoogleTranslateSwitcher() {
   }, [open]);
 
   const changeLanguage = (code: string) => {
+    if (code === language) {
+      setOpen(false);
+      return;
+    }
+
+    const domain = setup?.domain ?? window.location.hostname;
+    saveTranslationCookie(code, language, domain);
     setLanguage(code);
     setOpen(false);
-    saveTranslationCookie(code, setup?.domain ?? window.location.hostname);
     window.location.reload();
   };
 
@@ -220,7 +182,10 @@ export default function GoogleTranslateSwitcher() {
           className="ik-google-translate"
           placeholder="Choose language"
           onLanguageChange={(nextLanguage) => {
-            setLanguage(nextLanguage.toLowerCase());
+            const nextCode = nextLanguage.toLowerCase();
+            if (nextCode !== language && languageCodes.includes(nextCode)) {
+              setLanguage(nextCode);
+            }
           }}
         />
       )}
