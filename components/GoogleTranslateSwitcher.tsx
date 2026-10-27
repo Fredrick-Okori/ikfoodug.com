@@ -116,8 +116,13 @@ function getTranslationCookieLanguage() {
   return code && languageCodes.includes(code) ? code : undefined;
 }
 
-function saveTranslationCookie(language: string) {
-  document.cookie = `googtrans=/en/${language}; path=/; max-age=31536000; samesite=lax`;
+function saveTranslationCookie(language: string, domain: string) {
+  const cookie = `googtrans=/en/${language}; path=/; max-age=31536000; samesite=lax`;
+  document.cookie = cookie;
+
+  if (domain !== "localhost" && domain !== "127.0.0.1") {
+    document.cookie = `${cookie}; domain=${domain}`;
+  }
 }
 
 export default function GoogleTranslateSwitcher() {
@@ -153,7 +158,9 @@ export default function GoogleTranslateSwitcher() {
         const detectedLanguage =
           countryLanguages[result.country_code ?? ""] ?? "en";
         if (!cancelled) {
-          if (detectedLanguage !== "en") saveTranslationCookie(detectedLanguage);
+          if (detectedLanguage !== "en") {
+            saveTranslationCookie(detectedLanguage, domain);
+          }
           setLanguage(detectedLanguage);
         }
       } catch {
@@ -192,17 +199,7 @@ export default function GoogleTranslateSwitcher() {
   const changeLanguage = (code: string) => {
     setLanguage(code);
     setOpen(false);
-
-    const select = document.querySelector<HTMLSelectElement>(
-      ".ik-google-translate .language-selector",
-    );
-    if (select) {
-      select.value = code;
-      select.dispatchEvent(new Event("change", { bubbles: true }));
-      return;
-    }
-
-    saveTranslationCookie(code);
+    saveTranslationCookie(code, setup?.domain ?? window.location.hostname);
     window.location.reload();
   };
 
