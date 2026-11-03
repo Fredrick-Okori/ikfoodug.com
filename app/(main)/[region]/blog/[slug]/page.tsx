@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link } from "@/components/RegionProvider";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { supabase, type BlogPost } from "@/lib/supabase";
+import { getRegion, regionAlternates } from "@/lib/regions";
 
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ region: string; slug: string }> }): Promise<Metadata> {
+  const { region, slug } = await params;
   const { data } = await supabase.from("blog_posts").select("title,excerpt").eq("slug", slug).single();
   if (!data) return { title: "Post Not Found | IK Food Uganda" };
   return {
     title: `${data.title} | IK Food Uganda Blog`,
     description: data.excerpt ?? undefined,
-    alternates: { canonical: `https://ikfoodug.com/blog/${slug}` },
+    alternates: regionAlternates(getRegion(region).code, `/blog/${slug}`),
   };
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function BlogPostPage({ params }: { params: Promise<{ region: string; slug: string }> }) {
+  const { region, slug } = await params;
   const { data: post } = await supabase
     .from("blog_posts").select("*").eq("slug", slug).eq("published", true).single();
 
   if (!post) notFound();
   const p = post as BlogPost;
-  const date = new Date(p.published_at ?? p.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const date = new Date(p.published_at ?? p.created_at).toLocaleDateString(getRegion(region).locale, { day: "numeric", month: "long", year: "numeric" });
 
   return (
     <>

@@ -2,6 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { Mail, MessageSquare, RefreshCw, ChevronDown, ChevronUp, Building2, Phone } from "lucide-react";
+import AdminRegionFilter, { rowRegion, type RegionFilter } from "./AdminRegionFilter";
+import { regions } from "@/lib/regions";
 import { type Enquiry, type EnquiryStatus } from "@/lib/supabase";
 import { updateEnquiryStatus } from "@/app/admin/actions";
 
@@ -86,6 +88,7 @@ function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
           </div>
           <div className="sm:col-span-1 flex items-center gap-2 flex-wrap">
             <StatusBadge status={enquiry.status} />
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/30">{regions[rowRegion(enquiry)].countryCode}</span>
           </div>
           <div className="sm:col-span-1 flex items-center justify-between gap-3">
             <p className="text-xs text-gray-400 dark:text-white/30">{fmt(enquiry.created_at)}</p>
@@ -130,7 +133,7 @@ function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
           <div className="flex items-center gap-3 flex-wrap">
             <StatusSelect id={enquiry.id} current={enquiry.status} />
             <a
-              href={`mailto:${enquiry.email}?subject=Re: ${encodeURIComponent(enquiry.enquiry_type)} — IK Food Uganda`}
+              href={`mailto:${enquiry.email}?subject=Re: ${encodeURIComponent(enquiry.enquiry_type)} — ${regions[rowRegion(enquiry)].name}`}
               className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-forest-950 dark:bg-gold-400 text-white dark:text-forest-950 hover:opacity-90 transition-opacity"
             >
               <Mail className="w-3.5 h-3.5" />
@@ -143,8 +146,10 @@ function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
   );
 }
 
-export default function AdminEnquiries({ enquiries }: { enquiries: Enquiry[] }) {
+export default function AdminEnquiries({ enquiries: all }: { enquiries: Enquiry[] }) {
   const [filter, setFilter] = useState<EnquiryStatus | "all">("all");
+  const [site, setSite] = useState<RegionFilter>("all");
+  const enquiries = site === "all" ? all : all.filter((x) => rowRegion(x) === site);
 
   const counts = {
     all:      enquiries.length,
@@ -171,13 +176,16 @@ export default function AdminEnquiries({ enquiries }: { enquiries: Enquiry[] }) 
           <h1 className="text-xl font-bold font-heading text-gray-900 dark:text-white">Enquiries</h1>
           <p className="text-gray-500 dark:text-white/35 text-sm mt-0.5">Messages submitted via the contact form</p>
         </div>
-        <button
-          onClick={() => window.location.reload()}
-          className="flex items-center gap-2 text-xs text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 px-3 py-2 rounded-xl transition-all bg-white dark:bg-transparent"
-        >
-          <RefreshCw className="w-3.5 h-3.5" />
-          Refresh
-        </button>
+        <div className="flex items-center gap-2">
+          <AdminRegionFilter value={site} onChange={setSite} />
+          <button
+            onClick={() => window.location.reload()}
+            className="flex items-center gap-2 text-xs text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 px-3 py-2 rounded-xl transition-all bg-white dark:bg-transparent"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            Refresh
+          </button>
+        </div>
       </div>
 
       {/* Stats */}

@@ -5,12 +5,13 @@ export const languages = [
   { code: "ru", name: "Русский", abbreviation: "RUS" },
   { code: "fr", name: "Français", abbreviation: "FR" },
   { code: "de", name: "Deutsch", abbreviation: "DE" },
-  { code: "he", name: "עברית", abbreviation: "HE" },
+  // Google Translate still uses the legacy "iw" code for Hebrew and a case-sensitive "zh-CN".
+  { code: "iw", name: "עברית", abbreviation: "HE" },
   { code: "it", name: "Italiano", abbreviation: "IT" },
   { code: "da", name: "Dansk", abbreviation: "DA" },
   { code: "es", name: "Español", abbreviation: "ES" },
   { code: "ar", name: "العربية", abbreviation: "AR" },
-  { code: "zh-cn", name: "中文", abbreviation: "ZH" },
+  { code: "zh-CN", name: "中文", abbreviation: "ZH" },
   { code: "ja", name: "日本語", abbreviation: "JA" },
   { code: "pt", name: "Português", abbreviation: "PT" },
 ];
@@ -18,7 +19,7 @@ export const languageCodes = languages.map(({ code }) => code);
 
 // Visitor country (ISO 3166-1 alpha-2) → default site language. Unlisted countries stay English.
 export const countryLanguages: Record<string, string> = {
-  KE: "sw", TZ: "sw", NL: "nl", IL: "he", IT: "it", DK: "da",
+  KE: "sw", TZ: "sw", NL: "nl", IL: "iw", IT: "it", DK: "da",
   CD: "fr", CG: "fr", GA: "fr", MG: "fr", ML: "fr", NE: "fr", BF: "fr",
   TG: "fr", BJ: "fr", DJ: "fr", CF: "fr", GQ: "fr", RW: "fr", BI: "fr",
   FR: "fr", BE: "fr", LU: "fr", SN: "fr", CI: "fr", CM: "fr", CH: "de",
@@ -27,8 +28,8 @@ export const countryLanguages: Record<string, string> = {
   PY: "es", UY: "es", ES: "es", MX: "es", AR: "es", CO: "es", CL: "es",
   IQ: "ar", JO: "ar", LB: "ar", SY: "ar", YE: "ar", OM: "ar", QA: "ar",
   KW: "ar", BH: "ar", TN: "ar", DZ: "ar", LY: "ar", SD: "ar", PS: "ar",
-  SA: "ar", AE: "ar", EG: "ar", MA: "ar", CN: "zh-cn", TW: "zh-cn",
-  HK: "zh-cn", JP: "ja", PT: "pt", AO: "pt", MZ: "pt", BR: "pt",
+  SA: "ar", AE: "ar", EG: "ar", MA: "ar", CN: "zh-CN", TW: "zh-CN",
+  HK: "zh-CN", JP: "ja", PT: "pt", AO: "pt", MZ: "pt", BR: "pt",
 };
 
 /**
@@ -64,9 +65,12 @@ export const translateBootScript = `(function(){
     el.className="ik-google-translate";
     el.setAttribute("aria-hidden","true");
     d.body.appendChild(el);
+    // Google sets translated-ltr/rtl before the translations arrive; wait until
+    // translated text (wrapped in <font>) is in the page, then for it to settle.
     var quiet,cap;
     var mo=new MutationObserver(function(){
       if(!/translated-(ltr|rtl)/.test(h.className))return;
+      if(!d.querySelector("#main-content font"))return;
       if(!cap)cap=setTimeout(finish,1500);
       clearTimeout(quiet);quiet=setTimeout(finish,250);
     });

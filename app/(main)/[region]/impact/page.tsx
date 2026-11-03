@@ -1,11 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
+import { getRegion, withRegion } from "@/lib/regions";
+import { localize } from "@/lib/localize";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link } from "@/components/RegionProvider";
 import { ArrowRight, Leaf, Globe2, Users, ShieldCheck, Sprout, Award } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Our Impact | IK Food Uganda",
   description:
     "IK Food Uganda, one of the top vanilla exporters in Uganda, established in 2015, is a premier exporter of premium natural vanilla committed to sustainable farming, farmer empowerment, and world-class quality standards.",
@@ -70,8 +72,14 @@ const products = [
   { name: "Vanilla",       note: <><strong>1.5–2.5% vanillin</strong>, world-leading grade</>,  image: "/IMG_4873_converted.avif" },
 ];
 
-export default function ImpactPage() {
-  return (
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/impact");
+}
+
+export default async function ImpactPage({ params }: { params: Promise<{ region: string }> }) {
+  const r = getRegion((await params).region);
+  return localize(
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
@@ -500,6 +508,7 @@ export default function ImpactPage() {
           </ScrollReveal>
         </div>
       </section>
-    </>
+    </>,
+    r.code,
   );
 }

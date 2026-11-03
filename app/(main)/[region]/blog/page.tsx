@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { getRegion, withRegion } from "@/lib/regions";
+import { localize } from "@/lib/localize";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link } from "@/components/RegionProvider";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import NewsletterForm from "@/components/NewsletterForm";
 import { supabase, type BlogPost } from "@/lib/supabase";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Vanilla Insights & Export Resources | IK Food Uganda Blog",
   description:
     "Expert insights on Ugandan vanilla, why Uganda ranks among the top vanilla-producing countries, how it compares to Madagascar and Zanzibar, and practical export guides from IK Food Uganda — one of Uganda's top vanilla companies.",
@@ -56,7 +58,13 @@ const blogArticlesJsonLd = {
   blogPost: [],
 };
 
-export default async function BlogPage() {
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/blog");
+}
+
+export default async function BlogPage({ params }: { params: Promise<{ region: string }> }) {
+  const r = getRegion((await params).region);
   const { data } = await supabase
     .from("blog_posts")
     .select("*")
@@ -68,7 +76,7 @@ export default async function BlogPage() {
   const posts = dbPosts.map((p) => ({
     slug: p.slug,
     title: p.title,
-    date: new Date(p.published_at ?? p.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+    date: new Date(p.published_at ?? p.created_at).toLocaleDateString(r.locale, { day: "numeric", month: "short", year: "numeric" }),
     dateISO: p.published_at ?? p.created_at,
     category: p.category,
     readTime: p.read_time,
@@ -80,7 +88,7 @@ export default async function BlogPage() {
   const featured = posts.find((p) => p.featured) ?? posts[0] ?? null;
   const regular = posts.filter((p) => p !== featured);
 
-  return (
+  return localize(
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogArticlesJsonLd) }} />
@@ -245,6 +253,7 @@ export default async function BlogPage() {
           </ScrollReveal>
         </div>
       </section>
-    </>
+    </>,
+    r.code,
   );
 }

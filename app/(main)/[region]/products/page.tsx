@@ -1,12 +1,14 @@
 import React from "react";
 import type { Metadata } from "next";
+import { getRegion, withRegion } from "@/lib/regions";
+import { localize } from "@/lib/localize";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link } from "@/components/RegionProvider";
 import { CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import PlaceOrderButton from "@/components/PlaceOrderButton";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Premium Ugandan Vanilla & Natural Products | IK Food Uganda",
   description:
     "Buy premium natural vanilla beans from one of the top vanilla exporters in Uganda. IK Food Uganda exports export-grade, fully certified natural vanilla trusted by buyers worldwide.",
@@ -285,8 +287,14 @@ const products = [
   },
 ];
 
-export default function ProductsPage() {
-  return (
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/products");
+}
+
+export default async function ProductsPage({ params }: { params: Promise<{ region: string }> }) {
+  const r = getRegion((await params).region);
+  return localize(
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productCatalogueJsonLd) }} />
@@ -429,6 +437,7 @@ export default function ProductsPage() {
           </ScrollReveal>
         </div>
       </section>
-    </>
+    </>,
+    r.code,
   );
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useRegion } from "./RegionProvider";
 
 interface Props {
   open: boolean;
@@ -55,7 +56,9 @@ const initialForm = {
 };
 
 export default function OrderDrawer({ open, onClose }: Props) {
-  const [form, setForm] = useState(initialForm);
+  const region = useRegion();
+  const regionForm = { ...initialForm, country: region.orderCountry, unit: region.units[0] };
+  const [form, setForm] = useState(regionForm);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof typeof initialForm, string>>>({});
@@ -73,7 +76,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
 
   useEffect(() => {
     if (!open) {
-      setTimeout(() => { setForm(initialForm); setSubmitted(false); }, 400);
+      setTimeout(() => { setForm(regionForm); setSubmitted(false); }, 400);
     }
   }, [open]);
 
@@ -113,6 +116,8 @@ export default function OrderDrawer({ open, onClose }: Props) {
       quantity: form.quantity,
       unit: form.unit,
       date_needed: form.dateNeeded || null,
+      // The column defaults to "ug", so Uganda orders keep working before the region migration runs.
+      ...(region.code !== "ug" && { region: region.code }),
     });
     setSubmitting(false);
     if (!error) {
@@ -151,7 +156,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
         {/* Header */}
         <div className="flex items-start justify-between px-8 pt-8 pb-5 border-b border-white/8 shrink-0">
           <div>
-            <p className="label-tag text-gold-400 mb-1">IK Food Uganda</p>
+            <p className="label-tag text-gold-400 mb-1">{region.name}</p>
             <h2 className="text-xl font-bold font-heading text-white">Place an Order</h2>
           </div>
           <button
@@ -296,8 +301,9 @@ export default function OrderDrawer({ open, onClose }: Props) {
                     onChange={set("unit")}
                     className={`${inputCls} flex-[1] cursor-pointer bg-forest-900`}
                   >
-                    <option value="kg">kg</option>
-                    <option value="tonnes">tonnes</option>
+                    {region.units.map((u) => (
+                      <option key={u} value={u}>{u}</option>
+                    ))}
                   </select>
                 </div>
                 {errors.quantity && <p className="text-red-400 text-xs mt-1">{errors.quantity}</p>}

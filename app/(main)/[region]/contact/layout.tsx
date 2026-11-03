@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { getRegion, withRegion } from "@/lib/regions";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Contact IK Food Uganda | Order Vanilla & Natural Products",
   description:
     "Get in touch with IK Food Uganda — one of the top vanilla companies in Uganda. Place orders for premium natural vanilla beans for export to your country.",
@@ -22,6 +23,11 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "https://ikfoodug.com/contact" },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/contact");
+}
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

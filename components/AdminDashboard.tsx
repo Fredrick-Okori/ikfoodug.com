@@ -2,6 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { Package, Clock, CheckCircle2, Users, RefreshCw } from "lucide-react";
+import AdminRegionFilter, { rowRegion, type RegionFilter } from "./AdminRegionFilter";
+import { regions } from "@/lib/regions";
 import { type Order, type OrderStatus } from "@/lib/supabase";
 import { updateOrderStatus } from "@/app/admin/actions";
 
@@ -49,8 +51,10 @@ function fmt(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 }
 
-export default function AdminDashboard({ orders }: { orders: Order[] }) {
+export default function AdminDashboard({ orders: all }: { orders: Order[] }) {
   const [filter, setFilter] = useState<OrderStatus | "all">("all");
+  const [site, setSite] = useState<RegionFilter>("all");
+  const orders = site === "all" ? all : all.filter((x) => rowRegion(x) === site);
 
   const counts = {
     all:       orders.length,
@@ -79,13 +83,16 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
           <h1 className="text-xl font-bold font-heading text-gray-900 dark:text-white">Orders</h1>
           <p className="text-gray-500 dark:text-white/35 text-sm mt-0.5">Manage and track all placed orders</p>
         </div>
-        <button
-          onClick={() => window.location.reload()}
-          className="flex items-center gap-2 text-xs text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 px-3 py-2 rounded-xl transition-all bg-white dark:bg-transparent"
-        >
-          <RefreshCw className="w-3.5 h-3.5" />
-          Refresh
-        </button>
+        <div className="flex items-center gap-2">
+          <AdminRegionFilter value={site} onChange={setSite} />
+          <button
+            onClick={() => window.location.reload()}
+            className="flex items-center gap-2 text-xs text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 px-3 py-2 rounded-xl transition-all bg-white dark:bg-transparent"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            Refresh
+          </button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -131,7 +138,7 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 dark:border-white/8">
-                  {["Date", "Customer", "Phone", "Country", "Product", "Type", "Quantity", "Date Needed", "Status", "Update"].map((h) => (
+                  {["Date", "Site", "Customer", "Phone", "Country", "Product", "Type", "Quantity", "Date Needed", "Status", "Update"].map((h) => (
                     <th key={h} className="text-left px-5 py-4 text-[11px] font-semibold text-gray-400 dark:text-white/30 uppercase tracking-widest whitespace-nowrap">
                       {h}
                     </th>
@@ -142,6 +149,7 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
                 {visible.map((order) => (
                   <tr key={order.id} className="hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors">
                     <td className="px-5 py-4 text-gray-400 dark:text-white/40 whitespace-nowrap text-xs">{fmt(order.created_at)}</td>
+                    <td className="px-5 py-4 text-gray-500 dark:text-white/45 whitespace-nowrap text-xs">{regions[rowRegion(order)].countryCode}</td>
                     <td className="px-5 py-4 whitespace-nowrap">
                       <p className="font-medium text-gray-900 dark:text-white">{order.name}</p>
                       <p className="text-xs text-gray-400 dark:text-white/35 mt-0.5">{order.email}</p>
@@ -172,7 +180,7 @@ export default function AdminDashboard({ orders }: { orders: Order[] }) {
             </table>
           </div>
           <div className="px-5 py-3 border-t border-gray-100 dark:border-white/6 text-xs text-gray-400 dark:text-white/20">
-            Showing {visible.length} of {orders.length} orders
+            Showing {visible.length} of {all.length} orders
           </div>
         </div>
       )}

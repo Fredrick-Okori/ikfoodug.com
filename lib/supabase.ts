@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import type { RegionCode } from "./regions";
 
 export type OrderStatus = "new" | "contacted" | "confirmed" | "completed" | "cancelled";
 
@@ -15,6 +16,7 @@ export interface Order {
   unit: string;
   date_needed: string | null;
   status: OrderStatus;
+  region?: RegionCode | null;
 }
 
 export type EnquiryStatus = "unread" | "read" | "replied" | "archived";
@@ -29,6 +31,7 @@ export interface Enquiry {
   enquiry_type: string;
   message: string;
   status: EnquiryStatus;
+  region?: RegionCode | null;
 }
 
 export interface GalleryItem {

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { getRegion, withRegion } from "@/lib/regions";
+import { localize } from "@/lib/localize";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link } from "@/components/RegionProvider";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Vanilla Export Case Studies | IK Food Uganda",
   description:
     "Real-world case studies from IK Food Uganda — one of the top vanilla companies in Uganda — on exporting premium natural vanilla and fresh produce to Europe and Asia.",
@@ -109,8 +111,14 @@ const studies = [
   },
 ];
 
-export default function CaseStudiesPage() {
-  return (
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/case-studies");
+}
+
+export default async function CaseStudiesPage({ params }: { params: Promise<{ region: string }> }) {
+  const r = getRegion((await params).region);
+  return localize(
     <>
       {/* ── Hero ── */}
       <section className="relative min-h-[60vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Case studies hero">
@@ -260,6 +268,7 @@ export default function CaseStudiesPage() {
           </ScrollReveal>
         </div>
       </section>
-    </>
+    </>,
+    r.code,
   );
 }

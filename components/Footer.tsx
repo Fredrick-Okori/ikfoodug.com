@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { RegionLink as Link } from "./RegionProvider";
 import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { regions, type RegionCode } from "@/lib/regions";
 
 const nav = {
   company:  [
@@ -19,7 +20,9 @@ const nav = {
   ],
 };
 
-export default function Footer() {
+export default function Footer({ region = "ug" }: { region?: RegionCode }) {
+  const r = regions[region];
+
   return (
     <footer className="bg-forest-950 text-white" aria-label="Site footer">
       {/* Top divider line */}
@@ -33,11 +36,11 @@ export default function Footer() {
             <Link
               href="/"
               className="inline-block mb-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg"
-              aria-label="IK Food Uganda — Home"
+              aria-label={`${r.name} — Home`}
             >
               <Image
                 src="/logo_clean.webp"
-                alt="IK Food Uganda"
+                alt={r.name}
                 width={120}
                 height={48}
                 className="object-contain h-10 w-auto opacity-90 hover:opacity-100 transition-opacity"
@@ -86,21 +89,24 @@ export default function Footer() {
             <h3 className="label-tag text-white/35 mb-5">Contact</h3>
             <ul className="space-y-4" role="list">
               <li>
-                <a href="tel:+256776341713" className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
+                <a href={r.phone.href} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
                   <Phone className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
-                  +256 776 341 713
+                  {r.phone.display}
                 </a>
               </li>
               <li>
-                <a href="mailto:sales@ikfooduganda.com" className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
+                <a href={`mailto:${r.email}`} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
                   <Mail className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
-                  sales@ikfooduganda.com
+                  {r.email}
                 </a>
               </li>
               <li>
                 <address className="flex items-start gap-3 text-white/55 text-sm not-italic">
                   <MapPin className="w-4 h-4 mt-0.5 text-gold-400 shrink-0" aria-hidden="true" />
-                  P.O.Box 110281, Atenyi Rd Seguku,<br />Kampala, Uganda
+                  <span>
+                    {r.address.lines.map((line) => <span key={line}>{line},<br /></span>)}
+                    {r.locationLabel}
+                  </span>
                 </address>
               </li>
             </ul>
@@ -110,7 +116,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/25 text-xs tracking-wide">
-            &copy; {new Date().getFullYear()} IK Food Uganda. All rights reserved.
+            &copy; {new Date().getFullYear()} {r.legalName}. All rights reserved.
           </p>
           <p className="text-white/20 text-xs italic">
             &ldquo;Agriculture is our wisest pursuit.&rdquo; — Thomas Jefferson

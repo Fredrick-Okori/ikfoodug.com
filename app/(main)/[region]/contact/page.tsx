@@ -3,20 +3,14 @@ import React from "react";
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link, useRegion } from "@/components/RegionProvider";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { localize } from "@/lib/localize";
 
-const contactDetails = [
-  { icon: Phone,   label: "Phone",          value: "+256 776 341 713",       href: "tel:+256776341713",           sub: "Mon–Fri, 8am–5pm EAT" },
-  { icon: Mail,    label: "Email",           value: "ikfoodugandalimited@gmail.com", href: "mailto:ikfoodugandalimited@gmail.com", sub: "Reply within 24 hours" },
-  { icon: MapPin,  label: "Location",        value: "Kampala, Uganda",        href: null,                          sub: "East African headquarters" },
-  { icon: Clock,   label: "Business Hours",  value: "Mon–Fri · 8am – 5pm",   href: null,                          sub: "EAT (UTC+3)" },
-];
-
-const enquiryTypes = [
+const enquiryTypes = (region: string) => [
   "Product Sourcing Enquiry",
-  "Export & Logistics",
+  region === "us" ? "Shipping & Delivery" : "Export & Logistics",
   "Partnership Opportunities",
   "Quality & Standards Questions",
   "Media & Press",
@@ -26,6 +20,13 @@ const enquiryTypes = [
 type State = "idle" | "sending" | "success";
 
 export default function ContactPage() {
+  const region = useRegion();
+  const contactDetails = [
+    { icon: Phone,   label: "Phone",          value: region.phone.display,    href: region.phone.href,       sub: `${region.hours.days}, ${region.hours.time}` },
+    { icon: Mail,    label: "Email",           value: region.email,            href: `mailto:${region.email}`, sub: "Reply within 24 hours" },
+    { icon: MapPin,  label: "Location",        value: region.locationLabel,    href: null,                    sub: region.locationSub },
+    { icon: Clock,   label: "Business Hours",  value: `${region.hours.days} · ${region.hours.time}`, href: null, sub: region.hours.timezone },
+  ];
   const [state, setState] = useState<State>("idle");
   const [form, setForm] = useState({
     name: "", email: "", company: "", phone: "", enquiryType: "", message: "",
@@ -44,6 +45,8 @@ export default function ContactPage() {
       phone: form.phone || null,
       enquiry_type: form.enquiryType,
       message: form.message,
+      // The column defaults to "ug", so Uganda enquiries keep working before the region migration runs.
+      ...(region.code !== "ug" && { region: region.code }),
     });
     if (!error) {
       setState("success");
@@ -55,7 +58,7 @@ export default function ContactPage() {
 
   const inputCls = "w-full px-4 py-3.5 rounded-xl border border-gray-200 text-gray-900 placeholder:text-gray-400 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-forest-500 focus:border-transparent transition-shadow";
 
-  return (
+  return localize(
     <>
       {/* ── Hero ── */}
       <section className="relative min-h-[55vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Contact hero">
@@ -103,7 +106,7 @@ export default function ContactPage() {
               </h2>
               <div className="h-rule mb-6" aria-hidden="true" />
               <p className="text-gray-600 leading-relaxed mb-10">
-                Our team is based in Kampala, Uganda, and ready to discuss
+                Our team is based in {region.locationLabel}, and ready to discuss
                 sourcing, certifications, logistics, and more.
               </p>
               <ul className="space-y-7 mb-10" role="list">
@@ -128,16 +131,16 @@ export default function ContactPage() {
               </ul>
 
               {/* Map image */}
-              <div className="relative rounded-2xl overflow-hidden h-44 shadow-sm border border-forest-100" aria-label="Kampala, Uganda location">
+              <div className="relative rounded-2xl overflow-hidden h-44 shadow-sm border border-forest-100" aria-label={`${region.locationLabel} location`}>
                 <Image
                   src="/ibanda.avif"
-                  alt="Kampala, Uganda, IK Food Uganda location"
+                  alt={`${region.locationLabel}, ${region.name} location`}
                   fill className="object-cover" sizes="33vw"
                 />
                 <div className="absolute inset-0 bg-forest-950/35 flex items-center justify-center">
                   <div className="bg-white rounded-xl px-4 py-2 shadow-lg flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-forest-700" aria-hidden="true" />
-                    <span className="text-sm font-semibold text-forest-900">Kampala, Uganda</span>
+                    <span className="text-sm font-semibold text-forest-900">{region.locationLabel}</span>
                   </div>
                 </div>
               </div>
@@ -196,7 +199,7 @@ export default function ContactPage() {
                           className={inputCls}
                         >
                           <option value="" disabled>Select an enquiry type</option>
-                          {enquiryTypes.map((t) => <option key={t} value={t}>{t}</option>)}
+                          {enquiryTypes(region.code).map((t) => <option key={t} value={t}>{t}</option>)}
                         </select>
                       </div>
                       <div className="mb-6">
@@ -244,7 +247,7 @@ export default function ContactPage() {
             {[
               { q: "What is the minimum order quantity?",                     a: "We work with buyers of all sizes. MOQs vary by product and destination. Contact us to discuss your specific requirements and receive a tailored quotation." },
               { q: "Do your products meet international quality standards?",   a: "Yes. All IK Food Uganda products meet international export standards and hold full phytosanitary export licences. Full documentation is available on request." },
-              { q: "Which markets do you export to?",                          a: <>We currently export to <strong>Europe (UK, Germany, Netherlands, France)</strong> and <strong>Asia (Japan, South Korea)</strong>, and are expanding into the Middle East.</> },
+              { q: "Which markets do you export to?",                          a: <>We currently export to <strong>Europe (UK, Germany, Netherlands, France)</strong> and <strong>Asia (Japan, South Korea)</strong>, and are expanding into the Middle East.{region.code === "us" && <> US orders are handled locally by <strong>{region.name}</strong>.</>}</> },
               { q: "Can you provide samples before a bulk order?",             a: "Yes. We can arrange product samples for qualified buyers. Contact our sales team with your details and product interest." },
               { q: "How do you ensure quality from farm to shipment?",         a: "Rigorous quality control at every stage, from farmer training and on-farm audits, to in-house laboratory testing, grading, packing, and cold-chain logistics." },
             ].map(({ q, a }) => (
@@ -261,13 +264,14 @@ export default function ContactPage() {
           </div>
           <div className="text-center mt-10">
             <p className="text-white/40 text-sm mb-5">Still have questions?</p>
-            <Link href="mailto:ikfoodugandalimited@gmail.com" className="btn-gold">
+            <Link href={`mailto:${region.email}`} className="btn-gold">
               Email Our Team
               <Mail className="w-4 h-4" aria-hidden="true" />
             </Link>
           </div>
         </div>
       </section>
-    </>
+    </>,
+    region.code,
   );
 }

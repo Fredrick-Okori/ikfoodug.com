@@ -19,7 +19,7 @@ function getTranslationCookieLanguage(): string {
 
   if (!cookie) return "en";
   const code = decodeURIComponent(cookie).split("/").pop()?.toLowerCase();
-  return code && languageCodes.includes(code) ? code : "en";
+  return languageCodes.find((c) => c.toLowerCase() === code) ?? "en";
 }
 
 function saveTranslationCookie(targetLanguage: string) {

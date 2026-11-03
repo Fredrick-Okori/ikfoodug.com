@@ -1,7 +1,9 @@
 import React from "react";
 import type { Metadata } from "next";
+import { getRegion, regionUrl, withRegion } from "@/lib/regions";
+import { localize } from "@/lib/localize";
 import Image from "next/image";
-import Link from "next/link";
+import { RegionLink as Link } from "@/components/RegionProvider";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -14,7 +16,7 @@ import {
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "IK Food Uganda | #1 Vanilla Company in Uganda | ikfoodug.com",
   description:
     "IK Food Uganda (ikfoodug.com). Search 'IK Food', 'IK-Food Uganda', or 'vanilla in Uganda' and find us. We are the leading natural vanilla exporter in Uganda, competing with the finest producers in Madagascar, Zanzibar and beyond.",
@@ -111,8 +113,14 @@ const certs = [
 
 /* ── Page ────────────────────────────────────────── */
 
-export default function HomePage() {
-  return (
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/");
+}
+
+export default async function HomePage({ params }: { params: Promise<{ region: string }> }) {
+  const r = getRegion((await params).region);
+  return localize(
     <>
       {/* ══════════════════════════════════════════════════
           HERO — split screen
@@ -667,11 +675,11 @@ export default function HomePage() {
               },
               {
                 q: "Which countries does IK Food Uganda export to?",
-                a: <>We export to <strong>Europe (United Kingdom, Germany, Netherlands, France)</strong> and <strong>Asia (Japan, South Korea)</strong>, with expansion into the Middle East underway. We supply qualified buyers worldwide.</>,
+                a: <>We export to <strong>Europe (United Kingdom, Germany, Netherlands, France)</strong> and <strong>Asia (Japan, South Korea)</strong>, with expansion into the Middle East underway. We supply qualified buyers worldwide.{r.code === "us" && <> In the United States, orders are handled locally by <strong>{r.name}</strong>.</>}</>,
               },
               {
                 q: "How do I order vanilla beans from IK Food Uganda?",
-                a: "Email sales@ikfooduganda.com or call +256 776 341 713 (Mon–Fri, 8am–5pm EAT). You can also use the enquiry form at ikfoodug.com/contact. Our team will discuss grade selection, pricing, minimum order quantities, and logistics.",
+                a: `Email ${r.email} or call ${r.phone.display} (${r.hours.days}, ${r.hours.time.replace(/\s/g, "")} ${r.hours.timezone.split(" ")[0]}). You can also use the enquiry form at ${regionUrl(r.code, "/contact").replace("https://", "")}. Our team will discuss grade selection, pricing, minimum order quantities, and logistics.`,
               },
               {
                 q: "Does IK Food Uganda work with smallholder farmers?",
@@ -791,6 +799,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </>,
+    r.code,
   );
 }

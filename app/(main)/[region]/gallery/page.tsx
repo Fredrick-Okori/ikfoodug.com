@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { getRegion, withRegion } from "@/lib/regions";
 import GalleryClient, { type GalleryImage } from "@/components/GalleryClient";
 import { supabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Gallery | IK Food Uganda — Top Vanilla Exporters in Uganda",
   description: "Photos from IK Food Uganda's vanilla farms, farming communities, processing operations, and export-grade products. One of the top vanilla exporters in Uganda.",
   keywords: [
@@ -63,6 +64,11 @@ const staticImages: GalleryImage[] = [
   { src: "/IMG_7929_converted.avif",                                          caption: "Quality Assurance",                        category: "Processing" },
   { src: "/quality_split.avif",                                               caption: "Farm-to-Export Quality Standard",          category: "Farm" },
 ];
+
+export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
+  const { region } = await params;
+  return withRegion(metadata, getRegion(region).code, "/gallery");
+}
 
 export default async function GalleryPage() {
   const { data } = await supabase

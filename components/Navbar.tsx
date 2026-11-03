@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { RegionLink as Link, useRegion } from "./RegionProvider";
+import { stripRegion } from "@/lib/regions";
 import { usePathname } from "next/navigation";
 import {
   Menu, X, Phone, Mail,
@@ -25,6 +26,7 @@ export default function Navbar() {
   const [progress,   setProgress]   = useState(0);
   const [orderOpen,  setOrderOpen]  = useState(false);
   const pathname = usePathname();
+  const region = useRegion();
 
   useEffect(() => {
     const onScroll = () => {
@@ -52,7 +54,7 @@ export default function Navbar() {
     return () => window.removeEventListener("open-order-modal", handler);
   }, []);
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => stripRegion(pathname) === href;
 
   const desktopLink = (active: boolean) =>
     `relative group/link flex items-center gap-1 px-1 py-1 text-sm font-medium transition-colors duration-200 focus-visible:outline-none
@@ -90,11 +92,11 @@ export default function Navbar() {
             <Link
               href="/"
               className="shrink-0 group/logo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg p-0.5"
-              aria-label="IK Food Uganda — Home"
+              aria-label={`${region.name} — Home`}
             >
               <Image
                 src="/logo_clean.webp"
-                alt="IK Food Uganda"
+                alt={region.name}
                 width={110}
                 height={44}
                 className={`object-contain transition-all duration-300 group-hover/logo:opacity-90 ${scrolled ? "h-11" : "h-14"} w-auto`}
@@ -223,18 +225,18 @@ export default function Navbar() {
           </button>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
             <a
-              href="tel:+256776341713"
+              href={region.phone.href}
               className="flex items-center gap-2 text-gold-400/35 text-sm hover:text-gold-400 transition-colors"
             >
               <Phone className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              +256 776 341 713
+              {region.phone.display}
             </a>
             <a
-              href="mailto:sales@ikfooduganda.com"
+              href={`mailto:${region.email}`}
               className="flex items-center gap-2 text-gold-400/35 text-sm hover:text-gold-400 transition-colors"
             >
               <Mail className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              sales@ikfooduganda.com
+              {region.email}
             </a>
           </div>
         </div>
