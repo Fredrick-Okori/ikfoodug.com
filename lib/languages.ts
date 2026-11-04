@@ -21,15 +21,20 @@ export const languageCodes = languages.map(({ code }) => code);
 export const countryLanguages: Record<string, string> = {
   KE: "sw", TZ: "sw", NL: "nl", IL: "iw", IT: "it", DK: "da",
   CD: "fr", CG: "fr", GA: "fr", MG: "fr", ML: "fr", NE: "fr", BF: "fr",
-  TG: "fr", BJ: "fr", DJ: "fr", CF: "fr", GQ: "fr", RW: "fr", BI: "fr",
+  TG: "fr", BJ: "fr", DJ: "fr", CF: "fr", RW: "fr", BI: "fr", TD: "fr",
+  GN: "fr", KM: "fr", MC: "fr", HT: "fr", NC: "fr", PF: "fr",
   FR: "fr", BE: "fr", LU: "fr", SN: "fr", CI: "fr", CM: "fr", CH: "de",
-  DE: "de", AT: "de", GT: "es", HN: "es", SV: "es", NI: "es", CR: "es",
+  DE: "de", AT: "de", LI: "de", GT: "es", HN: "es", SV: "es", NI: "es", CR: "es",
   PA: "es", CU: "es", DO: "es", VE: "es", PE: "es", BO: "es", EC: "es",
   PY: "es", UY: "es", ES: "es", MX: "es", AR: "es", CO: "es", CL: "es",
+  PR: "es", GQ: "es", SR: "nl", CW: "nl", AW: "nl", SX: "nl",
+  GL: "da", FO: "da", SM: "it", VA: "it",
+  RU: "ru", BY: "ru", KZ: "ru", KG: "ru",
   IQ: "ar", JO: "ar", LB: "ar", SY: "ar", YE: "ar", OM: "ar", QA: "ar",
   KW: "ar", BH: "ar", TN: "ar", DZ: "ar", LY: "ar", SD: "ar", PS: "ar",
-  SA: "ar", AE: "ar", EG: "ar", MA: "ar", CN: "zh-CN", TW: "zh-CN",
-  HK: "zh-CN", JP: "ja", PT: "pt", AO: "pt", MZ: "pt", BR: "pt",
+  SA: "ar", AE: "ar", EG: "ar", MA: "ar", MR: "ar", CN: "zh-CN", TW: "zh-CN",
+  HK: "zh-CN", MO: "zh-CN", JP: "ja", PT: "pt", AO: "pt", MZ: "pt", BR: "pt",
+  CV: "pt", GW: "pt", ST: "pt", TL: "pt",
 };
 
 /**

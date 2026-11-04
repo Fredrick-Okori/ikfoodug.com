@@ -1,7 +1,7 @@
 import { RegionLink as Link } from "./RegionProvider";
 import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { regions, type RegionCode } from "@/lib/regions";
+import { regions, type Region, type RegionCode } from "@/lib/regions";
 
 const nav = {
   company:  [
@@ -70,47 +70,30 @@ export default function Footer({ region = "ug" }: { region?: RegionCode }) {
             </ul>
           </div>
 
-          {/* Products */}
-          <div>
-            <h3 className="label-tag text-white/35 mb-5">Products</h3>
-            <ul className="space-y-3" role="list">
-              {nav.products.map(({ href, label }) => (
-                <li key={href}>
-                  <Link href={href} className="text-white/55 hover:text-white text-sm transition-colors link-underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-forest-400 rounded">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {region === "ug" ? (
+            <>
+              <ContactColumn title="US Location" r={regions.us} showEmail={false} />
+              <ContactColumn title="Uganda Location" r={r} />
+            </>
+          ) : (
+            <>
+              {/* Products */}
+              <div>
+                <h3 className="label-tag text-white/35 mb-5">Products</h3>
+                <ul className="space-y-3" role="list">
+                  {nav.products.map(({ href, label }) => (
+                    <li key={href}>
+                      <Link href={href} className="text-white/55 hover:text-white text-sm transition-colors link-underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-forest-400 rounded">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="label-tag text-white/35 mb-5">Contact</h3>
-            <ul className="space-y-4" role="list">
-              <li>
-                <a href={r.phone.href} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
-                  <Phone className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
-                  {r.phone.display}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${r.email}`} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
-                  <Mail className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
-                  {r.email}
-                </a>
-              </li>
-              <li>
-                <address className="flex items-start gap-3 text-white/55 text-sm not-italic">
-                  <MapPin className="w-4 h-4 mt-0.5 text-gold-400 shrink-0" aria-hidden="true" />
-                  <span>
-                    {r.address.lines.map((line) => <span key={line}>{line},<br /></span>)}
-                    {r.locationLabel}
-                  </span>
-                </address>
-              </li>
-            </ul>
-          </div>
+              <ContactColumn title="Contact" r={r} />
+            </>
+          )}
         </div>
 
         {/* Bottom bar */}
@@ -124,5 +107,38 @@ export default function Footer({ region = "ug" }: { region?: RegionCode }) {
         </div>
       </div>
     </footer>
+  );
+}
+
+function ContactColumn({ title, r, showEmail = true }: { title: string; r: Region; showEmail?: boolean }) {
+  return (
+    <div>
+      <h3 className="label-tag text-white/35 mb-5">{title}</h3>
+      <ul className="space-y-4" role="list">
+        <li>
+          <a href={r.phone.href} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
+            <Phone className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
+            {r.phone.display}
+          </a>
+        </li>
+        {showEmail && (
+        <li>
+          <a href={`mailto:${r.email}`} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline break-all">
+            <Mail className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
+            {r.email}
+          </a>
+        </li>
+        )}
+        <li>
+          <address className="flex items-start gap-3 text-white/55 text-sm not-italic">
+            <MapPin className="w-4 h-4 mt-0.5 text-gold-400 shrink-0" aria-hidden="true" />
+            <span>
+              {r.address.lines.map((line) => <span key={line}>{line},<br /></span>)}
+              {r.locationLabel}
+            </span>
+          </address>
+        </li>
+      </ul>
+    </div>
   );
 }

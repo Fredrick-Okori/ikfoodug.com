@@ -79,6 +79,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: translateBootScript }} />
+        {/* Google Translate fetches from these hosts in sequence; warm the connections up front. */}
+        <link rel="preconnect" href="https://translate.google.com" />
+        <link rel="preconnect" href="https://translate.googleapis.com" />
+        <link rel="preconnect" href="https://translate-pa.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.gstatic.com" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="apple-touch-icon" href="/favicon-32x32.png" />
         <meta name="geo.region" content="UG" />

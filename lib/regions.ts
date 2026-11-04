@@ -54,7 +54,7 @@ export const regions: Record<RegionCode, Region> = {
     locale: "en-GB",
     live: true,
     phone: { display: "+256 776 341 713", href: "tel:+256776341713" },
-    email: "sales@ikfooduganda.com",
+    email: "ikfoodugandalimited@gmail.com",
     address: { lines: ["P.O.Box 110281, Atenyi Rd Seguku"], locality: "Kampala", regionName: "Central Region" },
     hours: { days: "Mon–Fri", time: "8am – 5pm", timezone: "EAT (UTC+3)" },
     locationLabel: "Kampala, Uganda",
