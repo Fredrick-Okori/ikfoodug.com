@@ -42,31 +42,7 @@ const breadcrumbJsonLd = {
   ],
 };
 
-const teamJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://ikfoodug.com/about#israel-kaweesa",
-      name: "Israel Kaweesa",
-      jobTitle: "General Manager",
-      description: "Israel Kaweesa is the General Manager and founder of IK Food Uganda. With over a decade of agribusiness experience, he built IK Food Uganda from a Kampala-based startup in 2015 into one of Uganda's top natural vanilla exporters, supplying premium beans to Europe and Asia.",
-      worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
-      knowsAbout: ["Natural vanilla export Uganda", "Agricultural trade East Africa", "Vanilla bean cultivation", "Export certification"],
-      nationality: { "@type": "Country", name: "Uganda" },
-    },
-    {
-      "@type": "Person",
-      "@id": "https://ikfoodug.com/about#evelyn-najjemba",
-      name: "Evelyn Najjemba",
-      jobTitle: "Agroecologist",
-      description: "Evelyn Najjemba is the Agroecologist at IK Food Uganda. She oversees sustainable farming practices and farmer training across IK Food Uganda's 3,000+ smallholder farmer network, ensuring all agricultural output meets international export standards.",
-      worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
-      knowsAbout: ["Natural agriculture Uganda", "Biodynamic farming", "Vanilla cultivation", "Smallholder farmer training"],
-      nationality: { "@type": "Country", name: "Uganda" },
-    },
-  ],
-};
+
 
 const milestoneJsonLd = {
   "@context": "https://schema.org",
@@ -288,22 +264,7 @@ export default async function AboutPage({ params }: { params: Promise<{ region: 
         </div>
       </section>
 
-      {/* ── Team ── */}
-      <section className="section-y bg-cream map-bg" aria-label="Our team">
-        <div className="max-w-7xl mx-auto container-px">
-          <ScrollReveal className="text-center mb-14">
-            <span className="section-eyebrow">The People Behind IK Food</span>
-            <h2 className="text-display-lg font-bold text-forest-950">Meet Our Team</h2>
-          </ScrollReveal>
-          <div className="max-w-5xl mx-auto space-y-8">
-            {team.map((m, i) => (
-              <ScrollReveal key={m.name} delay={i * 80}>
-                <TeamCard member={m} index={i} />
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* ── CTA ── */}
       <section className="py-24 bg-forest-950 noise-overlay relative" aria-label="Contact CTA">
