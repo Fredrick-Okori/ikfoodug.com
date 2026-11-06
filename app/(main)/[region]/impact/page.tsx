@@ -39,8 +39,8 @@ const breadcrumbJsonLd = {
 };
 
 const stats = [
-  { value: "3,000+", label: "Smallholder farmers", sub: "Directly partnered across Uganda" },
-  { value: "25 MT",  label: "Annual harvest",      sub: "Of export-grade natural produce" },
+  { value: "20,000+", label: "Smallholder farmers", sub: "Directly partnered across Uganda" },
+  { value: "700 MT",  label: "Annual harvest",      sub: "Of export-grade natural produce" },
   { value: "100%",   label: "Naturally grown",   sub: "Certified EU & Asian standards" },
   { value: "2015",   label: "Year founded",         sub: "A decade of excellence" },
 ];
