@@ -6,7 +6,7 @@ import Image from "next/image";
 import { RegionLink as Link } from "@/components/RegionProvider";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import TeamCard from "@/components/TeamCard";
+
 
 const metadata: Metadata = {
   title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
@@ -93,7 +93,7 @@ export default async function AboutPage({ params }: { params: Promise<{ region: 
   return localize(
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(teamJsonLd) }} />
+     
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(milestoneJsonLd) }} />
       {/* ── Hero ── */}
       <section className="relative min-h-[65vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="About hero">
