@@ -68,20 +68,6 @@ const milestones = [
   { year: "2024", event: "Reached 3,000+ customers and 25 MT annual harvest milestone." },
 ];
 
-const team = [
-  {
-    name: "Israel Kaweesa",
-    role: "General Manager",
-    bio: "Israel leads IK Food Uganda with a passion for quality and international market growth. His decade of agribusiness experience has built the company into a trusted global exporter.",
-    image: "/elijah.webp",
-  },
-  {
-    name: "Evelyn Najjemba",
-    role: "Agroecologist",
-    bio: "Evelyn oversees sustainable farming practices and farmer training, ensuring IK Food Uganda's agricultural output meets the highest natural and environmental standards.",
-    image: "/andrea_webp.webp",
-  },
-];
 
 export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
   const { region } = await params;
