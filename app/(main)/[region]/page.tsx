@@ -37,12 +37,6 @@ const metadata: Metadata = {
 
 /* ── Data ────────────────────────────────────────── */
 
-// Home hero background carousel. Previous single photo "/product_hero.avif" is still in /public.
-const heroSlides = [
-  { src: "/Madagascar_SAVAN_00096_lr-1024x682.webp", alt: "Hands sorting freshly harvested green vanilla pods into a woven basket" },
-  { src: "/products/splits-quality_converted.avif", alt: "Bundles of cured, split vanilla beans tied with raffia" },
-];
-
 const marquee = ["Grade A beans", "Grade B beans", "Split beans", "Vanilla powder", "Vanilla paste", "Vanilla caviar", "Green beans"];
 
 const products = [
@@ -78,9 +72,9 @@ const reasons = [
 ];
 
 const posts = [
-  { slug: "why-ugandan-vanilla-is-the-best",  title: "Why Ugandan vanilla is the best in the world",               date: "Apr 2023", image: "/vanilla_bean_harvest.avif" },
-  { slug: "importance-of-vanilla",            title: "The importance of vanilla in the global food industry",      date: "Nov 2022", image: "/IMG_4165_converted.avif" },
-  { slug: "navigating-export-requirements",   title: "Navigating international requirements to export vanilla",    date: "Nov 2021", image: "/IMG_3172_converted.avif" },
+  { slug: "grade-a-vs-grade-b-vanilla-beans",       title: "Grade A vs Grade B vanilla beans: how to choose the right grade",    date: "Nov 2026", image: "/products/grade-A_converted.avif" },
+  { slug: "inside-the-vanilla-curing-process",      title: "Inside the six-month curing process that gives vanilla its flavour", date: "Oct 2026", image: "/IMG_4165_converted.avif" },
+  { slug: "ugandan-vs-madagascar-vanilla",          title: "Ugandan vs Madagascar vanilla: what buyers should know",             date: "Sep 2026", image: "/vanilla_bean_harvest.avif" },
 ];
 
 /* ── Page ────────────────────────────────────────── */
@@ -132,39 +126,37 @@ export default async function HomePage({ params }: { params: Promise<{ region: s
     <>
       {/* ── HERO ─────────────────────────────────────── */}
       <section data-hero aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-forest-950 text-cream">
-        {/* Full-bleed background carousel at every screen size; the copy sits in front of it.
-            Slides crossfade on their own (SmoothScroll, data-hero-slide); there are no controls. */}
+        {/* Full-bleed background photo at every screen size; the copy sits in front of it. */}
         <div className="absolute inset-0 -z-10">
           <div data-hero-media className="relative h-full w-full overflow-hidden bg-forest-900">
-            {heroSlides.map((slide, i) => (
-              <div
-                key={slide.src}
-                data-hero-slide
-                aria-hidden={i > 0}
-                className={`absolute inset-0 ${i === 0 ? "" : "opacity-0"}`}
-              >
-                <Image
-                  src={slide.src}
-                  alt={i === 0 ? slide.alt : ""}
-                  fill
-                  priority={i === 0}
-                  sizes="100vw"
-                  className="scale-[1.08] object-cover"
-                />
-              </div>
-            ))}
-            {/* Scrims keep the copy legible: dark at the bottom everywhere, and from the left on desktop. */}
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/70 to-forest-950/30" />
-            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-forest-950/85 via-forest-950/40 to-transparent lg:block" />
+            <Image
+              src="/product_hero.avif"
+              alt="Close-up of premium Ugandan vanilla beans, hand-harvested and sun-cured"
+              fill
+              priority
+              sizes="100vw"
+              className="scale-[1.08] object-cover"
+            />
+            {/* Scrims keep the copy legible. Small screens: the copy covers the photo, so darken from the
+                bottom up. Desktop: concentrate the darkness on the left behind the copy and let it fade out
+                by about two-thirds across, so the right of the photo stays clear. */}
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/70 to-forest-950/30 lg:hidden" />
+            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-forest-950/95 from-10% via-forest-950/60 via-40% to-transparent to-70% lg:block" />
+            <div aria-hidden className="absolute inset-x-0 bottom-0 hidden h-1/3 bg-gradient-to-t from-forest-950/50 to-transparent lg:block" />
           </div>
         </div>
 
-        <div className="mx-auto flex h-[100svh] min-h-[32rem] max-w-7xl flex-col px-5 pb-10 pt-[calc(88px+3.5rem)] sm:px-8 sm:pt-[calc(6rem+3.5rem)] lg:px-12 lg:pb-12 lg:pt-[calc(106px+5rem)]">
+        <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col px-5 pb-10 pt-[calc(88px+3.5rem)] sm:px-8 sm:pt-[calc(6rem+3.5rem)] lg:px-12 lg:pb-12 lg:pt-[calc(106px+5rem)]">
           <div className="grid flex-1 content-end">
             <div data-hero-copy className="max-w-5xl">
-              <h1 id="hero-title" data-hero-title data-no-reveal className="h-hero text-[clamp(3rem,min(9.6vw,14vh),9.25rem)]">
-                Ugandan Vanilla Shipping{" "}
-                <span className="-ml-[0.06em] inline-block bg-gold-400 px-[0.06em] pb-[0.02em] text-forest-950">worldwide.</span>
+              {/* Always three lines: "Purely / Ugandan Vanilla / Perfected." The size is capped by width
+                  (so "Ugandan Vanilla" never wraps on narrow phones) and by height (so the hero fits). */}
+              <h1 id="hero-title" data-hero-title data-no-reveal className="h-hero text-[clamp(2.25rem,min(11.5vw,12vh),9.25rem)]">
+                <span className="block">Purely</span>
+                <span className="block whitespace-nowrap">Ugandan Vanilla</span>
+                <span className="block">
+                  <span className="-ml-[0.06em] inline-block bg-gold-400 px-[0.06em] pb-[0.02em] text-forest-950">Perfected.</span>
+                </span>
               </h1>
 
               <div className="mt-10 flex flex-col items-start gap-8 lg:mt-14">
@@ -411,7 +403,7 @@ export default async function HomePage({ params }: { params: Promise<{ region: s
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {posts.map((post) => (
               <article key={post.slug} data-card className="group">
-                <Link href={`/blog#${post.slug}`} className="block">
+                <Link href={`/blog/${post.slug}`} className="block">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
                     <Image
                       src={post.image}

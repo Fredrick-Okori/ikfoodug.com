@@ -102,7 +102,7 @@ export default async function ImpactPage({ params }: { params: Promise<{ region:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <PageHero
-        title={<>Growing Uganda. Feeding the world<span className="text-[#dccba0]">.</span></>}
+        title={<>Growing Uganda. Feeding the world<span className="text-gold-500">.</span></>}
         image="/IMG_3172_converted.avif"
         alt="IK Food Uganda farmers working in the field"
       >

@@ -87,7 +87,7 @@ export default async function GalleryPage() {
 
   return (
     <>
-      <PageHero title={<>From farm to export<span className="text-[#dccba0]">.</span></>}>
+      <PageHero title={<>From farm to export<span className="text-gold-500">.</span></>}>
         Uganda&apos;s vanilla farms, the communities behind the harvest, and the quality process in between. Select any
         photo to view it full screen.
       </PageHero>

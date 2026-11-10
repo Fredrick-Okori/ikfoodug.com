@@ -104,7 +104,7 @@ export default async function AboutPage({ params }: { params: Promise<{ region: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(milestoneJsonLd) }} />
 
       <PageHero
-        title={<>About IK Food (U) Ltd<span className="text-[#dccba0]">.</span></>}
+        title={<>About IK Food (U) Ltd<span className="text-gold-500">.</span></>}
         image="/quality_split.avif"
         alt="Ugandan farmers in the field, IK Food Uganda's farming partnerships"
       >

@@ -77,24 +77,6 @@ function heroIntro(hero: HTMLElement, wide: boolean) {
   gsap.to(q("[data-hero-glow-main]"), { scale: 1.15, xPercent: -6, duration: 7, ease: "sine.inOut", repeat: -1, yoyo: true });
   gsap.to(q("[data-hero-glow-low]"), { xPercent: 18, yPercent: -10, duration: 9, ease: "sine.inOut", repeat: -1, yoyo: true });
 
-  // Background carousel: slides crossfade on a loop (no controls). Each slide also breathes with
-  // a slow zoom on its wrapper, so it never feels static while it's on screen.
-  const slides = q("[data-hero-slide]");
-  if (slides.length > 1) {
-    const hold = 5;
-    const fade = 1.6;
-    gsap.set(slides, { autoAlpha: (i: number) => (i === 0 ? 1 : 0) });
-    const loop = gsap.timeline({ repeat: -1, delay: 1.2 });
-    slides.forEach((slide, i) => {
-      const next = slides[(i + 1) % slides.length];
-      const at = i * (hold + fade) + hold;
-      loop
-        .to(slide, { autoAlpha: 0, duration: fade, ease: "power2.inOut" }, at)
-        .to(next, { autoAlpha: 1, duration: fade, ease: "power2.inOut" }, at);
-    });
-    gsap.fromTo(slides, { scale: 1 }, { scale: 1.06, duration: hold + fade * 2, ease: "sine.inOut", repeat: -1, yoyo: true });
-  }
-
   // Scrolling away: the photo drifts in its frame and the copy lifts off.
   const away = { trigger: hero, start: "top top", end: "bottom top", scrub: true };
   gsap.to(q("[data-hero-media] img"), { yPercent: 10, ease: "none", scrollTrigger: away });

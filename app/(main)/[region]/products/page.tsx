@@ -299,7 +299,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ regio
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productCatalogueJsonLd) }} />
 
       <PageHero
-        title={<>Our vanilla products<span className="text-[#dccba0]">.</span></>}
+        title={<>Our vanilla products<span className="text-gold-500">.</span></>}
         image="/products/splits-quality_converted.avif"
         alt="IK Food Uganda premium vanilla products"
         aside={
@@ -309,7 +309,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ regio
                 <li key={p.id}>
                   <a
                     href={`#${p.id}`}
-                    className="inline-block rounded-full border border-cream/20 px-4 py-2 text-sm font-semibold text-parchment/80 transition-colors hover:border-gold-400 hover:text-gold-400"
+                    className="inline-block rounded-full border border-forest-950/15 bg-cream/70 px-4 py-2 text-sm font-semibold text-forest-900/80 transition-colors hover:border-forest-950 hover:bg-forest-950 hover:text-cream"
                   >
                     {p.name}
                   </a>

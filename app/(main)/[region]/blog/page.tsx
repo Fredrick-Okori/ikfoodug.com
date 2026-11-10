@@ -94,7 +94,7 @@ export default async function BlogPage({ params }: { params: Promise<{ region: s
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogArticlesJsonLd) }} />
 
       <PageHero
-        title={<>Blog &amp; resources<span className="text-[#dccba0]">.</span></>}
+        title={<>Blog &amp; resources<span className="text-gold-500">.</span></>}
         image="/IMG_4873_converted.avif"
         alt="Vanilla beans, the focus of IK Food Uganda's blog"
       >

@@ -62,7 +62,7 @@ export default function ContactPage() {
   return localize(
     <>
       <PageHero
-        title={<>Talk to us<span className="text-[#dccba0]">.</span></>}
+        title={<>Talk to us<span className="text-gold-500">.</span></>}
         image="/vanilla_bean_harvest.avif"
         alt="IK Food Uganda premium vanilla beans"
       >

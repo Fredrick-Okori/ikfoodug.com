@@ -107,6 +107,86 @@ const studies = [
       "Uganda's vanilla has the quality to command world attention. What it needs is the right production systems, market access, and farmer empowerment — exactly what IK Food Uganda provides.",
     image: "/IMG_4873_converted.avif",
   },
+  {
+    id: "two-harvests-year-round-supply",
+    num: "03",
+    category: "Supply Planning",
+    readTime: "6 min",
+    title: "Two Harvests a Year: Turning Uganda's Seasons into Year-Round Supply",
+    overview:
+      "Buyers need vanilla every month, but vanilla only flowers in season. How IK Food Uganda plans pollination, curing and stock around Uganda's two harvests so customers are not left waiting for the next crop.",
+    challenge: {
+      heading: "The Challenge",
+      body: "Food manufacturers and extract makers plan production a year ahead and cannot pause a line because a crop is late. Vanilla, meanwhile, flowers for a few weeks, takes nine months to mature on the vine and six more months to cure. In single-harvest origins, a poor season can leave buyers short for a full year.",
+      points: [
+        "Long lead time from flower to finished, graded bean",
+        "Pressure on farmers to harvest early when prices rise",
+        "Quality drift when curing is rushed to meet orders",
+        "Buyers exposed to a single crop and a single weather event",
+        "Need for consistent grade and moisture across deliveries",
+      ],
+    },
+    approach: {
+      heading: "Our Approach",
+      body: "Uganda's equatorial climate gives many growing areas two rainy seasons, and with them two flowering and harvest periods a year. IK Food plans around both, so curing, grading and dispatch run continuously instead of in one annual rush.",
+      points: [
+        "Scheduling farmer training and pollination around each flowering season",
+        "Buying only mature pods, so no one is rewarded for picking early",
+        "Staggering lots through the six-month cure so finished beans arrive in waves",
+        "Holding graded, vacuum-packed stock to bridge between harvests",
+        "Testing every lot for vanillin and moisture before it is allocated to an order",
+      ],
+    },
+    results: [
+      { metric: "2",          label: "Harvest seasons a year" },
+      { metric: "6 mo.",      label: "Full traditional cure, never rushed" },
+      { metric: "700 MT",     label: "Annual harvest volume" },
+      { metric: "Every lot",  label: "Tested before dispatch" },
+    ],
+    conclusion:
+      "Vanilla cannot be hurried, but it can be planned. By working with Uganda's two seasons rather than against a single one, IK Food Uganda gives buyers fresher stock through the year and a second origin that protects them from supply shocks elsewhere.",
+    image: "/IMG_4165_converted.avif",
+  },
+  {
+    id: "farm-to-shipment-traceability",
+    num: "04",
+    category: "Quality & Traceability",
+    readTime: "7 min",
+    title: "Building Traceability from Smallholder Farm to Export Shipment",
+    overview:
+      "When vanilla comes from more than 20,000 smallholder farmers, knowing where each bean came from is hard work. How IK Food Uganda built a system that lets every shipment be traced back to its source.",
+    challenge: {
+      heading: "The Challenge",
+      body: "Premium buyers, especially in Europe and Asia, increasingly need to show where their ingredients come from and how they were produced. In a smallholder supply chain, beans pass through many hands, and lots can easily be mixed before they ever reach a curing shed.",
+      points: [
+        "Thousands of small plots spread across highland growing regions",
+        "Beans aggregated at collection points before curing",
+        "Buyer requirements for origin, residue and quality documentation",
+        "Phytosanitary rules that leave no room for undocumented lots",
+        "Protecting the premium paid for genuine Ugandan vanilla",
+      ],
+    },
+    approach: {
+      heading: "Our Approach",
+      body: "IK Food works directly with farmers instead of buying through anonymous traders, and keeps lots separate from collection through to packing, so documentation follows the beans at every step.",
+      points: [
+        "Direct partnerships and fair farm-gate pricing with registered smallholder farmers",
+        "Recording each delivery at collection points by farmer group and date",
+        "Keeping lots separate through curing, grading and packing",
+        "Lot codes on every pack, matched to test results for vanillin and moisture",
+        "A complete export file per shipment: invoice, packing list, phytosanitary and origin certificates",
+      ],
+    },
+    results: [
+      { metric: "20,000+", label: "Smallholder farmers in our network" },
+      { metric: "Lot-level", label: "Traceability on every pack" },
+      { metric: "0%",      label: "Shipment rejection rate" },
+      { metric: "EU + Asia", label: "Markets supplied" },
+    ],
+    conclusion:
+      "Traceability is not paperwork for its own sake. It is what lets a buyer in Europe or Asia stand behind the origin on their label, and it is what keeps fair prices flowing back to the farmers who grew the beans.",
+    image: "/Screenshot 2026-05-06 at 14.42.53_converted.avif",
+  },
 ];
 
 export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
@@ -119,7 +199,7 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ re
   return localize(
     <>
       <PageHero
-        title={<>Case studies<span className="text-[#dccba0]">.</span></>}
+        title={<>Case studies<span className="text-gold-500">.</span></>}
         image="/IMG_3172_converted.avif"
         alt="Vanilla farmland, the focus of IK Food Uganda's case studies"
         imageClassName="object-cover object-bottom"
