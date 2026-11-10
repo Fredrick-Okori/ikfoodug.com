@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { getRegion, withRegion } from "@/lib/regions";
 import { localize } from "@/lib/localize";
 import Image from "next/image";
-import { RegionLink as Link } from "@/components/RegionProvider";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import ScrollReveal from "@/components/ScrollReveal";
+import PageHero from "@/components/PageHero";
 
 const metadata: Metadata = {
   title: "Vanilla Export Case Studies | IK Food Uganda",
@@ -60,8 +58,8 @@ const studies = [
       ],
     },
     results: [
-      { metric: "3,000+", label: "Farmers in our network" },
-      { metric: "25 MT",  label: "Annual harvest volume" },
+      { metric: "20,000+", label: "Farmers in our network" },
+      { metric: "700 MT",  label: "Annual harvest volume" },
       { metric: "2+",     label: "International markets" },
       { metric: "0%",     label: "Shipment rejection rate" },
     ],
@@ -120,154 +118,88 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ re
   const r = getRegion((await params).region);
   return localize(
     <>
-      {/* ── Hero ── */}
-      <section className="relative min-h-[60vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Case studies hero">
-        <Image
-          src="/IMG_3172_converted.avif"
-          alt="Vanilla beans — the focus of IK Food Uganda's case studies"
-          fill className="object-cover object-bottom" priority sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/65 to-forest-950/25" aria-hidden="true" />
-        <div className="relative z-10 max-w-7xl mx-auto container-px w-full">
-          <div className="max-w-xl">
-            <span className="section-eyebrow-light mb-4">Real-World Insights</span>
-            <h1 className="text-display-2xl font-bold text-white text-balance">Case Studies</h1>
-            <p className="text-white/55 mt-4 text-lg">
-              How IK Food Uganda navigates the complexities of natural export
-              agriculture — the challenges, strategies, and outcomes.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title={<>Case studies<span className="text-[#dccba0]">.</span></>}
+        image="/IMG_3172_converted.avif"
+        alt="Vanilla farmland, the focus of IK Food Uganda's case studies"
+        imageClassName="object-cover object-bottom"
+      >
+        How IK Food Uganda handles the realities of natural export agriculture: the challenges, the approach, and what
+        came of it.
+      </PageHero>
 
-      {/* ── Study cards overview ── */}
-      <section className="py-14 bg-cream map-bg border-b border-forest-100" aria-label="Case study overview">
-        <div className="max-w-7xl mx-auto container-px">
-          <div className="grid md:grid-cols-2 gap-6">
+      {/* ── Index ── */}
+      <section className="bg-cream text-forest-950" aria-label="Case study index">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+          <ul>
             {studies.map((s) => (
-              <a key={s.id} href={`#${s.id}`}
-                className="surface-card group block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-600"
-              >
-                <div className="relative h-48 img-zoom overflow-hidden">
-                  <Image src={s.image} alt={s.title} fill className="object-cover" sizes="50vw" />
-                  <div className="absolute inset-0 bg-forest-950/30 group-hover:bg-forest-950/10 transition-colors" />
-                  <span className="absolute top-4 left-4 chip bg-forest-900 text-white">{s.category}</span>
-                  <span className="absolute top-4 right-4 chip bg-gold-400 text-forest-950 font-bold text-xs">{s.num}</span>
-                </div>
-                <div className="p-6">
-                  <p className="label-tag text-gray-400 mb-2">{s.readTime} read</p>
-                  <h2 className="font-semibold text-forest-950 leading-snug mb-2 group-hover:text-forest-700 transition-colors">
-                    {s.title}
-                  </h2>
-                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">{s.overview}</p>
-                  <div className="flex items-center gap-1.5 mt-4 text-forest-600 text-sm font-medium">
-                    <span>Read full study</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </div>
-                </div>
-              </a>
+              <li key={s.id} data-rule>
+                <a href={`#${s.id}`} className="group relative grid gap-3 py-8 md:grid-cols-[4rem_1fr_auto] md:items-center md:gap-8">
+                  <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/20" />
+                  <span data-rule-text className="text-sm font-bold tabular-nums text-forest-900/50">{s.num}</span>
+                  <span data-rule-text className="block">
+                    <span className="block text-sm font-bold text-forest-900/55">{s.category} · {s.readTime} read</span>
+                    <span className="mt-2 block text-[clamp(1.6rem,3.4vw,2.75rem)] font-extrabold leading-[1.05] tracking-[-0.04em] transition-colors duration-300 group-hover:text-gold-600">
+                      {s.title}
+                    </span>
+                  </span>
+                  <span aria-hidden className="hidden text-3xl font-extrabold text-forest-950/30 transition duration-500 group-hover:translate-y-1 group-hover:text-gold-600 md:block">&darr;</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
+          <span className="block h-px bg-forest-950/20" />
         </div>
       </section>
 
-      {/* ── Full case studies ── */}
+      {/* ── Full studies ── */}
       {studies.map((s, si) => (
-        <article key={s.id} id={s.id} className={`scroll-mt-20 section-y map-bg ${si % 2 === 0 ? "bg-white" : "bg-parchment"}`} aria-label={s.title}>
-          <div className="max-w-7xl mx-auto container-px">
+        <article key={s.id} id={s.id} className={`scroll-mt-8 ${si % 2 === 0 ? "bg-parchment" : "bg-cream"} text-forest-950`} aria-labelledby={`${s.id}-title`}>
+          <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+            <p data-reveal className="text-sm font-bold text-forest-900/55">{s.num} · {s.category} · {s.readTime} read</p>
+            <h2 id={`${s.id}-title`} data-split className="h-display mt-5 max-w-5xl text-[clamp(2.5rem,5.5vw,5rem)]">{s.title}</h2>
+            <p data-reveal className="mt-8 max-w-3xl text-xl leading-relaxed text-forest-900/75">{s.overview}</p>
 
-            {/* Header */}
-            <ScrollReveal className="max-w-3xl mb-12">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="chip bg-gold-400/20 text-gold-700 font-bold text-sm">{s.num}</span>
-                <span className="chip bg-forest-100 text-forest-700">{s.category}</span>
-                <span className="label-tag text-gray-400">{s.readTime} read</span>
-              </div>
-              <h2 className="text-display-lg font-bold text-forest-950 mb-4 text-balance">{s.title}</h2>
-              <div className="h-rule mb-5" aria-hidden="true" />
-              <p className="text-gray-600 text-lg leading-relaxed">{s.overview}</p>
-            </ScrollReveal>
+            <div data-clip data-parallax className="relative mt-14 aspect-[16/9] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0] lg:aspect-[21/9]">
+              <Image src={s.image} alt={s.title} fill className="object-cover" sizes="(min-width: 1280px) 1200px, 100vw" />
+            </div>
 
-            {/* Cover image */}
-            <ScrollReveal className="relative rounded-4xl overflow-hidden h-64 md:h-96 mb-12 shadow-xl img-zoom">
-              <Image src={s.image} alt={s.title} fill className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" />
-            </ScrollReveal>
-
-            {/* Challenge + Approach */}
-            <div className="grid md:grid-cols-2 gap-8 mb-10">
-              <ScrollReveal delay={40}>
-                <div className="bg-red-50 border border-red-100 rounded-3xl p-8 h-full">
-                  <h3 className="font-bold text-gray-900 mb-3">{s.challenge.heading}</h3>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-5">{s.challenge.body}</p>
-                  <ul className="space-y-2.5" role="list">
-                    {s.challenge.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0" aria-hidden="true" />
-                        {pt}
+            <div className="mt-16 grid gap-14 md:grid-cols-2 md:gap-12">
+              {[s.challenge, s.approach].map((block) => (
+                <div key={block.heading}>
+                  <h3 data-reveal className="text-3xl font-extrabold tracking-[-0.04em]">{block.heading}</h3>
+                  <p data-reveal className="mt-4 text-base leading-relaxed text-forest-900/75">{block.body}</p>
+                  <ul className="mt-8">
+                    {block.points.map((pt) => (
+                      <li key={pt} data-rule className="relative py-3.5 text-base text-forest-900/85">
+                        <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/15" />
+                        <span data-rule-text className="block">{pt}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </ScrollReveal>
-              <ScrollReveal delay={120}>
-                <div className="bg-forest-50 border border-forest-100 rounded-3xl p-8 h-full">
-                  <h3 className="font-bold text-gray-900 mb-3">{s.approach.heading}</h3>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-5">{s.approach.body}</p>
-                  <ul className="space-y-2.5" role="list">
-                    {s.approach.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 text-forest-600 mt-0.5 shrink-0" aria-hidden="true" />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </ScrollReveal>
+              ))}
             </div>
 
             {/* Results */}
-            <ScrollReveal>
-              <div className="bg-forest-950 rounded-3xl p-8 md:p-10 mb-8">
-                <p className="section-eyebrow-light mb-6">Results &amp; Impact</p>
-                <dl className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {s.results.map(({ metric, label }) => (
-                    <div key={label} className="text-center">
-                      <dt className="text-3xl font-bold text-white font-heading">{metric}</dt>
-                      <dd className="text-white/40 text-xs mt-1 tracking-wide">{label}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </ScrollReveal>
+            <div className="mt-20 rounded-[1.75rem] bg-forest-950 px-6 py-10 text-cream sm:px-10 sm:py-12">
+              <p className="text-sm font-bold text-parchment/50">Results</p>
+              <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
+                {s.results.map(({ metric, label }) => (
+                  <div key={label} className="flex flex-col">
+                    <dt className="mt-3 text-sm text-parchment/60">{label}</dt>
+                    <dd className="order-first text-[clamp(2rem,3.5vw,3rem)] font-extrabold leading-none tracking-[-0.04em]">{metric}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
 
-            {/* Conclusion */}
-            <ScrollReveal>
-              <div className="border-l-4 border-gold-400 pl-6 py-2">
-                <p className="text-gray-700 leading-relaxed">{s.conclusion}</p>
-              </div>
-            </ScrollReveal>
+            <p data-reveal className="mt-14 max-w-4xl text-2xl font-bold leading-snug tracking-[-0.02em] sm:text-3xl">
+              {s.conclusion}
+            </p>
           </div>
         </article>
       ))}
-
-      {/* ── CTA ── */}
-      <section className="py-24 bg-forest-950 noise-overlay relative" aria-label="Partner CTA">
-        <div className="max-w-2xl mx-auto container-px text-center">
-          <ScrollReveal>
-            <h2 className="text-display-lg font-bold text-white mb-5 text-balance">
-              Partner with IK Food Uganda
-            </h2>
-            <p className="text-white/50 text-lg mb-10">
-              Want to understand how we can serve your sourcing needs? Our team
-              is ready to discuss.
-            </p>
-            <Link href="/contact" className="btn-gold">
-              Get in Touch
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
     </>,
     r.code,
   );

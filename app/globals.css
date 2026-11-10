@@ -1,269 +1,181 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;700&family=Google+Sans+Text:wght@400;500;700&display=swap');
-@import "../node_modules/@zyther/ggl-translate/dist/styles.css";
+@import "lenis/dist/lenis.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ─────────────────────────────── */
-:root {
-  --forest-950: #191d1f;
-  --forest-900: #252a2d;
-  --forest-800: #2d3235;
-  --forest-700: #383e41;
-  --vanilla-300: #e9c87d;
-  --gold-400:    #9ce800;
-  --cream:       #faf6ee;
-  --parchment:   #f5edd8;
+/*
+ * IK Food Uganda — same system as ikfoodusa.com:
+ *  - Plus Jakarta Sans throughout; headings are extra-bold with tight tracking.
+ *  - Charcoal "forest" scale, IK lime (gold-400 #9ce800), cream/parchment surfaces,
+ *    burnt-orange "ember" for the scroll-lit words.
+ *  - Motion comes from GSAP + Lenis (components/SmoothScroll.tsx), not CSS keyframes.
+ */
 
-  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
+/* ── Font ──────────────────────────────────────────
+   Plus Jakarta Sans everywhere: body copy, headings, the oversized display type, form
+   controls, the admin screens. Declared here directly (not only via the Tailwind theme)
+   so it applies on every page regardless of config caching. */
+:root {
+  --font-site: var(--font-plus-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+html,
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, li, dt, dd, blockquote, figcaption, label,
+button, input, select, textarea,
+.font-sans,
+.font-heading,
+.h-display,
+.h-section,
+.h-hero {
+  font-family: var(--font-site);
 }
 
 /* ── Base ──────────────────────────────────────── */
 @layer base {
-  html { scroll-behavior: smooth; }
-
+  /* Google Translate injects a toolbar iframe and pushes the page down by its height;
+     keep the page at the top and hide that toolbar (the site has its own language selector). */
   html,
   body {
     top: 0 !important;
     margin-top: 0 !important;
   }
-
-  .ik-google-translate {
-    position: fixed !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    clip-path: inset(50%) !important;
-    pointer-events: none !important;
-  }
-
-  .ik-google-translate .language-selector-wrapper {
+  body > .skiptranslate,
+  iframe.goog-te-banner-frame,
+  .goog-te-banner-frame {
     display: none !important;
   }
 
-  /* Hide the English page while Google Translate applies the saved language. */
-  html.gt-pending body > * {
-    visibility: hidden !important;
-  }
-
-  html.gt-pending body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    margin: auto;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    border: 3px solid rgba(156, 232, 0, 0.2);
-    border-top-color: #9ce800;
-    animation: gt-spin 0.8s linear infinite;
-  }
-
-  @keyframes gt-spin {
-    to { transform: rotate(360deg); }
-  }
-
   body {
-    @apply font-sans text-gray-900 bg-white antialiased;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply font-sans bg-cream text-forest-950 antialiased;
   }
 
   h1, h2, h3, h4 { @apply font-heading; }
 
+  button, a { cursor: pointer; }
+
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-forest-600 rounded-sm;
+    @apply outline-2 outline-offset-2 outline-gold-500 rounded-sm;
   }
 
   ::selection {
     background: #9ce800;
     color: #191d1f;
   }
+
+  /* Prevent iOS Safari auto-zoom on input focus */
+  @media screen and (max-width: 768px) {
+    input, textarea, select { font-size: 16px !important; }
+  }
 }
 
 /* ── Components ────────────────────────────────── */
 @layer components {
-  /* Buttons */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 font-sans font-medium
-           transition-all duration-200 active:scale-[0.97] select-none;
+  /* Display headings: heavy, tight, editorial. */
+  .h-display {
+    @apply font-sans font-extrabold leading-[0.92] tracking-[-0.045em];
   }
-  .btn-dark {
-    @apply btn px-6 py-3.5 bg-forest-950 text-white rounded-xl
-           hover:bg-forest-800 focus-visible:ring-2 focus-visible:ring-gold-400
-           focus-visible:ring-offset-2 text-sm tracking-wide;
+  .h-section {
+    @apply h-display text-[clamp(2.75rem,7vw,6rem)];
+  }
+  .h-hero {
+    @apply h-display text-[clamp(3.25rem,9.6vw,9.25rem)];
+  }
+
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Buttons: lime pill, dark pill, and underlined text links. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-extrabold
+           transition-[background-color,color,box-shadow] duration-300 select-none
+           disabled:cursor-not-allowed disabled:opacity-60;
   }
   .btn-gold {
-    @apply btn px-6 py-3.5 bg-gold-400 text-forest-950 rounded-xl
-           hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400
-           focus-visible:ring-offset-2 text-sm font-semibold tracking-wide;
+    @apply btn bg-gold-400 text-forest-950 hover:bg-gold-500;
   }
-  .btn-outline-white {
-    @apply btn px-6 py-3.5 border border-white/30 text-white rounded-xl
-           hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50
-           text-sm tracking-wide backdrop-blur-sm;
+  .btn-dark {
+    @apply btn bg-forest-950 text-cream hover:bg-forest-800;
   }
   .btn-outline-dark {
-    @apply btn px-6 py-3.5 border border-forest-900 text-forest-900 rounded-xl
-           hover:bg-forest-50 focus-visible:ring-2 focus-visible:ring-gold-400
-           text-sm tracking-wide;
+    @apply btn border-2 border-forest-950 text-forest-950 hover:bg-forest-950 hover:text-cream;
   }
   .btn-outline-cream {
-    @apply btn px-6 py-3.5 border border-vanilla-300/50 text-parchment rounded-xl
-           hover:border-vanilla-300 hover:text-white focus-visible:ring-2
-           focus-visible:ring-vanilla-300 text-sm tracking-wide;
+    @apply btn border-2 border-cream/30 text-cream hover:border-gold-400 hover:text-gold-400;
+  }
+  .btn-outline-white {
+    @apply btn-outline-cream;
+  }
+  .link-line {
+    @apply inline-block border-b-2 border-forest-950 pb-1 text-sm font-extrabold text-forest-950
+           transition-colors hover:border-gold-600 hover:text-gold-600;
+  }
+  .link-line-light {
+    @apply inline-block border-b-2 border-gold-400 pb-1 text-sm font-extrabold text-gold-400
+           transition-colors hover:border-cream hover:text-cream;
   }
 
-  /* Cards */
-  .glass-card {
-    background-color: rgba(255,255,255,0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.12);
-    @apply rounded-2xl;
-    box-shadow: inset 0 2px 0 rgba(255,255,255,0.08);
-  }
-  .surface-card {
-    @apply bg-white border border-gray-100 rounded-2xl
-           shadow-sm hover:shadow-card-hover hover:border-gold-400/30 transition-all duration-300;
-  }
-
-  /* Typography */
+  /* Kept for the admin screens. */
   .label-tag {
-    @apply text-xs font-medium tracking-[0.18em] uppercase;
+    @apply text-xs font-bold tracking-wide;
   }
   .section-eyebrow {
-    @apply label-tag text-gold-500 mb-3 block;
-  }
-  .section-eyebrow-light {
-    @apply label-tag text-vanilla-300 mb-3 block;
-  }
-
-  /* Layout */
-  .container-px {
-    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
-  }
-  .section-y {
-    @apply py-20 md:py-28 xl:py-36;
-  }
-
-  /* Divider */
-  .h-rule {
-    @apply w-12 h-px bg-gold-400;
-  }
-
-  /* Badge */
-  .chip {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs
-           font-medium tracking-wide;
+    @apply label-tag text-gold-600 mb-3 block;
   }
 }
 
 /* ── Utilities ─────────────────────────────────── */
 @layer utilities {
-  .text-gradient-gold {
-    background: linear-gradient(135deg, #c4f266 0%, #7dba00 60%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .text-gradient-green {
-    background: linear-gradient(135deg, #9ce800 0%, #252a2d 80%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Noise overlay on dark panels */
-  .noise-overlay::after {
-    content: "";
-    @apply absolute inset-0 pointer-events-none opacity-[0.03];
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.75s var(--ease-spring), transform 0.75s var(--ease-spring);
-  }
-  .reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-left {
-    opacity: 0;
-    transform: translateX(-28px);
-    transition: opacity 0.75s var(--ease-spring), transform 0.75s var(--ease-spring);
-  }
-  .reveal-left.in-view {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* Stagger children */
-  .stagger > *:nth-child(1) { transition-delay: 0ms; }
-  .stagger > *:nth-child(2) { transition-delay: 80ms; }
-  .stagger > *:nth-child(3) { transition-delay: 160ms; }
-  .stagger > *:nth-child(4) { transition-delay: 240ms; }
-  .stagger > *:nth-child(5) { transition-delay: 320ms; }
-
-  /* Image hover zoom container */
-  .img-zoom { @apply overflow-hidden; }
-  .img-zoom img,
-  .img-zoom > div { @apply transition-transform duration-700 ease-out; }
-  .img-zoom:hover img,
-  .img-zoom:hover > div { transform: scale(1.06); }
-
-  /* Underline link */
-  .link-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-px
-           after:w-0 after:bg-current after:transition-all after:duration-300
-           hover:after:w-full;
-  }
-
-  /* Marquee stop on hover */
-  .marquee-track:hover .animate-marquee { animation-play-state: paused; }
-
   .text-balance { text-wrap: balance; }
 
-  /* Bg forest dark variants */
-  .bg-forest-dark  { background-color: var(--forest-950); }
-  .bg-forest-panel { background-color: #1f2325; }
-
-  /* Dotted map background overlay */
-  .map-bg {
-    position: relative;
+  .link-underline {
+    @apply underline decoration-2 decoration-gold-400 underline-offset-4 hover:decoration-current;
   }
-  .map-bg::before {
-    content: '';
+
+  /* Fine grain on dark panels so gradients don't band. */
+  .grain::after {
+    content: "";
     position: absolute;
     inset: 0;
-    background-image: url('/dotted-map-2.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.30;
     pointer-events: none;
-    z-index: 0;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .map-bg > * {
-    position: relative;
-    z-index: 1;
+
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+/* Hold the hero in its pre-intro state until GSAP takes over, so it doesn't flash open first.
+   Skipped for reduced motion, where no intro runs. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero-media] {
+    clip-path: inset(18% 22% 18% 22% round 32px);
+  }
+  [data-hero-title] {
+    visibility: hidden;
   }
 }
 
-/* ── Marquee ──────────────────────────────────── */
-.marquee-track {
-  display: flex;
-  overflow: hidden;
-  user-select: none;
+/* Dotted world map behind every light (cream / beige / white) section across the site.
+   A veil of the section's own colour sits over the map to keep it faint (raise --map-veil's
+   alpha to fade it further); multiply blending lets the pale dots sit on the section colour. */
+section.bg-cream,
+section.bg-parchment,
+section.bg-white,
+article.bg-cream,
+article.bg-parchment,
+article.bg-white {
+  background-image: linear-gradient(var(--map-veil), var(--map-veil)), url("/dotted-map-2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%, min(1400px, 96%) auto;
+  background-blend-mode: normal, multiply;
 }
-.marquee-content {
-  display: flex;
-  flex-shrink: 0;
-  min-width: 100%;
-  gap: 0;
-}
+section.bg-cream, article.bg-cream { --map-veil: rgb(250 246 238 / 0.5); }
+section.bg-parchment, article.bg-parchment { --map-veil: rgb(245 237 216 / 0.5); }
+section.bg-white, article.bg-white { --map-veil: rgb(255 255 255 / 0.5); }

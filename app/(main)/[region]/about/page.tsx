@@ -4,14 +4,13 @@ import { getRegion, withRegion } from "@/lib/regions";
 import { localize } from "@/lib/localize";
 import Image from "next/image";
 import { RegionLink as Link } from "@/components/RegionProvider";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import ScrollReveal from "@/components/ScrollReveal";
-
+import PageHero from "@/components/PageHero";
+import TeamCard from "@/components/TeamCard";
 
 const metadata: Metadata = {
   title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
   description:
-    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla exporters in Uganda. We empower 3,000+ smallholder farmers to produce export-grade natural vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
+    "Founded in 2015 in Kampala, IK Food Uganda is one of the top vanilla exporters in Uganda. We empower 20,000+ smallholder farmers to produce export-grade natural vanilla, rivalling the best producers in Madagascar, Zanzibar, and other top vanilla-producing countries.",
   keywords: [
     "about IK Food Uganda",
     "top vanilla company Uganda",
@@ -26,7 +25,7 @@ const metadata: Metadata = {
   ],
   openGraph: {
     title: "About IK Food Uganda | Top Vanilla Exporter Since 2015",
-    description: "The story of one of Uganda's top vanilla companies, founded in 2015, with 3,000+ farmer partners, exporting globally.",
+    description: "The story of one of Uganda's top vanilla companies, founded in 2015, with 20,000+ farmer partners, exporting globally.",
     url: "https://ikfoodug.com/about",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
@@ -42,7 +41,21 @@ const breadcrumbJsonLd = {
   ],
 };
 
-
+const teamJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ikfoodug.com/about#israel-kaweesa",
+      name: "Israel Kaweesa",
+      jobTitle: "General Manager",
+      description: "Israel Kaweesa is the General Manager and founder of IK Food Uganda. With over a decade of agribusiness experience, he built IK Food Uganda from a Kampala-based startup in 2015 into one of Uganda's top natural vanilla exporters, supplying premium beans to Europe and Asia.",
+      worksFor: { "@type": "Organization", name: "IK Food Uganda", url: "https://ikfoodug.com" },
+      knowsAbout: ["Natural vanilla export Uganda", "Agricultural trade East Africa", "Vanilla bean cultivation", "Export certification"],
+      nationality: { "@type": "Country", name: "Uganda" },
+    },
+  ],
+};
 
 const milestoneJsonLd = {
   "@context": "https://schema.org",
@@ -50,7 +63,7 @@ const milestoneJsonLd = {
   "@id": "https://ikfoodug.com/#organization",
   name: "IK Food Uganda",
   foundingDate: "2015",
-  description: "IK Food Uganda, Uganda's leading vanilla company, was founded in Kampala in 2015. Key milestones: 2021 achieved full export licences; 2022 expanded into European and Asian markets; 2024 reached 3,000+ farmer partners and 25 MT annual harvest.",
+  description: "IK Food Uganda, Uganda's leading vanilla company, was founded in Kampala in 2015. Key milestones: 2021 achieved full export licences; 2022 expanded into European and Asian markets; 2024 reached 20,000+ farmer partners and 700 MT annual harvest.",
 };
 
 const values = [
@@ -65,9 +78,17 @@ const milestones = [
   { year: "2018", event: "Scaled vanilla cultivation partnerships across Uganda's highland regions." },
   { year: "2021", event: "Achieved full export licences and quality certifications." },
   { year: "2022", event: "Expanded export markets into Europe and Asia." },
-  { year: "2024", event: "Reached 3,000+ customers and 25 MT annual harvest milestone." },
+  { year: "2024", event: "Reached 20,000+ farmer partners and a 700 MT annual harvest." },
 ];
 
+const team = [
+  {
+    name: "Israel Kaweesa",
+    role: "General Manager",
+    bio: "Israel leads IK Food Uganda with a passion for quality and international market growth. His decade of agribusiness experience has built the company into a trusted global exporter.",
+    image: "/israel-kaweesa.jpg",
+  },
+];
 
 export async function generateMetadata({ params }: { params: Promise<{ region: string }> }): Promise<Metadata> {
   const { region } = await params;
@@ -79,195 +100,134 @@ export default async function AboutPage({ params }: { params: Promise<{ region: 
   return localize(
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-     
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(teamJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(milestoneJsonLd) }} />
-      {/* ── Hero ── */}
-      <section className="relative min-h-[65vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="About hero">
-        <Image
-          src="/quality_split.avif"
-          alt="Ugandan farmers in the field, IK Food Uganda's farming partnerships"
-          fill className="object-cover object-center" priority sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/55 to-forest-950/20" aria-hidden="true" />
-        <div className="relative z-10 max-w-7xl mx-auto container-px w-full">
-          <div className="max-w-xl">
-            <span className="section-eyebrow-light mb-4">Our Story</span>
-            <h1 className="text-display-2xl font-bold text-white text-balance">
-              About IK Food (U) Ltd
-            </h1>
-          </div>
-        </div>
-      </section>
+
+      <PageHero
+        title={<>About IK Food (U) Ltd<span className="text-[#dccba0]">.</span></>}
+        image="/quality_split.avif"
+        alt="Ugandan farmers in the field, IK Food Uganda's farming partnerships"
+      >
+        A Kampala vanilla grower and exporter, founded in 2015 to build a fair, reliable market for Uganda&apos;s farmers.
+      </PageHero>
 
       {/* ── Story ── */}
-      <section className="section-y bg-cream map-bg" aria-label="Company story">
-        <div className="max-w-7xl mx-auto container-px">
-          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-            <ScrollReveal>
-              <span className="section-eyebrow">Established 2015</span>
-              <h2 className="text-display-lg font-bold text-forest-950 mb-6 text-balance">
-                From Uganda&apos;s Soil to the World&apos;s Table
-              </h2>
-              <div className="h-rule mb-6" aria-hidden="true" />
-              <p className="text-gray-600 leading-relaxed mb-4">
-                IK Food Uganda was founded with a mission to transform lives
-                through agriculture by creating opportunities for young people,
-                elderly farmers, and rural communities across Uganda. We
-                specialise in premium Ugandan vanilla and other natural
-                agricultural products, while building a sustainable and
-                reliable supply chain for farmers.
+      <section className="bg-cream text-forest-950" aria-labelledby="story-title">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12 lg:py-36">
+          <div>
+            <h2 id="story-title" data-split className="h-section">From Uganda&apos;s soil to the world&apos;s table.</h2>
+            <div className="mt-10 space-y-5 text-lg leading-relaxed text-forest-900/75">
+              <p data-reveal>
+                IK Food Uganda was founded with a mission to transform lives through agriculture by creating opportunities
+                for young people, elderly farmers, and rural communities across Uganda. We specialise in premium Ugandan
+                vanilla and other natural agricultural products, while building a sustainable and reliable supply chain
+                for farmers.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Our goal is not only to deliver high-quality products to
-                international markets, but also to empower communities through
-                employment, skills development, and fair trade partnerships.
-                We train and support farmers in modern farming, curing, and
-                processing techniques to improve product quality and household
+              <p data-reveal>
+                Our goal is not only to deliver high-quality products to international markets, but also to empower
+                communities through employment, skills development, and fair trade partnerships. We train and support
+                farmers in modern farming, curing, and processing techniques to improve product quality and household
                 incomes.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-10">
-                At IK Food Uganda, every product purchased creates impact. It
-                helps farmers access reliable markets, supports youth
-                employment, strengthens rural livelihoods, and contributes to
-                building a better future for families and communities. We
-                believe agriculture can be a tool for economic growth,
-                sustainability, and lasting social change.
+              <p data-reveal>
+                At IK Food Uganda, every product purchased creates impact. It helps farmers access reliable markets,
+                supports youth employment, strengthens rural livelihoods, and contributes to building a better future for
+                families and communities.
               </p>
-              <Link href="/products" className="btn-dark group">
-                Our Products
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-              </Link>
-            </ScrollReveal>
+            </div>
+            <div data-reveal className="mt-10">
+              <Link href="/products" className="link-line">See our products</Link>
+            </div>
+          </div>
 
-            <ScrollReveal delay={80} className="relative grid grid-cols-2 gap-4 h-[480px]">
-              <div className="row-span-2 img-zoom rounded-3xl overflow-hidden relative">
-                <Image src="/vanilla_bean_harvest.avif" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="25vw" />
-              </div>
-              <div className="img-zoom rounded-3xl overflow-hidden relative">
-                <Image src="/Screenshot 2026-05-06 at 14.42.53_converted.avif" alt="Agricultural processing in Uganda" fill className="object-cover" sizes="25vw" />
-              </div>
-              <div className="img-zoom rounded-3xl overflow-hidden relative">
-                <Image src="/ibanda.avif" alt="Green farmland in Uganda" fill className="object-cover" sizes="25vw" />
-              </div>
-              {/* floating year badge */}
-              <div className="absolute -bottom-5 -right-5 bg-forest-950 text-white rounded-2xl px-6 py-5 shadow-xl" aria-hidden="true">
-                <p className="text-3xl font-bold font-heading">10+</p>
-                <p className="text-white/45 text-xs mt-0.5">Years of excellence</p>
-              </div>
-            </ScrollReveal>
+          <div className="grid grid-cols-2 gap-4 lg:pt-24">
+            <div data-clip data-parallax className="relative row-span-2 min-h-[22rem] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
+              <Image src="/vanilla_bean_harvest.avif" alt="Premium Ugandan vanilla beans" fill className="object-cover" sizes="(min-width: 1024px) 25vw, 50vw" />
+            </div>
+            <div data-clip className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
+              <Image src="/Screenshot 2026-05-06 at 14.42.53_converted.avif" alt="Agricultural processing in Uganda" fill className="object-cover" sizes="(min-width: 1024px) 25vw, 50vw" />
+            </div>
+            <div data-clip className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
+              <Image src="/ibanda.avif" alt="Green farmland in Uganda" fill className="object-cover" sizes="(min-width: 1024px) 25vw, 50vw" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Mission & Vision ── */}
-      <section className="section-y bg-forest-950 noise-overlay relative" aria-label="Mission and vision">
-        <div className="max-w-7xl mx-auto container-px">
-          <ScrollReveal className="text-center max-w-xl mx-auto mb-14">
-            <span className="section-eyebrow-light">Purpose</span>
-            <h2 className="text-display-lg font-bold text-white text-balance">
-              Mission &amp; Vision
-            </h2>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-2 gap-6">
-            <ScrollReveal delay={40}>
-              <div className="border border-white/10 rounded-3xl p-8 md:p-10 h-full">
-                <p className="label-tag text-gold-400 mb-4">Our Mission</p>
-                <p className="text-white/70 text-lg leading-relaxed italic border-l-2 border-gold-400/40 pl-5">
-                  &ldquo;To transform lives through agriculture by creating
-                  opportunities for young people, elderly farmers, and rural
-                  communities, delivering premium natural products to
-                  international markets while building a sustainable and
-                  reliable supply chain for farmers.&rdquo;
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={120}>
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 h-full">
-                <p className="label-tag text-forest-300 mb-4">Our Vision</p>
-                <p className="text-white/70 text-lg leading-relaxed italic border-l-2 border-forest-400/40 pl-5">
-                  &ldquo;To be the preferred supplier of premium Ugandan vanilla and
-                  other natural agricultural products, recognised for quality,
-                  sustainability, and integrity.&rdquo;
-                </p>
-              </div>
-            </ScrollReveal>
+      <section className="bg-forest-900 text-cream" aria-label="Mission and vision">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+          <p className="text-sm font-bold text-parchment/50">Our mission</p>
+          <p data-scrub-words className="mt-6 max-w-5xl text-[clamp(2rem,4.2vw,3.75rem)] font-extrabold leading-[1.05] tracking-[-0.04em]">
+            To transform lives through agriculture, creating opportunities for young people, elderly farmers and rural
+            communities, while delivering <span data-ember className="text-[#cc5500]">premium natural products</span> to
+            international markets.
+          </p>
+          <div data-rule className="relative mt-20 grid gap-6 pt-10 lg:grid-cols-[0.4fr_1fr]">
+            <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-cream/15" />
+            <p data-rule-text className="text-sm font-bold text-parchment/50">Our vision</p>
+            <p data-rule-text className="max-w-3xl text-2xl font-bold leading-snug tracking-[-0.02em] text-parchment/85 sm:text-3xl">
+              To be the preferred supplier of premium Ugandan vanilla and other natural agricultural products, recognised
+              for quality, sustainability, and integrity.
+            </p>
           </div>
         </div>
       </section>
 
       {/* ── Values ── */}
-      <section className="section-y bg-parchment map-bg" aria-label="Core values">
-        <div className="max-w-7xl mx-auto container-px">
-          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-            <ScrollReveal>
-              <span className="section-eyebrow">What We Stand For</span>
-              <h2 className="text-display-lg font-bold text-forest-950 mb-10 text-balance">
-                Our Core Values
-              </h2>
-              <div className="space-y-7">
-                {values.map(({ n, title, body }) => (
-                  <div key={n} className="flex gap-5">
-                    <span className="text-sm font-semibold text-gold-500 shrink-0 pt-0.5 w-7">{n}</span>
-                    <div>
-                      <h3 className="font-semibold text-forest-900 mb-1">{title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={80}>
-              <div className="relative rounded-4xl overflow-hidden h-[500px] img-zoom shadow-xl">
-                <Image
-                  src="/IMG_3172_converted.avif"
-                  alt="Lush natural farmland in Uganda"
-                  fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </ScrollReveal>
+      <section className="bg-parchment text-forest-950" aria-labelledby="values-title">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-12 lg:py-36">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <h2 id="values-title" data-split className="h-section">What we stand for.</h2>
+            <div data-clip className="relative mt-12 aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
+              <Image src="/IMG_3172_converted.avif" alt="Lush natural farmland in Uganda" fill className="object-cover" sizes="(min-width: 1024px) 40vw, 100vw" />
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ── Timeline ── */}
-      <section className="section-y bg-white map-bg" aria-label="Company milestones">
-        <div className="max-w-5xl mx-auto container-px">
-          <ScrollReveal className="text-center mb-14">
-            <span className="section-eyebrow">Our Journey</span>
-            <h2 className="text-display-lg font-bold text-forest-950">Key Milestones</h2>
-          </ScrollReveal>
-          <ol className="relative border-l-2 border-forest-100 ml-4 space-y-10" role="list">
-            {milestones.map(({ year, event }, i) => (
-              <ScrollReveal key={year} delay={i * 60}>
-                <li className="relative pl-8">
-                  <span className="absolute left-0 -translate-x-1/2 -translate-y-px w-4 h-4 rounded-full bg-forest-700 border-4 border-white shadow" aria-hidden="true" />
-                  <span className="chip bg-gold-400/20 text-gold-600 font-bold mb-2">{year}</span>
-                  <p className="text-gray-700 leading-relaxed mt-1">{event}</p>
-                </li>
-              </ScrollReveal>
+          <ol>
+            {values.map(({ title, body }, i) => (
+              <li key={title} data-rule className="relative grid gap-3 py-9 sm:grid-cols-[3rem_1fr]">
+                <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/20" />
+                <span data-rule-text className="text-sm font-bold tabular-nums text-forest-900/50">{String(i + 1).padStart(2, "0")}</span>
+                <div data-rule-text>
+                  <h3 className="text-2xl font-extrabold tracking-[-0.035em] sm:text-3xl">{title}</h3>
+                  <p className="mt-3 max-w-lg text-base leading-relaxed text-forest-900/70">{body}</p>
+                </div>
+              </li>
             ))}
+            <li aria-hidden className="h-px bg-forest-950/20" />
           </ol>
         </div>
       </section>
 
-     
+      {/* ── Milestones ── */}
+      <section className="bg-cream text-forest-950" aria-labelledby="milestones-title">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+          <h2 id="milestones-title" data-split className="h-section">Ten years in the making.</h2>
+          <ol className="mt-16">
+            {milestones.map(({ year, event }) => (
+              <li key={year} data-rule className="relative grid gap-3 py-8 md:grid-cols-[0.5fr_1fr] md:items-baseline md:gap-8">
+                <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/20" />
+                <span data-rule-text className="text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold leading-none tracking-[-0.05em]">{year}</span>
+                <p data-rule-text className="max-w-xl text-lg leading-relaxed text-forest-900/75">{event}</p>
+              </li>
+            ))}
+          </ol>
+          <span className="block h-px bg-forest-950/20" />
+        </div>
+      </section>
 
-      {/* ── CTA ── */}
-      <section className="py-24 bg-forest-950 noise-overlay relative" aria-label="Contact CTA">
-        <div className="max-w-3xl mx-auto container-px text-center">
-          <ScrollReveal>
-            <h2 className="text-display-lg font-bold text-white mb-5 text-balance">
-              Ready to Work Together?
-            </h2>
-            <p className="text-white/50 text-lg mb-10">
-              Whether you&apos;re a distributor, wholesaler, or retailer,
-              let&apos;s discuss how we can supply your natural product needs.
-            </p>
-            <Link href="/contact" className="btn-gold">
-              Contact Our Team
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </ScrollReveal>
+      {/* ── Team ── */}
+      <section className="bg-forest-950 text-cream" aria-labelledby="team-title">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <h2 id="team-title" data-split className="h-section">The people behind it.</h2>
+            <Link href="/contact" className="link-line-light shrink-0">Talk to the team</Link>
+          </div>
+          <div className="mt-16 space-y-20 lg:space-y-28">
+            {team.map((m, i) => (
+              <TeamCard key={m.name} member={m} index={i} />
+            ))}
+          </div>
         </div>
       </section>
     </>,

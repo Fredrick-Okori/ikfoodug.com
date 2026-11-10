@@ -91,7 +91,7 @@ export const regions: Record<RegionCode, Region> = {
       },
       "/about": {
         title: "About IK Food USA | Ugandan Vanilla from Farm to US Buyers",
-        description: "IK Food USA brings vanilla from IK Food Uganda, founded in Kampala in 2015 and partnering with 3,000+ smallholder farmers, to buyers across the United States.",
+        description: "IK Food USA brings vanilla from IK Food Uganda, founded in Kampala in 2015 and partnering with 20,000+ smallholder farmers, to buyers across the United States.",
       },
       "/products": {
         title: "Vanilla Beans, Powder & Paste | IK Food USA",
@@ -100,7 +100,7 @@ export const regions: Record<RegionCode, Region> = {
       },
       "/impact": {
         title: "Our Impact | IK Food USA",
-        description: "Every IK Food USA order supports 3,000+ smallholder vanilla farmers in Central Uganda through fair pricing, training and direct market access.",
+        description: "Every IK Food USA order supports 20,000+ smallholder vanilla farmers in Central Uganda through fair pricing, training and direct market access.",
       },
       "/case-studies": {
         title: "Case Studies | IK Food USA",

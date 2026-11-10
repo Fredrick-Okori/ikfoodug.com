@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getRegion, withRegion } from "@/lib/regions";
+import PageHero from "@/components/PageHero";
 import GalleryClient, { type GalleryImage } from "@/components/GalleryClient";
 import { supabase } from "@/lib/supabase";
 
@@ -86,27 +87,13 @@ export default async function GalleryPage() {
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="pt-32 pb-12 bg-forest-950 noise-overlay relative" aria-label="Gallery hero">
-        <div className="max-w-7xl mx-auto container-px">
-          <span className="section-eyebrow-light mb-4">Our Gallery</span>
-          <h1 className="text-display-2xl font-bold text-white text-balance max-w-xl">
-            From Farm to Export
-          </h1>
-          <p className="text-white/50 text-lg mt-4 max-w-2xl leading-relaxed">
-            A visual journey through Uganda&apos;s vanilla farms, the communities
-            behind our harvest, and the quality process that delivers the world&apos;s
-            finest natural vanilla.
-          </p>
-          <p className="text-white/30 text-sm mt-6">
-            Click any image to view full screen &mdash; use arrow keys or thumbnails to navigate.
-          </p>
-        </div>
-      </section>
+      <PageHero title={<>From farm to export<span className="text-[#dccba0]">.</span></>}>
+        Uganda&apos;s vanilla farms, the communities behind the harvest, and the quality process in between. Select any
+        photo to view it full screen.
+      </PageHero>
 
-      {/* ── Gallery grid ── */}
-      <section className="section-y bg-cream map-bg" aria-label="Photo gallery">
-        <div className="max-w-7xl mx-auto container-px">
+      <section className="bg-cream" aria-label="Photo gallery">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
           <GalleryClient images={allImages} />
         </div>
       </section>

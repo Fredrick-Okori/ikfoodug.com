@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useRegion } from "./RegionProvider";
+import { setSmoothScrollPaused } from "./SmoothScroll";
 
 interface Props {
   open: boolean;
@@ -65,13 +66,17 @@ export default function OrderDrawer({ open, onClose }: Props) {
   const firstInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    setSmoothScrollPaused(open);
     if (open) {
       document.body.style.overflow = "hidden";
       setTimeout(() => firstInput.current?.focus(), 300);
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+      setSmoothScrollPaused(false);
+    };
   }, [open]);
 
   useEffect(() => {
@@ -129,7 +134,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
 
   const inputCls =
     "w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder:text-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition-all";
-  const labelCls = "block text-xs font-medium text-white/50 uppercase tracking-widest mb-1.5";
+  const labelCls = "block text-sm font-bold text-white/60 mb-1.5";
 
   return (
     <div
@@ -150,14 +155,11 @@ export default function OrderDrawer({ open, onClose }: Props) {
       <div
         className={`absolute top-0 right-0 h-full w-full max-w-[420px] bg-forest-950 shadow-2xl flex flex-col transition-transform duration-[380ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        {/* Gold left accent bar */}
-        <div className="absolute top-0 left-0 w-[3px] h-full bg-gradient-to-b from-gold-400 via-gold-400/40 to-transparent" aria-hidden="true" />
-
         {/* Header */}
         <div className="flex items-start justify-between px-8 pt-8 pb-5 border-b border-white/8 shrink-0">
           <div>
-            <p className="label-tag text-gold-400 mb-1">{region.name}</p>
-            <h2 className="text-xl font-bold font-heading text-white">Place an Order</h2>
+            <p className="text-sm font-bold text-gold-400 mb-1">{region.name}</p>
+            <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-cream">Place an order</h2>
           </div>
           <button
             onClick={onClose}
@@ -169,11 +171,11 @@ export default function OrderDrawer({ open, onClose }: Props) {
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto px-8 py-7">
+        <div data-lenis-prevent className="flex-1 overflow-y-auto overscroll-contain px-8 py-7">
           {submitted ? (
             <div className="flex flex-col items-center text-center py-12 gap-4">
               <CheckCircle2 className="w-14 h-14 text-gold-400" />
-              <h3 className="text-xl font-bold text-white font-heading">Order Request Sent!</h3>
+              <h3 className="text-2xl font-extrabold tracking-[-0.03em] text-white">Order request sent</h3>
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">
                 Thank you, {form.name}. Our team will review your request and
                 contact you at <span className="text-white/80">{form.email}</span> within 24 hours.
@@ -333,7 +335,7 @@ export default function OrderDrawer({ open, onClose }: Props) {
                     Sending…
                   </>
                 ) : (
-                  "Submit Order Request"
+                  "Submit order request"
                 )}
               </button>
 

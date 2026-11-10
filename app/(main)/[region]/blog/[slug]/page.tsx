@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { RegionLink as Link } from "@/components/RegionProvider";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import { supabase, type BlogPost } from "@/lib/supabase";
 import { getRegion, regionAlternates } from "@/lib/regions";
 
@@ -30,39 +29,32 @@ export default async function BlogPostPage({ params }: { params: Promise<{ regio
 
   return (
     <>
-      <section className="relative min-h-[55vh] flex items-end pb-20 pt-32 overflow-hidden">
-        {p.image_url && (
-          <Image src={p.image_url} alt={p.title} fill className="object-cover" priority sizes="100vw" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-forest-950/20" />
-        <div className="relative z-10 max-w-4xl mx-auto container-px w-full">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Blog
+      <PageHero
+        title={p.title}
+        image={p.image_url || undefined}
+        alt={p.title}
+        aside={
+          <Link href="/blog" className="link-line-light">
+            All articles
           </Link>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="chip bg-forest-900 text-white">{p.category}</span>
-            <span className="label-tag text-white/50">{p.read_time} read</span>
-          </div>
-          <h1 className="text-display-xl font-bold text-white text-balance max-w-2xl">{p.title}</h1>
-          <time dateTime={p.published_at ?? p.created_at} className="text-white/40 text-sm mt-4 block">{date}</time>
-        </div>
-      </section>
+        }
+      >
+        <p className="text-sm font-bold text-parchment/55">
+          {p.category} · <time dateTime={p.published_at ?? p.created_at}>{date}</time> · {p.read_time} read
+        </p>
+      </PageHero>
 
-      <section className="section-y bg-white map-bg">
-        <div className="max-w-3xl mx-auto container-px">
+      <article className="bg-cream text-forest-950">
+        <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8 lg:py-28">
           {p.excerpt && (
-            <p className="text-xl text-gray-600 leading-relaxed mb-10 border-l-4 border-gold-400 pl-6 italic">{p.excerpt}</p>
+            <p data-reveal className="mb-12 text-2xl font-bold leading-snug tracking-[-0.02em]">{p.excerpt}</p>
           )}
-          <div className="text-gray-700 leading-relaxed whitespace-pre-wrap text-[1.05rem]">
-            {p.content}
-          </div>
-          <div className="mt-16 pt-8 border-t border-gray-100">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-forest-600 hover:text-forest-800 font-medium text-sm transition-colors">
-              <ArrowLeft className="w-4 h-4" /> Back to all articles
-            </Link>
+          <div className="whitespace-pre-wrap text-[1.0625rem] leading-[1.8] text-forest-900/80">{p.content}</div>
+          <div className="mt-16 border-t border-forest-950/15 pt-8">
+            <Link href="/blog" className="link-line">Back to all articles</Link>
           </div>
         </div>
-      </section>
+      </article>
     </>
   );
 }

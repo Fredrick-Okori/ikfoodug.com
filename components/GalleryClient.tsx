@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { setSmoothScrollPaused } from "./SmoothScroll";
 
 export interface GalleryImage {
   src: string;
@@ -36,35 +37,40 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
     return () => window.removeEventListener("keydown", handler);
   }, [lightboxIndex, prev, next]);
 
+  const isOpen = lightboxIndex !== null;
   useEffect(() => {
-    document.body.style.overflow = lightboxIndex !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [lightboxIndex]);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    setSmoothScrollPaused(isOpen);
+    return () => {
+      document.body.style.overflow = "";
+      setSmoothScrollPaused(false);
+    };
+  }, [isOpen]);
 
   return (
     <>
-      {/* ── Thumbnail grid ── */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+      {/* ── Masonry grid ── */}
+      <div className="columns-2 gap-3 sm:columns-3 md:gap-4 lg:columns-4">
         {images.map((img, i) => (
           <button
             key={i}
+            data-card
             onClick={() => open(i)}
-            className="group relative aspect-square rounded-2xl overflow-hidden cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+            className={`group relative mb-3 block w-full cursor-zoom-in overflow-hidden rounded-[1.25rem] bg-[#ebdfc0] md:mb-4 ${
+              i % 5 === 0 ? "aspect-[3/4]" : i % 3 === 0 ? "aspect-[4/3]" : "aspect-square"
+            }`}
             aria-label={`View ${img.caption}`}
           >
             <Image
               src={img.src}
               alt={img.caption}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
-            <div className="absolute inset-0 bg-forest-950/0 group-hover:bg-forest-950/50 transition-all duration-300 flex flex-col items-center justify-center gap-2">
-              <ZoomIn className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" aria-hidden="true" />
-              <p className="text-white text-xs font-medium px-3 text-center leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-sm">
-                {img.caption}
-              </p>
-            </div>
+            <span className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-forest-950/85 to-transparent px-4 pb-4 pt-10 text-left text-sm font-bold text-cream transition-transform duration-500 group-hover:translate-y-0 group-focus-visible:translate-y-0">
+              {img.caption}
+            </span>
           </button>
         ))}
       </div>
@@ -72,7 +78,8 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
       {/* ── Lightbox ── */}
       {lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-forest-950/96 backdrop-blur-md flex flex-col"
+          data-lenis-prevent
+          className="fixed inset-0 z-[100] bg-forest-950/95 backdrop-blur-md flex flex-col"
           role="dialog"
           aria-modal="true"
           aria-label="Image viewer"
@@ -83,7 +90,7 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
               <p className="text-white font-semibold text-sm leading-none">
                 {images[lightboxIndex].caption}
               </p>
-              <p className="text-gold-400 text-[11px] uppercase tracking-widest mt-1">
+              <p className="text-gold-400 text-xs font-bold mt-1">
                 {images[lightboxIndex].category}
               </p>
             </div>

@@ -1,25 +1,32 @@
 "use client";
 
+import { useState } from "react";
+
 export default function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [done, setDone] = useState(false);
+
   return (
     <form
-      className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
       aria-label="Newsletter subscription form"
-      onSubmit={(e) => e.preventDefault()}
+      className="flex items-end gap-6"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (email) setDone(true);
+      }}
     >
-      <label htmlFor="newsletter-email" className="sr-only">
-        Email address
-      </label>
+      <label htmlFor="newsletter-email" className="sr-only">Email address</label>
       <input
         id="newsletter-email"
         type="email"
-        placeholder="Enter your email address"
-        className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-brand-300 focus:outline-none focus:ring-2 focus:ring-white text-sm"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="you@company.com"
         required
-        aria-required="true"
+        className="h-14 min-w-0 flex-1 border-0 border-b-2 border-cream/25 bg-transparent px-0 text-xl font-bold text-cream outline-none transition-colors placeholder:font-medium placeholder:text-cream/30 focus:border-gold-400 sm:text-2xl"
       />
-      <button type="submit" className="btn-white shrink-0 text-sm py-3">
-        Subscribe
+      <button type="submit" className="btn-gold mb-1 shrink-0">
+        {done ? "Subscribed" : "Subscribe"}
       </button>
     </form>
   );

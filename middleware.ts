@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { countryLanguages } from "@/lib/languages";
 import { DEFAULT_REGION, regionCodes, regions } from "@/lib/regions";
 
 const ONE_YEAR = 60 * 60 * 24 * 365;
@@ -48,16 +47,6 @@ export function middleware(request: NextRequest) {
   // Read client-side by RegionBanner to suggest the visitor's local site.
   if (request.cookies.get("ik_country")?.value !== country) {
     response.headers.append("Set-Cookie", `ik_country=${country}; ${attrs}`);
-  }
-
-  // First visit: pick a language from the visitor's country so the very first
-  // page load is already translated (no English render + reload). `ik_geo`
-  // marks detection as done so choosing English later is respected.
-  if (!request.cookies.has("googtrans") && !request.cookies.has("ik_geo")) {
-    response.headers.append("Set-Cookie", `ik_geo=1; ${attrs}`);
-    const language = countryLanguages[country];
-    // Raw header: Google Translate expects the unencoded "/en/xx" value.
-    if (language) response.headers.append("Set-Cookie", `googtrans=/en/${language}; ${attrs}`);
   }
 
   return response;

@@ -1,6 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { translateBootScript } from "@/lib/languages";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#191d1f",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ikfoodug.com"),
@@ -76,28 +87,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${plusJakarta.variable} antialiased`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: translateBootScript }} />
-        {/* Google Translate fetches from these hosts in sequence; warm the connections up front. */}
-        <link rel="preconnect" href="https://translate.google.com" />
-        <link rel="preconnect" href="https://translate.googleapis.com" />
-        <link rel="preconnect" href="https://translate-pa.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.gstatic.com" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="apple-touch-icon" href="/favicon-32x32.png" />
         <meta name="geo.region" content="UG" />
         <meta name="geo.placename" content="Kampala, Uganda" />
         <meta name="geo.position" content="0.3136;32.5811" />
         <meta name="ICBM" content="0.3136, 32.5811" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="google-site-verification" content="H84fQYdc4Ja0oRH7pCj-SbApyKZs1SKkkLgonwbDqsQ" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;700&family=Google+Sans+Text:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -260,7 +258,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   "description": "The 4-step farm-to-shipment process IK Food Uganda uses to produce and export premium natural vanilla beans",
                   "step": [
                     { "@type": "HowToStep", position: 1, name: "Cultivation", text: "Natural seeds, biodynamic soil preparation, and shade-grown techniques on Uganda's highland farms. All farming is pesticide-free." },
-                    { "@type": "HowToStep", position: 2, name: "Harvest", text: "Vanilla pods are hand-picked at peak maturity by trained smallholder farmers — over 3,000 partner farmers across Central Uganda." },
+                    { "@type": "HowToStep", position: 2, name: "Harvest", text: "Vanilla pods are hand-picked at peak maturity by trained smallholder farmers — over 20,000 partner farmers across Central Uganda." },
                     { "@type": "HowToStep", position: 3, name: "Processing", text: "On-site quality testing, 6-month traditional sun-curing, grading, and cold-chain packing to EU export specifications." },
                     { "@type": "HowToStep", position: 4, name: "Export", text: "Full phytosanitary certification documentation and direct dispatch to buyers in Europe (UK, Germany, Netherlands, France) and Asia (Japan, South Korea)." },
                   ],
@@ -283,13 +281,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     { "@type": "Question", name: "How does Ugandan vanilla compare to Madagascar and Zanzibar vanilla?", acceptedAnswer: { "@type": "Answer", text: "Ugandan vanilla from IK Food Uganda is prized for its exceptionally high vanillin concentration (1.5–2.5%), floral complexity, and rich creamy depth — qualities that rival and often surpass vanilla from Madagascar (1.5–2.0% vanillin) and Zanzibar. Uganda's highland climate and traditional 6-month sun-curing produce a uniquely complex flavour profile." } },
                     { "@type": "Question", name: "Which are the top vanilla producing countries in the world?", acceptedAnswer: { "@type": "Answer", text: "The top vanilla producing countries include Madagascar (largest producer), Indonesia, Uganda, Mexico, Tahiti, Comoros, and Zanzibar (Tanzania). Uganda is one of the fastest-growing producers, known for high-vanillin natural beans with exceptional quality." } },
                     { "@type": "Question", name: "What products does IK Food Uganda export?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda exports 7 premium vanilla products: Grade A Vanilla Beans, Grade B Vanilla Beans, Vanilla Powder, Split Vanilla Beans, Vanilla Paste, Vanilla Caviar, and Vanilla Green Beans." } },
-                    { "@type": "Question", name: "Where is IK Food Uganda based?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda is based in Kampala, Uganda — the capital city. The company works with 3,000+ smallholder farmers across Central Uganda's highland growing regions." } },
+                    { "@type": "Question", name: "Where is IK Food Uganda based?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda is based in Kampala, Uganda — the capital city. The company works with 20,000+ smallholder farmers across Central Uganda's highland growing regions." } },
                     { "@type": "Question", name: "What certifications does IK Food Uganda have?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda holds full phytosanitary export licences for international shipment. All products meet EU and international natural standards with complete farm-to-shipment traceability." } },
                     { "@type": "Question", name: "What is the vanillin content of Ugandan vanilla beans?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda's vanilla beans contain 1.5–2.5% vanillin, which is among the highest in the world. This high vanillin concentration, achieved through traditional 6-month sun-curing and Uganda's ideal highland climate, is what makes Ugandan vanilla exceptionally prized by premium food producers globally." } },
                     { "@type": "Question", name: "Which countries does IK Food Uganda export to?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda currently exports to Europe (United Kingdom, Germany, Netherlands, France) and Asia (Japan, South Korea), with expansion into the Middle East underway. The company ships to qualified buyers worldwide." } },
                     { "@type": "Question", name: "How do I order vanilla beans from IK Food Uganda?", acceptedAnswer: { "@type": "Answer", text: "To order vanilla beans from IK Food Uganda, contact the sales team at sales@ikfooduganda.com or call +256 776 341 713. You can also submit an enquiry at ikfoodug.com/contact. The team will discuss grade selection, pricing, minimum order quantities, and logistics." } },
                     { "@type": "Question", name: "How does IK Food Uganda meet export standards?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda holds full phytosanitary export licences and meets EU and international natural standards. Every shipment undergoes rigorous quality control, on-site laboratory testing, and cold-chain logistics to guarantee compliance." } },
-                    { "@type": "Question", name: "How does IK Food Uganda support Ugandan farmers?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda partners with over 3,000 smallholder farmers across Central Uganda, providing fair-trade pricing, free agronomic training, modern farming techniques, and direct market access. The company's mission is to transform rural livelihoods through sustainable natural agriculture." } },
+                    { "@type": "Question", name: "How does IK Food Uganda support Ugandan farmers?", acceptedAnswer: { "@type": "Answer", text: "IK Food Uganda partners with over 20,000 smallholder farmers across Central Uganda, providing fair-trade pricing, free agronomic training, modern farming techniques, and direct market access. The company's mission is to transform rural livelihoods through sustainable natural agriculture." } },
                   ],
                 },
               ],
@@ -297,8 +295,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-600 focus:text-white focus:rounded-lg focus:font-semibold">
+      <body className="min-h-screen flex flex-col bg-cream">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-forest-950 focus:text-cream focus:rounded-full focus:font-bold">
           Skip to main content
         </a>
         {children}

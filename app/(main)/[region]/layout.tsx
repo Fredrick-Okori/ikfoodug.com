@@ -3,9 +3,10 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import GoogleTranslateSwitcher from "@/components/GoogleTranslateSwitcher";
 import RegionBanner from "@/components/RegionBanner";
+import SmoothScroll from "@/components/SmoothScroll";
 import { RegionProvider } from "@/components/RegionProvider";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import { regions, regionCodes, regionUrl, isRegion, SITE_URL } from "@/lib/regions";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -56,13 +57,14 @@ export default async function MainLayout({ children, params }: { children: React
   };
 
   return (
+    <LanguageProvider>
     <RegionProvider region={region}>
       {localBusiness && r.live && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
       )}
+      <SmoothScroll />
       <Navbar />
-      <GoogleTranslateSwitcher />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 overflow-x-clip outline-none">
         {children}
       </main>
       <Footer region={region} />
@@ -81,5 +83,6 @@ gtag('config', '${GOOGLE_ADS_ID}');`}
         </>
       )}
     </RegionProvider>
+    </LanguageProvider>
   );
 }

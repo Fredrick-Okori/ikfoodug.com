@@ -3,8 +3,7 @@ import { getRegion, withRegion } from "@/lib/regions";
 import { localize } from "@/lib/localize";
 import Image from "next/image";
 import { RegionLink as Link } from "@/components/RegionProvider";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import ScrollReveal from "@/components/ScrollReveal";
+import PageHero from "@/components/PageHero";
 import NewsletterForm from "@/components/NewsletterForm";
 import { supabase, type BlogPost } from "@/lib/supabase";
 
@@ -81,7 +80,8 @@ export default async function BlogPage({ params }: { params: Promise<{ region: s
     category: p.category,
     readTime: p.read_time,
     excerpt: p.excerpt ?? "",
-    image: p.image_url ?? "/IMG_4873_converted.avif",
+    // Posts without a cover (null or an empty string) fall back to a stock vanilla photo.
+    image: p.image_url || "/IMG_4873_converted.avif",
     featured: p.featured,
   }));
 
@@ -92,110 +92,75 @@ export default async function BlogPage({ params }: { params: Promise<{ region: s
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogArticlesJsonLd) }} />
-      {/* Hero */}
-      <section className="relative min-h-[55vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Blog hero">
-        <Image
-          src="/IMG_4873_converted.avif"
-          alt="Vanilla beans — IK Food Uganda's blog focuses on natural agriculture"
-          fill className="object-cover" priority sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-forest-950/20" aria-hidden="true" />
-        <div className="relative z-10 max-w-7xl mx-auto container-px w-full">
-          <span className="section-eyebrow-light mb-4">Knowledge Hub</span>
-          <h1 className="text-display-2xl font-bold text-white text-balance max-w-xl">
-            Blog &amp; Resources
-          </h1>
-          <p className="text-white/50 mt-4 text-lg max-w-md">
-            Expert insights on natural farming, Ugandan vanilla, and
-            sustainable agribusiness.
-          </p>
-        </div>
-      </section>
+
+      <PageHero
+        title={<>Blog &amp; resources<span className="text-[#dccba0]">.</span></>}
+        image="/IMG_4873_converted.avif"
+        alt="Vanilla beans, the focus of IK Food Uganda's blog"
+      >
+        Notes on natural farming, Ugandan vanilla and sustainable agribusiness.
+      </PageHero>
 
       {posts.length === 0 ? (
-        <section className="section-y bg-cream map-bg">
-          <div className="max-w-7xl mx-auto container-px flex flex-col items-center justify-center py-24 text-center gap-4">
-            <p className="text-gray-500 text-lg">No blog posts yet.</p>
-            <p className="text-gray-400 text-sm">Add your first post from the admin dashboard.</p>
+        <section className="bg-cream text-forest-950">
+          <div className="mx-auto max-w-7xl px-5 py-32 text-center sm:px-8 lg:px-12">
+            <p className="text-2xl font-extrabold tracking-[-0.03em]">No articles yet.</p>
+            <p className="mt-3 text-forest-900/60">Add the first post from the admin dashboard.</p>
           </div>
         </section>
       ) : (
         <>
-          {/* Featured post */}
           {featured && (
-            <section className="section-y bg-cream map-bg" aria-label="Featured article">
-              <div className="max-w-7xl mx-auto container-px">
-                <ScrollReveal>
-                  <span className="section-eyebrow mb-8 block">Featured Article</span>
-                  <article className="surface-card group overflow-hidden">
-                    <div className="grid md:grid-cols-2">
-                      <div className="relative h-64 md:h-auto min-h-[280px] img-zoom overflow-hidden">
-                        <Image
-                          src={featured.image}
-                          alt={featured.title}
-                          fill className="object-cover" priority
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <span className="absolute top-4 left-4 chip bg-forest-900 text-white">{featured.category}</span>
-                      </div>
-                      <div className="p-8 md:p-10 flex flex-col justify-center">
-                        <div className="flex items-center gap-3 mb-5">
-                          <time dateTime={featured.dateISO} className="label-tag text-gray-400">{featured.date}</time>
-                          <span className="label-tag text-gold-600">{featured.readTime} read</span>
-                        </div>
-                        <h2 className="text-2xl md:text-3xl font-bold font-heading text-forest-950 mb-4 leading-snug group-hover:text-forest-700 transition-colors text-balance">
-                          <Link href={`/blog/${featured.slug}`} className="focus-visible:outline-none focus-visible:underline">
-                            {featured.title}
-                          </Link>
-                        </h2>
-                        <p className="text-gray-600 leading-relaxed mb-6 text-sm">{featured.excerpt}</p>
-                        <Link href={`/blog/${featured.slug}`} className="btn-dark self-start group">
-                          Read Article
-                          <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                        </Link>
-                      </div>
+            <section className="bg-cream text-forest-950" aria-label="Featured article">
+              <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+                <article className="group grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16">
+                  <Link href={`/blog/${featured.slug}`} data-clip className="relative block aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
+                    <Image
+                      src={featured.image}
+                      alt={featured.title}
+                      fill
+                      priority
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(min-width: 1024px) 55vw, 100vw"
+                    />
+                  </Link>
+                  <div>
+                    <p data-reveal className="text-sm font-bold text-forest-900/55">
+                      {featured.category} · <time dateTime={featured.dateISO}>{featured.date}</time> · {featured.readTime} read
+                    </p>
+                    <h2 data-split className="h-display mt-5 text-[clamp(2.25rem,4.5vw,4rem)]">
+                      <Link href={`/blog/${featured.slug}`} className="transition-colors hover:text-gold-600">{featured.title}</Link>
+                    </h2>
+                    <p data-reveal className="mt-6 text-lg leading-relaxed text-forest-900/75">{featured.excerpt}</p>
+                    <div data-reveal className="mt-8">
+                      <Link href={`/blog/${featured.slug}`} className="link-line">Read the article</Link>
                     </div>
-                  </article>
-                </ScrollReveal>
+                  </div>
+                </article>
               </div>
             </section>
           )}
 
-          {/* All articles grid */}
           {regular.length > 0 && (
-            <section className="section-y bg-white map-bg" aria-label="All blog posts">
-              <div className="max-w-7xl mx-auto container-px">
-                <ScrollReveal className="mb-12">
-                  <h2 className="text-display-lg font-bold text-forest-950">All Articles</h2>
-                </ScrollReveal>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {regular.map((post, i) => (
-                    <ScrollReveal key={post.slug} delay={i * 70}>
-                      <article className="surface-card group flex flex-col h-full">
-                        <Link href={`/blog/${post.slug}`}
-                          className="flex flex-col h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-600 rounded-2xl"
-                        >
-                          <div className="relative h-52 img-zoom overflow-hidden rounded-t-2xl">
-                            <Image src={post.image} alt={post.title} fill className="object-cover" sizes="33vw" />
-                            <span className="absolute top-3 left-3 chip bg-forest-900 text-white">{post.category}</span>
-                          </div>
-                          <div className="p-6 flex flex-col flex-1">
-                            <div className="flex items-center gap-3 mb-3">
-                              <time dateTime={post.dateISO} className="label-tag text-gray-400">{post.date}</time>
-                              <span className="label-tag text-gold-600">{post.readTime}</span>
-                            </div>
-                            <h3 className="font-semibold text-forest-950 leading-snug line-clamp-2 group-hover:text-forest-700 transition-colors flex-1 mb-3">
-                              {post.title}
-                            </h3>
-                            <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed mb-4">{post.excerpt}</p>
-                            <div className="flex items-center gap-1.5 text-forest-600 text-sm font-medium mt-auto pt-4 border-t border-gray-100">
-                              Read article
-                              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                            </div>
-                          </div>
-                        </Link>
-                      </article>
-                    </ScrollReveal>
+            <section className="bg-parchment text-forest-950" aria-labelledby="all-title">
+              <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+                <h2 id="all-title" data-split className="h-section">All articles.</h2>
+                <div className="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+                  {regular.map((post) => (
+                    <article key={post.slug} data-card className="group">
+                      <Link href={`/blog/${post.slug}`} className="block">
+                        <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0]">
+                          <Image src={post.image} alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+                        </div>
+                        <p className="mt-5 text-sm font-bold text-forest-900/55">
+                          {post.category} · <time dateTime={post.dateISO}>{post.date}</time>
+                        </p>
+                        <h3 className="mt-2 text-2xl font-extrabold leading-tight tracking-[-0.03em] transition-colors group-hover:text-gold-600">
+                          {post.title}
+                        </h3>
+                        <p className="mt-3 line-clamp-2 text-base leading-relaxed text-forest-900/70">{post.excerpt}</p>
+                      </Link>
+                    </article>
                   ))}
                 </div>
               </div>
@@ -205,52 +170,48 @@ export default async function BlogPage({ params }: { params: Promise<{ region: s
       )}
 
       {/* Media */}
-      <section id="media" className="section-y bg-parchment map-bg scroll-mt-20" aria-label="Media and press">
-        <div className="max-w-7xl mx-auto container-px">
-          <ScrollReveal className="max-w-xl mb-12">
-            <span className="section-eyebrow">Media</span>
-            <h2 className="text-display-lg font-bold text-forest-950 text-balance">
-              Press &amp; Media
-            </h2>
-            <p className="text-gray-600 mt-4 leading-relaxed">
-              For press enquiries, media assets, or interview requests, contact
-              our communications team.
+      <section id="media" className="scroll-mt-8 bg-cream text-forest-950" aria-labelledby="media-title">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-12 lg:py-32">
+          <div>
+            <h2 id="media-title" data-split className="h-display text-[clamp(2.5rem,5.5vw,4.75rem)]">Press &amp; media.</h2>
+            <p data-reveal className="mt-6 max-w-sm text-lg leading-relaxed text-forest-900/70">
+              For press enquiries, media assets or interview requests, contact our communications team.
             </p>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: "📦", title: "Press Kit",         body: "Company fact sheet, product overview, high-resolution images, and brand guidelines.",    cta: "Download Press Kit" },
-              { icon: "📣", title: "Media Enquiries",   body: "Journalists can reach us at sales@ikfooduganda.com for interviews and expert quotes.",   cta: "Send Enquiry" },
-              { icon: "🖼️", title: "Photo Gallery",     body: "High-resolution editorial photography available for use with attribution.",              cta: "View Gallery" },
-            ].map(({ icon, title, body, cta }, i) => (
-              <ScrollReveal key={title} delay={i * 80}>
-                <div className="bg-white border border-forest-100 rounded-3xl p-8 text-center shadow-sm h-full flex flex-col">
-                  <div className="text-4xl mb-4" role="img" aria-hidden="true">{icon}</div>
-                  <h3 className="font-semibold text-forest-950 mb-2">{title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{body}</p>
-                  <Link href="/contact" className="btn-outline-dark text-sm self-center">{cta}</Link>
-                </div>
-              </ScrollReveal>
-            ))}
           </div>
+          <ul>
+            {[
+              { title: "Press kit",       body: "Company fact sheet, product overview, high-resolution images and brand guidelines.", cta: "Request the press kit", href: "/contact" },
+              { title: "Media enquiries", body: `Journalists can reach us at ${r.email} for interviews and expert quotes.`,          cta: "Send an enquiry",       href: "/contact" },
+              { title: "Photo gallery",   body: "Editorial photography from our farms and operations, available with attribution.", cta: "View the gallery",      href: "/gallery" },
+            ].map(({ title, body, cta, href }) => (
+              <li key={title} data-rule className="relative grid gap-3 py-8 sm:grid-cols-[1fr_auto] sm:items-end sm:gap-8">
+                <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/20" />
+                <div data-rule-text>
+                  <h3 className="text-2xl font-extrabold tracking-[-0.035em] sm:text-3xl">{title}</h3>
+                  <p className="mt-2 max-w-md text-base leading-relaxed text-forest-900/70">{body}</p>
+                </div>
+                <Link data-rule-text href={href} className="link-line shrink-0 self-start sm:self-end">{cta}</Link>
+              </li>
+            ))}
+            <li aria-hidden className="h-px bg-forest-950/20" />
+          </ul>
         </div>
       </section>
 
       {/* Newsletter */}
-      <section className="py-24 bg-forest-950 noise-overlay relative" aria-label="Newsletter signup">
-        <div className="max-w-2xl mx-auto container-px text-center">
-          <ScrollReveal>
-            <span className="section-eyebrow-light mb-4 block">Stay Updated</span>
-            <h2 className="text-display-lg font-bold text-white mb-4 text-balance">
-              Subscribe to Our Newsletter
+      <section className="bg-forest-950 text-cream" aria-labelledby="newsletter-title">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20 lg:px-12 lg:py-32">
+          <div>
+            <h2 id="newsletter-title" data-split className="h-display text-[clamp(2.75rem,6.5vw,5.75rem)]">
+              Get the harvest letter<span className="text-[#dccba0]">.</span>
             </h2>
-            <p className="text-white/50 text-lg mb-10">
-              Natural farming insights, export market updates, and Ugandan
-              agriculture news — delivered to your inbox.
+            <p data-reveal className="mt-6 max-w-md text-lg leading-relaxed text-parchment/65">
+              Farming insights, export market updates and Ugandan agriculture news. No spam, unsubscribe anytime.
             </p>
+          </div>
+          <div data-reveal>
             <NewsletterForm />
-            <p className="text-white/25 text-xs mt-4">No spam. Unsubscribe anytime.</p>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
     </>,

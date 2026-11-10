@@ -4,8 +4,7 @@ import { getRegion, withRegion } from "@/lib/regions";
 import { localize } from "@/lib/localize";
 import Image from "next/image";
 import { RegionLink as Link } from "@/components/RegionProvider";
-import { CheckCircle2 } from "lucide-react";
-import ScrollReveal from "@/components/ScrollReveal";
+import PageHero from "@/components/PageHero";
 import PlaceOrderButton from "@/components/PlaceOrderButton";
 
 const metadata: Metadata = {
@@ -298,145 +297,101 @@ export default async function ProductsPage({ params }: { params: Promise<{ regio
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productCatalogueJsonLd) }} />
-      {/* ── Hero ── */}
-      <section className="relative min-h-[70vh] flex items-end pb-20 pt-32 overflow-hidden" aria-label="Products hero">
-        <Image
-          src="/products/splits-quality_converted.avif"
-          alt="IK Food Uganda premium vanilla products"
-          fill className="object-cover" priority sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-forest-950/30" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto container-px w-full">
-          <div className="max-w-2xl">
-            <span className="section-eyebrow-light mb-4">Ugandan Vanilla</span>
-            <h1 className="text-display-2xl font-bold text-white mb-6 text-balance">
-              Our Vanilla Products
-            </h1>
-            <p className="text-white/60 text-lg leading-relaxed mb-8">
-              Seven distinct vanilla grades and forms, all hand-harvested in
-              <strong> Uganda&apos;s highlands</strong>, naturally grown, and processed to
-              world-class export standards.
-            </p>
-            {/* Jump links */}
-            <nav aria-label="Jump to product">
-              <ul className="flex flex-wrap gap-2" role="list">
-                {products.map((p) => (
-                  <li key={p.id}>
-                    <a
-                      href={`#${p.id}`}
-                      className="chip bg-white/10 border border-white/20 text-white/70 hover:bg-white/20 hover:text-white transition-all backdrop-blur-sm"
-                    >
-                      {p.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Product listings ── */}
-      <div>
-        {products.map((product, index) => {
-          const isLeft = product.imageSide === "left";
-
-          return (
-            <section
-              key={product.id}
-              id={product.id}
-              className={`scroll-mt-20 section-y map-bg ${index % 2 === 0 ? "bg-cream" : "bg-white"}`}
-              aria-label={`${product.name} product detail`}
-            >
-              <div className="max-w-7xl mx-auto container-px">
-                <div className={`grid lg:grid-cols-2 gap-14 lg:gap-20 items-center ${isLeft ? "lg:grid-flow-col-dense" : ""}`}>
-
-                  {/* Image */}
-                  <ScrollReveal
-                    delay={60}
-                    className={`relative rounded-4xl overflow-hidden h-[420px] md:h-[560px] img-zoom shadow-xl ${isLeft ? "lg:col-start-2" : ""}`}
+      <PageHero
+        title={<>Our vanilla products<span className="text-[#dccba0]">.</span></>}
+        image="/products/splits-quality_converted.avif"
+        alt="IK Food Uganda premium vanilla products"
+        aside={
+          <nav aria-label="Jump to product">
+            <ul className="flex flex-wrap gap-2">
+              {products.map((p) => (
+                <li key={p.id}>
+                  <a
+                    href={`#${p.id}`}
+                    className="inline-block rounded-full border border-cream/20 px-4 py-2 text-sm font-semibold text-parchment/80 transition-colors hover:border-gold-400 hover:text-gold-400"
                   >
-                    <Image
-                      src={product.image}
-                      alt={`${product.name}, premium natural export product from Uganda`}
-                      fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    {/* Floating spec tag */}
-                    <div className="absolute top-5 left-5 glass-card px-4 py-2.5" aria-hidden="true">
-                      <p className="text-[10px] text-white/50 uppercase tracking-widest">{product.origin}</p>
-                      <p className="text-sm font-semibold text-white">{product.spec}</p>
-                    </div>
-                  </ScrollReveal>
+                    {p.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        }
+      >
+        Seven forms of vanilla, all hand-harvested in <strong>Uganda&apos;s highlands</strong>, naturally grown and
+        processed to export standards.
+      </PageHero>
 
-                  {/* Content */}
-                  <ScrollReveal className={isLeft ? "lg:col-start-1 lg:row-start-1" : ""}>
-                    <span className="section-eyebrow">{product.tagline}</span>
-                    <h2 className="text-display-lg font-bold text-forest-950 mb-2 text-balance">
-                      {product.name}
-                    </h2>
-                    <div className="h-rule mb-6" aria-hidden="true" />
-                    <p className="text-gray-600 leading-relaxed mb-8">{product.description}</p>
+      {products.map((product, index) => {
+        const flip = product.imageSide === "left";
+        const tone = index % 2 === 0 ? "bg-cream" : "bg-parchment";
+        return (
+          <section
+            key={product.id}
+            id={product.id}
+            className={`scroll-mt-8 ${tone} text-forest-950`}
+            aria-labelledby={`${product.id}-title`}
+          >
+            <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:items-start lg:gap-20 lg:px-12 lg:py-32">
+              <div
+                data-clip
+                data-parallax
+                className={`relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-[#ebdfc0] ${flip ? "lg:order-2" : ""}`}
+              >
+                <Image
+                  src={product.image}
+                  alt={`${product.name}, premium natural export product from Uganda`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                />
+              </div>
 
-                    <div className="grid sm:grid-cols-2 gap-8 mb-8">
-                      <div>
-                        <h3 className="label-tag text-forest-700 mb-4">Key Features</h3>
-                        <ul className="space-y-2.5" role="list">
-                          {product.features.map((f, i) => (
-                            <li key={i} className="flex items-start gap-2.5">
-                              <CheckCircle2 className="w-4 h-4 text-forest-600 mt-0.5 shrink-0" aria-hidden="true" />
-                              <span className="text-sm text-gray-700">{f}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="label-tag text-forest-700 mb-4">Common Uses</h3>
-                        <ul className="space-y-2.5" role="list">
-                          {product.uses.map((u) => (
-                            <li key={u} className="flex items-start gap-2.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-gold-400 mt-2 shrink-0" aria-hidden="true" />
-                              <span className="text-sm text-gray-700">{u}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+              <div>
+                <p data-reveal className="text-sm font-bold text-forest-900/55">
+                  {product.origin} · {product.spec}
+                </p>
+                <h2 id={`${product.id}-title`} data-split className="h-section mt-5">{product.name}</h2>
+                <p data-reveal className="mt-8 text-2xl font-bold leading-snug tracking-[-0.02em]">{product.tagline}</p>
+                <p data-reveal className="mt-6 text-lg leading-relaxed text-forest-900/75 [&_strong]:text-forest-950">
+                  {product.description}
+                </p>
 
-                    <PlaceOrderButton variant="dark" icon="arrow-up-right" />
-                  </ScrollReveal>
+                <div className="mt-12 grid gap-10 sm:grid-cols-2">
+                  <div>
+                    <h3 className="text-sm font-bold text-forest-900/55">Key features</h3>
+                    <ul className="mt-4">
+                      {product.features.map((f, i) => (
+                        <li key={i} data-rule className="relative py-3.5 text-base text-forest-900/80 [&_strong]:text-forest-950">
+                          <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/15" />
+                          <span data-rule-text className="block">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-forest-900/55">Common uses</h3>
+                    <ul className="mt-4">
+                      {product.uses.map((u) => (
+                        <li key={u} data-rule className="relative py-3.5 text-base font-semibold">
+                          <span data-rule-line className="absolute inset-x-0 top-0 h-px origin-left bg-forest-950/15" />
+                          <span data-rule-text className="block">{u}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div data-reveal className="mt-12 flex flex-wrap items-center gap-8">
+                  <PlaceOrderButton variant="dark" label={`Order ${product.name.toLowerCase()}`} />
+                  <Link href="/contact" className="link-line">Ask for a sample</Link>
                 </div>
               </div>
-            </section>
-          );
-        })}
-      </div>
-
-      {/* ── Sourcing CTA ── */}
-      <section className="py-24 bg-forest-950 noise-overlay relative overflow-hidden" aria-label="Sourcing enquiry CTA">
-        <div className="absolute inset-0 opacity-10" aria-hidden="true">
-          <Image src="/IMG_7806_converted.avif" alt="" fill className="object-cover" sizes="100vw" />
-        </div>
-        <div className="relative max-w-3xl mx-auto container-px text-center">
-          <ScrollReveal>
-            <span className="section-eyebrow-light">Ready to Source?</span>
-            <h2 className="text-display-lg font-bold text-white mb-5 text-balance">
-              Source Premium Ugandan Vanilla
-            </h2>
-            <p className="text-white/55 text-lg mb-10">
-              Contact our team to discuss grade selection, pricing, minimum
-              order quantities, and logistics. We supply Grade A &amp; B beans,
-              powder, and extract sugar to buyers across Europe and Asia.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <PlaceOrderButton variant="gold" icon="arrow-right" />
-              <Link href="/about" className="btn-outline-cream">
-                About Us
-              </Link>
             </div>
-          </ScrollReveal>
-        </div>
-      </section>
+          </section>
+        );
+      })}
     </>,
     r.code,
   );

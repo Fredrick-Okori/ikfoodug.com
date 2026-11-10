@@ -1,70 +1,74 @@
 import { RegionLink as Link } from "./RegionProvider";
-import Image from "next/image";
-import { Phone, Mail, MapPin } from "lucide-react";
+import PlaceOrderButton from "./PlaceOrderButton";
 import { regions, type Region, type RegionCode } from "@/lib/regions";
 
-const nav = {
-  company:  [
-    { href: "/about",        label: "About Us" },
-    { href: "/products",     label: "Products" },
-    { href: "/case-studies", label: "Case Studies" },
-    { href: "/blog",         label: "Blog" },
-    { href: "/contact",      label: "Contact" },
-  ],
-  products: [
-    { href: "/products#vanilla",     label: "Ugandan Vanilla" },
-    { href: "/products#coffee",      label: "Robusta Coffee" },
-    { href: "/products#cocoa",       label: "Organic Cocoa" },
-    { href: "/products#avocado",     label: "Hass Avocado" },
-    { href: "/products#garden-eggs", label: "Garden Eggs" },
-  ],
-};
+const US_SITE = "https://us.ikfoodug.com";
+
+const columnTitle = "text-lg font-extrabold tracking-[-0.03em] text-cream";
+const footerLink = "font-semibold text-parchment/65 transition-colors hover:text-gold-400";
+
+const company = [
+  { href: "/about",        label: "About us" },
+  { href: "/products",     label: "Products" },
+  { href: "/impact",       label: "Impact" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/gallery",      label: "Gallery" },
+  { href: "/blog",         label: "Blog" },
+  { href: "/contact",      label: "Contact" },
+];
+
+const products = [
+  { href: "/products#grade-a",        label: "Grade A beans" },
+  { href: "/products#grade-b",        label: "Grade B beans" },
+  { href: "/products#split-beans",    label: "Split beans" },
+  { href: "/products#vanilla-powder", label: "Vanilla powder" },
+  { href: "/products#vanilla-paste",  label: "Vanilla paste" },
+  { href: "/products#vanilla-caviar", label: "Vanilla caviar" },
+];
 
 export default function Footer({ region = "ug" }: { region?: RegionCode }) {
   const r = regions[region];
 
   return (
-    <footer className="bg-forest-950 text-white" aria-label="Site footer">
-      {/* Top divider line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" aria-hidden="true" />
-
-      <div className="max-w-7xl mx-auto container-px py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link
-              href="/"
-              className="inline-block mb-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg"
-              aria-label={`${r.name} — Home`}
-            >
-              <Image
-                src="/logo_clean.webp"
-                alt={r.name}
-                width={120}
-                height={48}
-                className="object-contain h-10 w-auto opacity-90 hover:opacity-100 transition-opacity"
-              />
-            </Link>
-            <p className="text-white/45 text-sm leading-relaxed mb-6 max-w-[220px]">
-              Pure Ugandan Vanilla, Perfected for the World. Sustainably grown,
-              globally distributed since 2015.
+    <footer className="overflow-hidden bg-forest-950 text-parchment" aria-label="Site footer">
+      <div className="mx-auto max-w-7xl px-5 pt-24 sm:px-8 lg:px-12 lg:pt-32">
+        {/* Call to action */}
+        <div className="grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-20">
+          <div>
+            <p className="h-display text-[clamp(2.75rem,6.5vw,5.75rem)] text-cream">
+              Source Ugandan vanilla<span className="text-[#dccba0]">.</span>
             </p>
-            <span className="chip bg-gold-400/10 text-gold-400 border border-gold-400/25">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" aria-hidden="true" />
-              HORTIFRESH Member
-            </span>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-parchment/65">
+              Grade A and B beans, splits, powder, paste and caviar, shipped with full export paperwork.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-8 lg:justify-end">
+            <PlaceOrderButton variant="gold" label="Place an order" />
+            <a href={`mailto:${r.email}`} className="link-line-light break-all">
+              {r.email}
+            </a>
+          </div>
+        </div>
+
+        {/* Columns */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 py-16 text-base md:grid-cols-4 lg:py-20">
+          <div>
+            <h2 className={columnTitle}>Company</h2>
+            <ul className="mt-5 space-y-3">
+              {company.map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className={footerLink}>{label}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h3 className="label-tag text-white/35 mb-5">Company</h3>
-            <ul className="space-y-3" role="list">
-              {nav.company.map(({ href, label }) => (
+            <h2 className={columnTitle}>Products</h2>
+            <ul className="mt-5 space-y-3">
+              {products.map(({ href, label }) => (
                 <li key={href}>
-                  <Link href={href} className="text-white/55 hover:text-white text-sm transition-colors link-underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-forest-400 rounded">
-                    {label}
-                  </Link>
+                  <Link href={href} className={footerLink}>{label}</Link>
                 </li>
               ))}
             </ul>
@@ -72,73 +76,67 @@ export default function Footer({ region = "ug" }: { region?: RegionCode }) {
 
           {region === "ug" ? (
             <>
-              <ContactColumn title="US Location" r={regions.us} showEmail={false} />
-              <ContactColumn title="Uganda Location" r={r} />
+              <Location title={regions.us.name} r={regions.us} showEmail={false} href={US_SITE} />
+              <Location title={r.name} r={r} />
             </>
           ) : (
             <>
-              {/* Products */}
-              <div>
-                <h3 className="label-tag text-white/35 mb-5">Products</h3>
-                <ul className="space-y-3" role="list">
-                  {nav.products.map(({ href, label }) => (
-                    <li key={href}>
-                      <Link href={href} className="text-white/55 hover:text-white text-sm transition-colors link-underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-forest-400 rounded">
-                        {label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <ContactColumn title="Contact" r={r} />
+              <Location title={r.name} r={r} />
+              <Location title={regions.ug.name} r={regions.ug} />
             </>
           )}
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/25 text-xs tracking-wide">
-            &copy; {new Date().getFullYear()} {r.legalName}. All rights reserved.
-          </p>
-          <p className="text-white/20 text-xs italic">
-            &ldquo;Agriculture is our wisest pursuit.&rdquo; — Thomas Jefferson
-          </p>
+        <div className="flex flex-col gap-3 border-t border-white/10 py-8 text-sm text-parchment/50 lg:flex-row lg:items-center lg:justify-between">
+          <p>&copy; {new Date().getFullYear()} {r.legalName}. Member of HORTIFRESH.</p>
+          <p>Kampala, Uganda · Est. 2015</p>
         </div>
       </div>
+
+      {/* Giant wordmark */}
+      <p
+        data-footer-mark
+        aria-hidden
+        className="select-none whitespace-nowrap px-3 pb-[0.04em] text-center text-[clamp(4rem,19vw,20rem)] font-extrabold leading-[0.9] tracking-[-0.06em] text-cream"
+      >
+        IK Food<span className="text-[#dccba0]">.</span>
+      </p>
     </footer>
   );
 }
 
-function ContactColumn({ title, r, showEmail = true }: { title: string; r: Region; showEmail?: boolean }) {
+function Location({ title, r, showEmail = true, href }: { title: string; r: Region; showEmail?: boolean; href?: string }) {
   return (
     <div>
-      <h3 className="label-tag text-white/35 mb-5">{title}</h3>
-      <ul className="space-y-4" role="list">
-        <li>
-          <a href={r.phone.href} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline">
-            <Phone className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
-            {r.phone.display}
+      <h2 className={columnTitle}>
+        {href ? (
+          <a href={href} className="transition-colors hover:text-gold-400">
+            {title} <span aria-hidden>&#8599;</span>
           </a>
-        </li>
-        {showEmail && (
-        <li>
-          <a href={`mailto:${r.email}`} className="flex items-start gap-3 text-white/55 hover:text-white text-sm transition-colors group focus-visible:outline-none focus-visible:underline break-all">
-            <Mail className="w-4 h-4 mt-0.5 text-gold-400 group-hover:text-gold-300 shrink-0" aria-hidden="true" />
-            {r.email}
-          </a>
-        </li>
+        ) : (
+          title
         )}
-        <li>
-          <address className="flex items-start gap-3 text-white/55 text-sm not-italic">
-            <MapPin className="w-4 h-4 mt-0.5 text-gold-400 shrink-0" aria-hidden="true" />
-            <span>
-              {r.address.lines.map((line) => <span key={line}>{line},<br /></span>)}
-              {r.locationLabel}
+      </h2>
+      <address className="mt-5 space-y-3 not-italic leading-relaxed text-parchment/65">
+        <p>
+          {r.address.lines.map((line) => (
+            <span key={line}>
+              {line}
+              <br />
             </span>
-          </address>
-        </li>
-      </ul>
+          ))}
+          {r.locationLabel}
+        </p>
+        <p>
+          <a href={r.phone.href} className={footerLink}>{r.phone.display}</a>
+        </p>
+        {showEmail && (
+          <p>
+            <a href={`mailto:${r.email}`} className={`${footerLink} break-all`}>{r.email}</a>
+          </p>
+        )}
+      </address>
     </div>
   );
 }

@@ -1,52 +1,69 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { RegionLink as Link, useRegion } from "./RegionProvider";
 import { stripRegion } from "@/lib/regions";
-import { usePathname } from "next/navigation";
-import {
-  Menu, X, Phone, Mail,
-} from "lucide-react";
-import Image from "next/image";
+import { setSmoothScrollPaused } from "./SmoothScroll";
 import OrderModal from "./OrderModal";
+import LanguageSelector from "./LanguageSelector";
 
 const links = [
   { href: "/",             label: "Home" },
   { href: "/about",        label: "About" },
-  { href: "/impact",       label: "Impact" },
   { href: "/products",     label: "Products" },
-  { href: "/case-studies", label: "Case Studies" },
+  { href: "/impact",       label: "Impact" },
+  { href: "/case-studies", label: "Case studies" },
   { href: "/gallery",      label: "Gallery" },
   { href: "/contact",      label: "Contact" },
 ];
 
+function Logo({ className = "h-14" }: { className?: string }) {
+  const region = useRegion();
+  return (
+    <Image
+      src="/logo_clean.webp"
+      alt={region.name}
+      width={2163}
+      height={863}
+      priority
+      className={`${className} w-auto shrink-0 object-contain`}
+    />
+  );
+}
+
 export default function Navbar() {
-  const [open,       setOpen]       = useState(false);
-  const [scrolled,   setScrolled]   = useState(false);
-  const [progress,   setProgress]   = useState(0);
-  const [orderOpen,  setOrderOpen]  = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  // Flips true right after mount so the bars slide down from above the screen on load.
+  const [entered, setEntered] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [orderOpen, setOrderOpen] = useState(false);
   const pathname = usePathname();
   const region = useRegion();
+  const panelRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  const isActive = (href: string) => stripRegion(pathname) === href;
+
+  // Close the menu on every route change (including Back/Forward).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setMenuOpen(false);
+  }
 
   useEffect(() => {
-    const onScroll = () => {
-      const el  = document.documentElement;
-      const pct = el.scrollHeight === el.clientHeight
-        ? 0
-        : (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
-      setProgress(pct);
-      setScrolled(el.scrollTop > 48);
-    };
+    // "Scrolled" as soon as scrolling starts; the header slides away and the floating menu takes over.
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const frame = requestAnimationFrame(() => setEntered(true));
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
-
-  useEffect(() => { setOpen(false); }, [pathname]);
 
   useEffect(() => {
     const handler = () => setOrderOpen(true);
@@ -54,192 +71,225 @@ export default function Navbar() {
     return () => window.removeEventListener("open-order-modal", handler);
   }, []);
 
-  const isActive = (href: string) => stripRegion(pathname) === href;
+  // While the menu is open: lock scroll, focus the panel, keep Tab inside, close on Escape.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const body = document.body;
+    const previous = { overflow: body.style.overflow, paddingRight: body.style.paddingRight };
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    body.style.overflow = "hidden";
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+    setSmoothScrollPaused(true);
+    const frame = requestAnimationFrame(() => panelRef.current?.focus({ preventScroll: true }));
 
-  const desktopLink = (active: boolean) =>
-    `relative group/link flex items-center gap-1 px-1 py-1 text-sm font-medium transition-colors duration-200 focus-visible:outline-none
-     ${active ? "text-gold-400" : "text-gold-400/45 hover:text-gold-400"}`;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") return setMenuOpen(false);
+      if (event.key !== "Tab" || !panelRef.current || !toggleRef.current) return;
+      const focusables = [toggleRef.current, ...panelRef.current.querySelectorAll<HTMLElement>("a[href], button")];
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (!active || !focusables.includes(active)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      } else if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    const toggle = toggleRef.current;
+
+    return () => {
+      cancelAnimationFrame(frame);
+      body.style.overflow = previous.overflow;
+      body.style.paddingRight = previous.paddingRight;
+      setSmoothScrollPaused(false);
+      window.removeEventListener("keydown", onKey);
+      toggle?.focus({ preventScroll: true });
+    };
+  }, [menuOpen]);
+
+  // Staggered entrance for the menu items.
+  let order = 0;
+  const stagger = () => {
+    const i = order++;
+    return {
+      className: `transition-all duration-500 ease-out motion-reduce:transition-none ${
+        menuOpen ? "translate-x-0 opacity-100" : "-translate-x-6 opacity-0"
+      }`,
+      style: { transitionDelay: menuOpen ? `${180 + i * 45}ms` : "0ms" },
+    };
+  };
+
+  const openOrder = () => {
+    setMenuOpen(false);
+    setOrderOpen(true);
+  };
 
   return (
     <>
-      {/* ── Scroll progress bar ─────────────────────────── */}
+      {/* Floating menu button: always on mobile, replaces the header on desktop once scrolled. */}
+      <button
+        ref={toggleRef}
+        type="button"
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        aria-controls="site-menu"
+        onClick={() => setMenuOpen((open) => !open)}
+        style={{ top: "max(1rem, env(safe-area-inset-top))" }}
+        className={`fixed left-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-forest-950 text-cream shadow-xl ring-2 ring-gold-400/60 transition-all duration-300 hover:bg-forest-800 sm:left-6 sm:h-16 sm:w-16 ${
+          menuOpen || scrolled
+            ? "scale-100 opacity-100"
+            : "pointer-events-none scale-75 opacity-0 max-lg:pointer-events-auto max-lg:scale-100 max-lg:opacity-100"
+        }`}
+      >
+        <span aria-hidden className="relative block h-5 w-7">
+          <span className={`absolute left-0 h-[3px] w-7 rounded-full bg-current transition-all duration-300 ${menuOpen ? "top-[8.5px] rotate-45" : "top-0"}`} />
+          <span className={`absolute left-0 top-[8.5px] h-[3px] w-7 rounded-full bg-current transition-all duration-200 ${menuOpen ? "scale-x-0 opacity-0" : "opacity-100"}`} />
+          <span className={`absolute left-0 h-[3px] w-7 rounded-full bg-current transition-all duration-300 ${menuOpen ? "top-[8.5px] -rotate-45" : "top-[17px]"}`} />
+        </span>
+      </button>
+
+      {/* Mobile: a slim brand strip that floats over the top of the hero, slides in on load and
+          scrolls away with the page. */}
       <div
-        className="fixed top-0 left-0 z-[60] h-[2px] bg-gold-400 transition-all duration-100 pointer-events-none"
-        style={{ width: `${progress}%` }}
-        role="progressbar"
-        aria-valuenow={Math.round(progress)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label="Page scroll progress"
+        className={`absolute inset-x-0 top-0 z-40 flex h-[88px] items-center justify-center border-b border-forest-950/10 bg-parchment transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:h-24 lg:hidden ${
+          entered ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <Link href="/" aria-label={`${region.name} home`}>
+          <Logo />
+        </Link>
+      </div>
+
+      {/* Backdrop */}
+      <div
+        aria-hidden
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 z-50 bg-forest-950/50 backdrop-blur-sm transition-opacity duration-500 motion-reduce:transition-none ${
+          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
       />
 
-      {/* ── Header bar ──────────────────────────────────── */}
-      <header
-        className={`fixed top-0 inset-x-0 z-50 bg-forest-900 transition-all duration-300 ${
-          scrolled
-            ? "border-b border-gold-400/15 shadow-[0_4px_32px_rgba(0,0,0,0.5)]"
-            : "border-b border-gold-400/8"
+      {/* Full-screen menu that drops down from above */}
+      <aside
+        id="site-menu"
+        ref={panelRef}
+        data-lenis-prevent
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
+        tabIndex={-1}
+        className={`fixed inset-0 z-50 flex h-[100dvh] w-full flex-col overflow-y-auto overscroll-contain bg-cream shadow-2xl outline-none transition-[transform,visibility] duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+          menuOpen ? "visible translate-y-0" : "invisible -translate-y-full"
         }`}
-        role="banner"
       >
-        <nav
-          className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12"
-          aria-label="Main navigation"
+        <div className="mx-auto flex h-24 w-full max-w-2xl shrink-0 items-center justify-end border-b border-[#ebdfc0] px-5 sm:h-28">
+          <Link href="/" onClick={() => setMenuOpen(false)} aria-label={`${region.name} home`} {...stagger()}>
+            <span className="block rounded-full bg-forest-950 px-4 py-2">
+              <Logo className="h-11" />
+            </span>
+          </Link>
+        </div>
+
+        <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-6 px-5 py-6">
+          <nav aria-label="Main navigation" className="flex flex-col gap-2">
+            {links.map((link, index) => {
+              const s = stagger();
+              const current = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={current ? "page" : undefined}
+                  style={s.style}
+                  className={`${s.className} group flex items-center gap-5 rounded-full px-6 py-4 active:scale-[0.98] ${
+                    current ? "bg-forest-950 text-cream" : "bg-[#ebdfc0]/80 text-forest-950 hover:bg-[#ebdfc0]"
+                  }`}
+                >
+                  <span className={`w-6 shrink-0 text-xs font-bold tabular-nums ${current ? "text-gold-400" : "text-forest-900/70"}`}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-xl font-bold tracking-tight transition-transform duration-300 group-hover:translate-x-1">
+                    {link.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex-1" />
+
+          <div style={stagger().style} className={`${menuOpen ? "opacity-100" : "opacity-0"} space-y-4 transition-opacity duration-500`}>
+            <button type="button" onClick={openOrder} className="btn-gold w-full py-5 text-base">
+              Place an order
+            </button>
+            <div className="flex flex-col gap-2 px-2 text-sm font-semibold text-forest-900/70 sm:flex-row sm:gap-6">
+              <a href={region.phone.href} className="hover:text-forest-950">{region.phone.display}</a>
+              <a href={`mailto:${region.email}`} className="break-all hover:text-forest-950">{region.email}</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Desktop header: floats over the hero (so the hero photo runs to the top of the screen),
+          slides down on load, and slides back up out of view as soon as scrolling starts (returning
+          at the top). The fixed wrapper ignores clicks so the hidden header never blocks the page. */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden lg:block">
+        <header
+          className={`relative transition-[transform,visibility] duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+            entered && !scrolled ? "pointer-events-auto visible translate-y-0" : "invisible -translate-y-full"
+          }`}
         >
-          <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-14" : "h-16 md:h-20"}`}>
+          <div className="border-b border-forest-950/10 bg-[#ebdfc0] px-4 py-2 text-center text-[11px] font-semibold tracking-wide text-forest-900/75">
+            Growing and exporting Ugandan vanilla since 2015
+            <span aria-hidden="true" className="mx-3 text-forest-900/30">|</span>
+            Buying in volume?{" "}
+            <button type="button" onClick={() => setOrderOpen(true)} className="font-bold text-forest-950 underline decoration-gold-500 decoration-2 underline-offset-2 hover:decoration-forest-950">
+              Request a quote
+            </button>
+          </div>
 
-            {/* ── Logo ── */}
-            <Link
-              href="/"
-              className="shrink-0 group/logo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 rounded-lg p-0.5"
-              aria-label={`${region.name} — Home`}
-            >
-              <Image
-                src="/logo_clean.webp"
-                alt={region.name}
-                width={110}
-                height={44}
-                className={`object-contain transition-all duration-300 group-hover/logo:opacity-90 ${scrolled ? "h-11" : "h-14"} w-auto`}
-                priority
-              />
-            </Link>
+          <div className="border-b border-forest-950/10 bg-parchment/95 shadow-[0_8px_30px_-12px_rgba(25,29,31,0.25)] backdrop-blur-md">
+            <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-10">
+              <Link href="/" aria-label={`${region.name} home`} className="flex shrink-0 items-center">
+                <Logo />
+              </Link>
 
-            {/* ── Desktop nav links ── */}
-            <ul className="hidden md:flex items-center gap-5 lg:gap-6" role="list">
-              {links.map((link) => (
-                <li key={link.href}>
+              <nav aria-label="Main navigation" className="flex items-center gap-1">
+                {links.slice(1).map((link) => (
                   <Link
-                    href={link.href!}
-                    aria-current={isActive(link.href!) ? "page" : undefined}
-                    className={desktopLink(isActive(link.href!))}
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className="rounded-full px-4 py-2 text-sm font-semibold text-forest-900/80 transition hover:bg-forest-950/5 hover:text-forest-950 aria-[current=page]:bg-forest-950 aria-[current=page]:text-cream"
                   >
-                    <span className="relative">
-                      {link.label}
-                      <span
-                        className={`absolute -bottom-0.5 left-0 h-px bg-gold-400 transition-all duration-300
-                          ${isActive(link.href!) ? "w-full" : "w-0 group-hover/link:w-full"}`}
-                        aria-hidden="true"
-                      />
-                    </span>
-                    {isActive(link.href!) && (
-                      <span
-                        className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold-400"
-                        aria-hidden="true"
-                      />
-                    )}
+                    {link.label}
                   </Link>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </nav>
 
-            {/* ── CTA + mobile toggle ── */}
-            <div className="flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => setOrderOpen(true)}
-                className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide border border-gold-400 text-forest-950 bg-gold-400 hover:bg-gold-300 hover:border-gold-300 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-forest-900 shadow-[0_0_20px_rgba(156,232,0,0.15)] hover:shadow-glow-gold"
+                className="h-10 rounded-full bg-forest-950 px-5 text-sm font-extrabold text-cream transition hover:bg-forest-800"
               >
-                Place Order
-              </button>
-
-              {/* Mobile hamburger */}
-              <button
-                onClick={() => setOpen((o) => !o)}
-                aria-expanded={open}
-                aria-controls="mobile-nav"
-                aria-label={open ? "Close menu" : "Open menu"}
-                className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 text-gold-400 hover:bg-gold-400/10"
-              >
-                <span
-                  className={`absolute transition-all duration-300 ${open ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
-                  aria-hidden="true"
-                >
-                  <X className="w-5 h-5" />
-                </span>
-                <span
-                  className={`absolute transition-all duration-300 ${open ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
-                  aria-hidden="true"
-                >
-                  <Menu className="w-5 h-5" />
-                </span>
+                Place order
               </button>
             </div>
           </div>
-        </nav>
-      </header>
+        </header>
+      </div>
 
-      {/* ── Full-screen mobile overlay ───────────────────── */}
-      <div
-        id="mobile-nav"
-        className={`fixed inset-0 z-40 md:hidden flex flex-col bg-forest-900 transition-all duration-500 ease-spring
-          ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        aria-hidden={!open}
-      >
-        {/* lime top accent */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gold-400" aria-hidden="true" />
-
-        <div className="h-16 shrink-0" aria-hidden="true" />
-
-        {/* Main nav links */}
-        <nav className="flex-1 overflow-y-auto px-6 pt-8 pb-4" aria-label="Mobile navigation">
-          <ul className="space-y-0" role="list">
-            {links.map((link, i) => (
-              <li
-                key={link.href}
-                className={`transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
-              >
-                <Link
-                  href={link.href}
-                  aria-current={isActive(link.href) ? "page" : undefined}
-                  className={`flex items-center justify-between py-4 border-b text-2xl font-bold font-heading transition-all
-                    ${isActive(link.href)
-                      ? "text-gold-400 border-gold-400/20 pl-3"
-                      : "text-gold-400/40 hover:text-gold-400 border-gold-400/8 pl-0 hover:pl-1"
-                    }`}
-                >
-                  <span className="flex items-center gap-3">
-                    {isActive(link.href) && (
-                      <span className="w-1 h-6 rounded-full bg-gold-400 shrink-0" aria-hidden="true" />
-                    )}
-                    {link.label}
-                  </span>
-                  {isActive(link.href) && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400 shrink-0" aria-hidden="true" />
-                  )}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Bottom: CTA + contact */}
-        <div
-          className={`px-6 py-8 border-t border-gold-400/10 space-y-5 transition-all duration-500 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          style={{ transitionDelay: open ? "380ms" : "0ms" }}
-        >
-          <button
-            onClick={() => { setOpen(false); setOrderOpen(true); }}
-            className="btn-gold w-full justify-center text-base py-4"
-          >
-            Place Order
-          </button>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
-            <a
-              href={region.phone.href}
-              className="flex items-center gap-2 text-gold-400/35 text-sm hover:text-gold-400 transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              {region.phone.display}
-            </a>
-            <a
-              href={`mailto:${region.email}`}
-              className="flex items-center gap-2 text-gold-400/35 text-sm hover:text-gold-400 transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              {region.email}
-            </a>
-          </div>
-        </div>
+      <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[70] sm:right-6">
+        <LanguageSelector />
       </div>
 
       <OrderModal open={orderOpen} onClose={() => setOrderOpen(false)} />
