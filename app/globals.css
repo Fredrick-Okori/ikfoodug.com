@@ -16,7 +16,10 @@
    Plus Jakarta Sans everywhere: body copy, headings, the oversized display type, form
    controls, the admin screens. Declared here directly (not only via the Tailwind theme)
    so it applies on every page regardless of config caching. */
+/* Always light, even when the visitor's browser or OS is in dark mode (see also the
+   color-scheme viewport meta in app/layout.tsx). */
 :root {
+  color-scheme: only light;
   --font-site: var(--font-plus-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
 }
 

@@ -135,32 +135,32 @@ export default async function HomePage({ params }: { params: Promise<{ region: s
               fill
               priority
               sizes="100vw"
-              className="scale-[1.08] object-cover"
+              // Framed on the jars (right of the photo) so the subject reads large on every screen.
+              className="scale-[1.08] object-cover object-[78%_65%] lg:object-[70%_60%]"
             />
-            {/* Scrims keep the copy legible. Small screens: the copy covers the photo, so darken from the
-                bottom up. Desktop: concentrate the darkness on the left behind the copy and let it fade out
-                by about two-thirds across, so the right of the photo stays clear. */}
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/70 to-forest-950/30 lg:hidden" />
-            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-forest-950/95 from-10% via-forest-950/60 via-40% to-transparent to-70% lg:block" />
-            <div aria-hidden className="absolute inset-x-0 bottom-0 hidden h-1/3 bg-gradient-to-t from-forest-950/50 to-transparent lg:block" />
+            {/* Scrims. Desktop: dark on the left behind the copy, fading out before the middle so the
+                product on the right stays fully visible. Small screens (copy spans the width): a dark
+                fade up from the bottom where the copy sits, heavier on the left. */}
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-950 via-forest-950/70 to-transparent lg:hidden" />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-forest-950/65 to-transparent to-75% lg:hidden" />
+            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-forest-950 from-15% via-forest-950/75 via-30% to-transparent to-48% lg:block" />
           </div>
         </div>
 
-        <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col px-5 pb-10 pt-[calc(88px+3.5rem)] sm:px-8 sm:pt-[calc(6rem+3.5rem)] lg:px-12 lg:pb-12 lg:pt-[calc(106px+5rem)]">
-          <div className="grid flex-1 content-end">
+        <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col px-5 pb-10 pt-[calc(88px+2rem)] sm:px-8 sm:pt-[calc(6rem+2rem)] lg:px-12 lg:pb-12 lg:pt-[calc(106px+2.5rem)]">
+          <div className="grid flex-1 content-center">
             <div data-hero-copy className="max-w-5xl">
-              {/* Always three lines: "Purely / Ugandan Vanilla / Perfected." The size is capped by width
-                  (so "Ugandan Vanilla" never wraps on narrow phones) and by height (so the hero fits). */}
-              <h1 id="hero-title" data-hero-title data-no-reveal className="h-hero text-[clamp(2.25rem,min(11.5vw,12vh),9.25rem)]">
+              {/* Always four lines: "Purely / Ugandan / Vanilla / Perfected." The size is capped by width
+                  and by height so the hero still fits one screen. */}
+              <h1 id="hero-title" data-hero-title data-no-reveal className="h-hero text-[clamp(2.75rem,min(18vw,14vh),13rem)] [text-shadow:0_2px_28px_rgba(25,29,31,0.5)]">
                 <span className="block">Purely</span>
-                <span className="block whitespace-nowrap">Ugandan Vanilla</span>
-                <span className="block">
-                  <span className="-ml-[0.06em] inline-block bg-gold-400 px-[0.06em] pb-[0.02em] text-forest-950">Perfected.</span>
-                </span>
+                <span className="block">Ugandan</span>
+                <span className="block">Vanilla</span>
+                <span className="block">Perfected.</span>
               </h1>
 
               <div className="mt-10 flex flex-col items-start gap-8 lg:mt-14">
-                <p data-hero-foot className="max-w-md text-lg leading-relaxed text-parchment/80 sm:text-xl">
+                <p data-hero-foot className="max-w-md text-lg leading-relaxed text-parchment/90 [text-shadow:0_1px_14px_rgba(25,29,31,0.7)] sm:text-xl">
                   Hand-pollinated, sun-cured vanilla from Uganda&apos;s highlands, exported to food makers across Europe and Asia.
                 </p>
                 <div data-hero-foot className="flex shrink-0 flex-wrap items-center gap-8">

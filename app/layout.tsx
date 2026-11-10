@@ -10,7 +10,11 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#191d1f",
+  // Browser toolbar colour on mobile: the beige of the header.
+  themeColor: "#f5edd8",
+  // Light only: stops browsers that force dark mode (Chrome Auto Dark, Samsung Internet, Android
+  // WebViews) from inverting the site, and keeps form controls and scrollbars light.
+  colorScheme: "only light",
 };
 
 export const metadata: Metadata = {
