@@ -29,7 +29,7 @@ import { SplitText } from "gsap/SplitText";
  *   data-cat-list ........ photo ([data-cat-preview]) follows the cursor over rows ([data-cat-row])
  *   data-footer-mark ..... giant wordmark rises with the footer
  *
- * Everything is skipped for visitors who prefer reduced motion.
+ * Everything except the decorative marquee is skipped for visitors who prefer reduced motion.
  */
 let lenis: Lenis | null = null;
 
@@ -83,6 +83,32 @@ function heroIntro(hero: HTMLElement, wide: boolean) {
   gsap.to(q("[data-hero-copy]"), { yPercent: wide ? -18 : -8, ease: "none", scrollTrigger: away });
 
   return () => {};
+}
+
+/**
+ * The scrolling text band. It loops on its own for every visitor, including those who prefer
+ * reduced motion (it's decorative and aria-hidden). With motion allowed it also speeds up and
+ * flips direction with the scroll.
+ */
+function marquees(root: HTMLElement, reactToScroll: boolean) {
+  gsap.utils.toArray<HTMLElement>(root.querySelectorAll("[data-marquee]")).forEach((band) => {
+    const track = band.querySelector("[data-marquee-track]");
+    if (!track) return;
+    const loop = gsap.to(track, { xPercent: -50, duration: 28, ease: "none", repeat: -1 });
+    // Start deep into the loop so playing it backwards never hits the start and stalls.
+    loop.totalTime(loop.duration() * 1000);
+    if (!reactToScroll) return;
+    ScrollTrigger.create({
+      trigger: band,
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: (self) => {
+        const boost = Math.min(Math.abs(self.getVelocity()) / 220, 5);
+        gsap.to(loop, { timeScale: self.direction * (1 + boost), duration: 0.4, overwrite: true });
+        gsap.to(loop, { timeScale: self.direction, duration: 1.2, delay: 0.4 });
+      },
+    });
+  });
 }
 
 function scrollAnimations(root: HTMLElement) {
@@ -162,24 +188,6 @@ function scrollAnimations(root: HTMLElement) {
       .to(words, { color: settle, duration: 0.35, stagger: 0.08 }, 0.3);
   });
 
-  // Marquee loops on its own, then speeds up and flips direction with the scroll.
-  all("[data-marquee]").forEach((band) => {
-    const track = band.querySelector("[data-marquee-track]");
-    if (!track) return;
-    const loop = gsap.to(track, { xPercent: -50, duration: 28, ease: "none", repeat: -1 });
-    // Start deep into the loop so playing it backwards never hits the start and stalls.
-    loop.totalTime(loop.duration() * 1000);
-    ScrollTrigger.create({
-      trigger: band,
-      start: "top bottom",
-      end: "bottom top",
-      onUpdate: (self) => {
-        const boost = Math.min(Math.abs(self.getVelocity()) / 220, 5);
-        gsap.to(loop, { timeScale: self.direction * (1 + boost), duration: 0.4, overwrite: true });
-        gsap.to(loop, { timeScale: self.direction, duration: 1.2, delay: 0.4 });
-      },
-    });
-  });
 
   // Oversized line slides across as its section passes.
   all("[data-slide-x]").forEach((el) => {
@@ -307,12 +315,24 @@ export default function SmoothScroll() {
       media.add(
         {
           motion: "(prefers-reduced-motion: no-preference)",
+          // GSAP only runs this callback when at least one condition matches, so list the
+          // reduced-motion case too (a phone with Reduce Motion on matches nothing else).
+          reduced: "(prefers-reduced-motion: reduce)",
           wide: "(min-width: 1024px)",
           hover: "(hover: hover) and (min-width: 1024px)",
         },
         (context) => {
           const { motion, wide, hover } = context.conditions as { motion: boolean; wide: boolean; hover: boolean };
-          if (!motion) return;
+          if (!motion) {
+            // Reduced motion: no animations except the decorative marquee, which keeps scrolling.
+            frame = requestAnimationFrame(() =>
+              context.add(() => {
+                const main = document.getElementById("main-content");
+                if (main) marquees(main, false);
+              })
+            );
+            return;
+          }
           // Wait a frame so the new page is in the DOM; context.add() records the triggers
           // so they are reverted when the page changes.
           let cleanup = () => {};
@@ -322,6 +342,7 @@ export default function SmoothScroll() {
               const hero = main?.querySelector<HTMLElement>("[data-hero]");
               const offHero = hero ? heroIntro(hero, wide) : () => {};
               const offScroll = main ? scrollAnimations(main) : () => {};
+              if (main) marquees(main, true);
               const offPreview = main && hover ? cursorPreview(main) : () => {};
 
               const mark = document.querySelector("[data-footer-mark]");

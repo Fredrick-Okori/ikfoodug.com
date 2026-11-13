@@ -1,12 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+// Plus Jakarta Sans, self-hosted from app/fonts (variable font, weights 200–800 incl. the
+// extra-bold headings). Bundled with the site so it never depends on reaching Google Fonts —
+// if that download fails, next/font/google silently falls back to Arial.
+const plusJakarta = localFont({
+  src: [
+    { path: "./fonts/PlusJakartaSans-Variable.woff2", weight: "200 800", style: "normal" },
+    { path: "./fonts/PlusJakartaSans-Italic-Variable.woff2", weight: "200 800", style: "italic" },
+  ],
   variable: "--font-plus-jakarta",
   display: "swap",
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 export const viewport: Viewport = {
@@ -47,9 +53,17 @@ export const metadata: Metadata = {
     "vanilla supplier East Africa", "grade A vanilla beans Uganda",
     "vanilla powder Uganda", "vanilla paste Uganda", "vanilla caviar Uganda",
   ],
+  // Favicons: the leaf-and-vanilla emblem from /logo_clean.webp (the full wide logo is unreadable
+  // at favicon size). "?v=2" makes browsers drop the old cached icon.
   icons: {
-    icon: [{ url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }],
-    apple: [{ url: "/favicon-32x32.png" }],
+    icon: [
+      { url: "/favicon.ico?v=2", sizes: "any" },
+      { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png?v=2", sizes: "48x48", type: "image/png" },
+      { url: "/icon-192.png?v=2", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" }],
   },
   authors: [{ name: "IK Food Uganda", url: "https://ikfoodug.com" }],
   creator: "IK Food Uganda",
@@ -93,8 +107,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${plusJakarta.variable} antialiased`}>
       <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" href="/favicon-32x32.png" />
         <meta name="geo.region" content="UG" />
         <meta name="geo.placename" content="Kampala, Uganda" />
         <meta name="geo.position" content="0.3136;32.5811" />

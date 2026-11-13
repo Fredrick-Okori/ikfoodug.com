@@ -15,12 +15,13 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en-UG",
     dir: "ltr",
     icons: [
-      { src: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { src: "/favicon-32x32.png", sizes: "192x192", type: "image/png", purpose: "maskable" },
+      { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { src: "/icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
     shortcuts: [
-      { name: "Our Products", short_name: "Products", description: "Browse premium vanilla products", url: "/products", icons: [{ src: "/favicon-32x32.png", sizes: "32x32" }] },
-      { name: "Contact Us", short_name: "Contact", description: "Get in touch with our sales team", url: "/contact", icons: [{ src: "/favicon-32x32.png", sizes: "32x32" }] },
+      { name: "Our Products", short_name: "Products", description: "Browse premium vanilla products", url: "/products", icons: [{ src: "/icon-192.png", sizes: "192x192" }] },
+      { name: "Contact Us", short_name: "Contact", description: "Get in touch with our sales team", url: "/contact", icons: [{ src: "/icon-192.png", sizes: "192x192" }] },
     ],
   };
 }

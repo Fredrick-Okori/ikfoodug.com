@@ -126,8 +126,9 @@ export default async function HomePage({ params }: { params: Promise<{ region: s
     <>
       {/* ── HERO ─────────────────────────────────────── */}
       <section data-hero aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-forest-950 text-cream">
-        {/* Full-bleed background photo at every screen size; the copy sits in front of it. */}
-        <div className="absolute inset-0 -z-10">
+        {/* Background photo. Desktop: full-bleed behind the copy. Phones/tablets: the photo fills the
+            top of the hero so the bottles show clearly, then fades into dark where the copy sits. */}
+        <div className="absolute inset-x-0 top-0 -z-10 h-[62%] lg:inset-y-0 lg:left-[26%] lg:right-0 lg:h-full">
           <div data-hero-media className="relative h-full w-full overflow-hidden bg-forest-900">
             <Image
               src="/product_hero.avif"
@@ -136,23 +137,27 @@ export default async function HomePage({ params }: { params: Promise<{ region: s
               priority
               sizes="100vw"
               // Framed on the jars (right of the photo) so the subject reads large on every screen.
-              className="scale-[1.08] object-cover object-[78%_65%] lg:object-[70%_60%]"
+              className="scale-[1.08] object-cover object-[72%_70%] lg:object-[60%_60%]"
             />
-            {/* Scrims. Desktop: dark on the left behind the copy, fading out before the middle so the
-                product on the right stays fully visible. Small screens (copy spans the width): a dark
-                fade up from the bottom where the copy sits, heavier on the left. */}
-            <div aria-hidden className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-950 via-forest-950/70 to-transparent lg:hidden" />
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-forest-950/65 to-transparent to-75% lg:hidden" />
-            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-forest-950 from-15% via-forest-950/75 via-30% to-transparent to-48% lg:block" />
+            {/* Scrims. Phones: a short fade at the bottom of the photo into the dark copy area.
+                Desktop: dark on the left behind the copy, clearing before the middle so the product
+                on the right stays fully visible. */}
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-forest-950 to-transparent lg:hidden" />
+            <div aria-hidden className="absolute inset-0 hidden bg-gradient-to-r from-forest-950 from-10% via-forest-950/80 via-30% to-transparent to-55% lg:block" />
           </div>
+          {/* Phones: solid band over the photo's bottom edge so it melts into the dark copy area
+              without a visible seam (the intro animation's clip can leave a hairline there). */}
+          <div aria-hidden className="absolute inset-x-0 -bottom-1 h-6 bg-gradient-to-t from-forest-950 from-40% to-transparent lg:hidden" />
+          {/* Desktop: same treatment on the photo's left edge, where it meets the solid dark copy area. */}
+          <div aria-hidden className="absolute inset-y-0 -left-1 hidden w-10 bg-gradient-to-r from-forest-950 from-40% to-transparent lg:block" />
         </div>
 
         <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col px-5 pb-10 pt-[calc(88px+2rem)] sm:px-8 sm:pt-[calc(6rem+2rem)] lg:px-12 lg:pb-12 lg:pt-[calc(106px+2.5rem)]">
-          <div className="grid flex-1 content-center">
+          <div className="grid flex-1 content-end lg:content-center">
             <div data-hero-copy className="max-w-5xl">
               {/* Always four lines: "Purely / Ugandan / Vanilla / Perfected." The size is capped by width
                   and by height so the hero still fits one screen. */}
-              <h1 id="hero-title" data-hero-title data-no-reveal className="h-hero text-[clamp(2.75rem,min(18vw,14vh),13rem)] [text-shadow:0_2px_28px_rgba(25,29,31,0.5)]">
+              <h1 id="hero-title" data-hero-title data-no-reveal className="h-hero text-[clamp(2.75rem,min(15vw,14vh),13rem)] lg:text-[clamp(2.75rem,min(18vw,14vh),13rem)] [text-shadow:0_2px_28px_rgba(25,29,31,0.5)]">
                 <span className="block">Purely</span>
                 <span className="block">Ugandan</span>
                 <span className="block">Vanilla</span>
