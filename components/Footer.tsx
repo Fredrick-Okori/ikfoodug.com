@@ -100,7 +100,7 @@ export default function Footer({ region = "ug" }: { region?: RegionCode }) {
         aria-hidden
         className="select-none whitespace-nowrap px-3 pb-[0.04em] text-center text-[clamp(4rem,19vw,20rem)] font-extrabold leading-[0.9] tracking-[-0.06em] text-cream"
       >
-        IK Food<span className="text-[#dccba0]">.</span>
+        IK Food<span className="text-gold-400">.</span>
       </p>
     </footer>
   );
